@@ -27,12 +27,20 @@ class SedoTMPClient
     {
         // Load environment variables if path provided
         if ($envPath) {
+            if (!file_exists($envPath)) {
+                throw new \RuntimeException("Environment file not found: {$envPath}");
+            }
             $dotenv = new Dotenv();
             $dotenv->load($envPath);
         }
         
         // Set API host from environment or use default
         $this->apiHost = $_ENV['API_HOST'] ?? 'https://api.sedotmp.com';
+        
+        // Ensure required environment variables are set
+        if (!isset($_ENV['AUTH0_DOMAIN']) || !isset($_ENV['AUTH0_CLIENT_ID']) || !isset($_ENV['AUTH0_CLIENT_SECRET'])) {
+            throw new \RuntimeException('Required Auth0 environment variables are missing. Please check your .env file.');
+        }
         
         // Create configuration
         $config = new Configuration();
