@@ -1,0 +1,13 @@
+{
+  "modelPackage": "SedoTMP\\Content\\Model",
+  "apiPackage": "SedoTMP\\Content\\API",
+  "variableNamingConvention": "camelCase",
+  "invokerPackage": "Sedo",
+  "packagePath": "",
+  "srcBasePath": "./lib/src",
+  "composerVendorName": "sedo-com",
+  "composerProjectName": "sedotmp-client-php",
+  "gitRepoId": "sedotmp-client-php",
+  "gitRepoBaseURL": "https://github.com",
+  "artifactVersion": "0.0.1"
+}
