@@ -1,0 +1,937 @@
+openapi: 3.0.3
+info:
+  title: platform-api
+  version: 1.3.0
+  description: |
+    # Introduction and Process Overview
+
+    This API helps manage content campaigns, reporting and other parts of Sedo Traffic Monetization Platform
+
+    *Note: Please note that the API is still in development and some endpoints may not be available yet.*
+
+    # Authentication
+    The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity.
+    To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.
+
+    <!-- ReDoc-Inject: <security-definitions> -->
+x-tagGroups:
+- name: Content Campaigns
+  tags:
+  - Content Campaigns
+- name: Appendix
+  tags:
+  - Glossary
+tags:
+- name: Content Campaigns
+  description: |
+    In order to monetize incoming traffic, the following components are needed:
+
+    1. **Content Site**: Hosts articles and displays ads.
+    2. **Articles**: Available online and display ads.
+    3. **Campaigns**: Collect tracking data from articles and report ad performance.
+    4. **Final URL**: The destination to which traffic will be routed.
+
+    This process involves multiple moving parts that need to be integrated together.
+
+    To streamline the process, we use content campaigns to provide all the necessary details for the complete process. Our system will handle all the moving parts and integrate them, resulting in a final URL for traffic routing.
+
+    The Content Campaigns API allows partners to easily prepare the final URL where traffic can be sent. The API provides endpoints to create and content campaigns. The content campaigns are processed asynchronously, and the article is published to the specified domain. After the article is online and accessible, we create the campaign for tracking that article and update the content campaign with the final URL.
+
+    Since the process involves many moving parts, additional information may be required, or failures may occur. In such cases, the content campaign will be marked as `PROCESSING_ERROR`, and a new content campaign needs to be created. However, the content campaign will get more details during fulfillment. When it reaches a milestone, its data may be reused to create a new content campaign by providing some parts of the previous content campaign.
+
+    When the content campaign is successfully processed and the final tracking URL has been generated, the content campaign will be marked as `COMPLETED`.
+
+    To highlight some use cases:
+
+    1. **Creating a New Content Campaign for a New Article and Campaign**:
+       - Provide all data required to generate an article, domain (content site), and campaign tracking details.
+       - A new article will be created, published to the domain, and a campaign will be created for tracking the article.
+       - The article ID will be written to the content campaign. If the content campaign fails, the article ID can be reused to create a new content campaign.
+       - After successful creation of the campaign, the content campaign will be updated with the campaign ID and tracking URL, and the content campaign will be marked as `COMPLETED`.
+
+    2. **Creating a New Content Campaign for an Existing Article and new Campaign**:
+       - Provide the article ID and all necessary data to generate new campaign tracking details. The article can be created via the content API, portal website, or from a previous content campaign.
+       - The article will be published to the domain, and a new campaign will be created for tracking the article.
+       - The article ID will be written to the content campaign. If the content campaign fails, the article ID can be reused to create a new content campaign.
+       - After successful creation of the campaign, the content campaign will be updated with the campaign ID and tracking URL, and the content campaign will be marked as `COMPLETED`.
+
+    3. **Creating a New Content Campaign for a New Article and Existing Campaign**:
+       - Provide all data required to generate a new article and the existing campaign id.
+       - A new article will be created and published to the domain, and the existing campaign will be used for tracking the article.
+       - The article ID will be written to the content campaign. If the content campaign fails, the article ID can be reused to create a new content campaign.
+       - After successful creation of the article, the content campaign will be updated with the campaign ID and tracking URL, and the content campaign will be marked as `COMPLETED`.
+
+    4. **Creating a New Content Campaign for an Existing Article and Campaign**:
+       - Provide the article ID and campaign ID.
+      - The article will be published to the domain, and the campaign will be tracked.
+      - If the content campaign fails, you can reuse the article ID to create a new content campaign.
+      - Once the article is successfully published, the new tracking URL will be updated in the content campaign, and the content campaign will be marked as `COMPLETED`.
+
+    It is possible to create a new content campaign for an existing article and existing campaign. In this case, the article will be published to the domain, and the campaign will be reused.
+    You can find existing articles by using our content-api or portal website to search for articles by title, excerpt, or text. The campaign ID can be found by using the campaign-api or campaign portal.
+
+    The status of the content campaign can be:
+
+    Status            | Description
+    ------------------|--------------------------------------------------------------------------
+    `PENDING`           | Content campaign is created and waiting for processing.
+    `PROCESSING`        | The content campaign is being processed.
+    `ARTICLE_PUBLISHED` | The article process is finished successfully and published to the domain.
+    `PROCESSING_ERROR`  | There was an error during the processing of the Content campaign.
+    `COMPLETED`         | The content campaign is completed.
+
+    **Important notes:**
+    - Our system must comply with different regulations and guidelines. Therefore, we need to ensure that the content is compliant with the guidelines and regulations. When the content is not compliant, the content campaign will be marked as `processing_error`.
+    - The process involves many moving parts and may take longer than expected. Therefore, the content campaign will be marked as `processing` until the process is completed. We recommend periodically fetch the content campaign by its provided ID to check the status
+    - Pay attention to the status, article ID, campaign ID, and tracking URL in the content campaign to avoid creating redundant or duplicated content, which will decrease the value of the content site and affect ad performance.
+- name: Glossary
+  description: |
+    This section provides definitions for terms used throughout the API documentation.
+
+    Term | Definition
+    ----------------|-------------
+    Article | Content page (article) which contains title, excerpt (introduction short text), main text body, an image, tags, category.
+    Campaign | A marketing effort to promote content and track its performance.
+    Content Site | A website that hosts articles and displays ads.
+    Final URL | The destination URL where traffic is routed.
+    Partner | An entity with privileges to manage resources.
+servers:
+- url: https://api.sedotmp.com/platform/v1
+security:
+- bearerAuth: []
+paths:
+  /content-campaigns:
+    get:
+      tags:
+      - Content Campaigns
+      summary: Retrieve a list of content campaigns
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/term'
+      responses:
+        200:
+          $ref: '#/components/responses/ContentCampaignList'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+      - Content Campaigns
+      summary: Create a new content campaign
+      description: |
+        This endpoint creates a new content campaign for a partner, processed asynchronously. Refer to the process description above for details.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - publishDomainName
+              - article
+              - campaign
+              properties:
+                publishDomainName:
+                  type: string
+                  minLength: 1
+                  description: |
+                    Article will be published to this domain
+
+                    List of available domains can be found by using content api or portal website
+                  example: myDomain.info
+                article:
+                  type: object
+                  discriminator:
+                    propertyName: type
+                  oneOf:
+                  - $ref: '#/components/schemas/CreateArticle'
+                  - $ref: '#/components/schemas/ExistingArticle'
+                campaign:
+                  type: object
+                  discriminator:
+                    propertyName: type
+                  oneOf:
+                  - $ref: '#/components/schemas/CreateCampaign'
+                  - $ref: '#/components/schemas/ExistingCampaign'
+                partner:
+                  $ref: '#/components/schemas/Partner'
+      responses:
+        200:
+          $ref: '#/components/responses/ContentCampaign'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /content-campaigns/{id}:
+    get:
+      tags:
+      - Content Campaigns
+      summary: Retrieve a content campaign by its ID
+      description: |
+        This endpoint retrieves details of a specific content campaign by its ID. Since content campaign fulfillment may take some time, use this endpoint to check the status of your content campaign.
+        Keep an eye on the status, article ID, campaign ID, and tracking URL in the content campaign.
+
+        Refer to the process description above for more information.
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        200:
+          $ref: '#/components/responses/ContentCampaign'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /tracked-content-orders:
+    get:
+      deprecated: true
+      tags:
+      - Content Campaigns
+      summary: Retrieve a list of tracked content orders
+      description: |
+        Note: This endpoint is deprecated. Please use the content-campaigns corresponding endpoint instead.
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/term'
+      responses:
+        200:
+          $ref: '#/components/responses/ContentCampaignList'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      deprecated: true
+      tags:
+      - Content Campaigns
+      summary: Create a new tracked content order
+      description: |
+        This endpoint creates a new tracked content order for a partner, processed asynchronously. Refer to the process description above for details.
+
+        Note: This endpoint is deprecated. Please use the content-campaigns corresponding endpoint instead.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - publishDomainName
+              - article
+              - campaign
+              properties:
+                publishDomainName:
+                  type: string
+                  minLength: 1
+                  description: |
+                    Article will be published to this domain
+
+                    List of available domains can be found by using content api or portal website
+                  example: myDomain.info
+                article:
+                  type: object
+                  discriminator:
+                    propertyName: type
+                  oneOf:
+                  - $ref: '#/components/schemas/CreateArticle'
+                  - $ref: '#/components/schemas/ExistingArticle'
+                campaign:
+                  type: object
+                  discriminator:
+                    propertyName: type
+                  oneOf:
+                  - $ref: '#/components/schemas/CreateCampaign'
+                  - $ref: '#/components/schemas/ExistingCampaign'
+                partner:
+                  $ref: '#/components/schemas/Partner'
+      responses:
+        200:
+          $ref: '#/components/responses/ContentCampaign'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /tracked-content-orders/{id}:
+    get:
+      deprecated: true
+      tags:
+      - Content Campaigns
+      summary: Retrieve a tracked content order by its ID
+      description: |
+        This endpoint retrieves details of a specific tracked content order by its ID. Since order fulfillment may take some time, use this endpoint to check the status of your order.
+        Keep an eye on the status, article ID, campaign ID, and tracking URL in the order.
+
+        Refer to the process description above for more information.
+
+        Note: This endpoint is deprecated. Please use the content-campaign corresponding endpoint instead.
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        200:
+          $ref: '#/components/responses/ContentCampaign'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    id:
+      name: id
+      in: path
+      description: Resource id
+      required: true
+      schema:
+        $ref: '#/components/schemas/Id'
+    page:
+      name: page
+      in: query
+      description: Pageable object (every key is a separate query parameter)
+      schema:
+        $ref: '#/components/schemas/Pageable'
+    term:
+      name: term
+      in: query
+      description: Search term for matching against any text field e.g. ID, title, excerpt, text..
+      schema:
+        type: string
+        example: summer+vacation
+  schemas:
+    Id:
+      type: string
+      minLength: 36
+      maxLength: 36
+      format: uuid4
+      example: cf1a429f-e596-4648-83a2-5a3045b2276a
+    CreateArticle:
+      type: object
+      required:
+      - topics
+      - type
+      allOf:
+      - $ref: '#/components/schemas/ArticleData'
+      - type: object
+        properties:
+          type:
+            type: string
+            example: CreateArticle
+    ExistingArticle:
+      description: |
+        List of available articles can be found by using content api or portal website
+      type: object
+      required:
+      - articleId
+      - type
+      properties:
+        articleId:
+          $ref: '#/components/schemas/Id'
+        type:
+          type: string
+          example: ExistingArticle
+    ArticleData:
+      type: object
+      properties:
+        country:
+          $ref: '#/components/schemas/Country'
+        locale:
+          $ref: '#/components/schemas/Locale'
+        featuredImage:
+          type: object
+          properties:
+            generate:
+              type: boolean
+              description: Generate image for the article
+        title:
+          type: string
+          example: Summer vacation
+        excerpt:
+          type: string
+          example: The best summer vacation deals
+        topics:
+          description: The topic to generate article about
+          type: array
+          minItems: 1
+          maxItems: 3
+          items:
+            type: string
+            minLength: 1
+            example: Summer vacation
+          example:
+          - Summer vacation
+          - All inclusive resort in Thailand
+          - Cheap flights from USA
+        categoryId:
+          description: Which category id does article belong to. List of available categories can be fetched from Content API categories endpoint.
+          type: string
+          format: uuid4
+          example: 2e5c8fbb-f078-498b-82e5-d45263e21f67
+    CreateCampaign:
+      type: object
+      required:
+      - name
+      - trackingData
+      - type
+      allOf:
+      - $ref: '#/components/schemas/CampaignData'
+      - type: object
+        properties:
+          type:
+            type: string
+            example: CreateCampaign
+    ExistingCampaign:
+      description: List of available campaigns can be found by using campaign api or portal website
+      type: object
+      required:
+      - campaignId
+      - type
+      properties:
+        campaignId:
+          type: string
+          minLength: 1
+          example: '1'
+        type:
+          type: string
+          example: ExistingCampaign
+    CampaignData:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          example: summer vacation
+        trackingData:
+          type: object
+          description: Tracking data for campaign
+          required:
+          - trafficSource
+          - trackingMethod
+          properties:
+            trafficSource:
+              type: string
+              description: Traffic source is important for tracking conversions
+              enum:
+              - META
+              - OUTBRAIN
+              - SNAPCHAT
+              - TABOOLA
+              - TIKTOK
+              - X
+            trackingSettings:
+              type: object
+              discriminator:
+                propertyName: type
+              oneOf:
+              - $ref: '#/components/schemas/S2sMetaTrackingSettings'
+              - $ref: '#/components/schemas/S2sOutbrainTrackingSettings'
+              - $ref: '#/components/schemas/S2sSnapchatTrackingSettings'
+              - $ref: '#/components/schemas/S2sTaboolaTrackingSettings'
+              - $ref: '#/components/schemas/S2sTikTokTrackingSettings'
+              - $ref: '#/components/schemas/S2sXTrackingSettings'
+            trackingMethod:
+              type: string
+              description: 'Tracking method: currently only S2S is supported.'
+              enum:
+              - S2S
+            postbacks:
+              type: array
+              description: |
+                Define postbacks for events.
+
+                **Implementation Guidelines:**
+                - For each event maximum one postback can be defined.
+                - Ensure that the Click ID parameter in clickIdParam matches the one used in url.
+                - Use {click_id} consistently for accurate conversion tracking.
+                - Leverage additional macros to optimize tracking and reporting.
+                - Test your postback setup before launching campaigns.
+              items:
+                $ref: '#/components/schemas/Postback'
+    S2sMetaTrackingSettings:
+      type: object
+      description: |
+        Settings for tracking with Meta traffic source.
+
+        More details on how to set up the tracking can be found in the [Meta conversion tracking API documentation](https://developers.facebook.com/docs/marketing-api/conversions-api/get-started/)
+      required:
+      - type
+      properties:
+        s2sMetaToken:
+          type: string
+          description: Conversion API token
+        s2sMetaPixelId:
+          type: string
+          description: |
+            Pixel ID from Meta Events Manager. See for more details: https://www.facebook.com/business/help/952192354843755?id=1205376682832142
+
+            More details on how to set up the tracking can be found in the [Meta conversion tracking API documentation](https://developers.facebook.com/docs/marketing-api/conversions-api/get-started/)
+        s2sMetaLandingPageEvent:
+          type: string
+          description: Event name for the Landing Visit event.
+        s2sMetaClickEvent:
+          type: string
+          description: |
+            Event name for the Search event. Can be used for tracking "1st" click
+        s2sMetaSearchEvent:
+          type: string
+          description: |
+            Event name for the Ad Click or "2nd" click event. Commonly used for conversion tracking
+        type:
+          type: string
+          example: S2sMetaTrackingSettings
+    S2sOutbrainTrackingSettings:
+      type: object
+      description: |
+        Settings for tracking with Outbrain traffic source.
+
+        Follow the Outbrain guidelines to set up the Server-to-Server (S2S) Conversion in your Outbrain account [Outbrain S2S Conversion Setup](https://www.outbrain.com/help/advertisers/server2server-integrations/)
+      required:
+      - type
+      - s2sOutbrainClickParam
+      properties:
+        s2sOutbrainClickParam:
+          type: string
+          description: |
+            Follow the Outbrain guidelines to set up the Server-to-Server (S2S) Conversion in your Outbrain account: [Outbrain S2S Conversion Setup](https://www.outbrain.com/help/advertisers/server2server-integrations/)
+
+            This parameter is crucial for passing the Outbrain Click ID back to Outbrain, enabling effective tracking of your campaigns.
+
+            **Usage Instructions:**
+              1. When directing traffic to your RSoC articles, include the Outbrain Click ID in the URL using a parameter name of your choice.
+              2. Ensure that the parameter name in the URL aligns with the name configured in s2sObClickParam.
+
+            **Example:**
+
+            If your traffic URL is structured as follows: `https://your-rsoc-domain.com/?campaign=1234&ob_click_id=23o4ij23o`
+            Then, you should set the value of s2sTblClickParam to `ob_click_id`. This alignment guarantees proper tracking and reporting of your campaigns with Outbrain.
+          example: ob_click_id
+        s2sOutbrainLandingPageEvent:
+          type: string
+          description: Event name for the Landing Visit event.
+        s2sOutbrainSearchEvent:
+          type: string
+          description: |
+            Event name for the Search event. Can be used for tracking "1st" click
+        s2sOutbrainClickEvent:
+          type: string
+          description: |
+            Event name for the Ad Click or "2nd" click event. Commonly used for conversion tracking
+        type:
+          type: string
+          example: S2sOutbrainTrackingSettings
+    S2sSnapchatTrackingSettings:
+      type: object
+      description: |
+        Settings for tracking with Snapchat traffic source.
+
+        More details on how to set up the tracking can be found in the [Snapchat Ads Manager](https://forbusiness.snapchat.com/blog/the-snap-pixel-how-it-works-and-how-to-install-it#installation)
+      required:
+      - type
+      - s2sSnapchatToken
+      - s2sSnapchatPixelId
+      properties:
+        s2sSnapchatToken:
+          type: string
+          description: Conversion API token.
+        s2sSnapchatPixelId:
+          type: string
+          description: |
+            Event Pixel ID from Snapchat Ads Manager.
+
+            More details on how to set up the tracking can be found in the [Snapchat Ads Manager](https://forbusiness.snapchat.com/blog/the-snap-pixel-how-it-works-and-how-to-install-it#installation)
+        s2sSnapchatLandingPageEvent:
+          type: string
+          description: Event name for the Landing Visit event.
+          allOf:
+          - $ref: '#/components/schemas/S2sSnapchatEventType'
+        s2sSnapchatSearchEvent:
+          type: string
+          description: |
+            Event name for the Search event. Can be used for tracking "1st" click
+          allOf:
+          - $ref: '#/components/schemas/S2sSnapchatEventType'
+        s2sSnapchatClickEvent:
+          type: string
+          description: |
+            Event name for the Ad Click or "2nd" click event. Commonly used for conversion tracking
+          allOf:
+          - $ref: '#/components/schemas/S2sSnapchatEventType'
+        type:
+          type: string
+          example: S2sSnapchatTrackingSettings
+    S2sSnapchatEventType:
+      type: string
+      description: |
+        Following events are supported by Snapchat Conversion API and can be used for search, click, and landing page events.
+      example: VIEW_CONTENT
+      enum:
+      - PURCHASE
+      - SAVE
+      - START_CHECKOUT
+      - ADD_CART
+      - VIEW_CONTENT
+      - ADD_BILLING
+      - SIGN_UP
+      - SEARCH
+      - PAGE_VIEW
+      - SUBSCRIBE
+      - AD_CLICK
+      - AD_VIEW
+      - COMPLETE_TUTORIAL
+      - LEVEL_COMPLETE
+      - INVITE
+      - LOGIN
+      - SHARE
+      - RESERVE
+      - ACHIEVEMENT_UNLOCKED
+      - ADD_TO_WISHLIST
+      - SPENT_CREDITS
+      - RATE
+      - START_TRIAL
+      - LIST_VIEW
+      - APP_INSTALL
+      - APP_OPEN
+      - CUSTOM_EVENT_1
+      - CUSTOM_EVENT_2
+      - CUSTOM_EVENT_3
+      - CUSTOM_EVENT_4
+      - CUSTOM_EVENT_5
+    S2sTaboolaTrackingSettings:
+      type: object
+      description: "Settings for tracking with Snapchat traffic source.\n\nFollow the Taboola guidelines to set up the Server-to-Server (S2S) Conversion in your Taboola account \n[Taboola S2S Conversion Setup0](https://help.taboola.com/hc/en-us/articles/115006850567-How-to-Track-Conversions-Using-Server-to-Server-Integration-S2S)\n"
+      required:
+      - type
+      - s2sTaboolaClickParam
+      properties:
+        s2sTaboolaClickParam:
+          type: string
+          description: |
+            Follow the Taboola guidelines to set up the Server-to-Server (S2S) Conversion in your Taboola account:
+            [Taboola S2S Conversion Setup0](https://help.taboola.com/hc/en-us/articles/115006850567-How-to-Track-Conversions-Using-Server-to-Server-Integration-S2S)
+
+            `s2sTaboolaClickParam` parameter is crucial for passing the Taboola Click ID back to Taboola, enabling effective tracking of your campaigns.
+
+            **Usage Instructions:**
+              1. When directing traffic to your RSoC articles, include the Taboola Click ID in the URL using a parameter name of your choice.
+              2. Ensure that the parameter name in the URL aligns with the name configured in s2sTaboolaClickParam.
+
+            **Example:**
+
+              If your traffic URL is structured as follows:
+              your-rsoc-domain.com/?campaign=12&taboola_click=23o4ij23o
+              Then, you should set the value of `s2sTaboolaClickParam` to `taboola_click`. This alignment guarantees proper tracking and reporting of your campaigns with Taboola.
+          example: taboola_click
+        s2sTaboolaLandingPageEvent:
+          type: string
+          description: Event name for the Landing Visit event.
+        s2sTaboolaSearchEvent:
+          type: string
+          description: |
+            Event name for the Search event. Can be used for tracking "1st" click
+        s2sTaboolaClickEvent:
+          type: string
+          description: |
+            Event name for the Ad Click or "2nd" click event. Commonly used for conversion tracking
+        type:
+          type: string
+          example: S2sTaboolaTrackingSettings
+    S2sTikTokTrackingSettings:
+      type: object
+      description: |
+        Settings for tracking with TikTok traffic source.
+      required:
+      - type
+      - s2sTikTokToken
+      - s2sTikTokPixelId
+      properties:
+        s2sTikTokToken:
+          type: string
+          description: |
+            This is the API token required for authentication with the TikTok API. Ensure that you generate and securely store this token to facilitate server-to-server interactions.
+        s2sTikTokPixelId:
+          type: string
+          description: |
+            This is the Event Pixel ID obtained from the TikTok Tracking section. It is essential for tracking user interactions on your landing pages.
+
+            For generating your Pixel ID, refer to the following resources:
+              [Get Started with Pixel](https://ads.tiktok.com/help/article/get-started-pixel)
+              [Pixel Sharing in Business Center](https://ads.tiktok.com/help/article/pixel-sharing-business-center)
+
+            Note: Make sure to configure the appropriate permissions in your TikTok account for the pixel to function correctly.
+        s2sTikTokLandingPageEvent:
+          type: string
+          description: Event name for the Landing Visit event.
+          allOf:
+          - $ref: '#/components/schemas/S2sTikTokEventType'
+        s2sTikTokSearchEvent:
+          type: string
+          description: |
+            Event name for the Search event. Can be used for tracking "1st" click
+          allOf:
+          - $ref: '#/components/schemas/S2sTikTokEventType'
+        s2sTikTokClickEvent:
+          type: string
+          description: |
+            Event name for the Ad Click or "2nd" click event. Commonly used for conversion tracking
+          allOf:
+          - $ref: '#/components/schemas/S2sTikTokEventType'
+        type:
+          type: string
+          example: S2sTikTokTrackingSettings
+    S2sTikTokEventType:
+      type: string
+      description: |
+        Following events are supported by TikTok Conversion API and can be used for search, click, and landing page events.
+      example: ViewContent
+      enum:
+      - ViewContent
+      - ClickButton
+      - Search
+      - AddToWishlist
+      - AddToCart
+      - InitiateCheckout
+      - AddPaymentInfo
+      - CompletePayment
+      - PlaceAnOrder
+      - Contact
+      - Download
+      - SubmitForm
+      - CompleteRegistration
+      - Subscribe
+      - CustomizeProduct
+      - FindLocation
+      - Schedule
+    S2sXTrackingSettings:
+      type: object
+      description: |
+        Settings for tracking with Twitter (X)  traffic source.
+
+        For detailed guidance on setting up and using the pixel, please refer to the official documentation: [Twitter (X) Conversion API](https://developer.x.com/en/docs/x-ads-api/measurement/web-conversions/conversion-api).
+      required:
+      - type
+      - s2sXPixelId
+      properties:
+        s2sXPixelId:
+          type: string
+          description: |
+            This parameter represents the Event Pixel ID obtained from the Twitter (X) Events Manager. It is essential for tracking user interactions and conversions.
+
+            For detailed guidance on setting up and using the pixel, please refer to the official documentation: [Twitter (X) Conversion API](https://developer.x.com/en/docs/x-ads-api/measurement/web-conversions/conversion-api)
+        s2sXLandingPageEvent:
+          type: string
+          description: Event name for the Landing Visit event.
+        s2sXSearchEvent:
+          type: string
+          description: |
+            Event name for the Search event. Can be used for tracking "1st" click
+        s2sXClickEvent:
+          type: string
+          description: |
+            Event name for the Ad Click or "2nd" click event. Commonly used for conversion tracking
+        type:
+          type: string
+          example: S2sXTrackingSettings
+    Postback:
+      type: object
+      required:
+      - eventName
+      - url
+      properties:
+        eventName:
+          type: string
+          description: The name of the event for which the postback URL will be called
+          example: CLICK
+          enum:
+          - CLICK
+        url:
+          type: string
+          minLength: 1
+          description: |
+            Every click conversion is sent to this URL for accurate tracking and attribution.
+            It should include the Click ID parameter you use when sending traffic to SedoTMP.
+            URL will be called using HTTP GET.
+
+            ### Additional Tracking Macros
+            You can dynamically append extra parameters to the postback URL using the following macros.
+            This allows better tracking of conversions and payouts.
+
+            Macro            | Description  | Example
+            -----------------|--------------|-----------
+            {campaign}       | Campaign ID  | 12345
+            {click_id}       | Click ID for conversion tracking. Important: attach always the same parameter name to the traffic URL when sending traffic to SedoTMP. | abc123xyz
+            {epayout}        | Estimated payout amount | 0.123
+            {country}        | 2-letter ISO country code | US
+            {country_name}   | Full country name | United States
+            {state}          | State code or name | CA / California
+            {city}           | City name | Los Angeles
+            {zip}            | ZIP/postal code | 90001
+            {os_type}        | Visitor's operating system | WINDOWS
+            {browser}        | Visitor's browser type | CHROME
+            {device_type}    | Device type (Mobile/Desktop) | MOBILE
+            {device_brand}   | Device brand | APPLE
+          example: https://your-tracking-url.com/cf/cv?click_id={click_id}&payout={epayout}
+        clickIdParam:
+          type: string
+          description: |
+            Used to define a custom parameter name for passing your (or your traffic source) Click ID.
+            This same parameter name must be included in the url when sending traffic to SedoTMP.
+          example: click_id
+    ContentCampaignStatus:
+      type: string
+      enum:
+      - PENDING
+      - PROCESSING
+      - ARTICLE_PUBLISHED
+      - PROCESSING_ERROR
+      - COMPLETED
+      example: PENDING
+    ContentCampaignResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        partner:
+          $ref: '#/components/schemas/Partner'
+        trackingUrl:
+          type: string
+          example: https://myDomain.info/driving-affordability-exploring?campaign=123
+        publishDomainName:
+          type: string
+          example: myDomain.info
+        article:
+          allOf:
+          - type: object
+            properties:
+              id:
+                $ref: '#/components/schemas/Id'
+          - $ref: '#/components/schemas/ArticleData'
+        campaign:
+          allOf:
+          - type: object
+            properties:
+              id:
+                type: string
+                example: '1'
+          - $ref: '#/components/schemas/CampaignData'
+        status:
+          $ref: '#/components/schemas/ContentCampaignStatus'
+        processingErrorDetails:
+          $ref: https://raw.githubusercontent.com/zalando/restful-api-guidelines/master/models/problem-1.0.1.yaml#/Problem
+        createdDate:
+          $ref: '#/components/schemas/Timestamp'
+        createdBy:
+          $ref: '#/components/schemas/User'
+        lastModifiedDate:
+          $ref: '#/components/schemas/Timestamp'
+        lastModifiedBy:
+          $ref: '#/components/schemas/User'
+    Timestamp:
+      description: Timestamp in UTC
+      type: string
+      format: date-time
+      example: '2024-01-01T18:00:00Z'
+    Partner:
+      description: Partner assigned to the resource. Requires corresponding privileges
+      type: string
+      example: partner2
+    User:
+      description: Authenticated user name
+      type: string
+      example: John Doe
+    Pageable:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          default: 0
+          minimum: 0
+          description: 0-indexed page number
+        size:
+          type: integer
+          format: int32
+          default: 10
+          minimum: 1
+          maximum: 10
+        sort:
+          description: |
+            In order to sort by multiple columns, provide a `sort=property,direction` query parameter for each column
+          type: string
+          example: id,asc
+    Country:
+      description: Audience country (ISO code)
+      type: string
+      maxLength: 2
+      format: iso-3166-alpha-2
+      example: US
+    Locale:
+      description: Audience language (Language tag formatted)
+      type: string
+      format: bcp47
+      example: en-US
+  headers:
+    X-Total-Count:
+      description: Total count of results
+      required: true
+      schema:
+        type: integer
+        format: int64
+    X-Total-Pages:
+      description: Total count of pages
+      required: true
+      schema:
+        type: integer
+        format: int32
+    X-Sedo-Request-Id:
+      description: Request reference identifier passed in the requests by the client and generated if not was not specified. Used for distributed requests tracing
+      required: false
+      schema:
+        type: string
+    X-Sedo-Client-Request-Id:
+      description: Some reference identifier passed in the requests by the client
+      required: false
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: |
+        Bad request: most likely the provided json body is invalid or some required fields are missing.
+      content:
+        application/json:
+          schema:
+            $ref: https://raw.githubusercontent.com/zalando/restful-api-guidelines/master/models/problem-1.0.1.yaml#/Problem
+    InternalServerError:
+      description: |
+        Internal Server Error: some internal processing failed. May be related to external api calls
+      content:
+        application/json:
+          schema:
+            $ref: https://raw.githubusercontent.com/zalando/restful-api-guidelines/master/models/problem-1.0.1.yaml#/Problem
+    TrackedContentOrder:
+      description: Tracked content order details
+    ContentCampaign:
+      description: Content campaign details
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ContentCampaignResponse'
+      headers:
+        X-Sedo-Client-Request-Id:
+          $ref: '#/components/headers/X-Sedo-Client-Request-Id'
+        X-Sedo-Request-Id:
+          $ref: '#/components/headers/X-Sedo-Request-Id'
+    ContentCampaignList:
+      description: List of content campaigns
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ContentCampaignResponse'
+      headers:
+        X-Total-Count:
+          $ref: '#/components/headers/X-Total-Count'
+        X-Total-Pages:
+          $ref: '#/components/headers/X-Total-Pages'
