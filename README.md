@@ -25,5 +25,5 @@ Install the library:
  -i /local/api-docs/content-api.yaml \
  -l php \
  -o /local
- -c /local/swagger-platform.config.json
+ -c /local/swagger-content.config.json
 ```
