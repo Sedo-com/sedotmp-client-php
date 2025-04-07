@@ -10,6 +10,11 @@ git_push.sh
 .gitignore
 composer.json
 
+lib/src/ApiException.php
+lib/src/Configuration.php
+lib/src/HeaderSelector.php
+lib/src/ObjectSerializer.php
+
 # As an example, the C# client generator defines ApiClient.cs.
 # You can make changes and tell Swagger Codgen to ignore just this file by uncommenting the following line:
 #ApiClient.cs
