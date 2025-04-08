@@ -1,11 +1,10 @@
 <?php
 
-namespace Sedo\Auth;
+namespace Sedo\SedoTMP\Auth;
 
 use Auth0\SDK\Auth0;
 use Auth0\SDK\Configuration\SdkConfiguration;
-use Auth0\SDK\Token;
-use Sedo\Configuration;
+use Sedo\SedoTMP\OpenApi\Configuration;
 use Symfony\Component\Dotenv\Dotenv;
 
 class Auth0Authenticator implements AuthenticatorInterface

@@ -10,4 +10,5 @@ return $config->setRules([
         PhpCsFixer\Finder::create()
             ->exclude('test')
             ->in('lib/src')
+            ->in('lib/api')
     );

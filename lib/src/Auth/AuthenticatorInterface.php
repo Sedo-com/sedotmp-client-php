@@ -1,8 +1,8 @@
 <?php
 
-namespace Sedo\Auth;
+namespace Sedo\SedoTMP\Auth;
 
-use Sedo\Configuration;
+use Sedo\SedoTMP\OpenApi\Configuration;
 
 interface AuthenticatorInterface
 {

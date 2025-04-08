@@ -1,14 +1,14 @@
 <?php
 
-namespace Sedo\Api\Platform;
+namespace Sedo\SedoTMP\Api\Platform;
 
 use GuzzleHttp\Client;
-use Sedo\Auth\AuthenticatorInterface;
-use Sedo\Configuration;
-use Sedo\SedoTMP\Platform\API\ContentCampaignsApi;
-use Sedo\SedoTMP\Platform\Model\ContentCampaignResponse;
-use Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest;
-use Sedo\SedoTMP\Platform\Model\Pageable;
+use Sedo\SedoTMP\OpenApi\Configuration;
+use Sedo\SedoTMP\Auth\AuthenticatorInterface;
+use Sedo\SedoTMP\OpenApi\Platform\API\ContentCampaignsApi;
+use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse;
+use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest;
+use Sedo\SedoTMP\OpenApi\Platform\Model\Pageable;
 
 class PlatformApiService implements PlatformApiServiceInterface
 {

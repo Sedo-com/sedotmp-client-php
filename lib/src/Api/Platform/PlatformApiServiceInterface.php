@@ -1,11 +1,11 @@
 <?php
 
-namespace Sedo\Api\Platform;
+namespace Sedo\SedoTMP\Api\Platform;
 
-use Sedo\Configuration;
-use Sedo\SedoTMP\Platform\Model\ContentCampaignResponse;
-use Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest;
-use Sedo\SedoTMP\Platform\Model\Pageable;
+use Sedo\SedoTMP\OpenApi\Configuration;
+use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse;
+use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest;
+use Sedo\SedoTMP\OpenApi\Platform\Model\Pageable;
 
 interface PlatformApiServiceInterface
 {

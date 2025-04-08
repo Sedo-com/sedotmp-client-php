@@ -2,14 +2,12 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Sedo\SedoTMPClient;
-use Sedo\SedoTMP\Content\Model\CreateArticle;
-use Sedo\SedoTMP\Content\Model\CreateCategory;
-use Sedo\SedoTMP\Content\Model\Pageable;
-use Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest;
-use Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequestArticle;
-use Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequestCampaign;
-use Sedo\SedoTMP\Platform\Model\ArticleDataFeaturedImage;
+use Sedo\SedoTMP\SedoTMPClient;
+use Sedo\SedoTMP\OpenApi\Content\Model\CreateArticle;
+use Sedo\SedoTMP\OpenApi\Content\Model\CreateCategory;
+use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest;
+use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequestArticle;
+use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequestCampaign;
 
 /**
  * This example demonstrates a complete workflow:
@@ -27,7 +25,7 @@ try {
     echo "Step 1: Finding or creating a category...\n";
     $categoryName = "Technology";
     $categoryFound = false;
-    
+
     // Search for existing categories
     $categories = $client->content()->getCategories();
     foreach ($categories as $category) {
@@ -38,18 +36,18 @@ try {
             break;
         }
     }
-    
+
     // Create a new category if not found
     if (!$categoryFound) {
         $createCategory = new CreateCategory();
         $createCategory->setName($categoryName);
         $createCategory->setDescription("Articles about technology, software, and digital trends");
-        
+
         $newCategory = $client->content()->createCategory($createCategory);
         $categoryId = $newCategory->getId();
         echo "Created new category: " . $newCategory->getName() . " (ID: " . $categoryId . ")\n";
     }
-    
+
     // Step 2: Create an article in the category
     echo "\nStep 2: Creating a new article...\n";
     $createArticle = new CreateArticle();
@@ -73,62 +71,62 @@ try {
     ");
     $createArticle->setCategoryId($categoryId);
     $createArticle->setLocale("en-US");
-    
+
     $newArticle = $client->content()->createArticle($createArticle);
     echo "Article created with ID: " . $newArticle->getId() . "\n";
     echo "Title: " . $newArticle->getTitle() . "\n";
-    
+
     // Step 3: Get available domains for publishing
     echo "\nStep 3: Finding available domains for publishing...\n";
     $domains = $client->content()->getDomains();
-    
+
     if (count($domains) === 0) {
         throw new \Exception("No domains available for publishing. Please create a domain first.");
     }
-    
+
     $domain = $domains[0]; // Use the first available domain
     echo "Using domain: " . $domain->getName() . "\n";
-    
+
     // Step 4: Create a content campaign
     echo "\nStep 4: Creating a content campaign...\n";
-    
+
     // Create an article reference for the campaign
     $campaignArticle = new ContentCampaignsPostRequestArticle();
     $campaignArticle->setType('ExistingArticle');
     $campaignArticle->setArticleId($newArticle->getId());
-    
+
     // Create a new campaign
     $createCampaign = new ContentCampaignsPostRequestCampaign();
     $createCampaign->setType('CreateCampaign');
     $createCampaign->setName("AI Web Development Campaign");
-    
+
     // Create the content campaign request body
     $contentCampaign = new ContentCampaignsPostRequest();
     $contentCampaign->setPublishDomainName($domain->getName());
     $contentCampaign->setArticle($campaignArticle);
     $contentCampaign->setCampaign($createCampaign);
-    
+
     $campaign = $client->platform()->createContentCampaign($contentCampaign);
     echo "Content campaign created with ID: " . $campaign->getId() . "\n";
     echo "Initial status: " . $campaign->getStatus() . "\n"; // Status is now represented as an integer
-    
+
     // Step 5: Monitor the campaign status
     echo "\nStep 5: Monitoring campaign status...\n";
     $maxAttempts = 10;
     $attempts = 0;
     $completed = false;
-    
+
     while ($attempts < $maxAttempts && !$completed) {
         $attempts++;
         echo "Checking campaign status (attempt $attempts/$maxAttempts)...\n";
-        
+
         // Wait a bit before checking status
         sleep(5);
-        
+
         $campaign = $client->platform()->getContentCampaign($campaign->getId());
         $status = $campaign->getStatus();
         echo "Current status: " . $status . "\n";
-        
+
         if ($status === 1) { // COMPLETED status is represented as 1 in the updated API
             $completed = true;
             echo "Campaign completed successfully!\n";
@@ -145,11 +143,11 @@ try {
             break;
         }
     }
-    
+
     if (!$completed) {
         echo "Campaign processing is taking longer than expected. Please check the status later using the campaign ID: " . $campaign->getId() . "\n";
     }
-    
+
 } catch (\Sedo\ApiException $e) {
     echo sprintf(
         "Error: %s\nTrace: %s\n",

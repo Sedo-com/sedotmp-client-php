@@ -1,25 +1,25 @@
 <?php
 
-namespace Sedo\Api\Content;
+namespace Sedo\SedoTMP\Api\Content;
 
 use GuzzleHttp\Client;
-use Sedo\Auth\AuthenticatorInterface;
-use Sedo\Configuration;
-use Sedo\SedoTMP\Content\API\ArticlesApi;
-use Sedo\SedoTMP\Content\API\CategoriesApi;
-use Sedo\SedoTMP\Content\API\DomainsApi;
-use Sedo\SedoTMP\Content\API\GeneratedArticleApi;
-use Sedo\SedoTMP\Content\API\MediaResourcesApi;
-use Sedo\SedoTMP\Content\API\PublishedArticlesApi;
-use Sedo\SedoTMP\Content\Model\ArticleResponse;
-use Sedo\SedoTMP\Content\Model\CategoryResponse;
-use Sedo\SedoTMP\Content\Model\CreateArticle;
-use Sedo\SedoTMP\Content\Model\CreateCategory;
-use Sedo\SedoTMP\Content\Model\DomainResponse;
-use Sedo\SedoTMP\Content\Model\GenerateArticle;
-use Sedo\SedoTMP\Content\Model\MediaResourceResponse;
-use Sedo\SedoTMP\Content\Model\Pageable;
-use Sedo\SedoTMP\Content\Model\PublishedArticleResponse;
+use Sedo\SedoTMP\OpenApi\Configuration;
+use Sedo\SedoTMP\Auth\AuthenticatorInterface;
+use Sedo\SedoTMP\OpenApi\Content\API\ArticlesApi;
+use Sedo\SedoTMP\OpenApi\Content\API\CategoriesApi;
+use Sedo\SedoTMP\OpenApi\Content\API\DomainsApi;
+use Sedo\SedoTMP\OpenApi\Content\API\GeneratedArticleApi;
+use Sedo\SedoTMP\OpenApi\Content\API\MediaResourcesApi;
+use Sedo\SedoTMP\OpenApi\Content\API\PublishedArticlesApi;
+use Sedo\SedoTMP\OpenApi\Content\Model\ArticleResponse;
+use Sedo\SedoTMP\OpenApi\Content\Model\CategoryResponse;
+use Sedo\SedoTMP\OpenApi\Content\Model\CreateArticle;
+use Sedo\SedoTMP\OpenApi\Content\Model\CreateCategory;
+use Sedo\SedoTMP\OpenApi\Content\Model\DomainResponse;
+use Sedo\SedoTMP\OpenApi\Content\Model\GenerateArticle;
+use Sedo\SedoTMP\OpenApi\Content\Model\MediaResourceResponse;
+use Sedo\SedoTMP\OpenApi\Content\Model\Pageable;
+use Sedo\SedoTMP\OpenApi\Content\Model\PublishedArticleResponse;
 
 class ContentApiService implements ContentApiServiceInterface
 {

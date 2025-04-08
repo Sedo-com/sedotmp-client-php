@@ -33,7 +33,10 @@
         "monolog/monolog": "^3.9"
     },
     "autoload": {
-        "psr-4": { "Sedo\\" : "./lib/src/" }
+        "psr-4": {
+            "Sedo\\SedoTMP\\" : "./lib/src/",
+            "Sedo\\SedoTMP\\OpenApi\\" : "./lib/api/"
+        }
     },
     "autoload-dev": {
         "psr-4": { "Sedo\\" : "test/" }

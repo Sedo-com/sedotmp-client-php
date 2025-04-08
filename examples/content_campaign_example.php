@@ -12,14 +12,14 @@
 
 require_once(__DIR__ . '/../vendor/autoload.php');
 
-use Sedo\SedoTMPClient;
-use Sedo\SedoTMP\Platform\Model\ArticleDataFeaturedImage;
-use Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest;
-use Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequestArticle;
-use Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequestCampaign;
-use Sedo\SedoTMP\Platform\Model\CampaignDataTrackingData;
-use Sedo\SedoTMP\Platform\Model\CampaignDataTrackingDataTrackingSettings;
-use Sedo\SedoTMP\Platform\Model\Postback;
+use Sedo\SedoTMP\SedoTMPClient;
+use Sedo\SedoTMP\OpenApi\Platform\Model\ArticleDataFeaturedImage;
+use Sedo\SedoTMP\OpenApi\Platform\Model\CampaignDataTrackingData;
+use Sedo\SedoTMP\OpenApi\Platform\Model\CampaignDataTrackingDataTrackingSettings;
+use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest;
+use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequestArticle;
+use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequestCampaign;
+use Sedo\SedoTMP\OpenApi\Platform\Model\Postback;
 
 // Initialize the SedoTMP client with the path to the .env file
 $client = new SedoTMPClient(__DIR__ . '/../.env');

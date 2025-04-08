@@ -1,17 +1,18 @@
 <?php
 
-namespace Sedo;
+namespace Sedo\SedoTMP;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Middleware;
-use Sedo\Api\Content\ContentApiService;
-use Sedo\Api\Content\ContentApiServiceInterface;
-use Sedo\Api\Platform\PlatformApiService;
-use Sedo\Api\Platform\PlatformApiServiceInterface;
-use Sedo\Auth\Auth0Authenticator;
-use Sedo\Auth\AuthenticatorInterface;
+use Sedo\SedoTMP\OpenApi\Configuration;
+use Sedo\SedoTMP\Api\Content\ContentApiService;
+use Sedo\SedoTMP\Api\Content\ContentApiServiceInterface;
+use Sedo\SedoTMP\Api\Platform\PlatformApiService;
+use Sedo\SedoTMP\Api\Platform\PlatformApiServiceInterface;
+use Sedo\SedoTMP\Auth\Auth0Authenticator;
+use Sedo\SedoTMP\Auth\AuthenticatorInterface;
 use Symfony\Component\Dotenv\Dotenv;
 
 class SedoTMPClient
