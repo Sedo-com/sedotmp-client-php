@@ -57,25 +57,22 @@ class ContentApiService implements ContentApiServiceInterface
         $this->publishedArticlesApi = new PublishedArticlesApi($client, $this->config);
     }
 
-    /**
-     * @return array<array-key, ArticleResponse|Problem>
-     */
-    public function getArticles(?Pageable $page = null, ?string $term = null): array
+    public function getArticles(?Pageable $page = null, ?string $term = null): array|Problem
     {
         return $this->articlesApi->articlesGet($page, $term);
     }
 
-    public function getArticle(string $id): ArticleResponse
+    public function getArticle(string $id): ArticleResponse|Problem
     {
         return $this->articlesApi->articlesIdGet($id);
     }
 
-    public function createArticle(CreateArticle $article): ArticleResponse
+    public function createArticle(CreateArticle $article): ArticleResponse|Problem
     {
         return $this->articlesApi->articlesPost($article);
     }
 
-    public function generateArticle(GenerateArticle $generateArticle, bool $async = false, ?string $referenceId = null): ArticleResponse
+    public function generateArticle(GenerateArticle $generateArticle, bool $async = false, ?string $referenceId = null): ArticleResponse|Problem
     {
         $requestFlow = $async ? 'async' : 'sync';
 
@@ -83,58 +80,58 @@ class ContentApiService implements ContentApiServiceInterface
     }
 
     /**
-     * @return array<array-key, PublishedArticleResponse>
+     * @return array<array-key, PublishedArticleResponse>|Problem
      */
-    public function getPublishedArticles(?Pageable $page = null, ?string $term = null): array
+    public function getPublishedArticles(?Pageable $page = null, ?string $term = null): array|Problem
     {
         return $this->publishedArticlesApi->publishedArticlesGet($page, $term);
     }
 
-    public function getPublishedArticle(string $id): PublishedArticleResponse
+    public function getPublishedArticle(string $id): PublishedArticleResponse|Problem
     {
         return $this->publishedArticlesApi->publishedArticlesIdGet($id);
     }
 
     /**
-     * @return array<array-key, CategoryResponse>
+     * @return array<array-key, CategoryResponse>|Problem
      */
-    public function getCategories(?Pageable $page = null, ?string $term = null): array
+    public function getCategories(?Pageable $page = null, ?string $term = null): array|Problem
     {
         return $this->categoriesApi->categoriesGet($page, $term);
     }
 
-    public function getCategory(string $id): CategoryResponse
+    public function getCategory(string $id): CategoryResponse|Problem
     {
         return $this->categoriesApi->categoriesIdGet($id);
     }
 
-    public function createCategory(CreateCategory $category): CategoryResponse
+    public function createCategory(CreateCategory $category): CategoryResponse|Problem
     {
         return $this->categoriesApi->categoriesPost($category);
     }
 
     /**
-     * @return array<array-key, DomainResponse>
+     * @return array<array-key, DomainResponse>|Problem
      */
-    public function getDomains(?Pageable $page = null, ?string $term = null): array
+    public function getDomains(?Pageable $page = null, string $contentType = ''): array|Problem
     {
-        return $this->domainsApi->domainsGet($page, $term);
+        return $this->domainsApi->domainsGet($page, $contentType);
     }
 
-    public function getDomain(string $id): DomainResponse
+    public function getDomain(string $id): DomainResponse|Problem
     {
         return $this->domainsApi->domainsIdGet($id);
     }
 
     /**
-     * @return array<array-key, MediaResourceResponse>
+     * @return array<array-key, MediaResourceResponse>|Problem
      */
-    public function getMediaResources(?Pageable $page = null, ?string $term = null): array
+    public function getMediaResources(?Pageable $page = null, ?string $term = null): array|Problem
     {
         return $this->mediaResourcesApi->mediaGet($page, $term);
     }
 
-    public function getMediaResource(string $id): MediaResourceResponse
+    public function getMediaResource(string $id): MediaResourceResponse|Problem
     {
         return $this->mediaResourcesApi->mediaIdGet($id);
     }

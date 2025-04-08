@@ -1,0 +1,2 @@
+publishDomainName;name;topics;locale;trafficSource;trackingMethod;s2sMetaPixelId;s2sMetaToken;ClickParam;s2sMetaClickEvent;s2sMetaLandingPageEvent;s2sMetaSearchEvent;postbacks EventName;postbacksClickIdParam;postbacksUrl;title;excerpt
+myDomain.info;summer vacation;"""Summer vacation"",""All inclusive resort in Thailand"",""Cheap flights from USA""";en-US;META;s2s;string;string;string;string;string;string;CLICK;click_id;https://your-tracking-url.com/cf/cv?click_id={click_id}&payout={epayout};Summer vacation;The best summer vacation deals

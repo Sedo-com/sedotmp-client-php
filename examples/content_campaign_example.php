@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Content Campaign Example
+ * Content Campaign Example.
  *
  * This example demonstrates how to:
  * 1. List content categories using GET `/categories`
@@ -10,9 +11,8 @@
  * This example uses the SedoTMPClient to access the API services
  */
 
-require_once(__DIR__ . '/../vendor/autoload.php');
+require_once __DIR__.'/../vendor/autoload.php';
 
-use Sedo\SedoTMP\SedoTMPClient;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ArticleDataFeaturedImage;
 use Sedo\SedoTMP\OpenApi\Platform\Model\CampaignDataTrackingData;
 use Sedo\SedoTMP\OpenApi\Platform\Model\CampaignDataTrackingDataTrackingSettings;
@@ -20,9 +20,10 @@ use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequestArticle;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequestCampaign;
 use Sedo\SedoTMP\OpenApi\Platform\Model\Postback;
+use Sedo\SedoTMP\SedoTMPClient;
 
 // Initialize the SedoTMP client with the path to the .env file
-$client = new SedoTMPClient(__DIR__ . '/../.env');
+$client = new SedoTMPClient(__DIR__.'/../.env');
 
 // Get the API services from the client
 $contentApiService = $client->content();
@@ -38,8 +39,8 @@ try {
 
     $categories = $contentApiService->getCategories();
 
-    if(count($categories) === 0) {
-        throw new Exception("No categories found. Please create a category first.");
+    if (0 === count($categories)) {
+        throw new Exception('No categories found. Please create a category first.');
     }
 
     echo sprintf("Found %d categories:\n", count($categories));
@@ -62,7 +63,7 @@ try {
     $article->setTopics([
         'Summer vacation',
         'All inclusive resort in Thailand',
-        'Cheap flights from USA'
+        'Cheap flights from USA',
     ]);
     $article->setCategoryId($categoryId); // Using specific category ID
 
@@ -111,9 +112,9 @@ try {
     $contentCampaignBody->setCampaign($campaign);
 
     // Debug: Check the serialized request body
-//    echo "\nRequest Body (JSON):\n";
-//    echo $contentCampaignBody->__toString();
-//    echo "\n\n";
+    //    echo "\nRequest Body (JSON):\n";
+    //    echo $contentCampaignBody->__toString();
+    //    echo "\n\n";
 
     // Send the request to create a content campaign
     $response = $platformApiService->createContentCampaign($contentCampaignBody);
@@ -121,7 +122,6 @@ try {
     echo "Content campaign created successfully!\n";
     echo sprintf("Campaign ID: %s\n", $response->getId());
     echo sprintf("Status: %d\n\n", $response->getStatus());
-
 
     // Store the campaign ID for the next step
     $campaignId = $response->getId();
@@ -132,7 +132,6 @@ try {
 
     // Get the campaign details using the ID directly (no need for Id object with the updated API)
     $campaignDetails = $platformApiService->getContentCampaign($campaignId);
-
 
     echo "Campaign Details:\n";
     echo sprintf("- ID: %s\n", $campaignDetails->getId());
@@ -160,8 +159,7 @@ try {
             $campaign->getName()
         );
     }
-
-} catch (\Sedo\ApiException $e) {
+} catch (Sedo\ApiException $e) {
     echo sprintf(
         "Error: %s\nTrace: %s\n",
         $e->getResponseBody(),

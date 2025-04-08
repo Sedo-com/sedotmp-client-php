@@ -166,8 +166,46 @@ The library provides access to both Content and Platform APIs:
 
 Check the `examples` directory for complete workflow examples:
 
-- `example.php`: Basic usage examples
-- `content_campaign_workflow.php`: Complete workflow for creating a content campaign
+### Available Examples
+
+- **`example.php`**: Basic usage examples demonstrating how to use the Content and Platform APIs.
+
+- **`simple_usage.php`**: A minimal example showing the basic setup and API calls.
+
+- **`content_campaign_example.php`**: Demonstrates how to:
+  1. List content categories using GET `/categories`
+  2. Create a content campaign with POST `/content-campaigns` with a publish domain and article
+  3. Get details of the created campaign using GET `/content-campaigns/{{id}}`
+
+- **`content_campaign_workflow.php`**: A complete workflow for creating a content campaign with more advanced options.
+
+- **`csv_content_campaign_example.php`**: Shows how to:
+  1. Read campaign data from a CSV file (examples/example.csv)
+  2. Create content campaigns based on the CSV data
+  3. Get details of the created campaigns
+
+### CSV Import Example
+
+The `csv_content_campaign_example.php` demonstrates how to import campaign data from a CSV file. The CSV file should have the following structure:
+
+```
+publishDomainName;name;topics;locale;trafficSource;trackingMethod;s2sMetaPixelId;s2sMetaToken;ClickParam;s2sMetaClickEvent;s2sMetaLandingPageEvent;s2sMetaSearchEvent;postbacks EventName;postbacksClickIdParam;postbacksUrl;title;excerpt
+```
+
+Example CSV row:
+```
+myDomain.info;summer vacation;"""Summer vacation"",""All inclusive resort in Thailand"",""Cheap flights from USA""";en-US;facebook;s2s;string;string;string;string;string;string;CLICK;click_id;https://your-tracking-url.com/cf/cv?click_id={click_id}&payout={epayout};Summer vacation;The best summer vacation deals
+```
+
+### Running the Examples
+
+To run any of the examples:
+
+```bash
+php examples/example_filename.php
+```
+
+Make sure you have set up your `.env` file with the proper credentials before running the examples.
 
 
 ## Development / Create the API from the swagger docs 

@@ -12,6 +12,7 @@ return $config->setRules([
     ->setFinder(
         PhpCsFixer\Finder::create()
             ->in([
+                __DIR__ . '/examples',
                 __DIR__ . '/lib/src',
                 __DIR__ . '/lib/api',
                 __DIR__ . '/test',
