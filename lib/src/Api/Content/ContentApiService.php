@@ -2,6 +2,7 @@
 
 namespace Sedo\Api\Content;
 
+use GuzzleHttp\Client;
 use Sedo\Auth\AuthenticatorInterface;
 use Sedo\Configuration;
 use Sedo\SedoTMP\Content\API\ArticlesApi;
@@ -30,7 +31,7 @@ class ContentApiService implements ContentApiServiceInterface
     private MediaResourcesApi $mediaResourcesApi;
     private PublishedArticlesApi $publishedArticlesApi;
 
-    public function __construct(AuthenticatorInterface $authenticator, string $apiHost = null)
+    public function __construct(AuthenticatorInterface $authenticator, string $apiHost = null, ?Client $client = null)
     {
         // Initialize configuration
         $this->config = new Configuration();
@@ -44,13 +45,15 @@ class ContentApiService implements ContentApiServiceInterface
         // Set access token from authenticator
         $this->config->setAccessToken($authenticator->getAccessToken());
 
+        $client = $client ?? new Client();
+
         // Initialize API clients
-        $this->articlesApi = new ArticlesApi(null, $this->config);
-        $this->categoriesApi = new CategoriesApi(null, $this->config);
-        $this->domainsApi = new DomainsApi(null, $this->config);
-        $this->generatedArticleApi = new GeneratedArticleApi(null, $this->config);
-        $this->mediaResourcesApi = new MediaResourcesApi(null, $this->config);
-        $this->publishedArticlesApi = new PublishedArticlesApi(null, $this->config);
+        $this->articlesApi = new ArticlesApi($client, $this->config);
+        $this->categoriesApi = new CategoriesApi($client, $this->config);
+        $this->domainsApi = new DomainsApi($client, $this->config);
+        $this->generatedArticleApi = new GeneratedArticleApi($client, $this->config);
+        $this->mediaResourcesApi = new MediaResourcesApi($client, $this->config);
+        $this->publishedArticlesApi = new PublishedArticlesApi($client, $this->config);
     }
 
     /**

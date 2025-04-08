@@ -110,4 +110,9 @@ class Auth0Authenticator implements AuthenticatorInterface
             throw new \RuntimeException(sprintf('Failed to parse Auth0 response: %s', $e->getMessage()), 0, $e);
         }
     }
+
+    public function getConfig(): Configuration
+    {
+        return $this->config;
+    }
 }

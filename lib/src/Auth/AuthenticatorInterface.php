@@ -2,6 +2,8 @@
 
 namespace Sedo\Auth;
 
+use Sedo\Configuration;
+
 interface AuthenticatorInterface
 {
     /**
@@ -10,4 +12,11 @@ interface AuthenticatorInterface
      * @return string The access token
      */
     public function getAccessToken(): string;
+
+    /**
+     * Retrieves the configuration settings.
+     *
+     * @return Configuration The configuration instance.
+     */
+    public function getConfig(): Configuration;
 }

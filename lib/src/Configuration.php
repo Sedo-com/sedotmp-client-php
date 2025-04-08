@@ -27,6 +27,8 @@
 
 namespace Sedo;
 
+use Symfony\Component\Dotenv\Dotenv;
+
 /**
  * Configuration Class Doc Comment
  * PHP version 8.1

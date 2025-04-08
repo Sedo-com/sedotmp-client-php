@@ -219,7 +219,7 @@ class ContentCampaignsApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -266,7 +266,7 @@ class ContentCampaignsApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -527,7 +527,7 @@ class ContentCampaignsApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -574,7 +574,7 @@ class ContentCampaignsApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -677,7 +677,7 @@ class ContentCampaignsApi
         if (strlen($id) < 36) {
             throw new \InvalidArgumentException('invalid length for "$id" when calling ContentCampaignsApi.contentCampaignsIdGet, must be bigger than or equal to 36.');
         }
-        
+
 
         $resourcePath = '/content-campaigns/{id}';
         $formParams = [];
@@ -798,7 +798,7 @@ class ContentCampaignsApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody()->getContents() : null
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
@@ -833,7 +833,7 @@ class ContentCampaignsApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -880,7 +880,7 @@ class ContentCampaignsApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1136,7 +1136,7 @@ class ContentCampaignsApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1183,7 +1183,7 @@ class ContentCampaignsApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1449,7 +1449,7 @@ class ContentCampaignsApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1496,7 +1496,7 @@ class ContentCampaignsApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1602,7 +1602,7 @@ class ContentCampaignsApi
         if (strlen($id) < 36) {
             throw new \InvalidArgumentException('invalid length for "$id" when calling ContentCampaignsApi.trackedContentOrdersIdGet, must be bigger than or equal to 36.');
         }
-        
+
 
         $resourcePath = '/tracked-content-orders/{id}';
         $formParams = [];
@@ -1760,7 +1760,7 @@ class ContentCampaignsApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1807,7 +1807,7 @@ class ContentCampaignsApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }

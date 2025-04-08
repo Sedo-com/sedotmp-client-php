@@ -30,7 +30,8 @@ namespace Sedo;
 
 use ArrayAccess;
 use GuzzleHttp\Psr7\Utils;
-use Sedo\SedoTMP\Content\Model\ModelInterface;
+use Sedo\SedoTMP\Content\Model\ModelInterface as ContentModelInterface;
+use Sedo\SedoTMP\Platform\Model\ModelInterface as PlatformModelInterface;
 
 /**
  * ObjectSerializer Class Doc Comment
@@ -83,7 +84,7 @@ class ObjectSerializer
 
         if (is_object($data)) {
             $values = [];
-            if ($data instanceof ModelInterface) {
+            if ($data instanceof ContentModelInterface || $data instanceof PlatformModelInterface) {
                 $formats = $data::openAPIFormats();
                 foreach ($data::openAPITypes() as $property => $openAPIType) {
                     $getter = $data::getters()[$property];
@@ -539,7 +540,7 @@ class ObjectSerializer
                 }
             }
 
-            /** @var ModelInterface $instance */
+            /** @var ContentModelInterface|PlatformModelInterface $instance */
             $instance = new $class();
             foreach ($instance::openAPITypes() as $property => $type) {
                 $propertySetter = $instance::setters()[$property];
