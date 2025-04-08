@@ -1,4 +1,4 @@
-# Sedo\MediaResourceApi
+# Sedo\SedoTMP\OpenApi\MediaResourceApi
 
 All URIs are relative to https://api.sedotmp.com/content/v1, except if the operation defines another base path.
 
@@ -26,10 +26,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\MediaResourceApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\MediaResourceApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -71,7 +71,7 @@ try {
 ## `mediaGet()`
 
 ```php
-mediaGet($page): \Sedo\SedoTMP\Content\Model\MediaResourceResponse[]
+mediaGet($page): \Sedo\SedoTMP\OpenApi\Content\Model\MediaResourceResponse[]
 ```
 
 Retrieve a list of media resources
@@ -86,16 +86,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\MediaResourceApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\MediaResourceApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$page = new \Sedo\SedoTMP\Content\Model\\Sedo\SedoTMP\Content\Model\Pageable(); // \Sedo\SedoTMP\Content\Model\Pageable | Pageable object (every key is a separate query parameter)
+$page = new \Sedo\SedoTMP\OpenApi\Content\Model\\Sedo\SedoTMP\OpenApi\Content\Model\Pageable(); // \Sedo\SedoTMP\OpenApi\Content\Model\Pageable | Pageable object (every key is a separate query parameter)
 
 try {
     $result = $apiInstance->mediaGet($page);
@@ -109,11 +109,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **page** | [**\Sedo\SedoTMP\Content\Model\Pageable**](../Model/.md)| Pageable object (every key is a separate query parameter) | [optional] |
+| **page** | [**\Sedo\SedoTMP\OpenApi\Content\Model\Pageable**](../Model/.md)| Pageable object (every key is a separate query parameter) | [optional] |
 
 ### Return type
 
-[**\Sedo\SedoTMP\Content\Model\MediaResourceResponse[]**](../Model/MediaResourceResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Content\Model\MediaResourceResponse[]**](../Model/MediaResourceResponse.md)
 
 ### Authorization
 
@@ -131,7 +131,7 @@ try {
 ## `mediaIdGet()`
 
 ```php
-mediaIdGet($id): \Sedo\SedoTMP\Content\Model\MediaResourceResponse
+mediaIdGet($id): \Sedo\SedoTMP\OpenApi\Content\Model\MediaResourceResponse
 ```
 
 Retrieve a media resource by its ID
@@ -144,10 +144,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\MediaResourceApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\MediaResourceApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -171,7 +171,7 @@ try {
 
 ### Return type
 
-[**\Sedo\SedoTMP\Content\Model\MediaResourceResponse**](../Model/MediaResourceResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Content\Model\MediaResourceResponse**](../Model/MediaResourceResponse.md)
 
 ### Authorization
 
@@ -189,7 +189,7 @@ try {
 ## `mediaPost()`
 
 ```php
-mediaPost($file): \Sedo\SedoTMP\Content\Model\MediaResourceResponse
+mediaPost($file): \Sedo\SedoTMP\OpenApi\Content\Model\MediaResourceResponse
 ```
 
 Create a new media resource
@@ -204,10 +204,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\MediaResourceApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\MediaResourceApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -231,7 +231,7 @@ try {
 
 ### Return type
 
-[**\Sedo\SedoTMP\Content\Model\MediaResourceResponse**](../Model/MediaResourceResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Content\Model\MediaResourceResponse**](../Model/MediaResourceResponse.md)
 
 ### Authorization
 

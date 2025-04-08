@@ -1,4 +1,4 @@
-# Sedo\GeneratedArticleApi
+# Sedo\SedoTMP\OpenApi\GeneratedArticleApi
 
 All URIs are relative to https://api.sedotmp.com/content/v1, except if the operation defines another base path.
 
@@ -10,7 +10,7 @@ All URIs are relative to https://api.sedotmp.com/content/v1, except if the opera
 ## `generatedArticlesPost()`
 
 ```php
-generatedArticlesPost($generateArticle, $xSedoRequestFlow, $xSedoReferenceId): \Sedo\SedoTMP\Content\Model\ArticleResponse
+generatedArticlesPost($generateArticle, $xSedoRequestFlow, $xSedoReferenceId): \Sedo\SedoTMP\OpenApi\Content\Model\ArticleResponse
 ```
 
 Generate a new article for a specified topic
@@ -25,17 +25,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\GeneratedArticleApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\GeneratedArticleApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$generateArticle = new \Sedo\SedoTMP\Content\Model\GenerateArticle(); // \Sedo\SedoTMP\Content\Model\GenerateArticle
-$xSedoRequestFlow = new \Sedo\SedoTMP\Content\Model\\Sedo\SedoTMP\Content\Model\RequestFlowHeader(); // \Sedo\SedoTMP\Content\Model\RequestFlowHeader
+$generateArticle = new \Sedo\SedoTMP\OpenApi\Content\Model\GenerateArticle(); // \Sedo\SedoTMP\OpenApi\Content\Model\GenerateArticle
+$xSedoRequestFlow = new \Sedo\SedoTMP\OpenApi\Content\Model\\Sedo\SedoTMP\OpenApi\Content\Model\RequestFlowHeader(); // \Sedo\SedoTMP\OpenApi\Content\Model\RequestFlowHeader
 $xSedoReferenceId = 'xSedoReferenceId_example'; // string
 
 try {
@@ -50,13 +50,13 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **generateArticle** | [**\Sedo\SedoTMP\Content\Model\GenerateArticle**](../Model/GenerateArticle.md)|  | |
-| **xSedoRequestFlow** | [**\Sedo\SedoTMP\Content\Model\RequestFlowHeader**](../Model/.md)|  | [optional] |
+| **generateArticle** | [**\Sedo\SedoTMP\OpenApi\Content\Model\GenerateArticle**](../Model/GenerateArticle.md)|  | |
+| **xSedoRequestFlow** | [**\Sedo\SedoTMP\OpenApi\Content\Model\RequestFlowHeader**](../Model/.md)|  | [optional] |
 | **xSedoReferenceId** | **string**|  | [optional] |
 
 ### Return type
 
-[**\Sedo\SedoTMP\Content\Model\ArticleResponse**](../Model/ArticleResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Content\Model\ArticleResponse**](../Model/ArticleResponse.md)
 
 ### Authorization
 

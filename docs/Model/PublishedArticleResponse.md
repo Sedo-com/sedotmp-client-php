@@ -24,6 +24,6 @@ Name | Type | Description | Notes
 **partner** | **string** | Partner to assigned to the resource. Requires corresponding privileges | [optional]
 **createdBy** | **string** | Username of the user who operated on the resource | [optional]
 **lastModifiedBy** | **string** | Username of the user who operated on the resource | [optional]
-**images** | [**\Sedo\SedoTMP\Content\Model\ArticleImage[]**](ArticleImage.md) |  | [optional]
+**images** | [**\Sedo\SedoTMP\OpenApi\Content\Model\ArticleImage[]**](ArticleImage.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

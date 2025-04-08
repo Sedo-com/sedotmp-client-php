@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **country** | **string** | Audience country (ISO code) | [optional]
 **locale** | **string** | Audience language (Language tag formatted) | [optional]
-**featuredImage** | [**\Sedo\SedoTMP\Platform\Model\ArticleDataFeaturedImage**](ArticleDataFeaturedImage.md) |  | [optional]
+**featuredImage** | [**\Sedo\SedoTMP\OpenApi\Platform\Model\ArticleDataFeaturedImage**](ArticleDataFeaturedImage.md) |  | [optional]
 **title** | **string** |  | [optional]
 **excerpt** | **string** |  | [optional]
 **topics** | **string[]** | The topic to generate article about | [optional]

@@ -1,4 +1,4 @@
-# Sedo\ContentCampaignsApi
+# Sedo\SedoTMP\OpenApi\ContentCampaignsApi
 
 All URIs are relative to https://api.sedotmp.com/platform/v1, except if the operation defines another base path.
 
@@ -15,7 +15,7 @@ All URIs are relative to https://api.sedotmp.com/platform/v1, except if the oper
 ## `contentCampaignsGet()`
 
 ```php
-contentCampaignsGet($page, $term): \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse[]
+contentCampaignsGet($page, $term): \Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse[]
 ```
 
 Retrieve a list of content campaigns
@@ -28,16 +28,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\ContentCampaignsApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\ContentCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$page = new \Sedo\SedoTMP\Platform\Model\\Sedo\SedoTMP\Platform\Model\Pageable(); // \Sedo\SedoTMP\Platform\Model\Pageable | Pageable object (every key is a separate query parameter)
+$page = new \Sedo\SedoTMP\OpenApi\Platform\Model\\Sedo\SedoTMP\OpenApi\Platform\Model\Pageable(); // \Sedo\SedoTMP\OpenApi\Platform\Model\Pageable | Pageable object (every key is a separate query parameter)
 $term = summer+vacation; // string | Search term for matching against any text field e.g. ID, title, excerpt, text..
 
 try {
@@ -52,12 +52,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **page** | [**\Sedo\SedoTMP\Platform\Model\Pageable**](../Model/.md)| Pageable object (every key is a separate query parameter) | [optional] |
+| **page** | [**\Sedo\SedoTMP\OpenApi\Platform\Model\Pageable**](../Model/.md)| Pageable object (every key is a separate query parameter) | [optional] |
 | **term** | **string**| Search term for matching against any text field e.g. ID, title, excerpt, text.. | [optional] |
 
 ### Return type
 
-[**\Sedo\SedoTMP\Platform\Model\ContentCampaignResponse[]**](../Model/ContentCampaignResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse[]**](../Model/ContentCampaignResponse.md)
 
 ### Authorization
 
@@ -75,7 +75,7 @@ try {
 ## `contentCampaignsIdGet()`
 
 ```php
-contentCampaignsIdGet($id): \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse
+contentCampaignsIdGet($id): \Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse
 ```
 
 Retrieve a content campaign by its ID
@@ -90,10 +90,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\ContentCampaignsApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\ContentCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -117,7 +117,7 @@ try {
 
 ### Return type
 
-[**\Sedo\SedoTMP\Platform\Model\ContentCampaignResponse**](../Model/ContentCampaignResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse**](../Model/ContentCampaignResponse.md)
 
 ### Authorization
 
@@ -135,7 +135,7 @@ try {
 ## `contentCampaignsPost()`
 
 ```php
-contentCampaignsPost($contentCampaignsPostRequest): \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse
+contentCampaignsPost($contentCampaignsPostRequest): \Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse
 ```
 
 Create a new content campaign
@@ -150,16 +150,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\ContentCampaignsApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\ContentCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$contentCampaignsPostRequest = new \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest(); // \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest
+$contentCampaignsPostRequest = new \Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest(); // \Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest
 
 try {
     $result = $apiInstance->contentCampaignsPost($contentCampaignsPostRequest);
@@ -173,11 +173,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **contentCampaignsPostRequest** | [**\Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest**](../Model/ContentCampaignsPostRequest.md)|  | |
+| **contentCampaignsPostRequest** | [**\Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest**](../Model/ContentCampaignsPostRequest.md)|  | |
 
 ### Return type
 
-[**\Sedo\SedoTMP\Platform\Model\ContentCampaignResponse**](../Model/ContentCampaignResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse**](../Model/ContentCampaignResponse.md)
 
 ### Authorization
 
@@ -195,7 +195,7 @@ try {
 ## `trackedContentOrdersGet()`
 
 ```php
-trackedContentOrdersGet($page, $term): \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse[]
+trackedContentOrdersGet($page, $term): \Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse[]
 ```
 
 Retrieve a list of tracked content orders
@@ -210,16 +210,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\ContentCampaignsApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\ContentCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$page = new \Sedo\SedoTMP\Platform\Model\\Sedo\SedoTMP\Platform\Model\Pageable(); // \Sedo\SedoTMP\Platform\Model\Pageable | Pageable object (every key is a separate query parameter)
+$page = new \Sedo\SedoTMP\OpenApi\Platform\Model\\Sedo\SedoTMP\OpenApi\Platform\Model\Pageable(); // \Sedo\SedoTMP\OpenApi\Platform\Model\Pageable | Pageable object (every key is a separate query parameter)
 $term = summer+vacation; // string | Search term for matching against any text field e.g. ID, title, excerpt, text..
 
 try {
@@ -234,12 +234,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **page** | [**\Sedo\SedoTMP\Platform\Model\Pageable**](../Model/.md)| Pageable object (every key is a separate query parameter) | [optional] |
+| **page** | [**\Sedo\SedoTMP\OpenApi\Platform\Model\Pageable**](../Model/.md)| Pageable object (every key is a separate query parameter) | [optional] |
 | **term** | **string**| Search term for matching against any text field e.g. ID, title, excerpt, text.. | [optional] |
 
 ### Return type
 
-[**\Sedo\SedoTMP\Platform\Model\ContentCampaignResponse[]**](../Model/ContentCampaignResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse[]**](../Model/ContentCampaignResponse.md)
 
 ### Authorization
 
@@ -257,7 +257,7 @@ try {
 ## `trackedContentOrdersIdGet()`
 
 ```php
-trackedContentOrdersIdGet($id): \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse
+trackedContentOrdersIdGet($id): \Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse
 ```
 
 Retrieve a tracked content order by its ID
@@ -272,10 +272,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\ContentCampaignsApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\ContentCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -299,7 +299,7 @@ try {
 
 ### Return type
 
-[**\Sedo\SedoTMP\Platform\Model\ContentCampaignResponse**](../Model/ContentCampaignResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse**](../Model/ContentCampaignResponse.md)
 
 ### Authorization
 
@@ -317,7 +317,7 @@ try {
 ## `trackedContentOrdersPost()`
 
 ```php
-trackedContentOrdersPost($contentCampaignsPostRequest): \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse
+trackedContentOrdersPost($contentCampaignsPostRequest): \Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse
 ```
 
 Create a new tracked content order
@@ -332,16 +332,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\ContentCampaignsApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\ContentCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$contentCampaignsPostRequest = new \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest(); // \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest
+$contentCampaignsPostRequest = new \Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest(); // \Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest
 
 try {
     $result = $apiInstance->trackedContentOrdersPost($contentCampaignsPostRequest);
@@ -355,11 +355,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **contentCampaignsPostRequest** | [**\Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest**](../Model/ContentCampaignsPostRequest.md)|  | |
+| **contentCampaignsPostRequest** | [**\Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest**](../Model/ContentCampaignsPostRequest.md)|  | |
 
 ### Return type
 
-[**\Sedo\SedoTMP\Platform\Model\ContentCampaignResponse**](../Model/ContentCampaignResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse**](../Model/ContentCampaignResponse.md)
 
 ### Authorization
 

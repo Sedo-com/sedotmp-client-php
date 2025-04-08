@@ -1,4 +1,4 @@
-# Sedo\DetailedArticleApi
+# Sedo\SedoTMP\OpenApi\DetailedArticleApi
 
 All URIs are relative to https://api.sedotmp.com/content/v1, except if the operation defines another base path.
 
@@ -11,7 +11,7 @@ All URIs are relative to https://api.sedotmp.com/content/v1, except if the opera
 ## `detailedArticlesGet()`
 
 ```php
-detailedArticlesGet($page, $term): \Sedo\SedoTMP\Content\Model\DetailedArticleResponse[]
+detailedArticlesGet($page, $term): \Sedo\SedoTMP\OpenApi\Content\Model\DetailedArticleResponse[]
 ```
 
 List detailed-articles, compared to article this includes additionally published-article information
@@ -24,16 +24,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\DetailedArticleApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\DetailedArticleApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$page = new \Sedo\SedoTMP\Content\Model\\Sedo\SedoTMP\Content\Model\Pageable(); // \Sedo\SedoTMP\Content\Model\Pageable | Pageable object (every key is a separate query parameter)
+$page = new \Sedo\SedoTMP\OpenApi\Content\Model\\Sedo\SedoTMP\OpenApi\Content\Model\Pageable(); // \Sedo\SedoTMP\OpenApi\Content\Model\Pageable | Pageable object (every key is a separate query parameter)
 $term = summer%20vacation; // string | Search term for matching against any text field e.g. ID, title, excerpt, text..
 
 try {
@@ -48,12 +48,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **page** | [**\Sedo\SedoTMP\Content\Model\Pageable**](../Model/.md)| Pageable object (every key is a separate query parameter) | [optional] |
+| **page** | [**\Sedo\SedoTMP\OpenApi\Content\Model\Pageable**](../Model/.md)| Pageable object (every key is a separate query parameter) | [optional] |
 | **term** | **string**| Search term for matching against any text field e.g. ID, title, excerpt, text.. | [optional] |
 
 ### Return type
 
-[**\Sedo\SedoTMP\Content\Model\DetailedArticleResponse[]**](../Model/DetailedArticleResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Content\Model\DetailedArticleResponse[]**](../Model/DetailedArticleResponse.md)
 
 ### Authorization
 
@@ -71,7 +71,7 @@ try {
 ## `detailedArticlesIdGet()`
 
 ```php
-detailedArticlesIdGet($id): \Sedo\SedoTMP\Content\Model\DetailedArticleResponse
+detailedArticlesIdGet($id): \Sedo\SedoTMP\OpenApi\Content\Model\DetailedArticleResponse
 ```
 
 Retrieve an detailed-articles by its articleId, compared to article this includes additionally published-article information
@@ -84,10 +84,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\DetailedArticleApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\DetailedArticleApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -111,7 +111,7 @@ try {
 
 ### Return type
 
-[**\Sedo\SedoTMP\Content\Model\DetailedArticleResponse**](../Model/DetailedArticleResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Content\Model\DetailedArticleResponse**](../Model/DetailedArticleResponse.md)
 
 ### Authorization
 

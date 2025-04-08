@@ -49,7 +49,7 @@ DEBUG=false
 
 require 'vendor/autoload.php';
 
-use Sedo\SedoTMPClient;
+use Sedo\SedoTMP\SedoTMPClient;
 
 // Create a client instance with path to .env file
 $client = new SedoTMPClient(__DIR__ . '/.env');
@@ -67,7 +67,7 @@ $campaigns = $client->platform()->getContentCampaigns();
 <?php
 
 // Get a list of articles with pagination
-$page = new \Sedo\SedoTMP\Content\Model\Pageable();
+$page = new \Sedo\SedoTMP\OpenApi\Content\Model\Pageable();
 $page->setPage(0);
 $page->setSize(10);
 $articles = $client->content()->getArticles($page);
@@ -76,7 +76,7 @@ $articles = $client->content()->getArticles($page);
 $article = $client->content()->getArticle('article-id');
 
 // Create a new article
-$createArticle = new \Sedo\SedoTMP\Content\Model\CreateArticle();
+$createArticle = new \Sedo\SedoTMP\OpenApi\Content\Model\CreateArticle();
 $createArticle->setTitle("Example Article Title");
 $createArticle->setExcerpt("This is an example article excerpt.");
 $createArticle->setText("This is the main content of the example article.");
@@ -86,7 +86,7 @@ $createArticle->setLocale("en-US");
 $newArticle = $client->content()->createArticle($createArticle);
 
 // Generate an article
-$generateArticle = new \Sedo\SedoTMP\Content\Model\GenerateArticle();
+$generateArticle = new \Sedo\SedoTMP\OpenApi\Content\Model\GenerateArticle();
 $generateArticle->setTopic("Artificial Intelligence in Modern Business");
 $generateArticle->setLocale("en-US");
 
@@ -106,18 +106,18 @@ $campaigns = $client->platform()->getContentCampaigns();
 $campaign = $client->platform()->getContentCampaign('campaign-id');
 
 // Create a content campaign with an existing article
-$existingArticle = new \Sedo\SedoTMP\Platform\Model\ExistingArticle();
+$existingArticle = new \Sedo\SedoTMP\OpenApi\Platform\Model\ExistingArticle();
 $existingArticle->setType('existing');
 $existingArticle->setId('article-id');
 
 // Create a new campaign
-$createCampaign = new \Sedo\SedoTMP\Platform\Model\CreateCampaign();
+$createCampaign = new \Sedo\SedoTMP\OpenApi\Platform\Model\CreateCampaign();
 $createCampaign->setType('create');
 $createCampaign->setName("Example Campaign");
 $createCampaign->setTargetUrl("https://example.com/landing-page");
 
 // Create the content campaign request body
-$contentCampaign = new \Sedo\SedoTMP\Platform\Model\ContentcampaignsBody();
+$contentCampaign = new \Sedo\SedoTMP\OpenApi\Platform\Model\ContentcampaignsBody();
 $contentCampaign->setPublishDomainName("example-domain.info");
 $contentCampaign->setArticle($existingArticle);
 $contentCampaign->setCampaign($createCampaign);
@@ -132,8 +132,7 @@ You can provide your own authenticator implementation:
 ```php
 <?php
 
-use Sedo\Auth\AuthenticatorInterface;
-use Sedo\SedoTMPClient;
+use Sedo\lib\src\SedoTMP\Auth\AuthenticatorInterface;use Sedo\lib\src\SedoTMP\SedoTMPClient;
 
 class CustomAuthenticator implements AuthenticatorInterface
 {
@@ -179,3 +178,12 @@ For generating the API/Model Classes to `lib/src/` we use [OpenAPITools/openapi-
 ```
     make generate
 ```
+
+## Development
+
+Requirements: Docker
+
+- boot up the dev-environment using `make up`
+- execute `make init`
+
+You should now be able to log into the docker container using `make php`

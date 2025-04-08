@@ -1,4 +1,4 @@
-# Sedo\PublishedArticlesApi
+# Sedo\SedoTMP\OpenApi\PublishedArticlesApi
 
 All URIs are relative to https://api.sedotmp.com/content/v1, except if the operation defines another base path.
 
@@ -13,7 +13,7 @@ All URIs are relative to https://api.sedotmp.com/content/v1, except if the opera
 ## `publishedArticlesGet()`
 
 ```php
-publishedArticlesGet($page, $term): \Sedo\SedoTMP\Content\Model\PublishedArticleResponse[]
+publishedArticlesGet($page, $term): \Sedo\SedoTMP\OpenApi\Content\Model\PublishedArticleResponse[]
 ```
 
 Retrieve a list of published articles
@@ -28,16 +28,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\PublishedArticlesApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\PublishedArticlesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$page = new \Sedo\SedoTMP\Content\Model\\Sedo\SedoTMP\Content\Model\Pageable(); // \Sedo\SedoTMP\Content\Model\Pageable | Pageable object (every key is a separate query parameter)
+$page = new \Sedo\SedoTMP\OpenApi\Content\Model\\Sedo\SedoTMP\OpenApi\Content\Model\Pageable(); // \Sedo\SedoTMP\OpenApi\Content\Model\Pageable | Pageable object (every key is a separate query parameter)
 $term = summer%20vacation; // string | Search term for matching against any text field e.g. ID, title, excerpt, text..
 
 try {
@@ -52,12 +52,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **page** | [**\Sedo\SedoTMP\Content\Model\Pageable**](../Model/.md)| Pageable object (every key is a separate query parameter) | [optional] |
+| **page** | [**\Sedo\SedoTMP\OpenApi\Content\Model\Pageable**](../Model/.md)| Pageable object (every key is a separate query parameter) | [optional] |
 | **term** | **string**| Search term for matching against any text field e.g. ID, title, excerpt, text.. | [optional] |
 
 ### Return type
 
-[**\Sedo\SedoTMP\Content\Model\PublishedArticleResponse[]**](../Model/PublishedArticleResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Content\Model\PublishedArticleResponse[]**](../Model/PublishedArticleResponse.md)
 
 ### Authorization
 
@@ -90,10 +90,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\PublishedArticlesApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\PublishedArticlesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -134,7 +134,7 @@ void (empty response body)
 ## `publishedArticlesIdGet()`
 
 ```php
-publishedArticlesIdGet($id): \Sedo\SedoTMP\Content\Model\PublishedArticleResponse
+publishedArticlesIdGet($id): \Sedo\SedoTMP\OpenApi\Content\Model\PublishedArticleResponse
 ```
 
 Retrieve a published article by its ID
@@ -147,10 +147,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\PublishedArticlesApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\PublishedArticlesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -174,7 +174,7 @@ try {
 
 ### Return type
 
-[**\Sedo\SedoTMP\Content\Model\PublishedArticleResponse**](../Model/PublishedArticleResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Content\Model\PublishedArticleResponse**](../Model/PublishedArticleResponse.md)
 
 ### Authorization
 
@@ -192,7 +192,7 @@ try {
 ## `publishedArticlesPost()`
 
 ```php
-publishedArticlesPost($publishArticle, $xSedoRequestFlow, $xSedoReferenceId): \Sedo\SedoTMP\Content\Model\PublishedArticleResponse
+publishedArticlesPost($publishArticle, $xSedoRequestFlow, $xSedoReferenceId): \Sedo\SedoTMP\OpenApi\Content\Model\PublishedArticleResponse
 ```
 
 Publish an article on a specified domain
@@ -207,17 +207,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\PublishedArticlesApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\PublishedArticlesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$publishArticle = new \Sedo\SedoTMP\Content\Model\PublishArticle(); // \Sedo\SedoTMP\Content\Model\PublishArticle
-$xSedoRequestFlow = new \Sedo\SedoTMP\Content\Model\\Sedo\SedoTMP\Content\Model\RequestFlowHeader(); // \Sedo\SedoTMP\Content\Model\RequestFlowHeader
+$publishArticle = new \Sedo\SedoTMP\OpenApi\Content\Model\PublishArticle(); // \Sedo\SedoTMP\OpenApi\Content\Model\PublishArticle
+$xSedoRequestFlow = new \Sedo\SedoTMP\OpenApi\Content\Model\\Sedo\SedoTMP\OpenApi\Content\Model\RequestFlowHeader(); // \Sedo\SedoTMP\OpenApi\Content\Model\RequestFlowHeader
 $xSedoReferenceId = 'xSedoReferenceId_example'; // string
 
 try {
@@ -232,13 +232,13 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **publishArticle** | [**\Sedo\SedoTMP\Content\Model\PublishArticle**](../Model/PublishArticle.md)|  | |
-| **xSedoRequestFlow** | [**\Sedo\SedoTMP\Content\Model\RequestFlowHeader**](../Model/.md)|  | [optional] |
+| **publishArticle** | [**\Sedo\SedoTMP\OpenApi\Content\Model\PublishArticle**](../Model/PublishArticle.md)|  | |
+| **xSedoRequestFlow** | [**\Sedo\SedoTMP\OpenApi\Content\Model\RequestFlowHeader**](../Model/.md)|  | [optional] |
 | **xSedoReferenceId** | **string**|  | [optional] |
 
 ### Return type
 
-[**\Sedo\SedoTMP\Content\Model\PublishedArticleResponse**](../Model/PublishedArticleResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Content\Model\PublishedArticleResponse**](../Model/PublishedArticleResponse.md)
 
 ### Authorization
 

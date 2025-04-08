@@ -1,4 +1,4 @@
-# Sedo\ArticlesApi
+# Sedo\SedoTMP\OpenApi\ArticlesApi
 
 All URIs are relative to https://api.sedotmp.com/content/v1, except if the operation defines another base path.
 
@@ -16,7 +16,7 @@ All URIs are relative to https://api.sedotmp.com/content/v1, except if the opera
 ## `articlesGet()`
 
 ```php
-articlesGet($page, $term): \Sedo\SedoTMP\Content\Model\ArticleResponse[]
+articlesGet($page, $term): \Sedo\SedoTMP\OpenApi\Content\Model\ArticleResponse[]
 ```
 
 Retrieve a list of articles
@@ -31,16 +31,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\ArticlesApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\ArticlesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$page = new \Sedo\SedoTMP\Content\Model\\Sedo\SedoTMP\Content\Model\Pageable(); // \Sedo\SedoTMP\Content\Model\Pageable | Pageable object (every key is a separate query parameter)
+$page = new \Sedo\SedoTMP\OpenApi\Content\Model\\Sedo\SedoTMP\OpenApi\Content\Model\Pageable(); // \Sedo\SedoTMP\OpenApi\Content\Model\Pageable | Pageable object (every key is a separate query parameter)
 $term = summer%20vacation; // string | Search term for matching against any text field e.g. ID, title, excerpt, text..
 
 try {
@@ -55,12 +55,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **page** | [**\Sedo\SedoTMP\Content\Model\Pageable**](../Model/.md)| Pageable object (every key is a separate query parameter) | [optional] |
+| **page** | [**\Sedo\SedoTMP\OpenApi\Content\Model\Pageable**](../Model/.md)| Pageable object (every key is a separate query parameter) | [optional] |
 | **term** | **string**| Search term for matching against any text field e.g. ID, title, excerpt, text.. | [optional] |
 
 ### Return type
 
-[**\Sedo\SedoTMP\Content\Model\ArticleResponse[]**](../Model/ArticleResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Content\Model\ArticleResponse[]**](../Model/ArticleResponse.md)
 
 ### Authorization
 
@@ -93,10 +93,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\ArticlesApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\ArticlesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -137,7 +137,7 @@ void (empty response body)
 ## `articlesIdGet()`
 
 ```php
-articlesIdGet($id): \Sedo\SedoTMP\Content\Model\ArticleResponse
+articlesIdGet($id): \Sedo\SedoTMP\OpenApi\Content\Model\ArticleResponse
 ```
 
 Retrieve an article by its ID
@@ -150,10 +150,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\ArticlesApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\ArticlesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -177,7 +177,7 @@ try {
 
 ### Return type
 
-[**\Sedo\SedoTMP\Content\Model\ArticleResponse**](../Model/ArticleResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Content\Model\ArticleResponse**](../Model/ArticleResponse.md)
 
 ### Authorization
 
@@ -195,7 +195,7 @@ try {
 ## `articlesIdPatch()`
 
 ```php
-articlesIdPatch($id, $updateArticle): \Sedo\SedoTMP\Content\Model\ArticleResponse
+articlesIdPatch($id, $updateArticle): \Sedo\SedoTMP\OpenApi\Content\Model\ArticleResponse
 ```
 
 Partially update an article by its ID
@@ -210,17 +210,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\ArticlesApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\ArticlesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $id = 'id_example'; // string | Resource id
-$updateArticle = new \Sedo\SedoTMP\Content\Model\UpdateArticle(); // \Sedo\SedoTMP\Content\Model\UpdateArticle
+$updateArticle = new \Sedo\SedoTMP\OpenApi\Content\Model\UpdateArticle(); // \Sedo\SedoTMP\OpenApi\Content\Model\UpdateArticle
 
 try {
     $result = $apiInstance->articlesIdPatch($id, $updateArticle);
@@ -235,11 +235,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Resource id | |
-| **updateArticle** | [**\Sedo\SedoTMP\Content\Model\UpdateArticle**](../Model/UpdateArticle.md)|  | |
+| **updateArticle** | [**\Sedo\SedoTMP\OpenApi\Content\Model\UpdateArticle**](../Model/UpdateArticle.md)|  | |
 
 ### Return type
 
-[**\Sedo\SedoTMP\Content\Model\ArticleResponse**](../Model/ArticleResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Content\Model\ArticleResponse**](../Model/ArticleResponse.md)
 
 ### Authorization
 
@@ -257,7 +257,7 @@ try {
 ## `articlesIdPut()`
 
 ```php
-articlesIdPut($id, $updateArticle): \Sedo\SedoTMP\Content\Model\ArticleResponse
+articlesIdPut($id, $updateArticle): \Sedo\SedoTMP\OpenApi\Content\Model\ArticleResponse
 ```
 
 Fully update an article by its ID
@@ -272,17 +272,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\ArticlesApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\ArticlesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $id = 'id_example'; // string | Resource id
-$updateArticle = new \Sedo\SedoTMP\Content\Model\UpdateArticle(); // \Sedo\SedoTMP\Content\Model\UpdateArticle
+$updateArticle = new \Sedo\SedoTMP\OpenApi\Content\Model\UpdateArticle(); // \Sedo\SedoTMP\OpenApi\Content\Model\UpdateArticle
 
 try {
     $result = $apiInstance->articlesIdPut($id, $updateArticle);
@@ -297,11 +297,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Resource id | |
-| **updateArticle** | [**\Sedo\SedoTMP\Content\Model\UpdateArticle**](../Model/UpdateArticle.md)|  | |
+| **updateArticle** | [**\Sedo\SedoTMP\OpenApi\Content\Model\UpdateArticle**](../Model/UpdateArticle.md)|  | |
 
 ### Return type
 
-[**\Sedo\SedoTMP\Content\Model\ArticleResponse**](../Model/ArticleResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Content\Model\ArticleResponse**](../Model/ArticleResponse.md)
 
 ### Authorization
 
@@ -319,7 +319,7 @@ try {
 ## `articlesPost()`
 
 ```php
-articlesPost($createArticle): \Sedo\SedoTMP\Content\Model\ArticleResponse
+articlesPost($createArticle): \Sedo\SedoTMP\OpenApi\Content\Model\ArticleResponse
 ```
 
 Create a new article
@@ -334,16 +334,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\ArticlesApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\ArticlesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$createArticle = new \Sedo\SedoTMP\Content\Model\CreateArticle(); // \Sedo\SedoTMP\Content\Model\CreateArticle
+$createArticle = new \Sedo\SedoTMP\OpenApi\Content\Model\CreateArticle(); // \Sedo\SedoTMP\OpenApi\Content\Model\CreateArticle
 
 try {
     $result = $apiInstance->articlesPost($createArticle);
@@ -357,11 +357,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **createArticle** | [**\Sedo\SedoTMP\Content\Model\CreateArticle**](../Model/CreateArticle.md)|  | |
+| **createArticle** | [**\Sedo\SedoTMP\OpenApi\Content\Model\CreateArticle**](../Model/CreateArticle.md)|  | |
 
 ### Return type
 
-[**\Sedo\SedoTMP\Content\Model\ArticleResponse**](../Model/ArticleResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Content\Model\ArticleResponse**](../Model/ArticleResponse.md)
 
 ### Authorization
 
@@ -379,7 +379,7 @@ try {
 ## `generatedArticlesPost()`
 
 ```php
-generatedArticlesPost($generateArticle, $xSedoRequestFlow, $xSedoReferenceId): \Sedo\SedoTMP\Content\Model\ArticleResponse
+generatedArticlesPost($generateArticle, $xSedoRequestFlow, $xSedoReferenceId): \Sedo\SedoTMP\OpenApi\Content\Model\ArticleResponse
 ```
 
 Generate a new article for a specified topic
@@ -394,17 +394,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\ArticlesApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\ArticlesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$generateArticle = new \Sedo\SedoTMP\Content\Model\GenerateArticle(); // \Sedo\SedoTMP\Content\Model\GenerateArticle
-$xSedoRequestFlow = new \Sedo\SedoTMP\Content\Model\\Sedo\SedoTMP\Content\Model\RequestFlowHeader(); // \Sedo\SedoTMP\Content\Model\RequestFlowHeader
+$generateArticle = new \Sedo\SedoTMP\OpenApi\Content\Model\GenerateArticle(); // \Sedo\SedoTMP\OpenApi\Content\Model\GenerateArticle
+$xSedoRequestFlow = new \Sedo\SedoTMP\OpenApi\Content\Model\\Sedo\SedoTMP\OpenApi\Content\Model\RequestFlowHeader(); // \Sedo\SedoTMP\OpenApi\Content\Model\RequestFlowHeader
 $xSedoReferenceId = 'xSedoReferenceId_example'; // string
 
 try {
@@ -419,13 +419,13 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **generateArticle** | [**\Sedo\SedoTMP\Content\Model\GenerateArticle**](../Model/GenerateArticle.md)|  | |
-| **xSedoRequestFlow** | [**\Sedo\SedoTMP\Content\Model\RequestFlowHeader**](../Model/.md)|  | [optional] |
+| **generateArticle** | [**\Sedo\SedoTMP\OpenApi\Content\Model\GenerateArticle**](../Model/GenerateArticle.md)|  | |
+| **xSedoRequestFlow** | [**\Sedo\SedoTMP\OpenApi\Content\Model\RequestFlowHeader**](../Model/.md)|  | [optional] |
 | **xSedoReferenceId** | **string**|  | [optional] |
 
 ### Return type
 
-[**\Sedo\SedoTMP\Content\Model\ArticleResponse**](../Model/ArticleResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Content\Model\ArticleResponse**](../Model/ArticleResponse.md)
 
 ### Authorization
 

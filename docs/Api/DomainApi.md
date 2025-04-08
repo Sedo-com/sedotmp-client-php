@@ -1,4 +1,4 @@
-# Sedo\DomainApi
+# Sedo\SedoTMP\OpenApi\DomainApi
 
 All URIs are relative to https://api.sedotmp.com/content/v1, except if the operation defines another base path.
 
@@ -11,7 +11,7 @@ All URIs are relative to https://api.sedotmp.com/content/v1, except if the opera
 ## `domainsGet()`
 
 ```php
-domainsGet($page): \Sedo\SedoTMP\Content\Model\DomainResponse[]
+domainsGet($page): \Sedo\SedoTMP\OpenApi\Content\Model\DomainResponse[]
 ```
 
 Retrieve a list of domains
@@ -26,16 +26,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\DomainApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\DomainApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$page = new \Sedo\SedoTMP\Content\Model\\Sedo\SedoTMP\Content\Model\Pageable(); // \Sedo\SedoTMP\Content\Model\Pageable | Pageable object (every key is a separate query parameter)
+$page = new \Sedo\SedoTMP\OpenApi\Content\Model\\Sedo\SedoTMP\OpenApi\Content\Model\Pageable(); // \Sedo\SedoTMP\OpenApi\Content\Model\Pageable | Pageable object (every key is a separate query parameter)
 
 try {
     $result = $apiInstance->domainsGet($page);
@@ -49,11 +49,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **page** | [**\Sedo\SedoTMP\Content\Model\Pageable**](../Model/.md)| Pageable object (every key is a separate query parameter) | [optional] |
+| **page** | [**\Sedo\SedoTMP\OpenApi\Content\Model\Pageable**](../Model/.md)| Pageable object (every key is a separate query parameter) | [optional] |
 
 ### Return type
 
-[**\Sedo\SedoTMP\Content\Model\DomainResponse[]**](../Model/DomainResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Content\Model\DomainResponse[]**](../Model/DomainResponse.md)
 
 ### Authorization
 
@@ -71,7 +71,7 @@ try {
 ## `domainsIdGet()`
 
 ```php
-domainsIdGet($id): \Sedo\SedoTMP\Content\Model\DomainResponse
+domainsIdGet($id): \Sedo\SedoTMP\OpenApi\Content\Model\DomainResponse
 ```
 
 Retrieve a domain by its ID
@@ -84,10 +84,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer (JWT) authorization: bearerAuth
-$config = Sedo\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Sedo\Api\DomainApi(
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\DomainApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -111,7 +111,7 @@ try {
 
 ### Return type
 
-[**\Sedo\SedoTMP\Content\Model\DomainResponse**](../Model/DomainResponse.md)
+[**\Sedo\SedoTMP\OpenApi\Content\Model\DomainResponse**](../Model/DomainResponse.md)
 
 ### Authorization
 

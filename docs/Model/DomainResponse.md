@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **id** | **string** |  | [optional]
 **domain** | **string** | Domain name | [optional]
 **url** | **string** | The content site url | [optional]
-**platform** | [**\Sedo\SedoTMP\Content\Model\Platform**](Platform.md) |  | [optional]
+**platform** | [**\Sedo\SedoTMP\OpenApi\Content\Model\Platform**](Platform.md) |  | [optional]
 **createdDate** | **\DateTime** | ISO-8601 formatted timestamp | [optional]
 **lastModifiedDate** | **\DateTime** | ISO-8601 formatted timestamp | [optional]
 **partners** | **string[]** |  | [optional]

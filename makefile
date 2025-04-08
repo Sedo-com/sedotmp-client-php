@@ -30,14 +30,24 @@ up:																				## Start the Docker Compose stack for the complete projec
 down:																			## Bring down the Docker Compose stack for the complete project
 	$(compose) down
 
+init:
+	$(exec) composer install --dev
+
 .PHONY: php
 php:																			## Bash in Docker container
 	$(exec) bash || true
 
-
 .PHONY: php-cs-fix
 php-cs-fix:																		## run cs fixer
 	$(exec-no-xdebug) vendor/bin/php-cs-fixer fix --allow-risky=yes
+
+.PHONY: phpstan
+phpstan:
+	$(exec-no-xdebug) vendor/bin/phpstan analyse -c phpstan.neon
+
+.PHONY: phpunit
+phpunit:																		## run cs fixer
+	$(exec-phpunit) vendor/bin/phpunit -c phpunit.xml.dist $(OPTIONS)
 
 .PHONY: composer
 composer:																		## execute a composer command

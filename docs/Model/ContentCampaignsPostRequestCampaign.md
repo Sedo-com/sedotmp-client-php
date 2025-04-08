@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** |  |
-**trackingData** | [**\Sedo\SedoTMP\Platform\Model\CampaignDataTrackingData**](CampaignDataTrackingData.md) |  |
+**trackingData** | [**\Sedo\SedoTMP\OpenApi\Platform\Model\CampaignDataTrackingData**](CampaignDataTrackingData.md) |  |
 **type** | **string** |  |
 **campaignId** | **string** |  |
 
