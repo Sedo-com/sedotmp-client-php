@@ -3,8 +3,8 @@
 namespace Sedo\SedoTMP\Api\Content;
 
 use GuzzleHttp\Client;
-use Sedo\SedoTMP\OpenApi\Configuration;
 use Sedo\SedoTMP\Auth\AuthenticatorInterface;
+use Sedo\SedoTMP\OpenApi\Configuration;
 use Sedo\SedoTMP\OpenApi\Content\API\ArticlesApi;
 use Sedo\SedoTMP\OpenApi\Content\API\CategoriesApi;
 use Sedo\SedoTMP\OpenApi\Content\API\DomainsApi;
@@ -19,6 +19,7 @@ use Sedo\SedoTMP\OpenApi\Content\Model\DomainResponse;
 use Sedo\SedoTMP\OpenApi\Content\Model\GenerateArticle;
 use Sedo\SedoTMP\OpenApi\Content\Model\MediaResourceResponse;
 use Sedo\SedoTMP\OpenApi\Content\Model\Pageable;
+use Sedo\SedoTMP\OpenApi\Content\Model\Problem;
 use Sedo\SedoTMP\OpenApi\Content\Model\PublishedArticleResponse;
 
 class ContentApiService implements ContentApiServiceInterface
@@ -39,7 +40,7 @@ class ContentApiService implements ContentApiServiceInterface
         if ($apiHost) {
             $this->config->setHost($apiHost);
         } elseif (isset($_ENV['API_HOST'])) {
-            $this->config->setHost($_ENV['API_HOST'].'/content/v1');
+            $this->config->setHost(sprintf('%s/content/v1', $_ENV['API_HOST']));
         }
 
         // Set access token from authenticator
@@ -57,7 +58,7 @@ class ContentApiService implements ContentApiServiceInterface
     }
 
     /**
-     * @return array<array-key, ArticleResponse>
+     * @return array<array-key, ArticleResponse|Problem>
      */
     public function getArticles(?Pageable $page = null, ?string $term = null): array
     {
@@ -130,12 +131,12 @@ class ContentApiService implements ContentApiServiceInterface
      */
     public function getMediaResources(?Pageable $page = null, ?string $term = null): array
     {
-        return $this->mediaResourcesApi->mediaResourcesGet($page, $term);
+        return $this->mediaResourcesApi->mediaGet($page, $term);
     }
 
     public function getMediaResource(string $id): MediaResourceResponse
     {
-        return $this->mediaResourcesApi->mediaResourcesIdGet($id);
+        return $this->mediaResourcesApi->mediaIdGet($id);
     }
 
     /**

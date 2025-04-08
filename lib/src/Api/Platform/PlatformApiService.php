@@ -3,8 +3,8 @@
 namespace Sedo\SedoTMP\Api\Platform;
 
 use GuzzleHttp\Client;
-use Sedo\SedoTMP\OpenApi\Configuration;
 use Sedo\SedoTMP\Auth\AuthenticatorInterface;
+use Sedo\SedoTMP\OpenApi\Configuration;
 use Sedo\SedoTMP\OpenApi\Platform\API\ContentCampaignsApi;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest;
@@ -23,7 +23,7 @@ class PlatformApiService implements PlatformApiServiceInterface
         if ($apiHost) {
             $this->config->setHost($apiHost);
         } elseif (isset($_ENV['API_HOST'])) {
-            $this->config->setHost($_ENV['API_HOST'].'/platform/v1');
+            $this->config->setHost(sprintf('%s/content/v1', $_ENV['API_HOST']));
         }
 
         // Set access token from authenticator
