@@ -1,56 +1,105 @@
 <?php
 
+/**
+ * SedoTMP API Simple Usage Example.
+ *
+ * This example demonstrates basic usage of the SedoTMP API:
+ * 1. Retrieving available domains
+ * 2. Listing content categories
+ * 3. Fetching recent articles
+ * 4. Getting content campaigns
+ *
+ * This example uses the SedoTMPClient to access the API services
+ */
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 use Sedo\SedoTMP\OpenApi\Content\Model\Pageable;
 use Sedo\SedoTMP\SedoTMPClient;
 
-// Initialize the client with the path to the .env file
+// Initialize the SedoTMP client with the path to the .env file
 $client = new SedoTMPClient(__DIR__.'/../.env');
 
+// Get the API services from the client
+$contentApiService = $client->content();
+$platformApiService = $client->platform();
+
 try {
-    // 1. Get available domains
-    echo "Fetching available domains...\n";
-    $domains = $client->content()->getDomains();
+    // Enable debug mode for detailed API request/response logging
+    $client->getAuthenticator()->getConfig()->setDebug(true);
+
+    // Step 1: Get available domains
+    echo "Step 1: Listing available domains\n";
+    echo "===============================\n";
+
+    $domains = $contentApiService->getDomains();
 
     if (0 === count($domains)) {
         echo "No domains available. Please create a domain first.\n";
         exit(1);
     }
 
-    echo 'Found '.count($domains)." domains.\n";
-    echo 'Using domain: '.$domains[0]->getName()."\n\n";
+    echo sprintf("Found %d domains\n", count($domains));
+    echo sprintf("First domain: %s\n", $domains[0]->getName());
 
-    // 2. Get available categories
-    echo "Fetching available categories...\n";
+    // Step 2: Get available categories
+    echo "\nStep 2: Listing content categories\n";
+    echo "================================\n";
+
     $page = new Pageable();
     $page->setPage(0);
     $page->setSize(10);
 
-    $categories = $client->content()->getCategories($page);
-    echo 'Found '.count($categories)." categories.\n";
+    $categories = $contentApiService->getCategories($page);
+    echo sprintf("Found %d categories\n", count($categories));
 
     if (count($categories) > 0) {
-        echo 'First category: '.$categories[0]->getName().' (ID: '.$categories[0]->getId().")\n\n";
+        echo sprintf("First category: %s (ID: %s)\n",
+            $categories[0]->getTitle(),
+            $categories[0]->getId()
+        );
     }
 
-    // 3. Get recent articles
-    echo "Fetching recent articles...\n";
-    $articles = $client->content()->getArticles($page);
-    echo 'Found '.count($articles)." articles.\n";
+    // Step 3: Get recent articles
+    echo "\nStep 3: Listing recent articles\n";
+    echo "==============================\n";
+
+    $articles = $contentApiService->getArticles($page);
+    echo sprintf("Found %d articles\n", count($articles));
 
     if (count($articles) > 0) {
-        echo 'Latest article: '.$articles[0]->getTitle().' (ID: '.$articles[0]->getId().")\n\n";
+        echo sprintf("Latest article: %s (ID: %s)\n",
+            $articles[0]->getTitle(),
+            $articles[0]->getId()
+        );
 
-        // 4. Get content campaigns
-        echo "Fetching content campaigns...\n";
-        $campaigns = $client->platform()->getContentCampaigns($page);
-        echo 'Found '.count($campaigns)." content campaigns.\n";
+        // Display article details
+        echo "\nArticle Details:\n";
+        echo sprintf("- Title: %s\n", $articles[0]->getTitle());
+        echo sprintf("- ID: %s\n", $articles[0]->getId());
+        if ($articles[0]->getExcerpt()) {
+            echo sprintf("- Excerpt: %s\n", $articles[0]->getExcerpt());
+        }
+        if ($articles[0]->getCreatedDate()) {
+            echo sprintf("- Created At: %s\n", $articles[0]->getCreatedDate()->format(DateTimeInterface::ATOM));
+        }
+
+        // Step 4: Get content campaigns
+        echo "\nStep 4: Listing content campaigns\n";
+        echo "================================\n";
+
+        $campaigns = $platformApiService->getContentCampaigns($page);
+        echo sprintf("Found %d content campaigns\n", count($campaigns));
 
         if (count($campaigns) > 0) {
-            echo 'Latest campaign status: '.$campaigns[0]->getStatus()." (Status is now represented as an integer)\n";
+            echo "\nLatest Campaign Details:\n";
+            echo sprintf("- ID: %s\n", $campaigns[0]->getId());
+            echo sprintf("- Status: %d\n", $campaigns[0]->getStatus());
+            if ($campaigns[0]->getCreatedDate()) {
+                echo sprintf("- Created At: %s\n", $campaigns[0]->getCreatedDate()->format(DateTimeInterface::ATOM));
+            }
             if ($campaigns[0]->getTrackingUrl()) {
-                echo 'Tracking URL: '.$campaigns[0]->getTrackingUrl()."\n";
+                echo sprintf("- Tracking URL: %s\n", $campaigns[0]->getTrackingUrl());
             }
         }
     }
