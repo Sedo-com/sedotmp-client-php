@@ -1,0 +1,17 @@
+services:
+
+  php:
+    build:
+      context: docker/dev
+      args:
+        - "USER_ID=${USER_ID-501}"
+    volumes:
+      - ./:/srv/share/:rw
+    environment:
+      CACHE_IN_MEMORY: false
+      XDEBUG_MODE: develop,coverage
+      XDEBUG_CONFIG: >-
+        client_host=host.docker.internal
+        discover_client_host=true
+    ports:
+      - "8000:80"
