@@ -1,5 +1,6 @@
 .swagger-codegen
 vendor
 .env
+*.bru
 
 docker-compose.override.yml

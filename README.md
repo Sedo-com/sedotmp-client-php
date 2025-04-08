@@ -171,22 +171,24 @@ Check the `examples` directory for complete workflow examples:
 - `content_campaign_workflow.php`: Complete workflow for creating a content campaign
 
 
-## Development / Create the API from the swagger docs
+## Development / Create the API from the swagger docs 
+
+For generating the API/Model Classes to `lib/src/` we use [OpenAPITools/openapi-generator](https://github.com/OpenAPITools/openapi-generator)
 
 ### Platform Models / API
 ```
- docker run --rm -v ${PWD}:/local swaggerapi/swagger-codegen-cli-v3 generate \
- -i /local/api-docs/platform-api.yaml \
- -l php \
- -o /local \
- -c /local/swagger-platform.config.json
+	docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate \
+	-i /local/api-docs/platform-api.yaml \
+	-g php \
+	-o /local \
+	-c /local/swagger-platform.config.json
 ```
 
 ### Content Models / API
 ```
- docker run --rm -v ${PWD}:/local swaggerapi/swagger-codegen-cli-v3 generate \
- -i /local/api-docs/content-api.yaml \
- -l php \
- -o /local \
- -c /local/swagger-content.config.json
+	docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate \
+	-i /local/api-docs/content-api.yaml \
+	-g php \
+	-o /local \
+	-c /local/swagger-content.config.json
 ```
