@@ -34,16 +34,16 @@ class ContentApiService implements ContentApiServiceInterface
     {
         // Initialize configuration
         $this->config = new Configuration();
-        
+
         if ($apiHost) {
             $this->config->setHost($apiHost);
         } else if (isset($_ENV['API_HOST'])) {
             $this->config->setHost($_ENV['API_HOST'] . '/content/v1');
         }
-        
+
         // Set access token from authenticator
         $this->config->setAccessToken($authenticator->getAccessToken());
-        
+
         // Initialize API clients
         $this->articlesApi = new ArticlesApi(null, $this->config);
         $this->categoriesApi = new CategoriesApi(null, $this->config);
@@ -53,6 +53,9 @@ class ContentApiService implements ContentApiServiceInterface
         $this->publishedArticlesApi = new PublishedArticlesApi(null, $this->config);
     }
 
+    /**
+     * @return array<array-key, ArticleResponse>
+     */
     public function getArticles(?Pageable $page = null, ?string $term = null): array
     {
         return $this->articlesApi->articlesGet($page, $term);
@@ -74,6 +77,9 @@ class ContentApiService implements ContentApiServiceInterface
         return $this->generatedArticleApi->generatedArticlesPost($generateArticle, $requestFlow, $referenceId);
     }
 
+    /**
+     * @return array<array-key, PublishedArticleResponse>
+     */
     public function getPublishedArticles(?Pageable $page = null, ?string $term = null): array
     {
         return $this->publishedArticlesApi->publishedArticlesGet($page, $term);
@@ -84,6 +90,9 @@ class ContentApiService implements ContentApiServiceInterface
         return $this->publishedArticlesApi->publishedArticlesIdGet($id);
     }
 
+    /**
+     * @return array<array-key, CategoryResponse>
+     */
     public function getCategories(?Pageable $page = null, ?string $term = null): array
     {
         return $this->categoriesApi->categoriesGet($page, $term);
@@ -99,6 +108,9 @@ class ContentApiService implements ContentApiServiceInterface
         return $this->categoriesApi->categoriesPost($category);
     }
 
+    /**
+     * @return array<array-key, DomainResponse>
+     */
     public function getDomains(?Pageable $page = null, ?string $term = null): array
     {
         return $this->domainsApi->domainsGet($page, $term);
@@ -109,6 +121,9 @@ class ContentApiService implements ContentApiServiceInterface
         return $this->domainsApi->domainsIdGet($id);
     }
 
+    /**
+     * @return array<array-key, MediaResourceResponse>
+     */
     public function getMediaResources(?Pageable $page = null, ?string $term = null): array
     {
         return $this->mediaResourcesApi->mediaResourcesGet($page, $term);
