@@ -1,16 +1,18 @@
 <?php
+
 /**
  * MediaResourceApi
- * PHP version 8.1
+ * PHP version 8.1.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * content-api
+ * content-api.
  *
  * # Introduction and Process Overview  This API offers easy-to-use endpoints for managing articles on content sites using the Sedo Traffic Monetization Platform.  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -42,12 +44,13 @@ use Sedo\HeaderSelector;
 use Sedo\ObjectSerializer;
 
 /**
- * MediaResourceApi Class Doc Comment
+ * MediaResourceApi Class Doc Comment.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 class MediaResourceApi
 {
@@ -71,7 +74,7 @@ class MediaResourceApi
      */
     protected $hostIndex;
 
-    /** @var string[] $contentTypes **/
+    /** @var string[] * */
     public const contentTypes = [
         'mediaDownloadIdGet' => [
             'application/json',
@@ -88,16 +91,13 @@ class MediaResourceApi
     ];
 
     /**
-     * @param ClientInterface $client
-     * @param Configuration   $config
-     * @param HeaderSelector  $selector
-     * @param int             $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        int $hostIndex = 0
+        int $hostIndex = 0,
     ) {
         $this->client = $client ?: new Client();
         $this->config = $config ?: Configuration::getDefaultConfiguration();
@@ -106,7 +106,7 @@ class MediaResourceApi
     }
 
     /**
-     * Set the host index
+     * Set the host index.
      *
      * @param int $hostIndex Host index (required)
      */
@@ -116,7 +116,7 @@ class MediaResourceApi
     }
 
     /**
-     * Get the host index
+     * Get the host index.
      *
      * @return int Host index
      */
@@ -134,34 +134,37 @@ class MediaResourceApi
     }
 
     /**
-     * Operation mediaDownloadIdGet
+     * Operation mediaDownloadIdGet.
      *
      * Download a media resource by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaDownloadIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['mediaDownloadIdGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \SplFileObject
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function mediaDownloadIdGet($id, string $contentType = self::contentTypes['mediaDownloadIdGet'][0])
     {
         list($response) = $this->mediaDownloadIdGetWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
     /**
-     * Operation mediaDownloadIdGetWithHttpInfo
+     * Operation mediaDownloadIdGetWithHttpInfo.
      *
      * Download a media resource by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaDownloadIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['mediaDownloadIdGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function mediaDownloadIdGetWithHttpInfo($id, string $contentType = self::contentTypes['mediaDownloadIdGet'][0])
     {
@@ -172,25 +175,14 @@ class MediaResourceApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? (string) $e->getResponse()->getBody() : null);
             } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), null, null);
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\SplFileObject',
@@ -199,19 +191,8 @@ class MediaResourceApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
+                throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
             }
 
             return $this->handleResponseWithDataType(
@@ -230,22 +211,22 @@ class MediaResourceApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
 
             throw $e;
         }
     }
 
     /**
-     * Operation mediaDownloadIdGetAsync
+     * Operation mediaDownloadIdGetAsync.
      *
      * Download a media resource by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaDownloadIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['mediaDownloadIdGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function mediaDownloadIdGetAsync($id, string $contentType = self::contentTypes['mediaDownloadIdGet'][0])
     {
@@ -258,15 +239,16 @@ class MediaResourceApi
     }
 
     /**
-     * Operation mediaDownloadIdGetAsyncWithHttpInfo
+     * Operation mediaDownloadIdGetAsyncWithHttpInfo.
      *
      * Download a media resource by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaDownloadIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['mediaDownloadIdGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function mediaDownloadIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['mediaDownloadIdGet'][0])
     {
@@ -277,11 +259,11 @@ class MediaResourceApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                    if ('\SplFileObject' === $returnType) {
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
+                        if ('string' !== $returnType) {
                             $content = json_decode($content);
                         }
                     }
@@ -289,45 +271,33 @@ class MediaResourceApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
+                    throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, $exception->getRequest()->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
                 }
             );
     }
 
     /**
-     * Create request for operation 'mediaDownloadIdGet'
+     * Create request for operation 'mediaDownloadIdGet'.
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaDownloadIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['mediaDownloadIdGet'] to see the possible values for this operation
+     *
+     * @return Request
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function mediaDownloadIdGetRequest($id, string $contentType = self::contentTypes['mediaDownloadIdGet'][0])
     {
-
         // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling mediaDownloadIdGet'
-            );
+        if (null === $id || (is_array($id) && 0 === count($id))) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling mediaDownloadIdGet');
         }
-
 
         $resourcePath = '/media/download/{id}';
         $formParams = [];
@@ -336,20 +306,17 @@ class MediaResourceApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
-        if ($id !== null) {
+        if (null !== $id) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['image/jpg', 'image/jpeg', 'image/webp', 'image/png', ],
+            ['image/jpg', 'image/jpeg', 'image/webp', 'image/png'],
             $contentType,
             $multipart
         );
@@ -363,15 +330,14 @@ class MediaResourceApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
+            } elseif (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
@@ -381,7 +347,7 @@ class MediaResourceApi
 
         // this endpoint requires Bearer (JWT) authentication (access token)
         if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = 'Bearer '.$this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -397,43 +363,47 @@ class MediaResourceApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
     }
 
     /**
-     * Operation mediaGet
+     * Operation mediaGet.
      *
      * Retrieve a list of media resources
      *
-     * @param  \Sedo\SedoTMP\Content\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string                                    $contentType The value for the Content-Type header. Check self::contentTypes['mediaGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \Sedo\SedoTMP\Content\Model\MediaResourceResponse[]|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function mediaGet($page = null, string $contentType = self::contentTypes['mediaGet'][0])
     {
         list($response) = $this->mediaGetWithHttpInfo($page, $contentType);
+
         return $response;
     }
 
     /**
-     * Operation mediaGetWithHttpInfo
+     * Operation mediaGetWithHttpInfo.
      *
      * Retrieve a list of media resources
      *
-     * @param  \Sedo\SedoTMP\Content\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string                                    $contentType The value for the Content-Type header. Check self::contentTypes['mediaGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Sedo\SedoTMP\Content\Model\MediaResourceResponse[]|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function mediaGetWithHttpInfo($page = null, string $contentType = self::contentTypes['mediaGet'][0])
     {
@@ -444,25 +414,14 @@ class MediaResourceApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? (string) $e->getResponse()->getBody() : null);
             } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), null, null);
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Sedo\SedoTMP\Content\Model\MediaResourceResponse[]',
@@ -483,19 +442,8 @@ class MediaResourceApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
+                throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
             }
 
             return $this->handleResponseWithDataType(
@@ -530,22 +478,22 @@ class MediaResourceApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
 
             throw $e;
         }
     }
 
     /**
-     * Operation mediaGetAsync
+     * Operation mediaGetAsync.
      *
      * Retrieve a list of media resources
      *
-     * @param  \Sedo\SedoTMP\Content\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string                                    $contentType The value for the Content-Type header. Check self::contentTypes['mediaGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function mediaGetAsync($page = null, string $contentType = self::contentTypes['mediaGet'][0])
     {
@@ -558,15 +506,16 @@ class MediaResourceApi
     }
 
     /**
-     * Operation mediaGetAsyncWithHttpInfo
+     * Operation mediaGetAsyncWithHttpInfo.
      *
      * Retrieve a list of media resources
      *
-     * @param  \Sedo\SedoTMP\Content\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string                                    $contentType The value for the Content-Type header. Check self::contentTypes['mediaGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function mediaGetAsyncWithHttpInfo($page = null, string $contentType = self::contentTypes['mediaGet'][0])
     {
@@ -577,11 +526,11 @@ class MediaResourceApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                    if ('\SplFileObject' === $returnType) {
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
+                        if ('string' !== $returnType) {
                             $content = json_decode($content);
                         }
                     }
@@ -589,40 +538,29 @@ class MediaResourceApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
+                    throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, $exception->getRequest()->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
                 }
             );
     }
 
     /**
-     * Create request for operation 'mediaGet'
+     * Create request for operation 'mediaGet'.
      *
-     * @param  \Sedo\SedoTMP\Content\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string                                    $contentType The value for the Content-Type header. Check self::contentTypes['mediaGet'] to see the possible values for this operation
+     *
+     * @return Request
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function mediaGetRequest($page = null, string $contentType = self::contentTypes['mediaGet'][0])
     {
-
-
-
         $resourcePath = '/media';
         $formParams = [];
         $queryParams = [];
@@ -640,11 +578,8 @@ class MediaResourceApi
             false // required
         ) ?? []);
 
-
-
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -658,15 +593,14 @@ class MediaResourceApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
+            } elseif (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
@@ -676,7 +610,7 @@ class MediaResourceApi
 
         // this endpoint requires Bearer (JWT) authentication (access token)
         if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = 'Bearer '.$this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -692,43 +626,47 @@ class MediaResourceApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
     }
 
     /**
-     * Operation mediaIdGet
+     * Operation mediaIdGet.
      *
      * Retrieve a media resource by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['mediaIdGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \Sedo\SedoTMP\Content\Model\MediaResourceResponse|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function mediaIdGet($id, string $contentType = self::contentTypes['mediaIdGet'][0])
     {
         list($response) = $this->mediaIdGetWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
     /**
-     * Operation mediaIdGetWithHttpInfo
+     * Operation mediaIdGetWithHttpInfo.
      *
      * Retrieve a media resource by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['mediaIdGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Sedo\SedoTMP\Content\Model\MediaResourceResponse|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function mediaIdGetWithHttpInfo($id, string $contentType = self::contentTypes['mediaIdGet'][0])
     {
@@ -739,25 +677,14 @@ class MediaResourceApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? (string) $e->getResponse()->getBody() : null);
             } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), null, null);
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Sedo\SedoTMP\Content\Model\MediaResourceResponse',
@@ -778,19 +705,8 @@ class MediaResourceApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
+                throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
             }
 
             return $this->handleResponseWithDataType(
@@ -825,22 +741,22 @@ class MediaResourceApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
 
             throw $e;
         }
     }
 
     /**
-     * Operation mediaIdGetAsync
+     * Operation mediaIdGetAsync.
      *
      * Retrieve a media resource by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['mediaIdGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function mediaIdGetAsync($id, string $contentType = self::contentTypes['mediaIdGet'][0])
     {
@@ -853,15 +769,16 @@ class MediaResourceApi
     }
 
     /**
-     * Operation mediaIdGetAsyncWithHttpInfo
+     * Operation mediaIdGetAsyncWithHttpInfo.
      *
      * Retrieve a media resource by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['mediaIdGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function mediaIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['mediaIdGet'][0])
     {
@@ -872,11 +789,11 @@ class MediaResourceApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                    if ('\SplFileObject' === $returnType) {
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
+                        if ('string' !== $returnType) {
                             $content = json_decode($content);
                         }
                     }
@@ -884,45 +801,33 @@ class MediaResourceApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
+                    throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, $exception->getRequest()->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
                 }
             );
     }
 
     /**
-     * Create request for operation 'mediaIdGet'
+     * Create request for operation 'mediaIdGet'.
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['mediaIdGet'] to see the possible values for this operation
+     *
+     * @return Request
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function mediaIdGetRequest($id, string $contentType = self::contentTypes['mediaIdGet'][0])
     {
-
         // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling mediaIdGet'
-            );
+        if (null === $id || (is_array($id) && 0 === count($id))) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling mediaIdGet');
         }
-
 
         $resourcePath = '/media/{id}';
         $formParams = [];
@@ -931,20 +836,17 @@ class MediaResourceApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
-        if ($id !== null) {
+        if (null !== $id) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -958,15 +860,14 @@ class MediaResourceApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
+            } elseif (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
@@ -976,7 +877,7 @@ class MediaResourceApi
 
         // this endpoint requires Bearer (JWT) authentication (access token)
         if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = 'Bearer '.$this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -992,43 +893,47 @@ class MediaResourceApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
     }
 
     /**
-     * Operation mediaPost
+     * Operation mediaPost.
      *
      * Create a new media resource
      *
-     * @param  \SplFileObject|null $file file (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaPost'] to see the possible values for this operation
+     * @param \SplFileObject|null $file        file (optional)
+     * @param string              $contentType The value for the Content-Type header. Check self::contentTypes['mediaPost'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \Sedo\SedoTMP\Content\Model\MediaResourceResponse|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function mediaPost($file = null, string $contentType = self::contentTypes['mediaPost'][0])
     {
         list($response) = $this->mediaPostWithHttpInfo($file, $contentType);
+
         return $response;
     }
 
     /**
-     * Operation mediaPostWithHttpInfo
+     * Operation mediaPostWithHttpInfo.
      *
      * Create a new media resource
      *
-     * @param  \SplFileObject|null $file (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaPost'] to see the possible values for this operation
+     * @param \SplFileObject|null $file        (optional)
+     * @param string              $contentType The value for the Content-Type header. Check self::contentTypes['mediaPost'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Sedo\SedoTMP\Content\Model\MediaResourceResponse|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function mediaPostWithHttpInfo($file = null, string $contentType = self::contentTypes['mediaPost'][0])
     {
@@ -1039,25 +944,14 @@ class MediaResourceApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? (string) $e->getResponse()->getBody() : null);
             } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), null, null);
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Sedo\SedoTMP\Content\Model\MediaResourceResponse',
@@ -1078,19 +972,8 @@ class MediaResourceApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
+                throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
             }
 
             return $this->handleResponseWithDataType(
@@ -1125,22 +1008,22 @@ class MediaResourceApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
 
             throw $e;
         }
     }
 
     /**
-     * Operation mediaPostAsync
+     * Operation mediaPostAsync.
      *
      * Create a new media resource
      *
-     * @param  \SplFileObject|null $file (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaPost'] to see the possible values for this operation
+     * @param \SplFileObject|null $file        (optional)
+     * @param string              $contentType The value for the Content-Type header. Check self::contentTypes['mediaPost'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function mediaPostAsync($file = null, string $contentType = self::contentTypes['mediaPost'][0])
     {
@@ -1153,15 +1036,16 @@ class MediaResourceApi
     }
 
     /**
-     * Operation mediaPostAsyncWithHttpInfo
+     * Operation mediaPostAsyncWithHttpInfo.
      *
      * Create a new media resource
      *
-     * @param  \SplFileObject|null $file (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaPost'] to see the possible values for this operation
+     * @param \SplFileObject|null $file        (optional)
+     * @param string              $contentType The value for the Content-Type header. Check self::contentTypes['mediaPost'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function mediaPostAsyncWithHttpInfo($file = null, string $contentType = self::contentTypes['mediaPost'][0])
     {
@@ -1172,11 +1056,11 @@ class MediaResourceApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                    if ('\SplFileObject' === $returnType) {
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
+                        if ('string' !== $returnType) {
                             $content = json_decode($content);
                         }
                     }
@@ -1184,40 +1068,29 @@ class MediaResourceApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
+                    throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, $exception->getRequest()->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
                 }
             );
     }
 
     /**
-     * Create request for operation 'mediaPost'
+     * Create request for operation 'mediaPost'.
      *
-     * @param  \SplFileObject|null $file (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mediaPost'] to see the possible values for this operation
+     * @param \SplFileObject|null $file        (optional)
+     * @param string              $contentType The value for the Content-Type header. Check self::contentTypes['mediaPost'] to see the possible values for this operation
+     *
+     * @return Request
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function mediaPostRequest($file = null, string $contentType = self::contentTypes['mediaPost'][0])
     {
-
-
-
         $resourcePath = '/media';
         $formParams = [];
         $queryParams = [];
@@ -1225,11 +1098,8 @@ class MediaResourceApi
         $httpBody = '';
         $multipart = false;
 
-
-
-
         // form params
-        if ($file !== null) {
+        if (null !== $file) {
             $multipart = true;
             $formParams['file'] = [];
             $paramFiles = is_array($file) ? $file : [$file];
@@ -1243,7 +1113,7 @@ class MediaResourceApi
 
         $multipart = true;
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -1257,15 +1127,14 @@ class MediaResourceApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
+            } elseif (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
@@ -1275,7 +1144,7 @@ class MediaResourceApi
 
         // this endpoint requires Bearer (JWT) authentication (access token)
         if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = 'Bearer '.$this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1291,19 +1160,21 @@ class MediaResourceApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
     }
 
     /**
-     * Create http client option
+     * Create http client option.
+     *
+     * @return array of http client options
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
      */
     protected function createHttpClientOption()
     {
@@ -1311,7 +1182,7 @@ class MediaResourceApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new \RuntimeException('Failed to open the debug file: '.$this->config->getDebugFile());
             }
         }
 
@@ -1321,25 +1192,17 @@ class MediaResourceApi
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,
-        ResponseInterface $response
+        ResponseInterface $response,
     ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
+        if ('\SplFileObject' === $dataType) {
+            $content = $response->getBody(); // stream goes to serializer
         } else {
             $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
+            if ('string' !== $dataType) {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                 } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                        $content
-                    );
+                    throw new ApiException(sprintf('Error JSON decoding server response (%s)', $request->getUri()), $response->getStatusCode(), $response->getHeaders(), $content);
                 }
             }
         }
@@ -1347,13 +1210,13 @@ class MediaResourceApi
         return [
             ObjectSerializer::deserialize($content, $dataType, []),
             $response->getStatusCode(),
-            $response->getHeaders()
+            $response->getHeaders(),
         ];
     }
 
     private function responseWithinRangeCode(
         string $rangeCode,
-        int $statusCode
+        int $statusCode,
     ): bool {
         $left = (int) ($rangeCode[0].'00');
         $right = (int) ($rangeCode[0].'99');

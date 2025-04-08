@@ -1,17 +1,19 @@
 <?php
+
 /**
- * Problem
+ * Problem.
  *
  * PHP version 8.1
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * content-api
+ * content-api.
  *
  * # Introduction and Process Overview  This API offers easy-to-use endpoints for managing articles on content sites using the Sedo Traffic Monetization Platform.  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -28,79 +30,82 @@
 
 namespace Sedo\SedoTMP\Content\Model;
 
-use \ArrayAccess;
-use \Sedo\ObjectSerializer;
+use Sedo\ObjectSerializer;
 
 /**
- * Problem Class Doc Comment
+ * Problem Class Doc Comment.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
+ *
  * @implements \ArrayAccess<string, mixed>
  */
-class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
+class Problem implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $openAPIModelName = 'Problem';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
     protected static $openAPITypes = [
         'type' => 'string',
         'title' => 'string',
         'status' => 'int',
         'detail' => 'string',
-        'instance' => 'string'
+        'instance' => 'string',
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
+     * Array of property to format mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     *
+     * @phpstan-var array<string, string|null>
+     *
+     * @psalm-var array<string, string|null>
+     */
     protected static $openAPIFormats = [
         'type' => 'uri-reference',
         'title' => null,
         'status' => 'int32',
         'detail' => null,
-        'instance' => 'uri-reference'
+        'instance' => 'uri-reference',
     ];
 
     /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
+     * Array of nullable properties. Used for (de)serialization.
+     *
+     * @var bool[]
+     */
     protected static array $openAPINullables = [
         'type' => false,
         'title' => false,
         'status' => false,
         'detail' => false,
-        'instance' => false
+        'instance' => false,
     ];
 
     /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
+     * If a nullable field gets set to null, insert it here.
+     *
+     * @var bool[]
+     */
     protected array $openAPINullablesSetToNull = [];
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
+     * Array of property to type mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -110,7 +115,7 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Array of property to format mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -120,9 +125,7 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of nullable properties
-     *
-     * @return array
+     * Array of nullable properties.
      */
     protected static function openAPINullables(): array
     {
@@ -130,9 +133,9 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of nullable field names deliberately set to null
+     * Array of nullable field names deliberately set to null.
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -140,9 +143,9 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null
+     * Setter - Array of nullable field names deliberately set to null.
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -150,10 +153,7 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
+     * Checks if a property is nullable.
      */
     public static function isNullable(string $property): bool
     {
@@ -162,9 +162,6 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -173,7 +170,7 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @var string[]
      */
@@ -182,11 +179,11 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'title',
         'status' => 'status',
         'detail' => 'detail',
-        'instance' => 'instance'
+        'instance' => 'instance',
     ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @var string[]
      */
@@ -195,11 +192,11 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'setTitle',
         'status' => 'setStatus',
         'detail' => 'setDetail',
-        'instance' => 'setInstance'
+        'instance' => 'setInstance',
     ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @var string[]
      */
@@ -208,12 +205,12 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'getTitle',
         'status' => 'getStatus',
         'detail' => 'getDetail',
-        'instance' => 'getInstance'
+        'instance' => 'getInstance',
     ];
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @return array
      */
@@ -223,7 +220,7 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @return array
      */
@@ -233,7 +230,7 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @return array
      */
@@ -252,19 +249,18 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
      *
      * @var mixed[]
      */
     protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     *                           initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -276,14 +272,10 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
+     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+     * $this->openAPINullablesSetToNull array.
+     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
@@ -315,18 +307,17 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-        return count($this->listInvalidProperties()) === 0;
+        return 0 === count($this->listInvalidProperties());
     }
 
-
     /**
-     * Gets type
+     * Gets type.
      *
      * @return string|null
      */
@@ -336,7 +327,7 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets type
+     * Sets type.
      *
      * @param string|null $type A URI reference that uniquely identifies the problem type only in the context of the provided API. Opposed to the specification in RFC-9457, it is neither recommended to be dereferenceable and point to a human-readable documentation nor globally unique for the problem type.
      *
@@ -353,7 +344,7 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets title
+     * Gets title.
      *
      * @return string|null
      */
@@ -363,7 +354,7 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets title
+     * Sets title.
      *
      * @param string|null $title A short summary of the problem type. Written in English and readable for engineers, usually not suited for non technical stakeholders and not localized.
      *
@@ -380,7 +371,7 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets status
+     * Gets status.
      *
      * @return int|null
      */
@@ -390,9 +381,9 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets status
+     * Sets status.
      *
-     * @param int|null $status The HTTP status code generated by the origin server for this occurrence of the problem.
+     * @param int|null $status the HTTP status code generated by the origin server for this occurrence of the problem
      *
      * @return self
      */
@@ -402,10 +393,10 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
 
-        if (($status >= 600)) {
+        if ($status >= 600) {
             throw new \InvalidArgumentException('invalid value for $status when calling Problem., must be smaller than 600.');
         }
-        if (($status < 100)) {
+        if ($status < 100) {
             throw new \InvalidArgumentException('invalid value for $status when calling Problem., must be bigger than or equal to 100.');
         }
 
@@ -415,7 +406,7 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets detail
+     * Gets detail.
      *
      * @return string|null
      */
@@ -425,7 +416,7 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets detail
+     * Sets detail.
      *
      * @param string|null $detail A human readable explanation specific to this occurrence of the problem that is helpful to locate the problem and give advice on how to proceed. Written in English and readable for engineers, usually not suited for non technical stakeholders and not localized.
      *
@@ -442,7 +433,7 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets instance
+     * Gets instance.
      *
      * @return string|null
      */
@@ -452,7 +443,7 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets instance
+     * Sets instance.
      *
      * @param string|null $instance A URI reference that identifies the specific occurrence of the problem, e.g. by adding a fragment identifier or sub-path to the problem type. May be used to locate the root of this problem in the source code.
      *
@@ -467,12 +458,11 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer $offset Offset
-     *
-     * @return boolean
+     * @param int $offset Offset
      */
     public function offsetExists($offset): bool
     {
@@ -482,7 +472,7 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offset.
      *
-     * @param integer $offset Offset
+     * @param int $offset Offset
      *
      * @return mixed|null
      */
@@ -497,8 +487,6 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
-     *
-     * @return void
      */
     public function offsetSet($offset, $value): void
     {
@@ -512,9 +500,7 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Unsets offset.
      *
-     * @param integer $offset Offset
-     *
-     * @return void
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -523,19 +509,20 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @see https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed returns data which can be serialized by json_encode(), which is a value
+     *               of any type other than a resource
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
      *
      * @return string
      */
@@ -548,7 +535,7 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets a header-safe presentation of the object
+     * Gets a header-safe presentation of the object.
      *
      * @return string
      */
@@ -557,5 +544,3 @@ class Problem implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -1,16 +1,18 @@
 <?php
+
 /**
  * ApiException
- * PHP version 8.1
+ * PHP version 8.1.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * content-api
+ * content-api.
  *
  * # Introduction and Process Overview  This API offers easy-to-use endpoints for managing articles on content sites using the Sedo Traffic Monetization Platform.  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -27,17 +29,16 @@
 
 namespace Sedo;
 
-use \Exception;
-
 /**
- * ApiException Class Doc Comment
+ * ApiException Class Doc Comment.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
-class ApiException extends Exception
+class ApiException extends \Exception
 {
     /**
      * The HTTP body of the server response either as Json or string.
@@ -54,21 +55,21 @@ class ApiException extends Exception
     protected $responseHeaders;
 
     /**
-     * The deserialized response object
+     * The deserialized response object.
      *
      * @var \stdClass|string|null
      */
     protected $responseObject;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param string                $message         Error message
      * @param int                   $code            HTTP status code
      * @param string[][]|null       $responseHeaders HTTP response header
      * @param \stdClass|string|null $responseBody    HTTP decoded body of the server response either as \stdClass or string
      */
-    public function __construct($message = "", $code = 0, $responseHeaders = [], $responseBody = null)
+    public function __construct($message = '', $code = 0, $responseHeaders = [], $responseBody = null)
     {
         parent::__construct($message, $code);
         $this->responseHeaders = $responseHeaders;
@@ -76,7 +77,7 @@ class ApiException extends Exception
     }
 
     /**
-     * Gets the HTTP response header
+     * Gets the HTTP response header.
      *
      * @return string[][]|null HTTP response header
      */
@@ -86,7 +87,7 @@ class ApiException extends Exception
     }
 
     /**
-     * Gets the HTTP body of the server response either as Json or string
+     * Gets the HTTP body of the server response either as Json or string.
      *
      * @return \stdClass|string|null HTTP body of the server response either as \stdClass or string
      */
@@ -96,7 +97,7 @@ class ApiException extends Exception
     }
 
     /**
-     * Sets the deserialized response object (during deserialization)
+     * Sets the deserialized response object (during deserialization).
      *
      * @param mixed $obj Deserialized response object
      *
@@ -108,7 +109,7 @@ class ApiException extends Exception
     }
 
     /**
-     * Gets the deserialized response object (during deserialization)
+     * Gets the deserialized response object (during deserialization).
      *
      * @return mixed the deserialized response object
      */

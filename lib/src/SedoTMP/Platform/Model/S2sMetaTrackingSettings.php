@@ -1,17 +1,19 @@
 <?php
+
 /**
- * S2sMetaTrackingSettings
+ * S2sMetaTrackingSettings.
  *
  * PHP version 8.1
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * platform-api
+ * platform-api.
  *
  * # Introduction and Process Overview  This API helps manage content campaigns, reporting and other parts of Sedo Traffic Monetization Platform  *Note: Please note that the API is still in development and some endpoints may not be available yet.*  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -28,83 +30,87 @@
 
 namespace Sedo\SedoTMP\Platform\Model;
 
-use \ArrayAccess;
-use \Sedo\ObjectSerializer;
+use Sedo\ObjectSerializer;
 
 /**
- * S2sMetaTrackingSettings Class Doc Comment
+ * S2sMetaTrackingSettings Class Doc Comment.
  *
  * @category Class
+ *
  * @description Settings for tracking with Meta traffic source.  More details on how to set up the tracking can be found in the [Meta conversion tracking API documentation](https://developers.facebook.com/docs/marketing-api/conversions-api/get-started/)
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
+ *
  * @implements \ArrayAccess<string, mixed>
  */
-class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSerializable
+class S2sMetaTrackingSettings implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $openAPIModelName = 'S2sMetaTrackingSettings';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
     protected static $openAPITypes = [
         's2sMetaToken' => 'string',
         's2sMetaPixelId' => 'string',
         's2sMetaLandingPageEvent' => 'string',
         's2sMetaClickEvent' => 'string',
         's2sMetaSearchEvent' => 'string',
-        'type' => 'string'
+        'type' => 'string',
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
+     * Array of property to format mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     *
+     * @phpstan-var array<string, string|null>
+     *
+     * @psalm-var array<string, string|null>
+     */
     protected static $openAPIFormats = [
         's2sMetaToken' => null,
         's2sMetaPixelId' => null,
         's2sMetaLandingPageEvent' => null,
         's2sMetaClickEvent' => null,
         's2sMetaSearchEvent' => null,
-        'type' => null
+        'type' => null,
     ];
 
     /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
+     * Array of nullable properties. Used for (de)serialization.
+     *
+     * @var bool[]
+     */
     protected static array $openAPINullables = [
         's2sMetaToken' => false,
         's2sMetaPixelId' => false,
         's2sMetaLandingPageEvent' => false,
         's2sMetaClickEvent' => false,
         's2sMetaSearchEvent' => false,
-        'type' => false
+        'type' => false,
     ];
 
     /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
+     * If a nullable field gets set to null, insert it here.
+     *
+     * @var bool[]
+     */
     protected array $openAPINullablesSetToNull = [];
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
+     * Array of property to type mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -114,7 +120,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Array of property to format mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -124,9 +130,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Array of nullable properties
-     *
-     * @return array
+     * Array of nullable properties.
      */
     protected static function openAPINullables(): array
     {
@@ -134,9 +138,9 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Array of nullable field names deliberately set to null
+     * Array of nullable field names deliberately set to null.
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -144,9 +148,9 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null
+     * Setter - Array of nullable field names deliberately set to null.
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -154,10 +158,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
+     * Checks if a property is nullable.
      */
     public static function isNullable(string $property): bool
     {
@@ -166,9 +167,6 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -177,7 +175,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @var string[]
      */
@@ -187,11 +185,11 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
         's2sMetaLandingPageEvent' => 's2sMetaLandingPageEvent',
         's2sMetaClickEvent' => 's2sMetaClickEvent',
         's2sMetaSearchEvent' => 's2sMetaSearchEvent',
-        'type' => 'type'
+        'type' => 'type',
     ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @var string[]
      */
@@ -201,11 +199,11 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
         's2sMetaLandingPageEvent' => 'setS2sMetaLandingPageEvent',
         's2sMetaClickEvent' => 'setS2sMetaClickEvent',
         's2sMetaSearchEvent' => 'setS2sMetaSearchEvent',
-        'type' => 'setType'
+        'type' => 'setType',
     ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @var string[]
      */
@@ -215,12 +213,12 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
         's2sMetaLandingPageEvent' => 'getS2sMetaLandingPageEvent',
         's2sMetaClickEvent' => 'getS2sMetaClickEvent',
         's2sMetaSearchEvent' => 'getS2sMetaSearchEvent',
-        'type' => 'getType'
+        'type' => 'getType',
     ];
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @return array
      */
@@ -230,7 +228,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @return array
      */
@@ -240,7 +238,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @return array
      */
@@ -259,19 +257,18 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
         return self::$openAPIModelName;
     }
 
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
      *
      * @var mixed[]
      */
     protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     *                           initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -284,14 +281,10 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
+     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+     * $this->openAPINullablesSetToNull array.
+     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
@@ -310,26 +303,26 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $invalidProperties = [];
 
-        if ($this->container['type'] === null) {
+        if (null === $this->container['type']) {
             $invalidProperties[] = "'type' can't be null";
         }
+
         return $invalidProperties;
     }
 
     /**
      * Validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-        return count($this->listInvalidProperties()) === 0;
+        return 0 === count($this->listInvalidProperties());
     }
 
-
     /**
-     * Gets s2sMetaToken
+     * Gets s2sMetaToken.
      *
      * @return string|null
      */
@@ -339,7 +332,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets s2sMetaToken
+     * Sets s2sMetaToken.
      *
      * @param string|null $s2sMetaToken Conversion API token
      *
@@ -356,7 +349,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets s2sMetaPixelId
+     * Gets s2sMetaPixelId.
      *
      * @return string|null
      */
@@ -366,7 +359,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets s2sMetaPixelId
+     * Sets s2sMetaPixelId.
      *
      * @param string|null $s2sMetaPixelId Pixel ID from Meta Events Manager. See for more details: https://www.facebook.com/business/help/952192354843755?id=1205376682832142  More details on how to set up the tracking can be found in the [Meta conversion tracking API documentation](https://developers.facebook.com/docs/marketing-api/conversions-api/get-started/)
      *
@@ -383,7 +376,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets s2sMetaLandingPageEvent
+     * Gets s2sMetaLandingPageEvent.
      *
      * @return string|null
      */
@@ -393,9 +386,9 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets s2sMetaLandingPageEvent
+     * Sets s2sMetaLandingPageEvent.
      *
-     * @param string|null $s2sMetaLandingPageEvent Event name for the Landing Visit event.
+     * @param string|null $s2sMetaLandingPageEvent event name for the Landing Visit event
      *
      * @return self
      */
@@ -410,7 +403,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets s2sMetaClickEvent
+     * Gets s2sMetaClickEvent.
      *
      * @return string|null
      */
@@ -420,7 +413,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets s2sMetaClickEvent
+     * Sets s2sMetaClickEvent.
      *
      * @param string|null $s2sMetaClickEvent Event name for the Search event. Can be used for tracking \"1st\" click
      *
@@ -437,7 +430,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets s2sMetaSearchEvent
+     * Gets s2sMetaSearchEvent.
      *
      * @return string|null
      */
@@ -447,7 +440,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets s2sMetaSearchEvent
+     * Sets s2sMetaSearchEvent.
      *
      * @param string|null $s2sMetaSearchEvent Event name for the Ad Click or \"2nd\" click event. Commonly used for conversion tracking
      *
@@ -464,7 +457,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets type
+     * Gets type.
      *
      * @return string
      */
@@ -474,7 +467,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets type
+     * Sets type.
      *
      * @param string $type type
      *
@@ -489,12 +482,11 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer $offset Offset
-     *
-     * @return boolean
+     * @param int $offset Offset
      */
     public function offsetExists($offset): bool
     {
@@ -504,7 +496,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets offset.
      *
-     * @param integer $offset Offset
+     * @param int $offset Offset
      *
      * @return mixed|null
      */
@@ -519,8 +511,6 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
-     *
-     * @return void
      */
     public function offsetSet($offset, $value): void
     {
@@ -534,9 +524,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Unsets offset.
      *
-     * @param integer $offset Offset
-     *
-     * @return void
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -545,19 +533,20 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
 
     /**
      * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @see https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed returns data which can be serialized by json_encode(), which is a value
+     *               of any type other than a resource
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
      *
      * @return string
      */
@@ -570,7 +559,7 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets a header-safe presentation of the object
+     * Gets a header-safe presentation of the object.
      *
      * @return string
      */
@@ -579,5 +568,3 @@ class S2sMetaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

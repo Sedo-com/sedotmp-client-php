@@ -6,11 +6,10 @@ use Sedo\SedoTMPClient;
 use Sedo\SedoTMP\Content\Model\CreateArticle;
 use Sedo\SedoTMP\Content\Model\GenerateArticle;
 use Sedo\SedoTMP\Content\Model\Pageable;
-use Sedo\SedoTMP\Platform\Model\ContentcampaignsBody;
-use Sedo\SedoTMP\Platform\Model\CreateArticle as PlatformCreateArticle;
-use Sedo\SedoTMP\Platform\Model\CreateCampaign;
-use Sedo\SedoTMP\Platform\Model\ExistingArticle;
-use Sedo\SedoTMP\Platform\Model\ExistingCampaign;
+use Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest;
+use Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequestArticle;
+use Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequestCampaign;
+use Sedo\SedoTMP\Platform\Model\ArticleDataFeaturedImage;
 
 // Initialize the client with the path to the .env file
 $client = new SedoTMPClient(__DIR__ . '/../.env');
@@ -57,20 +56,19 @@ try {
         echo "\nCreating a content campaign...\n";
         
         // Use the article we just created
-        $existingArticle = new ExistingArticle();
-        $existingArticle->setType('existing');
-        $existingArticle->setId($newArticle->getId());
+        $campaignArticle = new ContentCampaignsPostRequestArticle();
+        $campaignArticle->setType('ExistingArticle');
+        $campaignArticle->setArticleId($newArticle->getId());
         
         // Create a new campaign
-        $createCampaign = new CreateCampaign();
-        $createCampaign->setType('create');
+        $createCampaign = new ContentCampaignsPostRequestCampaign();
+        $createCampaign->setType('CreateCampaign');
         $createCampaign->setName("Example Campaign");
-        $createCampaign->setTargetUrl("https://example.com/landing-page");
         
         // Create the content campaign request body
-        $contentCampaign = new ContentcampaignsBody();
+        $contentCampaign = new ContentCampaignsPostRequest();
         $contentCampaign->setPublishDomainName("example-domain.info");
-        $contentCampaign->setArticle($existingArticle);
+        $contentCampaign->setArticle($campaignArticle);
         $contentCampaign->setCampaign($createCampaign);
         
         try {
@@ -81,10 +79,14 @@ try {
             echo "\nFetching the created content campaign...\n";
             $retrievedCampaign = $client->platform()->getContentCampaign($campaign->getId());
             echo "Content campaign status: " . $retrievedCampaign->getStatus() . "\n";
+        } catch (\Sedo\ApiException $e) {
+            echo "Error creating content campaign: " . $e->getResponseBody() . "\n";
         } catch (\Exception $e) {
             echo "Error creating content campaign: " . $e->getMessage() . "\n";
         }
         
+    } catch (\Sedo\ApiException $e) {
+        echo "Error creating article: " . $e->getResponseBody() . "\n";
     } catch (\Exception $e) {
         echo "Error creating article: " . $e->getMessage() . "\n";
     }
@@ -98,6 +100,16 @@ try {
         echo "First domain name: " . $domains[0]->getName() . "\n";
     }
     
+} catch (\Sedo\ApiException $e) {
+    echo sprintf(
+        "Error: %s\nTrace: %s\n",
+        $e->getResponseBody(),
+        $e->getTraceAsString()
+    );
 } catch (\Exception $e) {
-    echo "Error: " . $e->getMessage() . "\n";
+    echo sprintf(
+        "Error: %s\nTrace: %s\n",
+        $e->getMessage(),
+        $e->getTraceAsString()
+    );
 }

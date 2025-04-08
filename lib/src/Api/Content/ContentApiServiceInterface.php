@@ -16,120 +16,115 @@ use Sedo\SedoTMP\Content\Model\PublishedArticleResponse;
 interface ContentApiServiceInterface
 {
     /**
-     * Get a list of articles
+     * Get a list of articles.
      *
      * @param Pageable|null $page Pagination parameters
-     * @param string|null $term Search term
+     * @param string|null   $term Search term
+     *
      * @return ArticleResponse[]
      */
     public function getArticles(?Pageable $page = null, ?string $term = null): array;
-    
+
     /**
-     * Get an article by ID
+     * Get an article by ID.
      *
      * @param string $id Article ID
-     * @return ArticleResponse
      */
     public function getArticle(string $id): ArticleResponse;
-    
+
     /**
-     * Create a new article
+     * Create a new article.
      *
      * @param CreateArticle $article Article data
-     * @return ArticleResponse
      */
     public function createArticle(CreateArticle $article): ArticleResponse;
-    
+
     /**
-     * Generate a new article
+     * Generate a new article.
      *
      * @param GenerateArticle $generateArticle Article generation data
-     * @param bool $async Whether to process the request asynchronously
-     * @param string|null $referenceId Optional reference ID
-     * @return ArticleResponse
+     * @param bool            $async           Whether to process the request asynchronously
+     * @param string|null     $referenceId     Optional reference ID
      */
     public function generateArticle(GenerateArticle $generateArticle, bool $async = false, ?string $referenceId = null): ArticleResponse;
-    
+
     /**
-     * Get a list of published articles
+     * Get a list of published articles.
      *
      * @param Pageable|null $page Pagination parameters
-     * @param string|null $term Search term
+     * @param string|null   $term Search term
+     *
      * @return PublishedArticleResponse[]
      */
     public function getPublishedArticles(?Pageable $page = null, ?string $term = null): array;
-    
+
     /**
-     * Get a published article by ID
+     * Get a published article by ID.
      *
      * @param string $id Published article ID
-     * @return PublishedArticleResponse
      */
     public function getPublishedArticle(string $id): PublishedArticleResponse;
-    
+
     /**
-     * Get a list of categories
+     * Get a list of categories.
      *
      * @param Pageable|null $page Pagination parameters
-     * @param string|null $term Search term
+     * @param string|null   $term Search term
+     *
      * @return CategoryResponse[]
      */
     public function getCategories(?Pageable $page = null, ?string $term = null): array;
-    
+
     /**
-     * Get a category by ID
+     * Get a category by ID.
      *
      * @param string $id Category ID
-     * @return CategoryResponse
      */
     public function getCategory(string $id): CategoryResponse;
-    
+
     /**
-     * Create a new category
+     * Create a new category.
      *
      * @param CreateCategory $category Category data
-     * @return CategoryResponse
      */
     public function createCategory(CreateCategory $category): CategoryResponse;
-    
+
     /**
-     * Get a list of domains
+     * Get a list of domains.
      *
      * @param Pageable|null $page Pagination parameters
-     * @param string|null $term Search term
+     * @param string|null   $term Search term
+     *
      * @return DomainResponse[]
      */
     public function getDomains(?Pageable $page = null, ?string $term = null): array;
-    
+
     /**
-     * Get a domain by ID
+     * Get a domain by ID.
      *
      * @param string $id Domain ID
-     * @return DomainResponse
      */
     public function getDomain(string $id): DomainResponse;
-    
+
     /**
-     * Get a list of media resources
+     * Get a list of media resources.
      *
      * @param Pageable|null $page Pagination parameters
-     * @param string|null $term Search term
+     * @param string|null   $term Search term
+     *
      * @return MediaResourceResponse[]
      */
     public function getMediaResources(?Pageable $page = null, ?string $term = null): array;
-    
+
     /**
-     * Get a media resource by ID
+     * Get a media resource by ID.
      *
      * @param string $id Media resource ID
-     * @return MediaResourceResponse
      */
     public function getMediaResource(string $id): MediaResourceResponse;
-    
+
     /**
-     * Get the configuration object
-     *
-     * @return Configuration
+     * Get the configuration object.
      */
     public function getConfig(): Configuration;
 }

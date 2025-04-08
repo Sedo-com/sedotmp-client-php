@@ -1,17 +1,19 @@
 <?php
+
 /**
- * MediaResourceResponse
+ * MediaResourceResponse.
  *
  * PHP version 8.1
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * content-api
+ * content-api.
  *
  * # Introduction and Process Overview  This API offers easy-to-use endpoints for managing articles on content sites using the Sedo Traffic Monetization Platform.  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -28,34 +30,35 @@
 
 namespace Sedo\SedoTMP\Content\Model;
 
-use \ArrayAccess;
-use \Sedo\ObjectSerializer;
+use Sedo\ObjectSerializer;
 
 /**
- * MediaResourceResponse Class Doc Comment
+ * MediaResourceResponse Class Doc Comment.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
+ *
  * @implements \ArrayAccess<string, mixed>
  */
-class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class MediaResourceResponse implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $openAPIModelName = 'MediaResourceResponse';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
     protected static $openAPITypes = [
         'id' => 'string',
         'name' => 'string',
@@ -67,16 +70,18 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         'lastModifiedDate' => '\DateTime',
         'partner' => 'string',
         'createdBy' => 'string',
-        'lastModifiedBy' => 'string'
+        'lastModifiedBy' => 'string',
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
+     * Array of property to format mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     *
+     * @phpstan-var array<string, string|null>
+     *
+     * @psalm-var array<string, string|null>
+     */
     protected static $openAPIFormats = [
         'id' => 'uuid4',
         'name' => null,
@@ -88,14 +93,14 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         'lastModifiedDate' => 'date-time',
         'partner' => null,
         'createdBy' => null,
-        'lastModifiedBy' => null
+        'lastModifiedBy' => null,
     ];
 
     /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
+     * Array of nullable properties. Used for (de)serialization.
+     *
+     * @var bool[]
+     */
     protected static array $openAPINullables = [
         'id' => false,
         'name' => false,
@@ -107,18 +112,18 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         'lastModifiedDate' => false,
         'partner' => false,
         'createdBy' => false,
-        'lastModifiedBy' => false
+        'lastModifiedBy' => false,
     ];
 
     /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
+     * If a nullable field gets set to null, insert it here.
+     *
+     * @var bool[]
+     */
     protected array $openAPINullablesSetToNull = [];
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
+     * Array of property to type mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -128,7 +133,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Array of property to format mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -138,9 +143,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Array of nullable properties
-     *
-     * @return array
+     * Array of nullable properties.
      */
     protected static function openAPINullables(): array
     {
@@ -148,9 +151,9 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Array of nullable field names deliberately set to null
+     * Array of nullable field names deliberately set to null.
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -158,9 +161,9 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null
+     * Setter - Array of nullable field names deliberately set to null.
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -168,10 +171,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
+     * Checks if a property is nullable.
      */
     public static function isNullable(string $property): bool
     {
@@ -180,9 +180,6 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -191,7 +188,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @var string[]
      */
@@ -206,11 +203,11 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         'lastModifiedDate' => 'lastModifiedDate',
         'partner' => 'partner',
         'createdBy' => 'createdBy',
-        'lastModifiedBy' => 'lastModifiedBy'
+        'lastModifiedBy' => 'lastModifiedBy',
     ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @var string[]
      */
@@ -225,11 +222,11 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         'lastModifiedDate' => 'setLastModifiedDate',
         'partner' => 'setPartner',
         'createdBy' => 'setCreatedBy',
-        'lastModifiedBy' => 'setLastModifiedBy'
+        'lastModifiedBy' => 'setLastModifiedBy',
     ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @var string[]
      */
@@ -244,12 +241,12 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         'lastModifiedDate' => 'getLastModifiedDate',
         'partner' => 'getPartner',
         'createdBy' => 'getCreatedBy',
-        'lastModifiedBy' => 'getLastModifiedBy'
+        'lastModifiedBy' => 'getLastModifiedBy',
     ];
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @return array
      */
@@ -259,7 +256,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @return array
      */
@@ -269,7 +266,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @return array
      */
@@ -288,19 +285,18 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         return self::$openAPIModelName;
     }
 
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
      *
      * @var mixed[]
      */
     protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     *                           initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -318,14 +314,10 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
+     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+     * $this->openAPINullablesSetToNull array.
+     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
@@ -349,18 +341,17 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
 
     /**
      * Validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-        return count($this->listInvalidProperties()) === 0;
+        return 0 === count($this->listInvalidProperties());
     }
 
-
     /**
-     * Gets id
+     * Gets id.
      *
      * @return string|null
      */
@@ -370,7 +361,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Sets id
+     * Sets id.
      *
      * @param string|null $id id
      *
@@ -387,7 +378,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets name
+     * Gets name.
      *
      * @return string|null
      */
@@ -397,7 +388,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Sets name
+     * Sets name.
      *
      * @param string|null $name Name of media resource
      *
@@ -414,7 +405,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets filename
+     * Gets filename.
      *
      * @return string|null
      */
@@ -424,7 +415,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Sets filename
+     * Sets filename.
      *
      * @param string|null $filename Filename of the media resource
      *
@@ -441,7 +432,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets originalFilename
+     * Gets originalFilename.
      *
      * @return string|null
      */
@@ -451,7 +442,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Sets originalFilename
+     * Sets originalFilename.
      *
      * @param string|null $originalFilename Original filename of the media resource
      *
@@ -468,7 +459,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets url
+     * Gets url.
      *
      * @return string|null
      */
@@ -478,7 +469,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Sets url
+     * Sets url.
      *
      * @param string|null $url Url where media resource can be accessed
      *
@@ -495,7 +486,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets type
+     * Gets type.
      *
      * @return string|null
      */
@@ -505,7 +496,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Sets type
+     * Sets type.
      *
      * @param string|null $type Media type of the resource
      *
@@ -522,7 +513,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets createdDate
+     * Gets createdDate.
      *
      * @return \DateTime|null
      */
@@ -532,7 +523,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Sets createdDate
+     * Sets createdDate.
      *
      * @param \DateTime|null $createdDate ISO-8601 formatted timestamp
      *
@@ -549,7 +540,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets lastModifiedDate
+     * Gets lastModifiedDate.
      *
      * @return \DateTime|null
      */
@@ -559,7 +550,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Sets lastModifiedDate
+     * Sets lastModifiedDate.
      *
      * @param \DateTime|null $lastModifiedDate ISO-8601 formatted timestamp
      *
@@ -576,7 +567,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets partner
+     * Gets partner.
      *
      * @return string|null
      */
@@ -586,7 +577,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Sets partner
+     * Sets partner.
      *
      * @param string|null $partner Partner to assigned to the resource. Requires corresponding privileges
      *
@@ -603,7 +594,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets createdBy
+     * Gets createdBy.
      *
      * @return string|null
      */
@@ -613,7 +604,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Sets createdBy
+     * Sets createdBy.
      *
      * @param string|null $createdBy Username of the user who operated on the resource
      *
@@ -630,7 +621,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets lastModifiedBy
+     * Gets lastModifiedBy.
      *
      * @return string|null
      */
@@ -640,7 +631,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Sets lastModifiedBy
+     * Sets lastModifiedBy.
      *
      * @param string|null $lastModifiedBy Username of the user who operated on the resource
      *
@@ -655,12 +646,11 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer $offset Offset
-     *
-     * @return boolean
+     * @param int $offset Offset
      */
     public function offsetExists($offset): bool
     {
@@ -670,7 +660,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets offset.
      *
-     * @param integer $offset Offset
+     * @param int $offset Offset
      *
      * @return mixed|null
      */
@@ -685,8 +675,6 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
-     *
-     * @return void
      */
     public function offsetSet($offset, $value): void
     {
@@ -700,9 +688,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Unsets offset.
      *
-     * @param integer $offset Offset
-     *
-     * @return void
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -711,19 +697,20 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
 
     /**
      * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @see https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed returns data which can be serialized by json_encode(), which is a value
+     *               of any type other than a resource
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
      *
      * @return string
      */
@@ -736,7 +723,7 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets a header-safe presentation of the object
+     * Gets a header-safe presentation of the object.
      *
      * @return string
      */
@@ -745,5 +732,3 @@ class MediaResourceResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

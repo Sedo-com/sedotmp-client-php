@@ -31,15 +31,15 @@ class ContentApiService implements ContentApiServiceInterface
     private MediaResourcesApi $mediaResourcesApi;
     private PublishedArticlesApi $publishedArticlesApi;
 
-    public function __construct(AuthenticatorInterface $authenticator, string $apiHost = null, ?Client $client = null)
+    public function __construct(AuthenticatorInterface $authenticator, ?string $apiHost = null, ?Client $client = null)
     {
         // Initialize configuration
         $this->config = new Configuration();
 
         if ($apiHost) {
             $this->config->setHost($apiHost);
-        } else if (isset($_ENV['API_HOST'])) {
-            $this->config->setHost($_ENV['API_HOST'] . '/content/v1');
+        } elseif (isset($_ENV['API_HOST'])) {
+            $this->config->setHost($_ENV['API_HOST'].'/content/v1');
         }
 
         // Set access token from authenticator
@@ -77,6 +77,7 @@ class ContentApiService implements ContentApiServiceInterface
     public function generateArticle(GenerateArticle $generateArticle, bool $async = false, ?string $referenceId = null): ArticleResponse
     {
         $requestFlow = $async ? 'async' : 'sync';
+
         return $this->generatedArticleApi->generatedArticlesPost($generateArticle, $requestFlow, $referenceId);
     }
 
@@ -138,9 +139,7 @@ class ContentApiService implements ContentApiServiceInterface
     }
 
     /**
-     * Get the configuration object
-     *
-     * @return Configuration
+     * Get the configuration object.
      */
     public function getConfig(): Configuration
     {

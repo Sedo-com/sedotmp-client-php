@@ -1,17 +1,19 @@
 <?php
+
 /**
- * ArticleResponse
+ * ArticleResponse.
  *
  * PHP version 8.1
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * content-api
+ * content-api.
  *
  * # Introduction and Process Overview  This API offers easy-to-use endpoints for managing articles on content sites using the Sedo Traffic Monetization Platform.  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -28,34 +30,35 @@
 
 namespace Sedo\SedoTMP\Content\Model;
 
-use \ArrayAccess;
-use \Sedo\ObjectSerializer;
+use Sedo\ObjectSerializer;
 
 /**
- * ArticleResponse Class Doc Comment
+ * ArticleResponse Class Doc Comment.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
+ *
  * @implements \ArrayAccess<string, mixed>
  */
-class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class ArticleResponse implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $openAPIModelName = 'ArticleResponse';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
     protected static $openAPITypes = [
         'id' => 'string',
         'title' => 'string',
@@ -70,16 +73,18 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'partner' => 'string',
         'createdBy' => 'string',
         'lastModifiedBy' => 'string',
-        'images' => '\Sedo\SedoTMP\Content\Model\ArticleImage[]'
+        'images' => '\Sedo\SedoTMP\Content\Model\ArticleImage[]',
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
+     * Array of property to format mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     *
+     * @phpstan-var array<string, string|null>
+     *
+     * @psalm-var array<string, string|null>
+     */
     protected static $openAPIFormats = [
         'id' => 'uuid4',
         'title' => null,
@@ -94,14 +99,14 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'partner' => null,
         'createdBy' => null,
         'lastModifiedBy' => null,
-        'images' => null
+        'images' => null,
     ];
 
     /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
+     * Array of nullable properties. Used for (de)serialization.
+     *
+     * @var bool[]
+     */
     protected static array $openAPINullables = [
         'id' => false,
         'title' => false,
@@ -116,18 +121,18 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'partner' => false,
         'createdBy' => false,
         'lastModifiedBy' => false,
-        'images' => false
+        'images' => false,
     ];
 
     /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
+     * If a nullable field gets set to null, insert it here.
+     *
+     * @var bool[]
+     */
     protected array $openAPINullablesSetToNull = [];
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
+     * Array of property to type mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -137,7 +142,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Array of property to format mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -147,9 +152,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of nullable properties
-     *
-     * @return array
+     * Array of nullable properties.
      */
     protected static function openAPINullables(): array
     {
@@ -157,9 +160,9 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of nullable field names deliberately set to null
+     * Array of nullable field names deliberately set to null.
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -167,9 +170,9 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null
+     * Setter - Array of nullable field names deliberately set to null.
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -177,10 +180,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
+     * Checks if a property is nullable.
      */
     public static function isNullable(string $property): bool
     {
@@ -189,9 +189,6 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -200,7 +197,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @var string[]
      */
@@ -218,11 +215,11 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'partner' => 'partner',
         'createdBy' => 'createdBy',
         'lastModifiedBy' => 'lastModifiedBy',
-        'images' => 'images'
+        'images' => 'images',
     ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @var string[]
      */
@@ -240,11 +237,11 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'partner' => 'setPartner',
         'createdBy' => 'setCreatedBy',
         'lastModifiedBy' => 'setLastModifiedBy',
-        'images' => 'setImages'
+        'images' => 'setImages',
     ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @var string[]
      */
@@ -262,12 +259,12 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'partner' => 'getPartner',
         'createdBy' => 'getCreatedBy',
         'lastModifiedBy' => 'getLastModifiedBy',
-        'images' => 'getImages'
+        'images' => 'getImages',
     ];
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @return array
      */
@@ -277,7 +274,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @return array
      */
@@ -287,7 +284,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @return array
      */
@@ -306,19 +303,18 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
      *
      * @var mixed[]
      */
     protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     *                           initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -339,14 +335,10 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
+     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+     * $this->openAPINullablesSetToNull array.
+     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
@@ -374,18 +366,17 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-        return count($this->listInvalidProperties()) === 0;
+        return 0 === count($this->listInvalidProperties());
     }
 
-
     /**
-     * Gets id
+     * Gets id.
      *
      * @return string|null
      */
@@ -395,7 +386,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets id
+     * Sets id.
      *
      * @param string|null $id id
      *
@@ -412,7 +403,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets title
+     * Gets title.
      *
      * @return string|null
      */
@@ -422,7 +413,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets title
+     * Sets title.
      *
      * @param string|null $title Article title
      *
@@ -439,7 +430,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets excerpt
+     * Gets excerpt.
      *
      * @return string|null
      */
@@ -449,7 +440,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets excerpt
+     * Sets excerpt.
      *
      * @param string|null $excerpt Short excerpt of the text
      *
@@ -466,7 +457,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets text
+     * Gets text.
      *
      * @return string|null
      */
@@ -476,7 +467,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets text
+     * Sets text.
      *
      * @param string|null $text Full text content
      *
@@ -493,7 +484,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets categoryId
+     * Gets categoryId.
      *
      * @return string|null
      */
@@ -503,7 +494,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets categoryId
+     * Sets categoryId.
      *
      * @param string|null $categoryId categoryId
      *
@@ -520,7 +511,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets tags
+     * Gets tags.
      *
      * @return string[]|null
      */
@@ -530,7 +521,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets tags
+     * Sets tags.
      *
      * @param string[]|null $tags List of tags that describe the article. These tags help categorize articles and group similar articles together.  Note:   * Tags do not affect the ads displayed. They should not be confused with ad keywords.   * Multiple tags should be sent as an array, not as a single long string.
      *
@@ -547,7 +538,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets country
+     * Gets country.
      *
      * @return string|null
      */
@@ -557,7 +548,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets country
+     * Sets country.
      *
      * @param string|null $country Audience country (ISO code)
      *
@@ -568,7 +559,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($country)) {
             throw new \InvalidArgumentException('non-nullable country cannot be null');
         }
-        if ((mb_strlen($country) > 2)) {
+        if (mb_strlen($country) > 2) {
             throw new \InvalidArgumentException('invalid length for $country when calling ArticleResponse., must be smaller than or equal to 2.');
         }
 
@@ -578,7 +569,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets locale
+     * Gets locale.
      *
      * @return string|null
      */
@@ -588,7 +579,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets locale
+     * Sets locale.
      *
      * @param string|null $locale Audience language (Language tag formatted)
      *
@@ -605,7 +596,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets createdDate
+     * Gets createdDate.
      *
      * @return \DateTime|null
      */
@@ -615,7 +606,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets createdDate
+     * Sets createdDate.
      *
      * @param \DateTime|null $createdDate ISO-8601 formatted timestamp
      *
@@ -632,7 +623,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets lastModifiedDate
+     * Gets lastModifiedDate.
      *
      * @return \DateTime|null
      */
@@ -642,7 +633,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets lastModifiedDate
+     * Sets lastModifiedDate.
      *
      * @param \DateTime|null $lastModifiedDate ISO-8601 formatted timestamp
      *
@@ -659,7 +650,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets partner
+     * Gets partner.
      *
      * @return string|null
      */
@@ -669,7 +660,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets partner
+     * Sets partner.
      *
      * @param string|null $partner Partner to assigned to the resource. Requires corresponding privileges
      *
@@ -686,7 +677,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets createdBy
+     * Gets createdBy.
      *
      * @return string|null
      */
@@ -696,7 +687,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets createdBy
+     * Sets createdBy.
      *
      * @param string|null $createdBy Username of the user who operated on the resource
      *
@@ -713,7 +704,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets lastModifiedBy
+     * Gets lastModifiedBy.
      *
      * @return string|null
      */
@@ -723,7 +714,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets lastModifiedBy
+     * Sets lastModifiedBy.
      *
      * @param string|null $lastModifiedBy Username of the user who operated on the resource
      *
@@ -740,9 +731,9 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets images
+     * Gets images.
      *
-     * @return \Sedo\SedoTMP\Content\Model\ArticleImage[]|null
+     * @return ArticleImage[]|null
      */
     public function getImages()
     {
@@ -750,9 +741,9 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets images
+     * Sets images.
      *
-     * @param \Sedo\SedoTMP\Content\Model\ArticleImage[]|null $images images
+     * @param ArticleImage[]|null $images images
      *
      * @return self
      */
@@ -765,12 +756,11 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer $offset Offset
-     *
-     * @return boolean
+     * @param int $offset Offset
      */
     public function offsetExists($offset): bool
     {
@@ -780,7 +770,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offset.
      *
-     * @param integer $offset Offset
+     * @param int $offset Offset
      *
      * @return mixed|null
      */
@@ -795,8 +785,6 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
-     *
-     * @return void
      */
     public function offsetSet($offset, $value): void
     {
@@ -810,9 +798,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Unsets offset.
      *
-     * @param integer $offset Offset
-     *
-     * @return void
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -821,19 +807,20 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @see https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed returns data which can be serialized by json_encode(), which is a value
+     *               of any type other than a resource
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
      *
      * @return string
      */
@@ -846,7 +833,7 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets a header-safe presentation of the object
+     * Gets a header-safe presentation of the object.
      *
      * @return string
      */
@@ -855,5 +842,3 @@ class ArticleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

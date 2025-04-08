@@ -1,17 +1,19 @@
 <?php
+
 /**
- * ContentCampaignResponse
+ * ContentCampaignResponse.
  *
  * PHP version 8.1
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * platform-api
+ * platform-api.
  *
  * # Introduction and Process Overview  This API helps manage content campaigns, reporting and other parts of Sedo Traffic Monetization Platform  *Note: Please note that the API is still in development and some endpoints may not be available yet.*  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -28,34 +30,35 @@
 
 namespace Sedo\SedoTMP\Platform\Model;
 
-use \ArrayAccess;
-use \Sedo\ObjectSerializer;
+use Sedo\ObjectSerializer;
 
 /**
- * ContentCampaignResponse Class Doc Comment
+ * ContentCampaignResponse Class Doc Comment.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
+ *
  * @implements \ArrayAccess<string, mixed>
  */
-class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class ContentCampaignResponse implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $openAPIModelName = 'ContentCampaignResponse';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
     protected static $openAPITypes = [
         'id' => 'string',
         'partner' => 'string',
@@ -68,16 +71,18 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'createdDate' => '\DateTime',
         'createdBy' => 'string',
         'lastModifiedDate' => '\DateTime',
-        'lastModifiedBy' => 'string'
+        'lastModifiedBy' => 'string',
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
+     * Array of property to format mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     *
+     * @phpstan-var array<string, string|null>
+     *
+     * @psalm-var array<string, string|null>
+     */
     protected static $openAPIFormats = [
         'id' => 'uuid4',
         'partner' => null,
@@ -90,14 +95,14 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'createdDate' => 'date-time',
         'createdBy' => null,
         'lastModifiedDate' => 'date-time',
-        'lastModifiedBy' => null
+        'lastModifiedBy' => null,
     ];
 
     /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
+     * Array of nullable properties. Used for (de)serialization.
+     *
+     * @var bool[]
+     */
     protected static array $openAPINullables = [
         'id' => false,
         'partner' => false,
@@ -110,18 +115,18 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'createdDate' => false,
         'createdBy' => false,
         'lastModifiedDate' => false,
-        'lastModifiedBy' => false
+        'lastModifiedBy' => false,
     ];
 
     /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
+     * If a nullable field gets set to null, insert it here.
+     *
+     * @var bool[]
+     */
     protected array $openAPINullablesSetToNull = [];
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
+     * Array of property to type mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -131,7 +136,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Array of property to format mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -141,9 +146,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Array of nullable properties
-     *
-     * @return array
+     * Array of nullable properties.
      */
     protected static function openAPINullables(): array
     {
@@ -151,9 +154,9 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Array of nullable field names deliberately set to null
+     * Array of nullable field names deliberately set to null.
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -161,9 +164,9 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null
+     * Setter - Array of nullable field names deliberately set to null.
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -171,10 +174,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
+     * Checks if a property is nullable.
      */
     public static function isNullable(string $property): bool
     {
@@ -183,9 +183,6 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -194,7 +191,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @var string[]
      */
@@ -210,11 +207,11 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'createdDate' => 'createdDate',
         'createdBy' => 'createdBy',
         'lastModifiedDate' => 'lastModifiedDate',
-        'lastModifiedBy' => 'lastModifiedBy'
+        'lastModifiedBy' => 'lastModifiedBy',
     ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @var string[]
      */
@@ -230,11 +227,11 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'createdDate' => 'setCreatedDate',
         'createdBy' => 'setCreatedBy',
         'lastModifiedDate' => 'setLastModifiedDate',
-        'lastModifiedBy' => 'setLastModifiedBy'
+        'lastModifiedBy' => 'setLastModifiedBy',
     ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @var string[]
      */
@@ -250,12 +247,12 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'createdDate' => 'getCreatedDate',
         'createdBy' => 'getCreatedBy',
         'lastModifiedDate' => 'getLastModifiedDate',
-        'lastModifiedBy' => 'getLastModifiedBy'
+        'lastModifiedBy' => 'getLastModifiedBy',
     ];
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @return array
      */
@@ -265,7 +262,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @return array
      */
@@ -275,7 +272,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @return array
      */
@@ -294,19 +291,18 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
         return self::$openAPIModelName;
     }
 
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
      *
      * @var mixed[]
      */
     protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     *                           initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -325,14 +321,10 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
+     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+     * $this->openAPINullablesSetToNull array.
+     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
@@ -364,18 +356,17 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
 
     /**
      * Validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-        return count($this->listInvalidProperties()) === 0;
+        return 0 === count($this->listInvalidProperties());
     }
 
-
     /**
-     * Gets id
+     * Gets id.
      *
      * @return string|null
      */
@@ -385,7 +376,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets id
+     * Sets id.
      *
      * @param string|null $id id
      *
@@ -396,10 +387,10 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
-        if ((mb_strlen($id) > 36)) {
+        if (mb_strlen($id) > 36) {
             throw new \InvalidArgumentException('invalid length for $id when calling ContentCampaignResponse., must be smaller than or equal to 36.');
         }
-        if ((mb_strlen($id) < 36)) {
+        if (mb_strlen($id) < 36) {
             throw new \InvalidArgumentException('invalid length for $id when calling ContentCampaignResponse., must be bigger than or equal to 36.');
         }
 
@@ -409,7 +400,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets partner
+     * Gets partner.
      *
      * @return string|null
      */
@@ -419,7 +410,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets partner
+     * Sets partner.
      *
      * @param string|null $partner Partner assigned to the resource. Requires corresponding privileges
      *
@@ -436,7 +427,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets trackingUrl
+     * Gets trackingUrl.
      *
      * @return string|null
      */
@@ -446,7 +437,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets trackingUrl
+     * Sets trackingUrl.
      *
      * @param string|null $trackingUrl trackingUrl
      *
@@ -463,7 +454,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets publishDomainName
+     * Gets publishDomainName.
      *
      * @return string|null
      */
@@ -473,7 +464,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets publishDomainName
+     * Sets publishDomainName.
      *
      * @param string|null $publishDomainName publishDomainName
      *
@@ -490,9 +481,9 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets article
+     * Gets article.
      *
-     * @return \Sedo\SedoTMP\Platform\Model\ContentCampaignResponseArticle|null
+     * @return ContentCampaignResponseArticle|null
      */
     public function getArticle()
     {
@@ -500,9 +491,9 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets article
+     * Sets article.
      *
-     * @param \Sedo\SedoTMP\Platform\Model\ContentCampaignResponseArticle|null $article article
+     * @param ContentCampaignResponseArticle|null $article article
      *
      * @return self
      */
@@ -517,9 +508,9 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets campaign
+     * Gets campaign.
      *
-     * @return \Sedo\SedoTMP\Platform\Model\ContentCampaignResponseCampaign|null
+     * @return ContentCampaignResponseCampaign|null
      */
     public function getCampaign()
     {
@@ -527,9 +518,9 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets campaign
+     * Sets campaign.
      *
-     * @param \Sedo\SedoTMP\Platform\Model\ContentCampaignResponseCampaign|null $campaign campaign
+     * @param ContentCampaignResponseCampaign|null $campaign campaign
      *
      * @return self
      */
@@ -544,9 +535,9 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets status
+     * Gets status.
      *
-     * @return \Sedo\SedoTMP\Platform\Model\ContentCampaignStatus|null
+     * @return ContentCampaignStatus|null
      */
     public function getStatus()
     {
@@ -554,9 +545,9 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets status
+     * Sets status.
      *
-     * @param \Sedo\SedoTMP\Platform\Model\ContentCampaignStatus|null $status status
+     * @param ContentCampaignStatus|null $status status
      *
      * @return self
      */
@@ -571,9 +562,9 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets processingErrorDetails
+     * Gets processingErrorDetails.
      *
-     * @return \Sedo\SedoTMP\Platform\Model\Problem|null
+     * @return Problem|null
      */
     public function getProcessingErrorDetails()
     {
@@ -581,9 +572,9 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets processingErrorDetails
+     * Sets processingErrorDetails.
      *
-     * @param \Sedo\SedoTMP\Platform\Model\Problem|null $processingErrorDetails processingErrorDetails
+     * @param Problem|null $processingErrorDetails processingErrorDetails
      *
      * @return self
      */
@@ -598,7 +589,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets createdDate
+     * Gets createdDate.
      *
      * @return \DateTime|null
      */
@@ -608,7 +599,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets createdDate
+     * Sets createdDate.
      *
      * @param \DateTime|null $createdDate Timestamp in UTC
      *
@@ -625,7 +616,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets createdBy
+     * Gets createdBy.
      *
      * @return string|null
      */
@@ -635,7 +626,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets createdBy
+     * Sets createdBy.
      *
      * @param string|null $createdBy Authenticated user name
      *
@@ -652,7 +643,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets lastModifiedDate
+     * Gets lastModifiedDate.
      *
      * @return \DateTime|null
      */
@@ -662,7 +653,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets lastModifiedDate
+     * Sets lastModifiedDate.
      *
      * @param \DateTime|null $lastModifiedDate Timestamp in UTC
      *
@@ -679,7 +670,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets lastModifiedBy
+     * Gets lastModifiedBy.
      *
      * @return string|null
      */
@@ -689,7 +680,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Sets lastModifiedBy
+     * Sets lastModifiedBy.
      *
      * @param string|null $lastModifiedBy Authenticated user name
      *
@@ -704,12 +695,11 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer $offset Offset
-     *
-     * @return boolean
+     * @param int $offset Offset
      */
     public function offsetExists($offset): bool
     {
@@ -719,7 +709,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets offset.
      *
-     * @param integer $offset Offset
+     * @param int $offset Offset
      *
      * @return mixed|null
      */
@@ -734,8 +724,6 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
-     *
-     * @return void
      */
     public function offsetSet($offset, $value): void
     {
@@ -749,9 +737,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Unsets offset.
      *
-     * @param integer $offset Offset
-     *
-     * @return void
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -760,19 +746,20 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
 
     /**
      * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @see https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed returns data which can be serialized by json_encode(), which is a value
+     *               of any type other than a resource
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
      *
      * @return string
      */
@@ -785,7 +772,7 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets a header-safe presentation of the object
+     * Gets a header-safe presentation of the object.
      *
      * @return string
      */
@@ -794,5 +781,3 @@ class ContentCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -3,6 +3,7 @@
 vendor
 .env
 *.bru
+bruno.json
 
 docker-compose.override.yml
 debug.log

@@ -1,17 +1,19 @@
 <?php
+
 /**
- * CampaignDataTrackingDataTrackingSettings
+ * CampaignDataTrackingDataTrackingSettings.
  *
  * PHP version 8.1
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * platform-api
+ * platform-api.
  *
  * # Introduction and Process Overview  This API helps manage content campaigns, reporting and other parts of Sedo Traffic Monetization Platform  *Note: Please note that the API is still in development and some endpoints may not be available yet.*  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -28,34 +30,35 @@
 
 namespace Sedo\SedoTMP\Platform\Model;
 
-use \ArrayAccess;
-use \Sedo\ObjectSerializer;
+use Sedo\ObjectSerializer;
 
 /**
- * CampaignDataTrackingDataTrackingSettings Class Doc Comment
+ * CampaignDataTrackingDataTrackingSettings Class Doc Comment.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
+ *
  * @implements \ArrayAccess<string, mixed>
  */
-class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayAccess, \JsonSerializable
+class CampaignDataTrackingDataTrackingSettings implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = 'type';
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $openAPIModelName = 'CampaignData_trackingData_trackingSettings';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
     protected static $openAPITypes = [
         's2sMetaToken' => 'string',
         's2sMetaPixelId' => 'string',
@@ -84,16 +87,18 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
         's2sXPixelId' => 'string',
         's2sXLandingPageEvent' => 'string',
         's2sXSearchEvent' => 'string',
-        's2sXClickEvent' => 'string'
+        's2sXClickEvent' => 'string',
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
+     * Array of property to format mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     *
+     * @phpstan-var array<string, string|null>
+     *
+     * @psalm-var array<string, string|null>
+     */
     protected static $openAPIFormats = [
         's2sMetaToken' => null,
         's2sMetaPixelId' => null,
@@ -122,14 +127,14 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
         's2sXPixelId' => null,
         's2sXLandingPageEvent' => null,
         's2sXSearchEvent' => null,
-        's2sXClickEvent' => null
+        's2sXClickEvent' => null,
     ];
 
     /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
+     * Array of nullable properties. Used for (de)serialization.
+     *
+     * @var bool[]
+     */
     protected static array $openAPINullables = [
         's2sMetaToken' => false,
         's2sMetaPixelId' => false,
@@ -158,18 +163,18 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
         's2sXPixelId' => false,
         's2sXLandingPageEvent' => false,
         's2sXSearchEvent' => false,
-        's2sXClickEvent' => false
+        's2sXClickEvent' => false,
     ];
 
     /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
+     * If a nullable field gets set to null, insert it here.
+     *
+     * @var bool[]
+     */
     protected array $openAPINullablesSetToNull = [];
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
+     * Array of property to type mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -179,7 +184,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Array of property to format mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -189,9 +194,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Array of nullable properties
-     *
-     * @return array
+     * Array of nullable properties.
      */
     protected static function openAPINullables(): array
     {
@@ -199,9 +202,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Array of nullable field names deliberately set to null
+     * Array of nullable field names deliberately set to null.
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -209,9 +212,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null
+     * Setter - Array of nullable field names deliberately set to null.
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -219,10 +222,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
+     * Checks if a property is nullable.
      */
     public static function isNullable(string $property): bool
     {
@@ -231,9 +231,6 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -242,7 +239,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @var string[]
      */
@@ -274,11 +271,11 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
         's2sXPixelId' => 's2sXPixelId',
         's2sXLandingPageEvent' => 's2sXLandingPageEvent',
         's2sXSearchEvent' => 's2sXSearchEvent',
-        's2sXClickEvent' => 's2sXClickEvent'
+        's2sXClickEvent' => 's2sXClickEvent',
     ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @var string[]
      */
@@ -310,11 +307,11 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
         's2sXPixelId' => 'setS2sXPixelId',
         's2sXLandingPageEvent' => 'setS2sXLandingPageEvent',
         's2sXSearchEvent' => 'setS2sXSearchEvent',
-        's2sXClickEvent' => 'setS2sXClickEvent'
+        's2sXClickEvent' => 'setS2sXClickEvent',
     ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @var string[]
      */
@@ -346,12 +343,12 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
         's2sXPixelId' => 'getS2sXPixelId',
         's2sXLandingPageEvent' => 'getS2sXLandingPageEvent',
         's2sXSearchEvent' => 'getS2sXSearchEvent',
-        's2sXClickEvent' => 'getS2sXClickEvent'
+        's2sXClickEvent' => 'getS2sXClickEvent',
     ];
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @return array
      */
@@ -361,7 +358,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @return array
      */
@@ -371,7 +368,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @return array
      */
@@ -390,19 +387,18 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
         return self::$openAPIModelName;
     }
 
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
      *
      * @var mixed[]
      */
     protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     *                           initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -440,14 +436,10 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
+     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+     * $this->openAPINullablesSetToNull array.
+     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
@@ -466,47 +458,47 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     {
         $invalidProperties = [];
 
-        if ($this->container['type'] === null) {
+        if (null === $this->container['type']) {
             $invalidProperties[] = "'type' can't be null";
         }
-        if ($this->container['s2sOutbrainClickParam'] === null) {
+        if (null === $this->container['s2sOutbrainClickParam']) {
             $invalidProperties[] = "'s2sOutbrainClickParam' can't be null";
         }
-        if ($this->container['s2sSnapchatToken'] === null) {
+        if (null === $this->container['s2sSnapchatToken']) {
             $invalidProperties[] = "'s2sSnapchatToken' can't be null";
         }
-        if ($this->container['s2sSnapchatPixelId'] === null) {
+        if (null === $this->container['s2sSnapchatPixelId']) {
             $invalidProperties[] = "'s2sSnapchatPixelId' can't be null";
         }
-        if ($this->container['s2sTaboolaClickParam'] === null) {
+        if (null === $this->container['s2sTaboolaClickParam']) {
             $invalidProperties[] = "'s2sTaboolaClickParam' can't be null";
         }
-        if ($this->container['s2sTikTokToken'] === null) {
+        if (null === $this->container['s2sTikTokToken']) {
             $invalidProperties[] = "'s2sTikTokToken' can't be null";
         }
-        if ($this->container['s2sTikTokPixelId'] === null) {
+        if (null === $this->container['s2sTikTokPixelId']) {
             $invalidProperties[] = "'s2sTikTokPixelId' can't be null";
         }
-        if ($this->container['s2sXPixelId'] === null) {
+        if (null === $this->container['s2sXPixelId']) {
             $invalidProperties[] = "'s2sXPixelId' can't be null";
         }
+
         return $invalidProperties;
     }
 
     /**
      * Validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-        return count($this->listInvalidProperties()) === 0;
+        return 0 === count($this->listInvalidProperties());
     }
 
-
     /**
-     * Gets s2sMetaToken
+     * Gets s2sMetaToken.
      *
      * @return string|null
      */
@@ -516,7 +508,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sMetaToken
+     * Sets s2sMetaToken.
      *
      * @param string|null $s2sMetaToken Conversion API token
      *
@@ -533,7 +525,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sMetaPixelId
+     * Gets s2sMetaPixelId.
      *
      * @return string|null
      */
@@ -543,7 +535,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sMetaPixelId
+     * Sets s2sMetaPixelId.
      *
      * @param string|null $s2sMetaPixelId Pixel ID from Meta Events Manager. See for more details: https://www.facebook.com/business/help/952192354843755?id=1205376682832142  More details on how to set up the tracking can be found in the [Meta conversion tracking API documentation](https://developers.facebook.com/docs/marketing-api/conversions-api/get-started/)
      *
@@ -560,7 +552,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sMetaLandingPageEvent
+     * Gets s2sMetaLandingPageEvent.
      *
      * @return string|null
      */
@@ -570,9 +562,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sMetaLandingPageEvent
+     * Sets s2sMetaLandingPageEvent.
      *
-     * @param string|null $s2sMetaLandingPageEvent Event name for the Landing Visit event.
+     * @param string|null $s2sMetaLandingPageEvent event name for the Landing Visit event
      *
      * @return self
      */
@@ -587,7 +579,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sMetaClickEvent
+     * Gets s2sMetaClickEvent.
      *
      * @return string|null
      */
@@ -597,7 +589,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sMetaClickEvent
+     * Sets s2sMetaClickEvent.
      *
      * @param string|null $s2sMetaClickEvent Event name for the Search event. Can be used for tracking \"1st\" click
      *
@@ -614,7 +606,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sMetaSearchEvent
+     * Gets s2sMetaSearchEvent.
      *
      * @return string|null
      */
@@ -624,7 +616,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sMetaSearchEvent
+     * Sets s2sMetaSearchEvent.
      *
      * @param string|null $s2sMetaSearchEvent Event name for the Ad Click or \"2nd\" click event. Commonly used for conversion tracking
      *
@@ -641,7 +633,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets type
+     * Gets type.
      *
      * @return string
      */
@@ -651,7 +643,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets type
+     * Sets type.
      *
      * @param string $type type
      *
@@ -668,7 +660,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sOutbrainClickParam
+     * Gets s2sOutbrainClickParam.
      *
      * @return string
      */
@@ -678,7 +670,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sOutbrainClickParam
+     * Sets s2sOutbrainClickParam.
      *
      * @param string $s2sOutbrainClickParam Follow the Outbrain guidelines to set up the Server-to-Server (S2S) Conversion in your Outbrain account: [Outbrain S2S Conversion Setup](https://www.outbrain.com/help/advertisers/server2server-integrations/)  This parameter is crucial for passing the Outbrain Click ID back to Outbrain, enabling effective tracking of your campaigns.  **Usage Instructions:**   1. When directing traffic to your RSoC articles, include the Outbrain Click ID in the URL using a parameter name of your choice.   2. Ensure that the parameter name in the URL aligns with the name configured in s2sObClickParam.  **Example:**  If your traffic URL is structured as follows: `https://your-rsoc-domain.com/?campaign=1234&ob_click_id=23o4ij23o` Then, you should set the value of s2sTblClickParam to `ob_click_id`. This alignment guarantees proper tracking and reporting of your campaigns with Outbrain.
      *
@@ -695,7 +687,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sOutbrainLandingPageEvent
+     * Gets s2sOutbrainLandingPageEvent.
      *
      * @return string|null
      */
@@ -705,9 +697,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sOutbrainLandingPageEvent
+     * Sets s2sOutbrainLandingPageEvent.
      *
-     * @param string|null $s2sOutbrainLandingPageEvent Event name for the Landing Visit event.
+     * @param string|null $s2sOutbrainLandingPageEvent event name for the Landing Visit event
      *
      * @return self
      */
@@ -722,7 +714,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sOutbrainSearchEvent
+     * Gets s2sOutbrainSearchEvent.
      *
      * @return string|null
      */
@@ -732,7 +724,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sOutbrainSearchEvent
+     * Sets s2sOutbrainSearchEvent.
      *
      * @param string|null $s2sOutbrainSearchEvent Event name for the Search event. Can be used for tracking \"1st\" click
      *
@@ -749,7 +741,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sOutbrainClickEvent
+     * Gets s2sOutbrainClickEvent.
      *
      * @return string|null
      */
@@ -759,7 +751,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sOutbrainClickEvent
+     * Sets s2sOutbrainClickEvent.
      *
      * @param string|null $s2sOutbrainClickEvent Event name for the Ad Click or \"2nd\" click event. Commonly used for conversion tracking
      *
@@ -776,7 +768,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sSnapchatToken
+     * Gets s2sSnapchatToken.
      *
      * @return string
      */
@@ -786,9 +778,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sSnapchatToken
+     * Sets s2sSnapchatToken.
      *
-     * @param string $s2sSnapchatToken Conversion API token.
+     * @param string $s2sSnapchatToken conversion API token
      *
      * @return self
      */
@@ -803,7 +795,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sSnapchatPixelId
+     * Gets s2sSnapchatPixelId.
      *
      * @return string
      */
@@ -813,7 +805,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sSnapchatPixelId
+     * Sets s2sSnapchatPixelId.
      *
      * @param string $s2sSnapchatPixelId Event Pixel ID from Snapchat Ads Manager.  More details on how to set up the tracking can be found in the [Snapchat Ads Manager](https://forbusiness.snapchat.com/blog/the-snap-pixel-how-it-works-and-how-to-install-it#installation)
      *
@@ -830,9 +822,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sSnapchatLandingPageEvent
+     * Gets s2sSnapchatLandingPageEvent.
      *
-     * @return \Sedo\SedoTMP\Platform\Model\S2sSnapchatEventType|null
+     * @return S2sSnapchatEventType|null
      */
     public function getS2sSnapchatLandingPageEvent()
     {
@@ -840,9 +832,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sSnapchatLandingPageEvent
+     * Sets s2sSnapchatLandingPageEvent.
      *
-     * @param \Sedo\SedoTMP\Platform\Model\S2sSnapchatEventType|null $s2sSnapchatLandingPageEvent Event name for the Landing Visit event.
+     * @param S2sSnapchatEventType|null $s2sSnapchatLandingPageEvent event name for the Landing Visit event
      *
      * @return self
      */
@@ -857,9 +849,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sSnapchatSearchEvent
+     * Gets s2sSnapchatSearchEvent.
      *
-     * @return \Sedo\SedoTMP\Platform\Model\S2sSnapchatEventType|null
+     * @return S2sSnapchatEventType|null
      */
     public function getS2sSnapchatSearchEvent()
     {
@@ -867,9 +859,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sSnapchatSearchEvent
+     * Sets s2sSnapchatSearchEvent.
      *
-     * @param \Sedo\SedoTMP\Platform\Model\S2sSnapchatEventType|null $s2sSnapchatSearchEvent Event name for the Search event. Can be used for tracking \"1st\" click
+     * @param S2sSnapchatEventType|null $s2sSnapchatSearchEvent Event name for the Search event. Can be used for tracking \"1st\" click
      *
      * @return self
      */
@@ -884,9 +876,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sSnapchatClickEvent
+     * Gets s2sSnapchatClickEvent.
      *
-     * @return \Sedo\SedoTMP\Platform\Model\S2sSnapchatEventType|null
+     * @return S2sSnapchatEventType|null
      */
     public function getS2sSnapchatClickEvent()
     {
@@ -894,9 +886,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sSnapchatClickEvent
+     * Sets s2sSnapchatClickEvent.
      *
-     * @param \Sedo\SedoTMP\Platform\Model\S2sSnapchatEventType|null $s2sSnapchatClickEvent Event name for the Ad Click or \"2nd\" click event. Commonly used for conversion tracking
+     * @param S2sSnapchatEventType|null $s2sSnapchatClickEvent Event name for the Ad Click or \"2nd\" click event. Commonly used for conversion tracking
      *
      * @return self
      */
@@ -911,7 +903,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sTaboolaClickParam
+     * Gets s2sTaboolaClickParam.
      *
      * @return string
      */
@@ -921,7 +913,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sTaboolaClickParam
+     * Sets s2sTaboolaClickParam.
      *
      * @param string $s2sTaboolaClickParam Follow the Taboola guidelines to set up the Server-to-Server (S2S) Conversion in your Taboola account: [Taboola S2S Conversion Setup0](https://help.taboola.com/hc/en-us/articles/115006850567-How-to-Track-Conversions-Using-Server-to-Server-Integration-S2S)  `s2sTaboolaClickParam` parameter is crucial for passing the Taboola Click ID back to Taboola, enabling effective tracking of your campaigns.  **Usage Instructions:**   1. When directing traffic to your RSoC articles, include the Taboola Click ID in the URL using a parameter name of your choice.   2. Ensure that the parameter name in the URL aligns with the name configured in s2sTaboolaClickParam.  **Example:**    If your traffic URL is structured as follows:   your-rsoc-domain.com/?campaign=12&taboola_click=23o4ij23o   Then, you should set the value of `s2sTaboolaClickParam` to `taboola_click`. This alignment guarantees proper tracking and reporting of your campaigns with Taboola.
      *
@@ -938,7 +930,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sTaboolaLandingPageEvent
+     * Gets s2sTaboolaLandingPageEvent.
      *
      * @return string|null
      */
@@ -948,9 +940,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sTaboolaLandingPageEvent
+     * Sets s2sTaboolaLandingPageEvent.
      *
-     * @param string|null $s2sTaboolaLandingPageEvent Event name for the Landing Visit event.
+     * @param string|null $s2sTaboolaLandingPageEvent event name for the Landing Visit event
      *
      * @return self
      */
@@ -965,7 +957,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sTaboolaSearchEvent
+     * Gets s2sTaboolaSearchEvent.
      *
      * @return string|null
      */
@@ -975,7 +967,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sTaboolaSearchEvent
+     * Sets s2sTaboolaSearchEvent.
      *
      * @param string|null $s2sTaboolaSearchEvent Event name for the Search event. Can be used for tracking \"1st\" click
      *
@@ -992,7 +984,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sTaboolaClickEvent
+     * Gets s2sTaboolaClickEvent.
      *
      * @return string|null
      */
@@ -1002,7 +994,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sTaboolaClickEvent
+     * Sets s2sTaboolaClickEvent.
      *
      * @param string|null $s2sTaboolaClickEvent Event name for the Ad Click or \"2nd\" click event. Commonly used for conversion tracking
      *
@@ -1019,7 +1011,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sTikTokToken
+     * Gets s2sTikTokToken.
      *
      * @return string
      */
@@ -1029,7 +1021,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sTikTokToken
+     * Sets s2sTikTokToken.
      *
      * @param string $s2sTikTokToken This is the API token required for authentication with the TikTok API. Ensure that you generate and securely store this token to facilitate server-to-server interactions.
      *
@@ -1046,7 +1038,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sTikTokPixelId
+     * Gets s2sTikTokPixelId.
      *
      * @return string
      */
@@ -1056,7 +1048,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sTikTokPixelId
+     * Sets s2sTikTokPixelId.
      *
      * @param string $s2sTikTokPixelId This is the Event Pixel ID obtained from the TikTok Tracking section. It is essential for tracking user interactions on your landing pages.  For generating your Pixel ID, refer to the following resources:   [Get Started with Pixel](https://ads.tiktok.com/help/article/get-started-pixel)   [Pixel Sharing in Business Center](https://ads.tiktok.com/help/article/pixel-sharing-business-center)  Note: Make sure to configure the appropriate permissions in your TikTok account for the pixel to function correctly.
      *
@@ -1073,9 +1065,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sTikTokLandingPageEvent
+     * Gets s2sTikTokLandingPageEvent.
      *
-     * @return \Sedo\SedoTMP\Platform\Model\S2sTikTokEventType|null
+     * @return S2sTikTokEventType|null
      */
     public function getS2sTikTokLandingPageEvent()
     {
@@ -1083,9 +1075,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sTikTokLandingPageEvent
+     * Sets s2sTikTokLandingPageEvent.
      *
-     * @param \Sedo\SedoTMP\Platform\Model\S2sTikTokEventType|null $s2sTikTokLandingPageEvent Event name for the Landing Visit event.
+     * @param S2sTikTokEventType|null $s2sTikTokLandingPageEvent event name for the Landing Visit event
      *
      * @return self
      */
@@ -1100,9 +1092,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sTikTokSearchEvent
+     * Gets s2sTikTokSearchEvent.
      *
-     * @return \Sedo\SedoTMP\Platform\Model\S2sTikTokEventType|null
+     * @return S2sTikTokEventType|null
      */
     public function getS2sTikTokSearchEvent()
     {
@@ -1110,9 +1102,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sTikTokSearchEvent
+     * Sets s2sTikTokSearchEvent.
      *
-     * @param \Sedo\SedoTMP\Platform\Model\S2sTikTokEventType|null $s2sTikTokSearchEvent Event name for the Search event. Can be used for tracking \"1st\" click
+     * @param S2sTikTokEventType|null $s2sTikTokSearchEvent Event name for the Search event. Can be used for tracking \"1st\" click
      *
      * @return self
      */
@@ -1127,9 +1119,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sTikTokClickEvent
+     * Gets s2sTikTokClickEvent.
      *
-     * @return \Sedo\SedoTMP\Platform\Model\S2sTikTokEventType|null
+     * @return S2sTikTokEventType|null
      */
     public function getS2sTikTokClickEvent()
     {
@@ -1137,9 +1129,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sTikTokClickEvent
+     * Sets s2sTikTokClickEvent.
      *
-     * @param \Sedo\SedoTMP\Platform\Model\S2sTikTokEventType|null $s2sTikTokClickEvent Event name for the Ad Click or \"2nd\" click event. Commonly used for conversion tracking
+     * @param S2sTikTokEventType|null $s2sTikTokClickEvent Event name for the Ad Click or \"2nd\" click event. Commonly used for conversion tracking
      *
      * @return self
      */
@@ -1154,7 +1146,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sXPixelId
+     * Gets s2sXPixelId.
      *
      * @return string
      */
@@ -1164,7 +1156,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sXPixelId
+     * Sets s2sXPixelId.
      *
      * @param string $s2sXPixelId This parameter represents the Event Pixel ID obtained from the Twitter (X) Events Manager. It is essential for tracking user interactions and conversions.  For detailed guidance on setting up and using the pixel, please refer to the official documentation: [Twitter (X) Conversion API](https://developer.x.com/en/docs/x-ads-api/measurement/web-conversions/conversion-api)
      *
@@ -1181,7 +1173,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sXLandingPageEvent
+     * Gets s2sXLandingPageEvent.
      *
      * @return string|null
      */
@@ -1191,9 +1183,9 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sXLandingPageEvent
+     * Sets s2sXLandingPageEvent.
      *
-     * @param string|null $s2sXLandingPageEvent Event name for the Landing Visit event.
+     * @param string|null $s2sXLandingPageEvent event name for the Landing Visit event
      *
      * @return self
      */
@@ -1208,7 +1200,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sXSearchEvent
+     * Gets s2sXSearchEvent.
      *
      * @return string|null
      */
@@ -1218,7 +1210,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sXSearchEvent
+     * Sets s2sXSearchEvent.
      *
      * @param string|null $s2sXSearchEvent Event name for the Search event. Can be used for tracking \"1st\" click
      *
@@ -1235,7 +1227,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets s2sXClickEvent
+     * Gets s2sXClickEvent.
      *
      * @return string|null
      */
@@ -1245,7 +1237,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Sets s2sXClickEvent
+     * Sets s2sXClickEvent.
      *
      * @param string|null $s2sXClickEvent Event name for the Ad Click or \"2nd\" click event. Commonly used for conversion tracking
      *
@@ -1260,12 +1252,11 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer $offset Offset
-     *
-     * @return boolean
+     * @param int $offset Offset
      */
     public function offsetExists($offset): bool
     {
@@ -1275,7 +1266,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     /**
      * Gets offset.
      *
-     * @param integer $offset Offset
+     * @param int $offset Offset
      *
      * @return mixed|null
      */
@@ -1290,8 +1281,6 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
      *
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
-     *
-     * @return void
      */
     public function offsetSet($offset, $value): void
     {
@@ -1305,9 +1294,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     /**
      * Unsets offset.
      *
-     * @param integer $offset Offset
-     *
-     * @return void
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -1316,19 +1303,20 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
 
     /**
      * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @see https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed returns data which can be serialized by json_encode(), which is a value
+     *               of any type other than a resource
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
      *
      * @return string
      */
@@ -1341,7 +1329,7 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets a header-safe presentation of the object
+     * Gets a header-safe presentation of the object.
      *
      * @return string
      */
@@ -1350,5 +1338,3 @@ class CampaignDataTrackingDataTrackingSettings implements ModelInterface, ArrayA
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

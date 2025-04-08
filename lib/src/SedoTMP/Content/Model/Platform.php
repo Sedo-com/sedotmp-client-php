@@ -1,17 +1,19 @@
 <?php
+
 /**
- * Platform
+ * Platform.
  *
  * PHP version 8.1
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * content-api
+ * content-api.
  *
  * # Introduction and Process Overview  This API offers easy-to-use endpoints for managing articles on content sites using the Sedo Traffic Monetization Platform.  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -27,34 +29,34 @@
  */
 
 namespace Sedo\SedoTMP\Content\Model;
-use \Sedo\ObjectSerializer;
 
 /**
- * Platform Class Doc Comment
+ * Platform Class Doc Comment.
  *
  * @category Class
+ *
  * @description Content site API platform
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 class Platform
 {
     /**
-     * Possible values of this enum
+     * Possible values of this enum.
      */
     public const WORDPRESS = 'WORDPRESS';
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
+     *
      * @return string[]
      */
     public static function getAllowableEnumValues()
     {
         return [
-            self::WORDPRESS
+            self::WORDPRESS,
         ];
     }
 }
-
-

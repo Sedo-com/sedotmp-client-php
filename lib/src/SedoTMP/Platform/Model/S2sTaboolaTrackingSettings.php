@@ -1,17 +1,19 @@
 <?php
+
 /**
- * S2sTaboolaTrackingSettings
+ * S2sTaboolaTrackingSettings.
  *
  * PHP version 8.1
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * platform-api
+ * platform-api.
  *
  * # Introduction and Process Overview  This API helps manage content campaigns, reporting and other parts of Sedo Traffic Monetization Platform  *Note: Please note that the API is still in development and some endpoints may not be available yet.*  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -28,80 +30,84 @@
 
 namespace Sedo\SedoTMP\Platform\Model;
 
-use \ArrayAccess;
-use \Sedo\ObjectSerializer;
+use Sedo\ObjectSerializer;
 
 /**
- * S2sTaboolaTrackingSettings Class Doc Comment
+ * S2sTaboolaTrackingSettings Class Doc Comment.
  *
  * @category Class
+ *
  * @description Settings for tracking with Snapchat traffic source.  Follow the Taboola guidelines to set up the Server-to-Server (S2S) Conversion in your Taboola account  [Taboola S2S Conversion Setup0](https://help.taboola.com/hc/en-us/articles/115006850567-How-to-Track-Conversions-Using-Server-to-Server-Integration-S2S)
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
+ *
  * @implements \ArrayAccess<string, mixed>
  */
-class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSerializable
+class S2sTaboolaTrackingSettings implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $openAPIModelName = 'S2sTaboolaTrackingSettings';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
     protected static $openAPITypes = [
         's2sTaboolaClickParam' => 'string',
         's2sTaboolaLandingPageEvent' => 'string',
         's2sTaboolaSearchEvent' => 'string',
         's2sTaboolaClickEvent' => 'string',
-        'type' => 'string'
+        'type' => 'string',
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
+     * Array of property to format mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     *
+     * @phpstan-var array<string, string|null>
+     *
+     * @psalm-var array<string, string|null>
+     */
     protected static $openAPIFormats = [
         's2sTaboolaClickParam' => null,
         's2sTaboolaLandingPageEvent' => null,
         's2sTaboolaSearchEvent' => null,
         's2sTaboolaClickEvent' => null,
-        'type' => null
+        'type' => null,
     ];
 
     /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
+     * Array of nullable properties. Used for (de)serialization.
+     *
+     * @var bool[]
+     */
     protected static array $openAPINullables = [
         's2sTaboolaClickParam' => false,
         's2sTaboolaLandingPageEvent' => false,
         's2sTaboolaSearchEvent' => false,
         's2sTaboolaClickEvent' => false,
-        'type' => false
+        'type' => false,
     ];
 
     /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
+     * If a nullable field gets set to null, insert it here.
+     *
+     * @var bool[]
+     */
     protected array $openAPINullablesSetToNull = [];
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
+     * Array of property to type mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -111,7 +117,7 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Array of property to format mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -121,9 +127,7 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Array of nullable properties
-     *
-     * @return array
+     * Array of nullable properties.
      */
     protected static function openAPINullables(): array
     {
@@ -131,9 +135,9 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Array of nullable field names deliberately set to null
+     * Array of nullable field names deliberately set to null.
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -141,9 +145,9 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null
+     * Setter - Array of nullable field names deliberately set to null.
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -151,10 +155,7 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
+     * Checks if a property is nullable.
      */
     public static function isNullable(string $property): bool
     {
@@ -163,9 +164,6 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -174,7 +172,7 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @var string[]
      */
@@ -183,11 +181,11 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
         's2sTaboolaLandingPageEvent' => 's2sTaboolaLandingPageEvent',
         's2sTaboolaSearchEvent' => 's2sTaboolaSearchEvent',
         's2sTaboolaClickEvent' => 's2sTaboolaClickEvent',
-        'type' => 'type'
+        'type' => 'type',
     ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @var string[]
      */
@@ -196,11 +194,11 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
         's2sTaboolaLandingPageEvent' => 'setS2sTaboolaLandingPageEvent',
         's2sTaboolaSearchEvent' => 'setS2sTaboolaSearchEvent',
         's2sTaboolaClickEvent' => 'setS2sTaboolaClickEvent',
-        'type' => 'setType'
+        'type' => 'setType',
     ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @var string[]
      */
@@ -209,12 +207,12 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
         's2sTaboolaLandingPageEvent' => 'getS2sTaboolaLandingPageEvent',
         's2sTaboolaSearchEvent' => 'getS2sTaboolaSearchEvent',
         's2sTaboolaClickEvent' => 'getS2sTaboolaClickEvent',
-        'type' => 'getType'
+        'type' => 'getType',
     ];
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @return array
      */
@@ -224,7 +222,7 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @return array
      */
@@ -234,7 +232,7 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @return array
      */
@@ -253,19 +251,18 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
         return self::$openAPIModelName;
     }
 
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
      *
      * @var mixed[]
      */
     protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     *                           initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -277,14 +274,10 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
+     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+     * $this->openAPINullablesSetToNull array.
+     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
@@ -303,29 +296,29 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     {
         $invalidProperties = [];
 
-        if ($this->container['s2sTaboolaClickParam'] === null) {
+        if (null === $this->container['s2sTaboolaClickParam']) {
             $invalidProperties[] = "'s2sTaboolaClickParam' can't be null";
         }
-        if ($this->container['type'] === null) {
+        if (null === $this->container['type']) {
             $invalidProperties[] = "'type' can't be null";
         }
+
         return $invalidProperties;
     }
 
     /**
      * Validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-        return count($this->listInvalidProperties()) === 0;
+        return 0 === count($this->listInvalidProperties());
     }
 
-
     /**
-     * Gets s2sTaboolaClickParam
+     * Gets s2sTaboolaClickParam.
      *
      * @return string
      */
@@ -335,7 +328,7 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Sets s2sTaboolaClickParam
+     * Sets s2sTaboolaClickParam.
      *
      * @param string $s2sTaboolaClickParam Follow the Taboola guidelines to set up the Server-to-Server (S2S) Conversion in your Taboola account: [Taboola S2S Conversion Setup0](https://help.taboola.com/hc/en-us/articles/115006850567-How-to-Track-Conversions-Using-Server-to-Server-Integration-S2S)  `s2sTaboolaClickParam` parameter is crucial for passing the Taboola Click ID back to Taboola, enabling effective tracking of your campaigns.  **Usage Instructions:**   1. When directing traffic to your RSoC articles, include the Taboola Click ID in the URL using a parameter name of your choice.   2. Ensure that the parameter name in the URL aligns with the name configured in s2sTaboolaClickParam.  **Example:**    If your traffic URL is structured as follows:   your-rsoc-domain.com/?campaign=12&taboola_click=23o4ij23o   Then, you should set the value of `s2sTaboolaClickParam` to `taboola_click`. This alignment guarantees proper tracking and reporting of your campaigns with Taboola.
      *
@@ -352,7 +345,7 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Gets s2sTaboolaLandingPageEvent
+     * Gets s2sTaboolaLandingPageEvent.
      *
      * @return string|null
      */
@@ -362,9 +355,9 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Sets s2sTaboolaLandingPageEvent
+     * Sets s2sTaboolaLandingPageEvent.
      *
-     * @param string|null $s2sTaboolaLandingPageEvent Event name for the Landing Visit event.
+     * @param string|null $s2sTaboolaLandingPageEvent event name for the Landing Visit event
      *
      * @return self
      */
@@ -379,7 +372,7 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Gets s2sTaboolaSearchEvent
+     * Gets s2sTaboolaSearchEvent.
      *
      * @return string|null
      */
@@ -389,7 +382,7 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Sets s2sTaboolaSearchEvent
+     * Sets s2sTaboolaSearchEvent.
      *
      * @param string|null $s2sTaboolaSearchEvent Event name for the Search event. Can be used for tracking \"1st\" click
      *
@@ -406,7 +399,7 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Gets s2sTaboolaClickEvent
+     * Gets s2sTaboolaClickEvent.
      *
      * @return string|null
      */
@@ -416,7 +409,7 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Sets s2sTaboolaClickEvent
+     * Sets s2sTaboolaClickEvent.
      *
      * @param string|null $s2sTaboolaClickEvent Event name for the Ad Click or \"2nd\" click event. Commonly used for conversion tracking
      *
@@ -433,7 +426,7 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Gets type
+     * Gets type.
      *
      * @return string
      */
@@ -443,7 +436,7 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Sets type
+     * Sets type.
      *
      * @param string $type type
      *
@@ -458,12 +451,11 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer $offset Offset
-     *
-     * @return boolean
+     * @param int $offset Offset
      */
     public function offsetExists($offset): bool
     {
@@ -473,7 +465,7 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets offset.
      *
-     * @param integer $offset Offset
+     * @param int $offset Offset
      *
      * @return mixed|null
      */
@@ -488,8 +480,6 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
-     *
-     * @return void
      */
     public function offsetSet($offset, $value): void
     {
@@ -503,9 +493,7 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Unsets offset.
      *
-     * @param integer $offset Offset
-     *
-     * @return void
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -514,19 +502,20 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
 
     /**
      * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @see https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed returns data which can be serialized by json_encode(), which is a value
+     *               of any type other than a resource
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
      *
      * @return string
      */
@@ -539,7 +528,7 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Gets a header-safe presentation of the object
+     * Gets a header-safe presentation of the object.
      *
      * @return string
      */
@@ -548,5 +537,3 @@ class S2sTaboolaTrackingSettings implements ModelInterface, ArrayAccess, \JsonSe
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

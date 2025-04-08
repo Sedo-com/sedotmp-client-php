@@ -1,16 +1,18 @@
 <?php
+
 /**
  * GeneratedArticleApi
- * PHP version 8.1
+ * PHP version 8.1.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * content-api
+ * content-api.
  *
  * # Introduction and Process Overview  This API offers easy-to-use endpoints for managing articles on content sites using the Sedo Traffic Monetization Platform.  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -42,12 +44,13 @@ use Sedo\HeaderSelector;
 use Sedo\ObjectSerializer;
 
 /**
- * GeneratedArticleApi Class Doc Comment
+ * GeneratedArticleApi Class Doc Comment.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 class GeneratedArticleApi
 {
@@ -71,7 +74,7 @@ class GeneratedArticleApi
      */
     protected $hostIndex;
 
-    /** @var string[] $contentTypes **/
+    /** @var string[] * */
     public const contentTypes = [
         'generatedArticlesPost' => [
             'application/json',
@@ -79,16 +82,13 @@ class GeneratedArticleApi
     ];
 
     /**
-     * @param ClientInterface $client
-     * @param Configuration   $config
-     * @param HeaderSelector  $selector
-     * @param int             $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        int $hostIndex = 0
+        int $hostIndex = 0,
     ) {
         $this->client = $client ?: new Client();
         $this->config = $config ?: Configuration::getDefaultConfiguration();
@@ -97,7 +97,7 @@ class GeneratedArticleApi
     }
 
     /**
-     * Set the host index
+     * Set the host index.
      *
      * @param int $hostIndex Host index (required)
      */
@@ -107,7 +107,7 @@ class GeneratedArticleApi
     }
 
     /**
-     * Get the host index
+     * Get the host index.
      *
      * @return int Host index
      */
@@ -125,38 +125,41 @@ class GeneratedArticleApi
     }
 
     /**
-     * Operation generatedArticlesPost
+     * Operation generatedArticlesPost.
      *
      * Generate a new article for a specified topic
      *
-     * @param  \Sedo\SedoTMP\Content\Model\GenerateArticle $generateArticle generateArticle (required)
-     * @param  \Sedo\SedoTMP\Content\Model\RequestFlowHeader|null $xSedoRequestFlow xSedoRequestFlow (optional)
-     * @param  string|null $xSedoReferenceId xSedoReferenceId (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generatedArticlesPost'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\GenerateArticle        $generateArticle  generateArticle (required)
+     * @param \Sedo\SedoTMP\Content\Model\RequestFlowHeader|null $xSedoRequestFlow xSedoRequestFlow (optional)
+     * @param string|null                                        $xSedoReferenceId xSedoReferenceId (optional)
+     * @param string                                             $contentType      The value for the Content-Type header. Check self::contentTypes['generatedArticlesPost'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return |\Sedo\SedoTMP\Content\Model\ArticleResponse|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function generatedArticlesPost($generateArticle, $xSedoRequestFlow = null, $xSedoReferenceId = null, string $contentType = self::contentTypes['generatedArticlesPost'][0])
     {
         list($response) = $this->generatedArticlesPostWithHttpInfo($generateArticle, $xSedoRequestFlow, $xSedoReferenceId, $contentType);
+
         return $response;
     }
 
     /**
-     * Operation generatedArticlesPostWithHttpInfo
+     * Operation generatedArticlesPostWithHttpInfo.
      *
      * Generate a new article for a specified topic
      *
-     * @param  \Sedo\SedoTMP\Content\Model\GenerateArticle $generateArticle (required)
-     * @param  \Sedo\SedoTMP\Content\Model\RequestFlowHeader|null $xSedoRequestFlow (optional)
-     * @param  string|null $xSedoReferenceId (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generatedArticlesPost'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\GenerateArticle        $generateArticle  (required)
+     * @param \Sedo\SedoTMP\Content\Model\RequestFlowHeader|null $xSedoRequestFlow (optional)
+     * @param string|null                                        $xSedoReferenceId (optional)
+     * @param string                                             $contentType      The value for the Content-Type header. Check self::contentTypes['generatedArticlesPost'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of |\Sedo\SedoTMP\Content\Model\ArticleResponse|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function generatedArticlesPostWithHttpInfo($generateArticle, $xSedoRequestFlow = null, $xSedoReferenceId = null, string $contentType = self::contentTypes['generatedArticlesPost'][0])
     {
@@ -167,25 +170,14 @@ class GeneratedArticleApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? (string) $e->getResponse()->getBody() : null);
             } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), null, null);
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Sedo\SedoTMP\Content\Model\ArticleResponse',
@@ -212,19 +204,8 @@ class GeneratedArticleApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
+                throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
             }
 
             return $this->handleResponseWithDataType(
@@ -267,24 +248,24 @@ class GeneratedArticleApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
 
             throw $e;
         }
     }
 
     /**
-     * Operation generatedArticlesPostAsync
+     * Operation generatedArticlesPostAsync.
      *
      * Generate a new article for a specified topic
      *
-     * @param  \Sedo\SedoTMP\Content\Model\GenerateArticle $generateArticle (required)
-     * @param  \Sedo\SedoTMP\Content\Model\RequestFlowHeader|null $xSedoRequestFlow (optional)
-     * @param  string|null $xSedoReferenceId (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generatedArticlesPost'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\GenerateArticle        $generateArticle  (required)
+     * @param \Sedo\SedoTMP\Content\Model\RequestFlowHeader|null $xSedoRequestFlow (optional)
+     * @param string|null                                        $xSedoReferenceId (optional)
+     * @param string                                             $contentType      The value for the Content-Type header. Check self::contentTypes['generatedArticlesPost'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function generatedArticlesPostAsync($generateArticle, $xSedoRequestFlow = null, $xSedoReferenceId = null, string $contentType = self::contentTypes['generatedArticlesPost'][0])
     {
@@ -297,17 +278,18 @@ class GeneratedArticleApi
     }
 
     /**
-     * Operation generatedArticlesPostAsyncWithHttpInfo
+     * Operation generatedArticlesPostAsyncWithHttpInfo.
      *
      * Generate a new article for a specified topic
      *
-     * @param  \Sedo\SedoTMP\Content\Model\GenerateArticle $generateArticle (required)
-     * @param  \Sedo\SedoTMP\Content\Model\RequestFlowHeader|null $xSedoRequestFlow (optional)
-     * @param  string|null $xSedoReferenceId (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generatedArticlesPost'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\GenerateArticle        $generateArticle  (required)
+     * @param \Sedo\SedoTMP\Content\Model\RequestFlowHeader|null $xSedoRequestFlow (optional)
+     * @param string|null                                        $xSedoReferenceId (optional)
+     * @param string                                             $contentType      The value for the Content-Type header. Check self::contentTypes['generatedArticlesPost'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function generatedArticlesPostAsyncWithHttpInfo($generateArticle, $xSedoRequestFlow = null, $xSedoReferenceId = null, string $contentType = self::contentTypes['generatedArticlesPost'][0])
     {
@@ -318,11 +300,11 @@ class GeneratedArticleApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                    if ('\SplFileObject' === $returnType) {
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
+                        if ('string' !== $returnType) {
                             $content = json_decode($content);
                         }
                     }
@@ -330,49 +312,35 @@ class GeneratedArticleApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
+                    throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, $exception->getRequest()->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
                 }
             );
     }
 
     /**
-     * Create request for operation 'generatedArticlesPost'
+     * Create request for operation 'generatedArticlesPost'.
      *
-     * @param  \Sedo\SedoTMP\Content\Model\GenerateArticle $generateArticle (required)
-     * @param  \Sedo\SedoTMP\Content\Model\RequestFlowHeader|null $xSedoRequestFlow (optional)
-     * @param  string|null $xSedoReferenceId (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generatedArticlesPost'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\GenerateArticle        $generateArticle  (required)
+     * @param \Sedo\SedoTMP\Content\Model\RequestFlowHeader|null $xSedoRequestFlow (optional)
+     * @param string|null                                        $xSedoReferenceId (optional)
+     * @param string                                             $contentType      The value for the Content-Type header. Check self::contentTypes['generatedArticlesPost'] to see the possible values for this operation
+     *
+     * @return Request
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function generatedArticlesPostRequest($generateArticle, $xSedoRequestFlow = null, $xSedoReferenceId = null, string $contentType = self::contentTypes['generatedArticlesPost'][0])
     {
-
         // verify the required parameter 'generateArticle' is set
-        if ($generateArticle === null || (is_array($generateArticle) && count($generateArticle) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $generateArticle when calling generatedArticlesPost'
-            );
+        if (null === $generateArticle || (is_array($generateArticle) && 0 === count($generateArticle))) {
+            throw new \InvalidArgumentException('Missing the required parameter $generateArticle when calling generatedArticlesPost');
         }
-
-
-
 
         $resourcePath = '/generated-articles';
         $formParams = [];
@@ -381,28 +349,25 @@ class GeneratedArticleApi
         $httpBody = '';
         $multipart = false;
 
-
         // header params
-        if ($xSedoRequestFlow !== null) {
+        if (null !== $xSedoRequestFlow) {
             $headerParams['X-Sedo-Request-Flow'] = ObjectSerializer::toHeaderValue($xSedoRequestFlow);
         }
         // header params
-        if ($xSedoReferenceId !== null) {
+        if (null !== $xSedoReferenceId) {
             $headerParams['X-Sedo-Reference-Id'] = ObjectSerializer::toHeaderValue($xSedoReferenceId);
         }
 
-
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            ['application/json'],
             $contentType,
             $multipart
         );
 
         // for model (json/xml)
         if (isset($generateArticle)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
+            if (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($generateArticle));
             } else {
                 $httpBody = $generateArticle;
@@ -415,15 +380,14 @@ class GeneratedArticleApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
+            } elseif (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
@@ -433,7 +397,7 @@ class GeneratedArticleApi
 
         // this endpoint requires Bearer (JWT) authentication (access token)
         if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = 'Bearer '.$this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -449,19 +413,21 @@ class GeneratedArticleApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
     }
 
     /**
-     * Create http client option
+     * Create http client option.
+     *
+     * @return array of http client options
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
      */
     protected function createHttpClientOption()
     {
@@ -469,7 +435,7 @@ class GeneratedArticleApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new \RuntimeException('Failed to open the debug file: '.$this->config->getDebugFile());
             }
         }
 
@@ -479,25 +445,17 @@ class GeneratedArticleApi
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,
-        ResponseInterface $response
+        ResponseInterface $response,
     ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
+        if ('\SplFileObject' === $dataType) {
+            $content = $response->getBody(); // stream goes to serializer
         } else {
             $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
+            if ('string' !== $dataType) {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                 } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                        $content
-                    );
+                    throw new ApiException(sprintf('Error JSON decoding server response (%s)', $request->getUri()), $response->getStatusCode(), $response->getHeaders(), $content);
                 }
             }
         }
@@ -505,13 +463,13 @@ class GeneratedArticleApi
         return [
             ObjectSerializer::deserialize($content, $dataType, []),
             $response->getStatusCode(),
-            $response->getHeaders()
+            $response->getHeaders(),
         ];
     }
 
     private function responseWithinRangeCode(
         string $rangeCode,
-        int $statusCode
+        int $statusCode,
     ): bool {
         $left = (int) ($rangeCode[0].'00');
         $right = (int) ($rangeCode[0].'99');

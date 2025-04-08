@@ -1,17 +1,19 @@
 <?php
+
 /**
- * S2sSnapchatEventType
+ * S2sSnapchatEventType.
  *
  * PHP version 8.1
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * platform-api
+ * platform-api.
  *
  * # Introduction and Process Overview  This API helps manage content campaigns, reporting and other parts of Sedo Traffic Monetization Platform  *Note: Please note that the API is still in development and some endpoints may not be available yet.*  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -27,21 +29,22 @@
  */
 
 namespace Sedo\SedoTMP\Platform\Model;
-use \Sedo\ObjectSerializer;
 
 /**
- * S2sSnapchatEventType Class Doc Comment
+ * S2sSnapchatEventType Class Doc Comment.
  *
  * @category Class
+ *
  * @description Following events are supported by Snapchat Conversion API and can be used for search, click, and landing page events.
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 class S2sSnapchatEventType
 {
     /**
-     * Possible values of this enum
+     * Possible values of this enum.
      */
     public const PURCHASE = 'PURCHASE';
 
@@ -106,7 +109,8 @@ class S2sSnapchatEventType
     public const CUSTOM_EVENT_5 = 'CUSTOM_EVENT_5';
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
+     *
      * @return string[]
      */
     public static function getAllowableEnumValues()
@@ -142,9 +146,7 @@ class S2sSnapchatEventType
             self::CUSTOM_EVENT_2,
             self::CUSTOM_EVENT_3,
             self::CUSTOM_EVENT_4,
-            self::CUSTOM_EVENT_5
+            self::CUSTOM_EVENT_5,
         ];
     }
 }
-
-

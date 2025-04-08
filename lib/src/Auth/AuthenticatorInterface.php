@@ -7,7 +7,7 @@ use Sedo\Configuration;
 interface AuthenticatorInterface
 {
     /**
-     * Get a valid access token for API authentication
+     * Get a valid access token for API authentication.
      *
      * @return string The access token
      */
@@ -16,7 +16,7 @@ interface AuthenticatorInterface
     /**
      * Retrieves the configuration settings.
      *
-     * @return Configuration The configuration instance.
+     * @return Configuration the configuration instance
      */
     public function getConfig(): Configuration;
 }

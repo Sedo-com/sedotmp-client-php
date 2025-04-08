@@ -1,16 +1,18 @@
 <?php
+
 /**
  * DomainsApi
- * PHP version 8.1
+ * PHP version 8.1.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * content-api
+ * content-api.
  *
  * # Introduction and Process Overview  This API offers easy-to-use endpoints for managing articles on content sites using the Sedo Traffic Monetization Platform.  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -42,12 +44,13 @@ use Sedo\HeaderSelector;
 use Sedo\ObjectSerializer;
 
 /**
- * DomainsApi Class Doc Comment
+ * DomainsApi Class Doc Comment.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 class DomainsApi
 {
@@ -71,7 +74,7 @@ class DomainsApi
      */
     protected $hostIndex;
 
-    /** @var string[] $contentTypes **/
+    /** @var string[] * */
     public const contentTypes = [
         'domainsGet' => [
             'application/json',
@@ -82,16 +85,13 @@ class DomainsApi
     ];
 
     /**
-     * @param ClientInterface $client
-     * @param Configuration   $config
-     * @param HeaderSelector  $selector
-     * @param int             $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        int $hostIndex = 0
+        int $hostIndex = 0,
     ) {
         $this->client = $client ?: new Client();
         $this->config = $config ?: Configuration::getDefaultConfiguration();
@@ -100,7 +100,7 @@ class DomainsApi
     }
 
     /**
-     * Set the host index
+     * Set the host index.
      *
      * @param int $hostIndex Host index (required)
      */
@@ -110,7 +110,7 @@ class DomainsApi
     }
 
     /**
-     * Get the host index
+     * Get the host index.
      *
      * @return int Host index
      */
@@ -128,34 +128,37 @@ class DomainsApi
     }
 
     /**
-     * Operation domainsGet
+     * Operation domainsGet.
      *
      * Retrieve a list of domains
      *
-     * @param  \Sedo\SedoTMP\Content\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['domainsGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string                                    $contentType The value for the Content-Type header. Check self::contentTypes['domainsGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \Sedo\SedoTMP\Content\Model\DomainResponse[]|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function domainsGet($page = null, string $contentType = self::contentTypes['domainsGet'][0])
     {
         list($response) = $this->domainsGetWithHttpInfo($page, $contentType);
+
         return $response;
     }
 
     /**
-     * Operation domainsGetWithHttpInfo
+     * Operation domainsGetWithHttpInfo.
      *
      * Retrieve a list of domains
      *
-     * @param  \Sedo\SedoTMP\Content\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['domainsGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string                                    $contentType The value for the Content-Type header. Check self::contentTypes['domainsGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Sedo\SedoTMP\Content\Model\DomainResponse[]|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function domainsGetWithHttpInfo($page = null, string $contentType = self::contentTypes['domainsGet'][0])
     {
@@ -166,25 +169,14 @@ class DomainsApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? (string) $e->getResponse()->getBody() : null);
             } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), null, null);
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Sedo\SedoTMP\Content\Model\DomainResponse[]',
@@ -205,19 +197,8 @@ class DomainsApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
+                throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
             }
 
             return $this->handleResponseWithDataType(
@@ -252,22 +233,22 @@ class DomainsApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
 
             throw $e;
         }
     }
 
     /**
-     * Operation domainsGetAsync
+     * Operation domainsGetAsync.
      *
      * Retrieve a list of domains
      *
-     * @param  \Sedo\SedoTMP\Content\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['domainsGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string                                    $contentType The value for the Content-Type header. Check self::contentTypes['domainsGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function domainsGetAsync($page = null, string $contentType = self::contentTypes['domainsGet'][0])
     {
@@ -280,15 +261,16 @@ class DomainsApi
     }
 
     /**
-     * Operation domainsGetAsyncWithHttpInfo
+     * Operation domainsGetAsyncWithHttpInfo.
      *
      * Retrieve a list of domains
      *
-     * @param  \Sedo\SedoTMP\Content\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['domainsGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string                                    $contentType The value for the Content-Type header. Check self::contentTypes['domainsGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function domainsGetAsyncWithHttpInfo($page = null, string $contentType = self::contentTypes['domainsGet'][0])
     {
@@ -299,11 +281,11 @@ class DomainsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                    if ('\SplFileObject' === $returnType) {
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
+                        if ('string' !== $returnType) {
                             $content = json_decode($content);
                         }
                     }
@@ -311,40 +293,29 @@ class DomainsApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
+                    throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, $exception->getRequest()->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
                 }
             );
     }
 
     /**
-     * Create request for operation 'domainsGet'
+     * Create request for operation 'domainsGet'.
      *
-     * @param  \Sedo\SedoTMP\Content\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['domainsGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string                                    $contentType The value for the Content-Type header. Check self::contentTypes['domainsGet'] to see the possible values for this operation
+     *
+     * @return Request
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function domainsGetRequest($page = null, string $contentType = self::contentTypes['domainsGet'][0])
     {
-
-
-
         $resourcePath = '/domains';
         $formParams = [];
         $queryParams = [];
@@ -362,11 +333,8 @@ class DomainsApi
             false // required
         ) ?? []);
 
-
-
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -380,15 +348,14 @@ class DomainsApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
+            } elseif (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
@@ -398,7 +365,7 @@ class DomainsApi
 
         // this endpoint requires Bearer (JWT) authentication (access token)
         if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = 'Bearer '.$this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -414,43 +381,47 @@ class DomainsApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
     }
 
     /**
-     * Operation domainsIdGet
+     * Operation domainsIdGet.
      *
      * Retrieve a domain by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['domainsIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['domainsIdGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \Sedo\SedoTMP\Content\Model\DomainResponse|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function domainsIdGet($id, string $contentType = self::contentTypes['domainsIdGet'][0])
     {
         list($response) = $this->domainsIdGetWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
     /**
-     * Operation domainsIdGetWithHttpInfo
+     * Operation domainsIdGetWithHttpInfo.
      *
      * Retrieve a domain by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['domainsIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['domainsIdGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Sedo\SedoTMP\Content\Model\DomainResponse|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function domainsIdGetWithHttpInfo($id, string $contentType = self::contentTypes['domainsIdGet'][0])
     {
@@ -461,25 +432,14 @@ class DomainsApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? (string) $e->getResponse()->getBody() : null);
             } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), null, null);
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Sedo\SedoTMP\Content\Model\DomainResponse',
@@ -500,19 +460,8 @@ class DomainsApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
+                throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
             }
 
             return $this->handleResponseWithDataType(
@@ -547,22 +496,22 @@ class DomainsApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
 
             throw $e;
         }
     }
 
     /**
-     * Operation domainsIdGetAsync
+     * Operation domainsIdGetAsync.
      *
      * Retrieve a domain by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['domainsIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['domainsIdGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function domainsIdGetAsync($id, string $contentType = self::contentTypes['domainsIdGet'][0])
     {
@@ -575,15 +524,16 @@ class DomainsApi
     }
 
     /**
-     * Operation domainsIdGetAsyncWithHttpInfo
+     * Operation domainsIdGetAsyncWithHttpInfo.
      *
      * Retrieve a domain by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['domainsIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['domainsIdGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function domainsIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['domainsIdGet'][0])
     {
@@ -594,11 +544,11 @@ class DomainsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                    if ('\SplFileObject' === $returnType) {
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
+                        if ('string' !== $returnType) {
                             $content = json_decode($content);
                         }
                     }
@@ -606,45 +556,33 @@ class DomainsApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
+                    throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, $exception->getRequest()->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
                 }
             );
     }
 
     /**
-     * Create request for operation 'domainsIdGet'
+     * Create request for operation 'domainsIdGet'.
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['domainsIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['domainsIdGet'] to see the possible values for this operation
+     *
+     * @return Request
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function domainsIdGetRequest($id, string $contentType = self::contentTypes['domainsIdGet'][0])
     {
-
         // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling domainsIdGet'
-            );
+        if (null === $id || (is_array($id) && 0 === count($id))) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling domainsIdGet');
         }
-
 
         $resourcePath = '/domains/{id}';
         $formParams = [];
@@ -653,20 +591,17 @@ class DomainsApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
-        if ($id !== null) {
+        if (null !== $id) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -680,15 +615,14 @@ class DomainsApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
+            } elseif (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
@@ -698,7 +632,7 @@ class DomainsApi
 
         // this endpoint requires Bearer (JWT) authentication (access token)
         if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = 'Bearer '.$this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -714,19 +648,21 @@ class DomainsApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
     }
 
     /**
-     * Create http client option
+     * Create http client option.
+     *
+     * @return array of http client options
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
      */
     protected function createHttpClientOption()
     {
@@ -734,7 +670,7 @@ class DomainsApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new \RuntimeException('Failed to open the debug file: '.$this->config->getDebugFile());
             }
         }
 
@@ -744,25 +680,17 @@ class DomainsApi
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,
-        ResponseInterface $response
+        ResponseInterface $response,
     ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
+        if ('\SplFileObject' === $dataType) {
+            $content = $response->getBody(); // stream goes to serializer
         } else {
             $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
+            if ('string' !== $dataType) {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                 } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                        $content
-                    );
+                    throw new ApiException(sprintf('Error JSON decoding server response (%s)', $request->getUri()), $response->getStatusCode(), $response->getHeaders(), $content);
                 }
             }
         }
@@ -770,13 +698,13 @@ class DomainsApi
         return [
             ObjectSerializer::deserialize($content, $dataType, []),
             $response->getStatusCode(),
-            $response->getHeaders()
+            $response->getHeaders(),
         ];
     }
 
     private function responseWithinRangeCode(
         string $rangeCode,
-        int $statusCode
+        int $statusCode,
     ): bool {
         $left = (int) ($rangeCode[0].'00');
         $right = (int) ($rangeCode[0].'99');

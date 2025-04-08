@@ -1,17 +1,19 @@
 <?php
+
 /**
- * S2sTikTokEventType
+ * S2sTikTokEventType.
  *
  * PHP version 8.1
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * platform-api
+ * platform-api.
  *
  * # Introduction and Process Overview  This API helps manage content campaigns, reporting and other parts of Sedo Traffic Monetization Platform  *Note: Please note that the API is still in development and some endpoints may not be available yet.*  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -27,21 +29,22 @@
  */
 
 namespace Sedo\SedoTMP\Platform\Model;
-use \Sedo\ObjectSerializer;
 
 /**
- * S2sTikTokEventType Class Doc Comment
+ * S2sTikTokEventType Class Doc Comment.
  *
  * @category Class
+ *
  * @description Following events are supported by TikTok Conversion API and can be used for search, click, and landing page events.
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 class S2sTikTokEventType
 {
     /**
-     * Possible values of this enum
+     * Possible values of this enum.
      */
     public const VIEW_CONTENT = 'ViewContent';
 
@@ -78,7 +81,8 @@ class S2sTikTokEventType
     public const SCHEDULE = 'Schedule';
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
+     *
      * @return string[]
      */
     public static function getAllowableEnumValues()
@@ -100,9 +104,7 @@ class S2sTikTokEventType
             self::SUBSCRIBE,
             self::CUSTOMIZE_PRODUCT,
             self::FIND_LOCATION,
-            self::SCHEDULE
+            self::SCHEDULE,
         ];
     }
 }
-
-

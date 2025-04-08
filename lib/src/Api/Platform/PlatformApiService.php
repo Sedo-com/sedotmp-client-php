@@ -15,15 +15,15 @@ class PlatformApiService implements PlatformApiServiceInterface
     private Configuration $config;
     private ContentCampaignsApi $contentCampaignsApi;
 
-    public function __construct(AuthenticatorInterface $authenticator, string $apiHost = null, ?Client $client = null)
+    public function __construct(AuthenticatorInterface $authenticator, ?string $apiHost = null, ?Client $client = null)
     {
         // Initialize configuration
         $this->config = new Configuration();
 
         if ($apiHost) {
             $this->config->setHost($apiHost);
-        } else if (isset($_ENV['API_HOST'])) {
-            $this->config->setHost($_ENV['API_HOST'] . '/platform/v1');
+        } elseif (isset($_ENV['API_HOST'])) {
+            $this->config->setHost($_ENV['API_HOST'].'/platform/v1');
         }
 
         // Set access token from authenticator
@@ -51,9 +51,7 @@ class PlatformApiService implements PlatformApiServiceInterface
     }
 
     /**
-     * Get the configuration object
-     *
-     * @return Configuration
+     * Get the configuration object.
      */
     public function getConfig(): Configuration
     {

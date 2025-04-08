@@ -1,16 +1,18 @@
 <?php
+
 /**
  * ContentCampaignsApi
- * PHP version 8.1
+ * PHP version 8.1.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * platform-api
+ * platform-api.
  *
  * # Introduction and Process Overview  This API helps manage content campaigns, reporting and other parts of Sedo Traffic Monetization Platform  *Note: Please note that the API is still in development and some endpoints may not be available yet.*  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -42,12 +44,13 @@ use Sedo\HeaderSelector;
 use Sedo\ObjectSerializer;
 
 /**
- * ContentCampaignsApi Class Doc Comment
+ * ContentCampaignsApi Class Doc Comment.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 class ContentCampaignsApi
 {
@@ -71,7 +74,7 @@ class ContentCampaignsApi
      */
     protected $hostIndex;
 
-    /** @var string[] $contentTypes **/
+    /** @var string[] * */
     public const contentTypes = [
         'contentCampaignsGet' => [
             'application/json',
@@ -94,16 +97,13 @@ class ContentCampaignsApi
     ];
 
     /**
-     * @param ClientInterface $client
-     * @param Configuration   $config
-     * @param HeaderSelector  $selector
-     * @param int             $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        int $hostIndex = 0
+        int $hostIndex = 0,
     ) {
         $this->client = $client ?: new Client();
         $this->config = $config ?: Configuration::getDefaultConfiguration();
@@ -112,7 +112,7 @@ class ContentCampaignsApi
     }
 
     /**
-     * Set the host index
+     * Set the host index.
      *
      * @param int $hostIndex Host index (required)
      */
@@ -122,7 +122,7 @@ class ContentCampaignsApi
     }
 
     /**
-     * Get the host index
+     * Get the host index.
      *
      * @return int Host index
      */
@@ -140,36 +140,39 @@ class ContentCampaignsApi
     }
 
     /**
-     * Operation contentCampaignsGet
+     * Operation contentCampaignsGet.
      *
      * Retrieve a list of content campaigns
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string|null $term Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string|null                                $term        Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
+     * @param string                                     $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse[]|\Sedo\SedoTMP\Platform\Model\Problem|\Sedo\SedoTMP\Platform\Model\Problem
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function contentCampaignsGet($page = null, $term = null, string $contentType = self::contentTypes['contentCampaignsGet'][0])
     {
         list($response) = $this->contentCampaignsGetWithHttpInfo($page, $term, $contentType);
+
         return $response;
     }
 
     /**
-     * Operation contentCampaignsGetWithHttpInfo
+     * Operation contentCampaignsGetWithHttpInfo.
      *
      * Retrieve a list of content campaigns
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string|null $term Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string|null                                $term        Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
+     * @param string                                     $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse[]|\Sedo\SedoTMP\Platform\Model\Problem|\Sedo\SedoTMP\Platform\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function contentCampaignsGetWithHttpInfo($page = null, $term = null, string $contentType = self::contentTypes['contentCampaignsGet'][0])
     {
@@ -180,25 +183,14 @@ class ContentCampaignsApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? (string) $e->getResponse()->getBody() : null);
             } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), null, null);
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Sedo\SedoTMP\Platform\Model\ContentCampaignResponse[]',
@@ -219,19 +211,8 @@ class ContentCampaignsApi
                     );
             }
 
-
-
             if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
+                throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
             }
 
             return $this->handleResponseWithDataType(
@@ -267,22 +248,22 @@ class ContentCampaignsApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
 
     /**
-     * Operation contentCampaignsGetAsync
+     * Operation contentCampaignsGetAsync.
      *
      * Retrieve a list of content campaigns
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string|null $term Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string|null                                $term        Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
+     * @param string                                     $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function contentCampaignsGetAsync($page = null, $term = null, string $contentType = self::contentTypes['contentCampaignsGet'][0])
     {
@@ -295,16 +276,17 @@ class ContentCampaignsApi
     }
 
     /**
-     * Operation contentCampaignsGetAsyncWithHttpInfo
+     * Operation contentCampaignsGetAsyncWithHttpInfo.
      *
      * Retrieve a list of content campaigns
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string|null $term Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string|null                                $term        Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
+     * @param string                                     $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function contentCampaignsGetAsyncWithHttpInfo($page = null, $term = null, string $contentType = self::contentTypes['contentCampaignsGet'][0])
     {
@@ -315,11 +297,11 @@ class ContentCampaignsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                    if ('\SplFileObject' === $returnType) {
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
+                        if ('string' !== $returnType) {
                             $content = json_decode($content);
                         }
                     }
@@ -327,42 +309,30 @@ class ContentCampaignsApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
+                    throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, $exception->getRequest()->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
                 }
             );
     }
 
     /**
-     * Create request for operation 'contentCampaignsGet'
+     * Create request for operation 'contentCampaignsGet'.
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string|null $term Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string|null                                $term        Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
+     * @param string                                     $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsGet'] to see the possible values for this operation
+     *
+     * @return Request
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function contentCampaignsGetRequest($page = null, $term = null, string $contentType = self::contentTypes['contentCampaignsGet'][0])
     {
-
-
-
-
         $resourcePath = '/content-campaigns';
         $formParams = [];
         $queryParams = [];
@@ -389,11 +359,8 @@ class ContentCampaignsApi
             false // required
         ) ?? []);
 
-
-
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -407,15 +374,14 @@ class ContentCampaignsApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
+            } elseif (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
@@ -425,7 +391,7 @@ class ContentCampaignsApi
 
         // this endpoint requires Bearer (JWT) authentication (access token)
         if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = 'Bearer '.$this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -441,43 +407,47 @@ class ContentCampaignsApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
     }
 
     /**
-     * Operation contentCampaignsIdGet
+     * Operation contentCampaignsIdGet.
      *
      * Retrieve a content campaign by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsIdGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse|\Sedo\SedoTMP\Platform\Model\Problem|\Sedo\SedoTMP\Platform\Model\Problem
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function contentCampaignsIdGet($id, string $contentType = self::contentTypes['contentCampaignsIdGet'][0])
     {
         list($response) = $this->contentCampaignsIdGetWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
     /**
-     * Operation contentCampaignsIdGetWithHttpInfo
+     * Operation contentCampaignsIdGetWithHttpInfo.
      *
      * Retrieve a content campaign by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsIdGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse|\Sedo\SedoTMP\Platform\Model\Problem|\Sedo\SedoTMP\Platform\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function contentCampaignsIdGetWithHttpInfo($id, string $contentType = self::contentTypes['contentCampaignsIdGet'][0])
     {
@@ -488,25 +458,14 @@ class ContentCampaignsApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? (string) $e->getResponse()->getBody() : null);
             } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), null, null);
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Sedo\SedoTMP\Platform\Model\ContentCampaignResponse',
@@ -527,19 +486,8 @@ class ContentCampaignsApi
                     );
             }
 
-
-
             if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
+                throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
             }
 
             return $this->handleResponseWithDataType(
@@ -575,21 +523,21 @@ class ContentCampaignsApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
 
     /**
-     * Operation contentCampaignsIdGetAsync
+     * Operation contentCampaignsIdGetAsync.
      *
      * Retrieve a content campaign by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsIdGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function contentCampaignsIdGetAsync($id, string $contentType = self::contentTypes['contentCampaignsIdGet'][0])
     {
@@ -602,15 +550,16 @@ class ContentCampaignsApi
     }
 
     /**
-     * Operation contentCampaignsIdGetAsyncWithHttpInfo
+     * Operation contentCampaignsIdGetAsyncWithHttpInfo.
      *
      * Retrieve a content campaign by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsIdGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function contentCampaignsIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['contentCampaignsIdGet'][0])
     {
@@ -621,11 +570,11 @@ class ContentCampaignsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                    if ('\SplFileObject' === $returnType) {
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
+                        if ('string' !== $returnType) {
                             $content = json_decode($content);
                         }
                     }
@@ -633,43 +582,32 @@ class ContentCampaignsApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
+                    throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, $exception->getRequest()->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
                 }
             );
     }
 
     /**
-     * Create request for operation 'contentCampaignsIdGet'
+     * Create request for operation 'contentCampaignsIdGet'.
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsIdGet'] to see the possible values for this operation
+     *
+     * @return Request
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function contentCampaignsIdGetRequest($id, string $contentType = self::contentTypes['contentCampaignsIdGet'][0])
     {
-
         // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling contentCampaignsIdGet'
-            );
+        if (null === $id || (is_array($id) && 0 === count($id))) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling contentCampaignsIdGet');
         }
         if (strlen($id) > 36) {
             throw new \InvalidArgumentException('invalid length for "$id" when calling ContentCampaignsApi.contentCampaignsIdGet, must be smaller than or equal to 36.');
@@ -678,7 +616,6 @@ class ContentCampaignsApi
             throw new \InvalidArgumentException('invalid length for "$id" when calling ContentCampaignsApi.contentCampaignsIdGet, must be bigger than or equal to 36.');
         }
 
-
         $resourcePath = '/content-campaigns/{id}';
         $formParams = [];
         $queryParams = [];
@@ -686,20 +623,17 @@ class ContentCampaignsApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
-        if ($id !== null) {
+        if (null !== $id) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -713,15 +647,14 @@ class ContentCampaignsApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
+            } elseif (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
@@ -731,7 +664,7 @@ class ContentCampaignsApi
 
         // this endpoint requires Bearer (JWT) authentication (access token)
         if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = 'Bearer '.$this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -747,43 +680,47 @@ class ContentCampaignsApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
     }
 
     /**
-     * Operation contentCampaignsPost
+     * Operation contentCampaignsPost.
      *
      * Create a new content campaign
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest contentCampaignsPostRequest (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsPost'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest contentCampaignsPostRequest (required)
+     * @param string                                                   $contentType                 The value for the Content-Type header. Check self::contentTypes['contentCampaignsPost'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse|\Sedo\SedoTMP\Platform\Model\Problem|\Sedo\SedoTMP\Platform\Model\Problem
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function contentCampaignsPost($contentCampaignsPostRequest, string $contentType = self::contentTypes['contentCampaignsPost'][0])
     {
         list($response) = $this->contentCampaignsPostWithHttpInfo($contentCampaignsPostRequest, $contentType);
+
         return $response;
     }
 
     /**
-     * Operation contentCampaignsPostWithHttpInfo
+     * Operation contentCampaignsPostWithHttpInfo.
      *
      * Create a new content campaign
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsPost'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest (required)
+     * @param string                                                   $contentType                 The value for the Content-Type header. Check self::contentTypes['contentCampaignsPost'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse|\Sedo\SedoTMP\Platform\Model\Problem|\Sedo\SedoTMP\Platform\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function contentCampaignsPostWithHttpInfo($contentCampaignsPostRequest, string $contentType = self::contentTypes['contentCampaignsPost'][0])
     {
@@ -794,25 +731,14 @@ class ContentCampaignsApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody()->getContents() : null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? (string) $e->getResponse()->getBody()->getContents() : null);
             } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), null, null);
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Sedo\SedoTMP\Platform\Model\ContentCampaignResponse',
@@ -833,19 +759,8 @@ class ContentCampaignsApi
                     );
             }
 
-
-
             if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
+                throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
             }
 
             return $this->handleResponseWithDataType(
@@ -881,21 +796,21 @@ class ContentCampaignsApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
 
     /**
-     * Operation contentCampaignsPostAsync
+     * Operation contentCampaignsPostAsync.
      *
      * Create a new content campaign
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsPost'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest (required)
+     * @param string                                                   $contentType                 The value for the Content-Type header. Check self::contentTypes['contentCampaignsPost'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function contentCampaignsPostAsync($contentCampaignsPostRequest, string $contentType = self::contentTypes['contentCampaignsPost'][0])
     {
@@ -908,15 +823,16 @@ class ContentCampaignsApi
     }
 
     /**
-     * Operation contentCampaignsPostAsyncWithHttpInfo
+     * Operation contentCampaignsPostAsyncWithHttpInfo.
      *
      * Create a new content campaign
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsPost'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest (required)
+     * @param string                                                   $contentType                 The value for the Content-Type header. Check self::contentTypes['contentCampaignsPost'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function contentCampaignsPostAsyncWithHttpInfo($contentCampaignsPostRequest, string $contentType = self::contentTypes['contentCampaignsPost'][0])
     {
@@ -927,11 +843,11 @@ class ContentCampaignsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                    if ('\SplFileObject' === $returnType) {
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
+                        if ('string' !== $returnType) {
                             $content = json_decode($content);
                         }
                     }
@@ -939,45 +855,33 @@ class ContentCampaignsApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
+                    throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, $exception->getRequest()->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
                 }
             );
     }
 
     /**
-     * Create request for operation 'contentCampaignsPost'
+     * Create request for operation 'contentCampaignsPost'.
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['contentCampaignsPost'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest (required)
+     * @param string                                                   $contentType                 The value for the Content-Type header. Check self::contentTypes['contentCampaignsPost'] to see the possible values for this operation
+     *
+     * @return Request
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function contentCampaignsPostRequest($contentCampaignsPostRequest, string $contentType = self::contentTypes['contentCampaignsPost'][0])
     {
-
         // verify the required parameter 'contentCampaignsPostRequest' is set
-        if ($contentCampaignsPostRequest === null || (is_array($contentCampaignsPostRequest) && count($contentCampaignsPostRequest) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $contentCampaignsPostRequest when calling contentCampaignsPost'
-            );
+        if (null === $contentCampaignsPostRequest || (is_array($contentCampaignsPostRequest) && 0 === count($contentCampaignsPostRequest))) {
+            throw new \InvalidArgumentException('Missing the required parameter $contentCampaignsPostRequest when calling contentCampaignsPost');
         }
-
 
         $resourcePath = '/content-campaigns';
         $formParams = [];
@@ -986,20 +890,16 @@ class ContentCampaignsApi
         $httpBody = '';
         $multipart = false;
 
-
-
-
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            ['application/json'],
             $contentType,
             $multipart
         );
 
         // for model (json/xml)
         if (isset($contentCampaignsPostRequest)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
+            if (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($contentCampaignsPostRequest));
             } else {
                 $httpBody = $contentCampaignsPostRequest;
@@ -1012,15 +912,14 @@ class ContentCampaignsApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
+            } elseif (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
@@ -1030,7 +929,7 @@ class ContentCampaignsApi
 
         // this endpoint requires Bearer (JWT) authentication (access token)
         if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = 'Bearer '.$this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1046,46 +945,52 @@ class ContentCampaignsApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
     }
 
     /**
-     * Operation trackedContentOrdersGet
+     * Operation trackedContentOrdersGet.
      *
      * Retrieve a list of tracked content orders
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string|null $term Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string|null                                $term        Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
+     * @param string                                     $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse[]|\Sedo\SedoTMP\Platform\Model\Problem|\Sedo\SedoTMP\Platform\Model\Problem
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     *
      * @deprecated
      */
     public function trackedContentOrdersGet($page = null, $term = null, string $contentType = self::contentTypes['trackedContentOrdersGet'][0])
     {
         list($response) = $this->trackedContentOrdersGetWithHttpInfo($page, $term, $contentType);
+
         return $response;
     }
 
     /**
-     * Operation trackedContentOrdersGetWithHttpInfo
+     * Operation trackedContentOrdersGetWithHttpInfo.
      *
      * Retrieve a list of tracked content orders
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string|null $term Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string|null                                $term        Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
+     * @param string                                     $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse[]|\Sedo\SedoTMP\Platform\Model\Problem|\Sedo\SedoTMP\Platform\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     *
      * @deprecated
      */
     public function trackedContentOrdersGetWithHttpInfo($page = null, $term = null, string $contentType = self::contentTypes['trackedContentOrdersGet'][0])
@@ -1097,25 +1002,14 @@ class ContentCampaignsApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? (string) $e->getResponse()->getBody() : null);
             } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), null, null);
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Sedo\SedoTMP\Platform\Model\ContentCampaignResponse[]',
@@ -1136,19 +1030,8 @@ class ContentCampaignsApi
                     );
             }
 
-
-
             if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
+                throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
             }
 
             return $this->handleResponseWithDataType(
@@ -1184,22 +1067,23 @@ class ContentCampaignsApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
 
     /**
-     * Operation trackedContentOrdersGetAsync
+     * Operation trackedContentOrdersGetAsync.
      *
      * Retrieve a list of tracked content orders
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string|null $term Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string|null                                $term        Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
+     * @param string                                     $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     *
      * @deprecated
      */
     public function trackedContentOrdersGetAsync($page = null, $term = null, string $contentType = self::contentTypes['trackedContentOrdersGet'][0])
@@ -1213,16 +1097,18 @@ class ContentCampaignsApi
     }
 
     /**
-     * Operation trackedContentOrdersGetAsyncWithHttpInfo
+     * Operation trackedContentOrdersGetAsyncWithHttpInfo.
      *
      * Retrieve a list of tracked content orders
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string|null $term Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string|null                                $term        Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
+     * @param string                                     $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     *
      * @deprecated
      */
     public function trackedContentOrdersGetAsyncWithHttpInfo($page = null, $term = null, string $contentType = self::contentTypes['trackedContentOrdersGet'][0])
@@ -1234,11 +1120,11 @@ class ContentCampaignsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                    if ('\SplFileObject' === $returnType) {
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
+                        if ('string' !== $returnType) {
                             $content = json_decode($content);
                         }
                     }
@@ -1246,43 +1132,32 @@ class ContentCampaignsApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
+                    throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, $exception->getRequest()->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
                 }
             );
     }
 
     /**
-     * Create request for operation 'trackedContentOrdersGet'
+     * Create request for operation 'trackedContentOrdersGet'.
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string|null $term Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string|null                                $term        Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
+     * @param string                                     $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersGet'] to see the possible values for this operation
+     *
+     * @return Request
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     *
      * @deprecated
      */
     public function trackedContentOrdersGetRequest($page = null, $term = null, string $contentType = self::contentTypes['trackedContentOrdersGet'][0])
     {
-
-
-
-
         $resourcePath = '/tracked-content-orders';
         $formParams = [];
         $queryParams = [];
@@ -1309,11 +1184,8 @@ class ContentCampaignsApi
             false // required
         ) ?? []);
 
-
-
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -1327,15 +1199,14 @@ class ContentCampaignsApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
+            } elseif (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
@@ -1345,7 +1216,7 @@ class ContentCampaignsApi
 
         // this endpoint requires Bearer (JWT) authentication (access token)
         if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = 'Bearer '.$this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1361,44 +1232,50 @@ class ContentCampaignsApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
     }
 
     /**
-     * Operation trackedContentOrdersIdGet
+     * Operation trackedContentOrdersIdGet.
      *
      * Retrieve a tracked content order by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersIdGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse|\Sedo\SedoTMP\Platform\Model\Problem|\Sedo\SedoTMP\Platform\Model\Problem
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     *
      * @deprecated
      */
     public function trackedContentOrdersIdGet($id, string $contentType = self::contentTypes['trackedContentOrdersIdGet'][0])
     {
         list($response) = $this->trackedContentOrdersIdGetWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
     /**
-     * Operation trackedContentOrdersIdGetWithHttpInfo
+     * Operation trackedContentOrdersIdGetWithHttpInfo.
      *
      * Retrieve a tracked content order by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersIdGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse|\Sedo\SedoTMP\Platform\Model\Problem|\Sedo\SedoTMP\Platform\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     *
      * @deprecated
      */
     public function trackedContentOrdersIdGetWithHttpInfo($id, string $contentType = self::contentTypes['trackedContentOrdersIdGet'][0])
@@ -1410,25 +1287,14 @@ class ContentCampaignsApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? (string) $e->getResponse()->getBody() : null);
             } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), null, null);
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Sedo\SedoTMP\Platform\Model\ContentCampaignResponse',
@@ -1449,19 +1315,8 @@ class ContentCampaignsApi
                     );
             }
 
-
-
             if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
+                throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
             }
 
             return $this->handleResponseWithDataType(
@@ -1497,21 +1352,22 @@ class ContentCampaignsApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
 
     /**
-     * Operation trackedContentOrdersIdGetAsync
+     * Operation trackedContentOrdersIdGetAsync.
      *
      * Retrieve a tracked content order by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersIdGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     *
      * @deprecated
      */
     public function trackedContentOrdersIdGetAsync($id, string $contentType = self::contentTypes['trackedContentOrdersIdGet'][0])
@@ -1525,15 +1381,17 @@ class ContentCampaignsApi
     }
 
     /**
-     * Operation trackedContentOrdersIdGetAsyncWithHttpInfo
+     * Operation trackedContentOrdersIdGetAsyncWithHttpInfo.
      *
      * Retrieve a tracked content order by its ID
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersIdGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     *
      * @deprecated
      */
     public function trackedContentOrdersIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['trackedContentOrdersIdGet'][0])
@@ -1545,11 +1403,11 @@ class ContentCampaignsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                    if ('\SplFileObject' === $returnType) {
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
+                        if ('string' !== $returnType) {
                             $content = json_decode($content);
                         }
                     }
@@ -1557,44 +1415,34 @@ class ContentCampaignsApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
+                    throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, $exception->getRequest()->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
                 }
             );
     }
 
     /**
-     * Create request for operation 'trackedContentOrdersIdGet'
+     * Create request for operation 'trackedContentOrdersIdGet'.
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersIdGet'] to see the possible values for this operation
+     *
+     * @return Request
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     *
      * @deprecated
      */
     public function trackedContentOrdersIdGetRequest($id, string $contentType = self::contentTypes['trackedContentOrdersIdGet'][0])
     {
-
         // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling trackedContentOrdersIdGet'
-            );
+        if (null === $id || (is_array($id) && 0 === count($id))) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling trackedContentOrdersIdGet');
         }
         if (strlen($id) > 36) {
             throw new \InvalidArgumentException('invalid length for "$id" when calling ContentCampaignsApi.trackedContentOrdersIdGet, must be smaller than or equal to 36.');
@@ -1603,7 +1451,6 @@ class ContentCampaignsApi
             throw new \InvalidArgumentException('invalid length for "$id" when calling ContentCampaignsApi.trackedContentOrdersIdGet, must be bigger than or equal to 36.');
         }
 
-
         $resourcePath = '/tracked-content-orders/{id}';
         $formParams = [];
         $queryParams = [];
@@ -1611,20 +1458,17 @@ class ContentCampaignsApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
-        if ($id !== null) {
+        if (null !== $id) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -1638,15 +1482,14 @@ class ContentCampaignsApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
+            } elseif (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
@@ -1656,7 +1499,7 @@ class ContentCampaignsApi
 
         // this endpoint requires Bearer (JWT) authentication (access token)
         if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = 'Bearer '.$this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1672,44 +1515,50 @@ class ContentCampaignsApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
     }
 
     /**
-     * Operation trackedContentOrdersPost
+     * Operation trackedContentOrdersPost.
      *
      * Create a new tracked content order
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest contentCampaignsPostRequest (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersPost'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest contentCampaignsPostRequest (required)
+     * @param string                                                   $contentType                 The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersPost'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse|\Sedo\SedoTMP\Platform\Model\Problem|\Sedo\SedoTMP\Platform\Model\Problem
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     *
      * @deprecated
      */
     public function trackedContentOrdersPost($contentCampaignsPostRequest, string $contentType = self::contentTypes['trackedContentOrdersPost'][0])
     {
         list($response) = $this->trackedContentOrdersPostWithHttpInfo($contentCampaignsPostRequest, $contentType);
+
         return $response;
     }
 
     /**
-     * Operation trackedContentOrdersPostWithHttpInfo
+     * Operation trackedContentOrdersPostWithHttpInfo.
      *
      * Create a new tracked content order
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersPost'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest (required)
+     * @param string                                                   $contentType                 The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersPost'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Sedo\SedoTMP\Platform\Model\ContentCampaignResponse|\Sedo\SedoTMP\Platform\Model\Problem|\Sedo\SedoTMP\Platform\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     *
      * @deprecated
      */
     public function trackedContentOrdersPostWithHttpInfo($contentCampaignsPostRequest, string $contentType = self::contentTypes['trackedContentOrdersPost'][0])
@@ -1721,25 +1570,14 @@ class ContentCampaignsApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? (string) $e->getResponse()->getBody() : null);
             } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), null, null);
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Sedo\SedoTMP\Platform\Model\ContentCampaignResponse',
@@ -1760,19 +1598,8 @@ class ContentCampaignsApi
                     );
             }
 
-
-
             if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
+                throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
             }
 
             return $this->handleResponseWithDataType(
@@ -1808,21 +1635,22 @@ class ContentCampaignsApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
 
     /**
-     * Operation trackedContentOrdersPostAsync
+     * Operation trackedContentOrdersPostAsync.
      *
      * Create a new tracked content order
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersPost'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest (required)
+     * @param string                                                   $contentType                 The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersPost'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     *
      * @deprecated
      */
     public function trackedContentOrdersPostAsync($contentCampaignsPostRequest, string $contentType = self::contentTypes['trackedContentOrdersPost'][0])
@@ -1836,15 +1664,17 @@ class ContentCampaignsApi
     }
 
     /**
-     * Operation trackedContentOrdersPostAsyncWithHttpInfo
+     * Operation trackedContentOrdersPostAsyncWithHttpInfo.
      *
      * Create a new tracked content order
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersPost'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest (required)
+     * @param string                                                   $contentType                 The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersPost'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     *
      * @deprecated
      */
     public function trackedContentOrdersPostAsyncWithHttpInfo($contentCampaignsPostRequest, string $contentType = self::contentTypes['trackedContentOrdersPost'][0])
@@ -1856,11 +1686,11 @@ class ContentCampaignsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                    if ('\SplFileObject' === $returnType) {
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
+                        if ('string' !== $returnType) {
                             $content = json_decode($content);
                         }
                     }
@@ -1868,46 +1698,35 @@ class ContentCampaignsApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
+                    throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, $exception->getRequest()->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
                 }
             );
     }
 
     /**
-     * Create request for operation 'trackedContentOrdersPost'
+     * Create request for operation 'trackedContentOrdersPost'.
      *
-     * @param  \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersPost'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest $contentCampaignsPostRequest (required)
+     * @param string                                                   $contentType                 The value for the Content-Type header. Check self::contentTypes['trackedContentOrdersPost'] to see the possible values for this operation
+     *
+     * @return Request
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     *
      * @deprecated
      */
     public function trackedContentOrdersPostRequest($contentCampaignsPostRequest, string $contentType = self::contentTypes['trackedContentOrdersPost'][0])
     {
-
         // verify the required parameter 'contentCampaignsPostRequest' is set
-        if ($contentCampaignsPostRequest === null || (is_array($contentCampaignsPostRequest) && count($contentCampaignsPostRequest) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $contentCampaignsPostRequest when calling trackedContentOrdersPost'
-            );
+        if (null === $contentCampaignsPostRequest || (is_array($contentCampaignsPostRequest) && 0 === count($contentCampaignsPostRequest))) {
+            throw new \InvalidArgumentException('Missing the required parameter $contentCampaignsPostRequest when calling trackedContentOrdersPost');
         }
-
 
         $resourcePath = '/tracked-content-orders';
         $formParams = [];
@@ -1916,20 +1735,16 @@ class ContentCampaignsApi
         $httpBody = '';
         $multipart = false;
 
-
-
-
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            ['application/json'],
             $contentType,
             $multipart
         );
 
         // for model (json/xml)
         if (isset($contentCampaignsPostRequest)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
+            if (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($contentCampaignsPostRequest));
             } else {
                 $httpBody = $contentCampaignsPostRequest;
@@ -1942,15 +1757,14 @@ class ContentCampaignsApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
+            } elseif (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
@@ -1960,7 +1774,7 @@ class ContentCampaignsApi
 
         // this endpoint requires Bearer (JWT) authentication (access token)
         if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = 'Bearer '.$this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1976,19 +1790,21 @@ class ContentCampaignsApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
     }
 
     /**
-     * Create http client option
+     * Create http client option.
+     *
+     * @return array of http client options
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
      */
     protected function createHttpClientOption()
     {
@@ -1996,7 +1812,7 @@ class ContentCampaignsApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new \RuntimeException('Failed to open the debug file: '.$this->config->getDebugFile());
             }
         }
 
@@ -2006,25 +1822,17 @@ class ContentCampaignsApi
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,
-        ResponseInterface $response
+        ResponseInterface $response,
     ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
+        if ('\SplFileObject' === $dataType) {
+            $content = $response->getBody(); // stream goes to serializer
         } else {
             $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
+            if ('string' !== $dataType) {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                 } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                        $content
-                    );
+                    throw new ApiException(sprintf('Error JSON decoding server response (%s)', $request->getUri()), $response->getStatusCode(), $response->getHeaders(), $content);
                 }
             }
         }
@@ -2032,13 +1840,13 @@ class ContentCampaignsApi
         return [
             ObjectSerializer::deserialize($content, $dataType, []),
             $response->getStatusCode(),
-            $response->getHeaders()
+            $response->getHeaders(),
         ];
     }
 
     private function responseWithinRangeCode(
         string $rangeCode,
-        int $statusCode
+        int $statusCode,
     ): bool {
         $left = (int) ($rangeCode[0].'00');
         $right = (int) ($rangeCode[0].'99');

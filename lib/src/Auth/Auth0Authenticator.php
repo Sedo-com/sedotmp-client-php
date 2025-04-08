@@ -15,7 +15,7 @@ class Auth0Authenticator implements AuthenticatorInterface
     private ?int $expiresAt = null;
     private Configuration $config;
 
-    public function __construct(Configuration $config, string $envPath = null)
+    public function __construct(Configuration $config, ?string $envPath = null)
     {
         $this->config = $config;
 
@@ -54,7 +54,7 @@ class Auth0Authenticator implements AuthenticatorInterface
 
     public function getAccessToken(): string
     {
-        if ($this->accessToken !== null && $this->expiresAt > time()) {
+        if (null !== $this->accessToken && $this->expiresAt > time()) {
             return $this->accessToken;
         }
 
@@ -70,12 +70,8 @@ class Auth0Authenticator implements AuthenticatorInterface
                 'audience' => $_ENV['AUTH0_AUDIENCE'],
             ]);
 
-            if ($response->getStatusCode() !== 200) {
-                throw new \RuntimeException(sprintf(
-                        'Invalid token response from Auth0 with status [%s]: %s',
-                        $response->getStatusCode(),
-                        $response->getBody()->__toString()
-                ));
+            if (200 !== $response->getStatusCode()) {
+                throw new \RuntimeException(sprintf('Invalid token response from Auth0 with status [%s]: %s', $response->getStatusCode(), $response->getBody()->__toString()));
             }
 
             // The response is a PSR-7 Response object, we need to decode the JSON body
@@ -96,16 +92,11 @@ class Auth0Authenticator implements AuthenticatorInterface
             $message = $e->getMessage();
             $domain = $_ENV['AUTH0_DOMAIN'] ?? 'unknown';
 
-            if (strpos($message, 'Unknown host') !== false) {
-                throw new \RuntimeException(sprintf(
-                    'Could not connect to Auth0 domain: %s. Please check your AUTH0_DOMAIN setting in the .env file and ensure it\'s correct. ' .
-                    'If you\'re using example values, you need to replace them with your actual Auth0 credentials.',
-                    $domain
-                ));
+            if (false !== strpos($message, 'Unknown host')) {
+                throw new \RuntimeException(sprintf('Could not connect to Auth0 domain: %s. Please check your AUTH0_DOMAIN setting in the .env file and ensure it\'s correct. If you\'re using example values, you need to replace them with your actual Auth0 credentials.', $domain));
             }
 
             throw new \RuntimeException(sprintf('Connection error to Auth0: %s', $message), 0, $e);
-
         } catch (\JsonException $e) {
             throw new \RuntimeException(sprintf('Failed to parse Auth0 response: %s', $e->getMessage()), 0, $e);
         }

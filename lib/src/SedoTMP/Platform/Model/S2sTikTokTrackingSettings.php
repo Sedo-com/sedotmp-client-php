@@ -1,17 +1,19 @@
 <?php
+
 /**
- * S2sTikTokTrackingSettings
+ * S2sTikTokTrackingSettings.
  *
  * PHP version 8.1
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * platform-api
+ * platform-api.
  *
  * # Introduction and Process Overview  This API helps manage content campaigns, reporting and other parts of Sedo Traffic Monetization Platform  *Note: Please note that the API is still in development and some endpoints may not be available yet.*  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -28,83 +30,87 @@
 
 namespace Sedo\SedoTMP\Platform\Model;
 
-use \ArrayAccess;
-use \Sedo\ObjectSerializer;
+use Sedo\ObjectSerializer;
 
 /**
- * S2sTikTokTrackingSettings Class Doc Comment
+ * S2sTikTokTrackingSettings Class Doc Comment.
  *
  * @category Class
+ *
  * @description Settings for tracking with TikTok traffic source.
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
+ *
  * @implements \ArrayAccess<string, mixed>
  */
-class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSerializable
+class S2sTikTokTrackingSettings implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $openAPIModelName = 'S2sTikTokTrackingSettings';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
     protected static $openAPITypes = [
         's2sTikTokToken' => 'string',
         's2sTikTokPixelId' => 'string',
         's2sTikTokLandingPageEvent' => '\Sedo\SedoTMP\Platform\Model\S2sTikTokEventType',
         's2sTikTokSearchEvent' => '\Sedo\SedoTMP\Platform\Model\S2sTikTokEventType',
         's2sTikTokClickEvent' => '\Sedo\SedoTMP\Platform\Model\S2sTikTokEventType',
-        'type' => 'string'
+        'type' => 'string',
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
+     * Array of property to format mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     *
+     * @phpstan-var array<string, string|null>
+     *
+     * @psalm-var array<string, string|null>
+     */
     protected static $openAPIFormats = [
         's2sTikTokToken' => null,
         's2sTikTokPixelId' => null,
         's2sTikTokLandingPageEvent' => null,
         's2sTikTokSearchEvent' => null,
         's2sTikTokClickEvent' => null,
-        'type' => null
+        'type' => null,
     ];
 
     /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
+     * Array of nullable properties. Used for (de)serialization.
+     *
+     * @var bool[]
+     */
     protected static array $openAPINullables = [
         's2sTikTokToken' => false,
         's2sTikTokPixelId' => false,
         's2sTikTokLandingPageEvent' => false,
         's2sTikTokSearchEvent' => false,
         's2sTikTokClickEvent' => false,
-        'type' => false
+        'type' => false,
     ];
 
     /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
+     * If a nullable field gets set to null, insert it here.
+     *
+     * @var bool[]
+     */
     protected array $openAPINullablesSetToNull = [];
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
+     * Array of property to type mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -114,7 +120,7 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Array of property to format mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -124,9 +130,7 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Array of nullable properties
-     *
-     * @return array
+     * Array of nullable properties.
      */
     protected static function openAPINullables(): array
     {
@@ -134,9 +138,9 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Array of nullable field names deliberately set to null
+     * Array of nullable field names deliberately set to null.
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -144,9 +148,9 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null
+     * Setter - Array of nullable field names deliberately set to null.
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -154,10 +158,7 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
+     * Checks if a property is nullable.
      */
     public static function isNullable(string $property): bool
     {
@@ -166,9 +167,6 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -177,7 +175,7 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @var string[]
      */
@@ -187,11 +185,11 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
         's2sTikTokLandingPageEvent' => 's2sTikTokLandingPageEvent',
         's2sTikTokSearchEvent' => 's2sTikTokSearchEvent',
         's2sTikTokClickEvent' => 's2sTikTokClickEvent',
-        'type' => 'type'
+        'type' => 'type',
     ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @var string[]
      */
@@ -201,11 +199,11 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
         's2sTikTokLandingPageEvent' => 'setS2sTikTokLandingPageEvent',
         's2sTikTokSearchEvent' => 'setS2sTikTokSearchEvent',
         's2sTikTokClickEvent' => 'setS2sTikTokClickEvent',
-        'type' => 'setType'
+        'type' => 'setType',
     ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @var string[]
      */
@@ -215,12 +213,12 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
         's2sTikTokLandingPageEvent' => 'getS2sTikTokLandingPageEvent',
         's2sTikTokSearchEvent' => 'getS2sTikTokSearchEvent',
         's2sTikTokClickEvent' => 'getS2sTikTokClickEvent',
-        'type' => 'getType'
+        'type' => 'getType',
     ];
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @return array
      */
@@ -230,7 +228,7 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @return array
      */
@@ -240,7 +238,7 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @return array
      */
@@ -259,19 +257,18 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
      *
      * @var mixed[]
      */
     protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     *                           initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -284,14 +281,10 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
+     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+     * $this->openAPINullablesSetToNull array.
+     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
@@ -310,32 +303,32 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if ($this->container['s2sTikTokToken'] === null) {
+        if (null === $this->container['s2sTikTokToken']) {
             $invalidProperties[] = "'s2sTikTokToken' can't be null";
         }
-        if ($this->container['s2sTikTokPixelId'] === null) {
+        if (null === $this->container['s2sTikTokPixelId']) {
             $invalidProperties[] = "'s2sTikTokPixelId' can't be null";
         }
-        if ($this->container['type'] === null) {
+        if (null === $this->container['type']) {
             $invalidProperties[] = "'type' can't be null";
         }
+
         return $invalidProperties;
     }
 
     /**
      * Validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-        return count($this->listInvalidProperties()) === 0;
+        return 0 === count($this->listInvalidProperties());
     }
 
-
     /**
-     * Gets s2sTikTokToken
+     * Gets s2sTikTokToken.
      *
      * @return string
      */
@@ -345,7 +338,7 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Sets s2sTikTokToken
+     * Sets s2sTikTokToken.
      *
      * @param string $s2sTikTokToken This is the API token required for authentication with the TikTok API. Ensure that you generate and securely store this token to facilitate server-to-server interactions.
      *
@@ -362,7 +355,7 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Gets s2sTikTokPixelId
+     * Gets s2sTikTokPixelId.
      *
      * @return string
      */
@@ -372,7 +365,7 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Sets s2sTikTokPixelId
+     * Sets s2sTikTokPixelId.
      *
      * @param string $s2sTikTokPixelId This is the Event Pixel ID obtained from the TikTok Tracking section. It is essential for tracking user interactions on your landing pages.  For generating your Pixel ID, refer to the following resources:   [Get Started with Pixel](https://ads.tiktok.com/help/article/get-started-pixel)   [Pixel Sharing in Business Center](https://ads.tiktok.com/help/article/pixel-sharing-business-center)  Note: Make sure to configure the appropriate permissions in your TikTok account for the pixel to function correctly.
      *
@@ -389,9 +382,9 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Gets s2sTikTokLandingPageEvent
+     * Gets s2sTikTokLandingPageEvent.
      *
-     * @return \Sedo\SedoTMP\Platform\Model\S2sTikTokEventType|null
+     * @return S2sTikTokEventType|null
      */
     public function getS2sTikTokLandingPageEvent()
     {
@@ -399,9 +392,9 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Sets s2sTikTokLandingPageEvent
+     * Sets s2sTikTokLandingPageEvent.
      *
-     * @param \Sedo\SedoTMP\Platform\Model\S2sTikTokEventType|null $s2sTikTokLandingPageEvent Event name for the Landing Visit event.
+     * @param S2sTikTokEventType|null $s2sTikTokLandingPageEvent event name for the Landing Visit event
      *
      * @return self
      */
@@ -416,9 +409,9 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Gets s2sTikTokSearchEvent
+     * Gets s2sTikTokSearchEvent.
      *
-     * @return \Sedo\SedoTMP\Platform\Model\S2sTikTokEventType|null
+     * @return S2sTikTokEventType|null
      */
     public function getS2sTikTokSearchEvent()
     {
@@ -426,9 +419,9 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Sets s2sTikTokSearchEvent
+     * Sets s2sTikTokSearchEvent.
      *
-     * @param \Sedo\SedoTMP\Platform\Model\S2sTikTokEventType|null $s2sTikTokSearchEvent Event name for the Search event. Can be used for tracking \"1st\" click
+     * @param S2sTikTokEventType|null $s2sTikTokSearchEvent Event name for the Search event. Can be used for tracking \"1st\" click
      *
      * @return self
      */
@@ -443,9 +436,9 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Gets s2sTikTokClickEvent
+     * Gets s2sTikTokClickEvent.
      *
-     * @return \Sedo\SedoTMP\Platform\Model\S2sTikTokEventType|null
+     * @return S2sTikTokEventType|null
      */
     public function getS2sTikTokClickEvent()
     {
@@ -453,9 +446,9 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Sets s2sTikTokClickEvent
+     * Sets s2sTikTokClickEvent.
      *
-     * @param \Sedo\SedoTMP\Platform\Model\S2sTikTokEventType|null $s2sTikTokClickEvent Event name for the Ad Click or \"2nd\" click event. Commonly used for conversion tracking
+     * @param S2sTikTokEventType|null $s2sTikTokClickEvent Event name for the Ad Click or \"2nd\" click event. Commonly used for conversion tracking
      *
      * @return self
      */
@@ -470,7 +463,7 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Gets type
+     * Gets type.
      *
      * @return string
      */
@@ -480,7 +473,7 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Sets type
+     * Sets type.
      *
      * @param string $type type
      *
@@ -495,12 +488,11 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer $offset Offset
-     *
-     * @return boolean
+     * @param int $offset Offset
      */
     public function offsetExists($offset): bool
     {
@@ -510,7 +502,7 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets offset.
      *
-     * @param integer $offset Offset
+     * @param int $offset Offset
      *
      * @return mixed|null
      */
@@ -525,8 +517,6 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
-     *
-     * @return void
      */
     public function offsetSet($offset, $value): void
     {
@@ -540,9 +530,7 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Unsets offset.
      *
-     * @param integer $offset Offset
-     *
-     * @return void
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -551,19 +539,20 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
 
     /**
      * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @see https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed returns data which can be serialized by json_encode(), which is a value
+     *               of any type other than a resource
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
      *
      * @return string
      */
@@ -576,7 +565,7 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Gets a header-safe presentation of the object
+     * Gets a header-safe presentation of the object.
      *
      * @return string
      */
@@ -585,5 +574,3 @@ class S2sTikTokTrackingSettings implements ModelInterface, ArrayAccess, \JsonSer
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

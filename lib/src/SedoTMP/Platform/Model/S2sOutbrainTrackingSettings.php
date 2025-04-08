@@ -1,17 +1,19 @@
 <?php
+
 /**
- * S2sOutbrainTrackingSettings
+ * S2sOutbrainTrackingSettings.
  *
  * PHP version 8.1
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * platform-api
+ * platform-api.
  *
  * # Introduction and Process Overview  This API helps manage content campaigns, reporting and other parts of Sedo Traffic Monetization Platform  *Note: Please note that the API is still in development and some endpoints may not be available yet.*  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -28,80 +30,84 @@
 
 namespace Sedo\SedoTMP\Platform\Model;
 
-use \ArrayAccess;
-use \Sedo\ObjectSerializer;
+use Sedo\ObjectSerializer;
 
 /**
- * S2sOutbrainTrackingSettings Class Doc Comment
+ * S2sOutbrainTrackingSettings Class Doc Comment.
  *
  * @category Class
+ *
  * @description Settings for tracking with Outbrain traffic source.  Follow the Outbrain guidelines to set up the Server-to-Server (S2S) Conversion in your Outbrain account [Outbrain S2S Conversion Setup](https://www.outbrain.com/help/advertisers/server2server-integrations/)
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
+ *
  * @implements \ArrayAccess<string, mixed>
  */
-class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonSerializable
+class S2sOutbrainTrackingSettings implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $openAPIModelName = 'S2sOutbrainTrackingSettings';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
     protected static $openAPITypes = [
         's2sOutbrainClickParam' => 'string',
         's2sOutbrainLandingPageEvent' => 'string',
         's2sOutbrainSearchEvent' => 'string',
         's2sOutbrainClickEvent' => 'string',
-        'type' => 'string'
+        'type' => 'string',
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
+     * Array of property to format mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     *
+     * @phpstan-var array<string, string|null>
+     *
+     * @psalm-var array<string, string|null>
+     */
     protected static $openAPIFormats = [
         's2sOutbrainClickParam' => null,
         's2sOutbrainLandingPageEvent' => null,
         's2sOutbrainSearchEvent' => null,
         's2sOutbrainClickEvent' => null,
-        'type' => null
+        'type' => null,
     ];
 
     /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
+     * Array of nullable properties. Used for (de)serialization.
+     *
+     * @var bool[]
+     */
     protected static array $openAPINullables = [
         's2sOutbrainClickParam' => false,
         's2sOutbrainLandingPageEvent' => false,
         's2sOutbrainSearchEvent' => false,
         's2sOutbrainClickEvent' => false,
-        'type' => false
+        'type' => false,
     ];
 
     /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
+     * If a nullable field gets set to null, insert it here.
+     *
+     * @var bool[]
+     */
     protected array $openAPINullablesSetToNull = [];
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
+     * Array of property to type mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -111,7 +117,7 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Array of property to format mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -121,9 +127,7 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Array of nullable properties
-     *
-     * @return array
+     * Array of nullable properties.
      */
     protected static function openAPINullables(): array
     {
@@ -131,9 +135,9 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Array of nullable field names deliberately set to null
+     * Array of nullable field names deliberately set to null.
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -141,9 +145,9 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null
+     * Setter - Array of nullable field names deliberately set to null.
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -151,10 +155,7 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
+     * Checks if a property is nullable.
      */
     public static function isNullable(string $property): bool
     {
@@ -163,9 +164,6 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -174,7 +172,7 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @var string[]
      */
@@ -183,11 +181,11 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
         's2sOutbrainLandingPageEvent' => 's2sOutbrainLandingPageEvent',
         's2sOutbrainSearchEvent' => 's2sOutbrainSearchEvent',
         's2sOutbrainClickEvent' => 's2sOutbrainClickEvent',
-        'type' => 'type'
+        'type' => 'type',
     ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @var string[]
      */
@@ -196,11 +194,11 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
         's2sOutbrainLandingPageEvent' => 'setS2sOutbrainLandingPageEvent',
         's2sOutbrainSearchEvent' => 'setS2sOutbrainSearchEvent',
         's2sOutbrainClickEvent' => 'setS2sOutbrainClickEvent',
-        'type' => 'setType'
+        'type' => 'setType',
     ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @var string[]
      */
@@ -209,12 +207,12 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
         's2sOutbrainLandingPageEvent' => 'getS2sOutbrainLandingPageEvent',
         's2sOutbrainSearchEvent' => 'getS2sOutbrainSearchEvent',
         's2sOutbrainClickEvent' => 'getS2sOutbrainClickEvent',
-        'type' => 'getType'
+        'type' => 'getType',
     ];
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @return array
      */
@@ -224,7 +222,7 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @return array
      */
@@ -234,7 +232,7 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @return array
      */
@@ -253,19 +251,18 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
         return self::$openAPIModelName;
     }
 
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
      *
      * @var mixed[]
      */
     protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     *                           initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -277,14 +274,10 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
+     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+     * $this->openAPINullablesSetToNull array.
+     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
@@ -303,29 +296,29 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     {
         $invalidProperties = [];
 
-        if ($this->container['s2sOutbrainClickParam'] === null) {
+        if (null === $this->container['s2sOutbrainClickParam']) {
             $invalidProperties[] = "'s2sOutbrainClickParam' can't be null";
         }
-        if ($this->container['type'] === null) {
+        if (null === $this->container['type']) {
             $invalidProperties[] = "'type' can't be null";
         }
+
         return $invalidProperties;
     }
 
     /**
      * Validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-        return count($this->listInvalidProperties()) === 0;
+        return 0 === count($this->listInvalidProperties());
     }
 
-
     /**
-     * Gets s2sOutbrainClickParam
+     * Gets s2sOutbrainClickParam.
      *
      * @return string
      */
@@ -335,7 +328,7 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Sets s2sOutbrainClickParam
+     * Sets s2sOutbrainClickParam.
      *
      * @param string $s2sOutbrainClickParam Follow the Outbrain guidelines to set up the Server-to-Server (S2S) Conversion in your Outbrain account: [Outbrain S2S Conversion Setup](https://www.outbrain.com/help/advertisers/server2server-integrations/)  This parameter is crucial for passing the Outbrain Click ID back to Outbrain, enabling effective tracking of your campaigns.  **Usage Instructions:**   1. When directing traffic to your RSoC articles, include the Outbrain Click ID in the URL using a parameter name of your choice.   2. Ensure that the parameter name in the URL aligns with the name configured in s2sObClickParam.  **Example:**  If your traffic URL is structured as follows: `https://your-rsoc-domain.com/?campaign=1234&ob_click_id=23o4ij23o` Then, you should set the value of s2sTblClickParam to `ob_click_id`. This alignment guarantees proper tracking and reporting of your campaigns with Outbrain.
      *
@@ -352,7 +345,7 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Gets s2sOutbrainLandingPageEvent
+     * Gets s2sOutbrainLandingPageEvent.
      *
      * @return string|null
      */
@@ -362,9 +355,9 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Sets s2sOutbrainLandingPageEvent
+     * Sets s2sOutbrainLandingPageEvent.
      *
-     * @param string|null $s2sOutbrainLandingPageEvent Event name for the Landing Visit event.
+     * @param string|null $s2sOutbrainLandingPageEvent event name for the Landing Visit event
      *
      * @return self
      */
@@ -379,7 +372,7 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Gets s2sOutbrainSearchEvent
+     * Gets s2sOutbrainSearchEvent.
      *
      * @return string|null
      */
@@ -389,7 +382,7 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Sets s2sOutbrainSearchEvent
+     * Sets s2sOutbrainSearchEvent.
      *
      * @param string|null $s2sOutbrainSearchEvent Event name for the Search event. Can be used for tracking \"1st\" click
      *
@@ -406,7 +399,7 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Gets s2sOutbrainClickEvent
+     * Gets s2sOutbrainClickEvent.
      *
      * @return string|null
      */
@@ -416,7 +409,7 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Sets s2sOutbrainClickEvent
+     * Sets s2sOutbrainClickEvent.
      *
      * @param string|null $s2sOutbrainClickEvent Event name for the Ad Click or \"2nd\" click event. Commonly used for conversion tracking
      *
@@ -433,7 +426,7 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Gets type
+     * Gets type.
      *
      * @return string
      */
@@ -443,7 +436,7 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Sets type
+     * Sets type.
      *
      * @param string $type type
      *
@@ -458,12 +451,11 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer $offset Offset
-     *
-     * @return boolean
+     * @param int $offset Offset
      */
     public function offsetExists($offset): bool
     {
@@ -473,7 +465,7 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets offset.
      *
-     * @param integer $offset Offset
+     * @param int $offset Offset
      *
      * @return mixed|null
      */
@@ -488,8 +480,6 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
-     *
-     * @return void
      */
     public function offsetSet($offset, $value): void
     {
@@ -503,9 +493,7 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Unsets offset.
      *
-     * @param integer $offset Offset
-     *
-     * @return void
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -514,19 +502,20 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
 
     /**
      * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @see https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed returns data which can be serialized by json_encode(), which is a value
+     *               of any type other than a resource
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
      *
      * @return string
      */
@@ -539,7 +528,7 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Gets a header-safe presentation of the object
+     * Gets a header-safe presentation of the object.
      *
      * @return string
      */
@@ -548,5 +537,3 @@ class S2sOutbrainTrackingSettings implements ModelInterface, ArrayAccess, \JsonS
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -6,10 +6,10 @@ use Sedo\SedoTMPClient;
 use Sedo\SedoTMP\Content\Model\CreateArticle;
 use Sedo\SedoTMP\Content\Model\CreateCategory;
 use Sedo\SedoTMP\Content\Model\Pageable;
-use Sedo\SedoTMP\Platform\Model\ContentcampaignsBody;
-use Sedo\SedoTMP\Platform\Model\CreateArticle as PlatformCreateArticle;
-use Sedo\SedoTMP\Platform\Model\CreateCampaign;
-use Sedo\SedoTMP\Platform\Model\ExistingArticle;
+use Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest;
+use Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequestArticle;
+use Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequestCampaign;
+use Sedo\SedoTMP\Platform\Model\ArticleDataFeaturedImage;
 
 /**
  * This example demonstrates a complete workflow:
@@ -92,26 +92,25 @@ try {
     // Step 4: Create a content campaign
     echo "\nStep 4: Creating a content campaign...\n";
     
-    // Use the article we just created
-    $existingArticle = new ExistingArticle();
-    $existingArticle->setType('existing');
-    $existingArticle->setId($newArticle->getId());
+    // Create an article reference for the campaign
+    $campaignArticle = new ContentCampaignsPostRequestArticle();
+    $campaignArticle->setType('ExistingArticle');
+    $campaignArticle->setArticleId($newArticle->getId());
     
     // Create a new campaign
-    $createCampaign = new CreateCampaign();
-    $createCampaign->setType('create');
+    $createCampaign = new ContentCampaignsPostRequestCampaign();
+    $createCampaign->setType('CreateCampaign');
     $createCampaign->setName("AI Web Development Campaign");
-    $createCampaign->setTargetUrl("https://example.com/ai-web-development");
     
     // Create the content campaign request body
-    $contentCampaign = new ContentcampaignsBody();
+    $contentCampaign = new ContentCampaignsPostRequest();
     $contentCampaign->setPublishDomainName($domain->getName());
-    $contentCampaign->setArticle($existingArticle);
+    $contentCampaign->setArticle($campaignArticle);
     $contentCampaign->setCampaign($createCampaign);
     
     $campaign = $client->platform()->createContentCampaign($contentCampaign);
     echo "Content campaign created with ID: " . $campaign->getId() . "\n";
-    echo "Initial status: " . $campaign->getStatus() . "\n";
+    echo "Initial status: " . $campaign->getStatus() . "\n"; // Status is now represented as an integer
     
     // Step 5: Monitor the campaign status
     echo "\nStep 5: Monitoring campaign status...\n";
@@ -130,12 +129,19 @@ try {
         $status = $campaign->getStatus();
         echo "Current status: " . $status . "\n";
         
-        if ($status === 'COMPLETED') {
+        if ($status === 1) { // COMPLETED status is represented as 1 in the updated API
             $completed = true;
             echo "Campaign completed successfully!\n";
-            echo "Tracking URL: " . $campaign->getTrackingUrl() . "\n";
-        } elseif ($status === 'PROCESSING_ERROR') {
-            echo "Campaign processing error: " . json_encode($campaign->getProcessingErrorDetails()) . "\n";
+            // Access tracking URL if available
+            if (method_exists($campaign, 'getTrackingUrl') && $campaign->getTrackingUrl()) {
+                echo "Tracking URL: " . $campaign->getTrackingUrl() . "\n";
+            }
+        } elseif ($status === 3) { // PROCESSING_ERROR status is represented as 3 in the updated API
+            echo "Campaign processing error\n";
+            // Access error details if available
+            if (method_exists($campaign, 'getProcessingErrorDetails') && $campaign->getProcessingErrorDetails()) {
+                echo "Details: " . json_encode($campaign->getProcessingErrorDetails()) . "\n";
+            }
             break;
         }
     }
@@ -144,11 +150,13 @@ try {
         echo "Campaign processing is taking longer than expected. Please check the status later using the campaign ID: " . $campaign->getId() . "\n";
     }
     
+} catch (\Sedo\ApiException $e) {
+    echo sprintf(
+        "Error: %s\nTrace: %s\n",
+        $e->getResponseBody(),
+        $e->getTraceAsString()
+    );
 } catch (\Exception $e) {
     echo "Error: " . $e->getMessage() . "\n";
-    
-    // If there's a response data available in the exception, print it
-    if (method_exists($e, 'getResponseData') && $e->getResponseData()) {
-        echo "Response data: " . json_encode($e->getResponseData(), JSON_PRETTY_PRINT) . "\n";
-    }
+    echo "Trace: " . $e->getTraceAsString() . "\n";
 }

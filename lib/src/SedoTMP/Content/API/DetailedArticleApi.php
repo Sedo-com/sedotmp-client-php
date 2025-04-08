@@ -1,16 +1,18 @@
 <?php
+
 /**
  * DetailedArticleApi
- * PHP version 8.1
+ * PHP version 8.1.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * content-api
+ * content-api.
  *
  * # Introduction and Process Overview  This API offers easy-to-use endpoints for managing articles on content sites using the Sedo Traffic Monetization Platform.  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -42,12 +44,13 @@ use Sedo\HeaderSelector;
 use Sedo\ObjectSerializer;
 
 /**
- * DetailedArticleApi Class Doc Comment
+ * DetailedArticleApi Class Doc Comment.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 class DetailedArticleApi
 {
@@ -71,7 +74,7 @@ class DetailedArticleApi
      */
     protected $hostIndex;
 
-    /** @var string[] $contentTypes **/
+    /** @var string[] * */
     public const contentTypes = [
         'detailedArticlesGet' => [
             'application/json',
@@ -82,16 +85,13 @@ class DetailedArticleApi
     ];
 
     /**
-     * @param ClientInterface $client
-     * @param Configuration   $config
-     * @param HeaderSelector  $selector
-     * @param int             $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        int $hostIndex = 0
+        int $hostIndex = 0,
     ) {
         $this->client = $client ?: new Client();
         $this->config = $config ?: Configuration::getDefaultConfiguration();
@@ -100,7 +100,7 @@ class DetailedArticleApi
     }
 
     /**
-     * Set the host index
+     * Set the host index.
      *
      * @param int $hostIndex Host index (required)
      */
@@ -110,7 +110,7 @@ class DetailedArticleApi
     }
 
     /**
-     * Get the host index
+     * Get the host index.
      *
      * @return int Host index
      */
@@ -128,36 +128,39 @@ class DetailedArticleApi
     }
 
     /**
-     * Operation detailedArticlesGet
+     * Operation detailedArticlesGet.
      *
      * List detailed-articles, compared to article this includes additionally published-article information
      *
-     * @param  \Sedo\SedoTMP\Content\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string|null $term Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string|null                               $term        Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
+     * @param string                                    $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \Sedo\SedoTMP\Content\Model\DetailedArticleResponse[]|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function detailedArticlesGet($page = null, $term = null, string $contentType = self::contentTypes['detailedArticlesGet'][0])
     {
         list($response) = $this->detailedArticlesGetWithHttpInfo($page, $term, $contentType);
+
         return $response;
     }
 
     /**
-     * Operation detailedArticlesGetWithHttpInfo
+     * Operation detailedArticlesGetWithHttpInfo.
      *
      * List detailed-articles, compared to article this includes additionally published-article information
      *
-     * @param  \Sedo\SedoTMP\Content\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string|null $term Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string|null                               $term        Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
+     * @param string                                    $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Sedo\SedoTMP\Content\Model\DetailedArticleResponse[]|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function detailedArticlesGetWithHttpInfo($page = null, $term = null, string $contentType = self::contentTypes['detailedArticlesGet'][0])
     {
@@ -168,25 +171,14 @@ class DetailedArticleApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? (string) $e->getResponse()->getBody() : null);
             } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), null, null);
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Sedo\SedoTMP\Content\Model\DetailedArticleResponse[]',
@@ -207,19 +199,8 @@ class DetailedArticleApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
+                throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
             }
 
             return $this->handleResponseWithDataType(
@@ -254,23 +235,23 @@ class DetailedArticleApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
 
             throw $e;
         }
     }
 
     /**
-     * Operation detailedArticlesGetAsync
+     * Operation detailedArticlesGetAsync.
      *
      * List detailed-articles, compared to article this includes additionally published-article information
      *
-     * @param  \Sedo\SedoTMP\Content\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string|null $term Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string|null                               $term        Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
+     * @param string                                    $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function detailedArticlesGetAsync($page = null, $term = null, string $contentType = self::contentTypes['detailedArticlesGet'][0])
     {
@@ -283,16 +264,17 @@ class DetailedArticleApi
     }
 
     /**
-     * Operation detailedArticlesGetAsyncWithHttpInfo
+     * Operation detailedArticlesGetAsyncWithHttpInfo.
      *
      * List detailed-articles, compared to article this includes additionally published-article information
      *
-     * @param  \Sedo\SedoTMP\Content\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string|null $term Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string|null                               $term        Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
+     * @param string                                    $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function detailedArticlesGetAsyncWithHttpInfo($page = null, $term = null, string $contentType = self::contentTypes['detailedArticlesGet'][0])
     {
@@ -303,11 +285,11 @@ class DetailedArticleApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                    if ('\SplFileObject' === $returnType) {
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
+                        if ('string' !== $returnType) {
                             $content = json_decode($content);
                         }
                     }
@@ -315,42 +297,30 @@ class DetailedArticleApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
+                    throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, $exception->getRequest()->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
                 }
             );
     }
 
     /**
-     * Create request for operation 'detailedArticlesGet'
+     * Create request for operation 'detailedArticlesGet'.
      *
-     * @param  \Sedo\SedoTMP\Content\Model\Pageable|null $page Pageable object (every key is a separate query parameter) (optional)
-     * @param  string|null $term Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesGet'] to see the possible values for this operation
+     * @param \Sedo\SedoTMP\Content\Model\Pageable|null $page        Pageable object (every key is a separate query parameter) (optional)
+     * @param string|null                               $term        Search term for matching against any text field e.g. ID, title, excerpt, text.. (optional)
+     * @param string                                    $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesGet'] to see the possible values for this operation
+     *
+     * @return Request
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function detailedArticlesGetRequest($page = null, $term = null, string $contentType = self::contentTypes['detailedArticlesGet'][0])
     {
-
-
-
-
         $resourcePath = '/detailed-articles';
         $formParams = [];
         $queryParams = [];
@@ -377,11 +347,8 @@ class DetailedArticleApi
             false // required
         ) ?? []);
 
-
-
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -395,15 +362,14 @@ class DetailedArticleApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
+            } elseif (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
@@ -413,7 +379,7 @@ class DetailedArticleApi
 
         // this endpoint requires Bearer (JWT) authentication (access token)
         if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = 'Bearer '.$this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -429,43 +395,47 @@ class DetailedArticleApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
     }
 
     /**
-     * Operation detailedArticlesIdGet
+     * Operation detailedArticlesIdGet.
      *
      * Retrieve an detailed-articles by its articleId, compared to article this includes additionally published-article information
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesIdGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \Sedo\SedoTMP\Content\Model\DetailedArticleResponse|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function detailedArticlesIdGet($id, string $contentType = self::contentTypes['detailedArticlesIdGet'][0])
     {
         list($response) = $this->detailedArticlesIdGetWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
     /**
-     * Operation detailedArticlesIdGetWithHttpInfo
+     * Operation detailedArticlesIdGetWithHttpInfo.
      *
      * Retrieve an detailed-articles by its articleId, compared to article this includes additionally published-article information
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesIdGet'] to see the possible values for this operation
      *
-     * @throws \Sedo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Sedo\SedoTMP\Content\Model\DetailedArticleResponse|\Sedo\SedoTMP\Content\Model\Problem|\Sedo\SedoTMP\Content\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     *
+     * @throws ApiException              on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function detailedArticlesIdGetWithHttpInfo($id, string $contentType = self::contentTypes['detailedArticlesIdGet'][0])
     {
@@ -476,25 +446,14 @@ class DetailedArticleApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? (string) $e->getResponse()->getBody() : null);
             } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", (int) $e->getCode(), null, null);
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Sedo\SedoTMP\Content\Model\DetailedArticleResponse',
@@ -515,19 +474,8 @@ class DetailedArticleApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
+                throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
             }
 
             return $this->handleResponseWithDataType(
@@ -562,22 +510,22 @@ class DetailedArticleApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
 
             throw $e;
         }
     }
 
     /**
-     * Operation detailedArticlesIdGetAsync
+     * Operation detailedArticlesIdGetAsync.
      *
      * Retrieve an detailed-articles by its articleId, compared to article this includes additionally published-article information
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesIdGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function detailedArticlesIdGetAsync($id, string $contentType = self::contentTypes['detailedArticlesIdGet'][0])
     {
@@ -590,15 +538,16 @@ class DetailedArticleApi
     }
 
     /**
-     * Operation detailedArticlesIdGetAsyncWithHttpInfo
+     * Operation detailedArticlesIdGetAsyncWithHttpInfo.
      *
      * Retrieve an detailed-articles by its articleId, compared to article this includes additionally published-article information
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesIdGet'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function detailedArticlesIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['detailedArticlesIdGet'][0])
     {
@@ -609,11 +558,11 @@ class DetailedArticleApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                    if ('\SplFileObject' === $returnType) {
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
+                        if ('string' !== $returnType) {
                             $content = json_decode($content);
                         }
                     }
@@ -621,45 +570,33 @@ class DetailedArticleApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
+                    throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, $exception->getRequest()->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
                 }
             );
     }
 
     /**
-     * Create request for operation 'detailedArticlesIdGet'
+     * Create request for operation 'detailedArticlesIdGet'.
      *
-     * @param  string $id Resource id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesIdGet'] to see the possible values for this operation
+     * @param string $id          Resource id (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['detailedArticlesIdGet'] to see the possible values for this operation
+     *
+     * @return Request
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function detailedArticlesIdGetRequest($id, string $contentType = self::contentTypes['detailedArticlesIdGet'][0])
     {
-
         // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling detailedArticlesIdGet'
-            );
+        if (null === $id || (is_array($id) && 0 === count($id))) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling detailedArticlesIdGet');
         }
-
 
         $resourcePath = '/detailed-articles/{id}';
         $formParams = [];
@@ -668,20 +605,17 @@ class DetailedArticleApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
-        if ($id !== null) {
+        if (null !== $id) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -695,15 +629,14 @@ class DetailedArticleApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
+            } elseif (false !== stripos($headers['Content-Type'], 'application/json')) {
+                // if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
@@ -713,7 +646,7 @@ class DetailedArticleApi
 
         // this endpoint requires Bearer (JWT) authentication (access token)
         if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = 'Bearer '.$this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -729,19 +662,21 @@ class DetailedArticleApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
     }
 
     /**
-     * Create http client option
+     * Create http client option.
+     *
+     * @return array of http client options
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
      */
     protected function createHttpClientOption()
     {
@@ -749,7 +684,7 @@ class DetailedArticleApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new \RuntimeException('Failed to open the debug file: '.$this->config->getDebugFile());
             }
         }
 
@@ -759,25 +694,17 @@ class DetailedArticleApi
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,
-        ResponseInterface $response
+        ResponseInterface $response,
     ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
+        if ('\SplFileObject' === $dataType) {
+            $content = $response->getBody(); // stream goes to serializer
         } else {
             $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
+            if ('string' !== $dataType) {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                 } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                        $content
-                    );
+                    throw new ApiException(sprintf('Error JSON decoding server response (%s)', $request->getUri()), $response->getStatusCode(), $response->getHeaders(), $content);
                 }
             }
         }
@@ -785,13 +712,13 @@ class DetailedArticleApi
         return [
             ObjectSerializer::deserialize($content, $dataType, []),
             $response->getStatusCode(),
-            $response->getHeaders()
+            $response->getHeaders(),
         ];
     }
 
     private function responseWithinRangeCode(
         string $rangeCode,
-        int $statusCode
+        int $statusCode,
     ): bool {
         $left = (int) ($rangeCode[0].'00');
         $right = (int) ($rangeCode[0].'99');

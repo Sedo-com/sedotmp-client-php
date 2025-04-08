@@ -1,17 +1,19 @@
 <?php
+
 /**
- * Postback
+ * Postback.
  *
  * PHP version 8.1
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * platform-api
+ * platform-api.
  *
  * # Introduction and Process Overview  This API helps manage content campaigns, reporting and other parts of Sedo Traffic Monetization Platform  *Note: Please note that the API is still in development and some endpoints may not be available yet.*  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -28,73 +30,76 @@
 
 namespace Sedo\SedoTMP\Platform\Model;
 
-use \ArrayAccess;
-use \Sedo\ObjectSerializer;
+use Sedo\ObjectSerializer;
 
 /**
- * Postback Class Doc Comment
+ * Postback Class Doc Comment.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
+ *
  * @implements \ArrayAccess<string, mixed>
  */
-class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
+class Postback implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $openAPIModelName = 'Postback';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
     protected static $openAPITypes = [
         'eventName' => 'string',
         'url' => 'string',
-        'clickIdParam' => 'string'
+        'clickIdParam' => 'string',
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
+     * Array of property to format mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     *
+     * @phpstan-var array<string, string|null>
+     *
+     * @psalm-var array<string, string|null>
+     */
     protected static $openAPIFormats = [
         'eventName' => null,
         'url' => null,
-        'clickIdParam' => null
+        'clickIdParam' => null,
     ];
 
     /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
+     * Array of nullable properties. Used for (de)serialization.
+     *
+     * @var bool[]
+     */
     protected static array $openAPINullables = [
         'eventName' => false,
         'url' => false,
-        'clickIdParam' => false
+        'clickIdParam' => false,
     ];
 
     /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
+     * If a nullable field gets set to null, insert it here.
+     *
+     * @var bool[]
+     */
     protected array $openAPINullablesSetToNull = [];
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
+     * Array of property to type mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -104,7 +109,7 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Array of property to format mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -114,9 +119,7 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of nullable properties
-     *
-     * @return array
+     * Array of nullable properties.
      */
     protected static function openAPINullables(): array
     {
@@ -124,9 +127,9 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of nullable field names deliberately set to null
+     * Array of nullable field names deliberately set to null.
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -134,9 +137,9 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null
+     * Setter - Array of nullable field names deliberately set to null.
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -144,10 +147,7 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
+     * Checks if a property is nullable.
      */
     public static function isNullable(string $property): bool
     {
@@ -156,9 +156,6 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -167,41 +164,41 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @var string[]
      */
     protected static $attributeMap = [
         'eventName' => 'eventName',
         'url' => 'url',
-        'clickIdParam' => 'clickIdParam'
+        'clickIdParam' => 'clickIdParam',
     ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @var string[]
      */
     protected static $setters = [
         'eventName' => 'setEventName',
         'url' => 'setUrl',
-        'clickIdParam' => 'setClickIdParam'
+        'clickIdParam' => 'setClickIdParam',
     ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @var string[]
      */
     protected static $getters = [
         'eventName' => 'getEventName',
         'url' => 'getUrl',
-        'clickIdParam' => 'getClickIdParam'
+        'clickIdParam' => 'getClickIdParam',
     ];
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @return array
      */
@@ -211,7 +208,7 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @return array
      */
@@ -221,7 +218,7 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @return array
      */
@@ -243,7 +240,7 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     public const EVENT_NAME_CLICK = 'CLICK';
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
      *
      * @return string[]
      */
@@ -255,17 +252,17 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
      *
      * @var mixed[]
      */
     protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     *                           initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -275,14 +272,10 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
+     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+     * $this->openAPINullablesSetToNull array.
+     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
@@ -301,7 +294,7 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['eventName'] === null) {
+        if (null === $this->container['eventName']) {
             $invalidProperties[] = "'eventName' can't be null";
         }
         $allowedValues = $this->getEventNameAllowableValues();
@@ -313,10 +306,10 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
-        if ($this->container['url'] === null) {
+        if (null === $this->container['url']) {
             $invalidProperties[] = "'url' can't be null";
         }
-        if ((mb_strlen($this->container['url']) < 1)) {
+        if (mb_strlen($this->container['url']) < 1) {
             $invalidProperties[] = "invalid value for 'url', the character length must be bigger than or equal to 1.";
         }
 
@@ -325,18 +318,17 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-        return count($this->listInvalidProperties()) === 0;
+        return 0 === count($this->listInvalidProperties());
     }
 
-
     /**
-     * Gets eventName
+     * Gets eventName.
      *
      * @return string
      */
@@ -346,7 +338,7 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets eventName
+     * Sets eventName.
      *
      * @param string $eventName The name of the event for which the postback URL will be called
      *
@@ -359,13 +351,7 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         $allowedValues = $this->getEventNameAllowableValues();
         if (!in_array($eventName, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'eventName', must be one of '%s'",
-                    $eventName,
-                    implode("', '", $allowedValues)
-                )
-            );
+            throw new \InvalidArgumentException(sprintf("Invalid value '%s' for 'eventName', must be one of '%s'", $eventName, implode("', '", $allowedValues)));
         }
         $this->container['eventName'] = $eventName;
 
@@ -373,7 +359,7 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets url
+     * Gets url.
      *
      * @return string
      */
@@ -383,7 +369,7 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets url
+     * Sets url.
      *
      * @param string $url Every click conversion is sent to this URL for accurate tracking and attribution. It should include the Click ID parameter you use when sending traffic to SedoTMP. URL will be called using HTTP GET.  ### Additional Tracking Macros You can dynamically append extra parameters to the postback URL using the following macros. This allows better tracking of conversions and payouts.  Macro            | Description  | Example -----------------|--------------|----------- {campaign}       | Campaign ID  | 12345 {click_id}       | Click ID for conversion tracking. Important: attach always the same parameter name to the traffic URL when sending traffic to SedoTMP. | abc123xyz {epayout}        | Estimated payout amount | 0.123 {country}        | 2-letter ISO country code | US {country_name}   | Full country name | United States {state}          | State code or name | CA / California {city}           | City name | Los Angeles {zip}            | ZIP/postal code | 90001 {os_type}        | Visitor's operating system | WINDOWS {browser}        | Visitor's browser type | CHROME {device_type}    | Device type (Mobile/Desktop) | MOBILE {device_brand}   | Device brand | APPLE
      *
@@ -395,7 +381,7 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable url cannot be null');
         }
 
-        if ((mb_strlen($url) < 1)) {
+        if (mb_strlen($url) < 1) {
             throw new \InvalidArgumentException('invalid length for $url when calling Postback., must be bigger than or equal to 1.');
         }
 
@@ -405,7 +391,7 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets clickIdParam
+     * Gets clickIdParam.
      *
      * @return string|null
      */
@@ -415,7 +401,7 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets clickIdParam
+     * Sets clickIdParam.
      *
      * @param string|null $clickIdParam Used to define a custom parameter name for passing your (or your traffic source) Click ID. This same parameter name must be included in the url when sending traffic to SedoTMP.
      *
@@ -430,12 +416,11 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer $offset Offset
-     *
-     * @return boolean
+     * @param int $offset Offset
      */
     public function offsetExists($offset): bool
     {
@@ -445,7 +430,7 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offset.
      *
-     * @param integer $offset Offset
+     * @param int $offset Offset
      *
      * @return mixed|null
      */
@@ -460,8 +445,6 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
-     *
-     * @return void
      */
     public function offsetSet($offset, $value): void
     {
@@ -475,9 +458,7 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Unsets offset.
      *
-     * @param integer $offset Offset
-     *
-     * @return void
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -486,19 +467,20 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @see https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed returns data which can be serialized by json_encode(), which is a value
+     *               of any type other than a resource
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
      *
      * @return string
      */
@@ -511,7 +493,7 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets a header-safe presentation of the object
+     * Gets a header-safe presentation of the object.
      *
      * @return string
      */
@@ -520,5 +502,3 @@ class Postback implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

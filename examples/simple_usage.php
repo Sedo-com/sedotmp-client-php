@@ -4,6 +4,9 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use Sedo\SedoTMPClient;
 use Sedo\SedoTMP\Content\Model\Pageable;
+use Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequest;
+use Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequestArticle;
+use Sedo\SedoTMP\Platform\Model\ContentCampaignsPostRequestCampaign;
 
 // Initialize the client with the path to the .env file
 $client = new SedoTMPClient(__DIR__ . '/../.env');
@@ -48,13 +51,23 @@ try {
         echo "Found " . count($campaigns) . " content campaigns.\n";
         
         if (count($campaigns) > 0) {
-            echo "Latest campaign status: " . $campaigns[0]->getStatus() . "\n";
+            echo "Latest campaign status: " . $campaigns[0]->getStatus() . " (Status is now represented as an integer)\n";
             if ($campaigns[0]->getTrackingUrl()) {
                 echo "Tracking URL: " . $campaigns[0]->getTrackingUrl() . "\n";
             }
         }
     }
     
+} catch (\Sedo\ApiException $e) {
+    echo sprintf(
+        "Error: %s\nTrace: %s\n",
+        $e->getResponseBody(),
+        $e->getTraceAsString()
+    );
 } catch (\Exception $e) {
-    echo "Error: " . $e->getMessage() . "\n";
+    echo sprintf(
+        "Error: %s\nTrace: %s\n",
+        $e->getMessage(),
+        $e->getTraceAsString()
+    );
 }

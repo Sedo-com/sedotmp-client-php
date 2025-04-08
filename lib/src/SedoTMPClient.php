@@ -22,12 +22,12 @@ class SedoTMPClient
     private string $apiHost;
 
     /**
-     * Create a new SedoTMP client
+     * Create a new SedoTMP client.
      *
-     * @param string|null $envPath Path to .env file (optional)
+     * @param string|null                 $envPath       Path to .env file (optional)
      * @param AuthenticatorInterface|null $authenticator Custom authenticator (optional)
      */
-    public function __construct(string $envPath = null, AuthenticatorInterface $authenticator = null)
+    public function __construct(?string $envPath = null, ?AuthenticatorInterface $authenticator = null)
     {
         // Load environment variables if path provided
         if ($envPath) {
@@ -59,8 +59,8 @@ class SedoTMPClient
         $client = $this->buildClient();
 
         // Initialize API services
-        $this->contentApi = new ContentApiService($this->authenticator, $this->apiHost . '/content/v1', $client);
-        $this->platformApi = new PlatformApiService($this->authenticator, $this->apiHost . '/platform/v1', $client);
+        $this->contentApi = new ContentApiService($this->authenticator, $this->apiHost.'/content/v1', $client);
+        $this->platformApi = new PlatformApiService($this->authenticator, $this->apiHost.'/platform/v1', $client);
     }
 
     private function buildClient(): Client
@@ -68,9 +68,9 @@ class SedoTMPClient
         $stack = HandlerStack::create();
 
         if (
-            class_exists(\Monolog\Logger::class) &&
-            class_exists(\Monolog\Handler\StreamHandler::class) &&
-            $this->authenticator->getConfig()->getDebug()
+            class_exists(\Monolog\Logger::class)
+            && class_exists(\Monolog\Handler\StreamHandler::class)
+            && $this->authenticator->getConfig()->getDebug()
         ) {
             $logger = new \Monolog\Logger('guzzleLogger');
             $logger->pushHandler(new \Monolog\Handler\StreamHandler(__DIR__.'../../../debug.log', \Monolog\Level::Debug));
@@ -87,9 +87,7 @@ class SedoTMPClient
     }
 
     /**
-     * Get the Content API service
-     *
-     * @return ContentApiServiceInterface
+     * Get the Content API service.
      */
     public function content(): ContentApiServiceInterface
     {
@@ -97,9 +95,7 @@ class SedoTMPClient
     }
 
     /**
-     * Get the Platform API service
-     *
-     * @return PlatformApiServiceInterface
+     * Get the Platform API service.
      */
     public function platform(): PlatformApiServiceInterface
     {
@@ -107,9 +103,7 @@ class SedoTMPClient
     }
 
     /**
-     * Get the authenticator
-     *
-     * @return AuthenticatorInterface
+     * Get the authenticator.
      */
     public function getAuthenticator(): AuthenticatorInterface
     {

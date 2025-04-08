@@ -1,17 +1,19 @@
 <?php
+
 /**
- * ArticleData
+ * ArticleData.
  *
  * PHP version 8.1
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 
 /**
- * platform-api
+ * platform-api.
  *
  * # Introduction and Process Overview  This API helps manage content campaigns, reporting and other parts of Sedo Traffic Monetization Platform  *Note: Please note that the API is still in development and some endpoints may not be available yet.*  # Authentication The API uses a modern OAuth authentication process to ensure security without sacrificing simplicity. To access the API, you need an access token. For more details on authentication, please refer to the [Introduction](/cms/docs-api/introduction) section.  <!-- ReDoc-Inject: <security-definitions> -->
  *
@@ -28,34 +30,35 @@
 
 namespace Sedo\SedoTMP\Platform\Model;
 
-use \ArrayAccess;
-use \Sedo\ObjectSerializer;
+use Sedo\ObjectSerializer;
 
 /**
- * ArticleData Class Doc Comment
+ * ArticleData Class Doc Comment.
  *
  * @category Class
- * @package  Sedo
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
+ *
  * @implements \ArrayAccess<string, mixed>
  */
-class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
+class ArticleData implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $openAPIModelName = 'ArticleData';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
     protected static $openAPITypes = [
         'country' => 'string',
         'locale' => 'string',
@@ -63,16 +66,18 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'string',
         'excerpt' => 'string',
         'topics' => 'string[]',
-        'categoryId' => 'string'
+        'categoryId' => 'string',
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
+     * Array of property to format mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     *
+     * @phpstan-var array<string, string|null>
+     *
+     * @psalm-var array<string, string|null>
+     */
     protected static $openAPIFormats = [
         'country' => 'iso-3166-alpha-2',
         'locale' => 'bcp47',
@@ -80,14 +85,14 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => null,
         'excerpt' => null,
         'topics' => null,
-        'categoryId' => 'uuid4'
+        'categoryId' => 'uuid4',
     ];
 
     /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
+     * Array of nullable properties. Used for (de)serialization.
+     *
+     * @var bool[]
+     */
     protected static array $openAPINullables = [
         'country' => false,
         'locale' => false,
@@ -95,18 +100,18 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => false,
         'excerpt' => false,
         'topics' => false,
-        'categoryId' => false
+        'categoryId' => false,
     ];
 
     /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
+     * If a nullable field gets set to null, insert it here.
+     *
+     * @var bool[]
+     */
     protected array $openAPINullablesSetToNull = [];
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
+     * Array of property to type mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -116,7 +121,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Array of property to format mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -126,9 +131,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of nullable properties
-     *
-     * @return array
+     * Array of nullable properties.
      */
     protected static function openAPINullables(): array
     {
@@ -136,9 +139,9 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of nullable field names deliberately set to null
+     * Array of nullable field names deliberately set to null.
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -146,9 +149,9 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null
+     * Setter - Array of nullable field names deliberately set to null.
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -156,10 +159,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
+     * Checks if a property is nullable.
      */
     public static function isNullable(string $property): bool
     {
@@ -168,9 +168,6 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -179,7 +176,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @var string[]
      */
@@ -190,11 +187,11 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'title',
         'excerpt' => 'excerpt',
         'topics' => 'topics',
-        'categoryId' => 'categoryId'
+        'categoryId' => 'categoryId',
     ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @var string[]
      */
@@ -205,11 +202,11 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'setTitle',
         'excerpt' => 'setExcerpt',
         'topics' => 'setTopics',
-        'categoryId' => 'setCategoryId'
+        'categoryId' => 'setCategoryId',
     ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @var string[]
      */
@@ -220,12 +217,12 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'getTitle',
         'excerpt' => 'getExcerpt',
         'topics' => 'getTopics',
-        'categoryId' => 'getCategoryId'
+        'categoryId' => 'getCategoryId',
     ];
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @return array
      */
@@ -235,7 +232,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @return array
      */
@@ -245,7 +242,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @return array
      */
@@ -264,19 +261,18 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
      *
      * @var mixed[]
      */
     protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     *                           initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -290,14 +286,10 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
+     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+     * $this->openAPINullablesSetToNull array.
+     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
@@ -333,18 +325,17 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-        return count($this->listInvalidProperties()) === 0;
+        return 0 === count($this->listInvalidProperties());
     }
 
-
     /**
-     * Gets country
+     * Gets country.
      *
      * @return string|null
      */
@@ -354,7 +345,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets country
+     * Sets country.
      *
      * @param string|null $country Audience country (ISO code)
      *
@@ -365,7 +356,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($country)) {
             throw new \InvalidArgumentException('non-nullable country cannot be null');
         }
-        if ((mb_strlen($country) > 2)) {
+        if (mb_strlen($country) > 2) {
             throw new \InvalidArgumentException('invalid length for $country when calling ArticleData., must be smaller than or equal to 2.');
         }
 
@@ -375,7 +366,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets locale
+     * Gets locale.
      *
      * @return string|null
      */
@@ -385,7 +376,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets locale
+     * Sets locale.
      *
      * @param string|null $locale Audience language (Language tag formatted)
      *
@@ -402,9 +393,9 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets featuredImage
+     * Gets featuredImage.
      *
-     * @return \Sedo\SedoTMP\Platform\Model\ArticleDataFeaturedImage|null
+     * @return ArticleDataFeaturedImage|null
      */
     public function getFeaturedImage()
     {
@@ -412,9 +403,9 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets featuredImage
+     * Sets featuredImage.
      *
-     * @param \Sedo\SedoTMP\Platform\Model\ArticleDataFeaturedImage|null $featuredImage featuredImage
+     * @param ArticleDataFeaturedImage|null $featuredImage featuredImage
      *
      * @return self
      */
@@ -429,7 +420,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets title
+     * Gets title.
      *
      * @return string|null
      */
@@ -439,7 +430,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets title
+     * Sets title.
      *
      * @param string|null $title title
      *
@@ -456,7 +447,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets excerpt
+     * Gets excerpt.
      *
      * @return string|null
      */
@@ -466,7 +457,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets excerpt
+     * Sets excerpt.
      *
      * @param string|null $excerpt excerpt
      *
@@ -483,7 +474,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets topics
+     * Gets topics.
      *
      * @return string[]|null
      */
@@ -493,7 +484,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets topics
+     * Sets topics.
      *
      * @param string[]|null $topics The topic to generate article about
      *
@@ -505,10 +496,10 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable topics cannot be null');
         }
 
-        if ((count($topics) > 3)) {
+        if (count($topics) > 3) {
             throw new \InvalidArgumentException('invalid value for $topics when calling ArticleData., number of items must be less than or equal to 3.');
         }
-        if ((count($topics) < 1)) {
+        if (count($topics) < 1) {
             throw new \InvalidArgumentException('invalid length for $topics when calling ArticleData., number of items must be greater than or equal to 1.');
         }
         $this->container['topics'] = $topics;
@@ -517,7 +508,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets categoryId
+     * Gets categoryId.
      *
      * @return string|null
      */
@@ -527,7 +518,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets categoryId
+     * Sets categoryId.
      *
      * @param string|null $categoryId Which category id does article belong to. List of available categories can be fetched from Content API categories endpoint.
      *
@@ -542,12 +533,11 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer $offset Offset
-     *
-     * @return boolean
+     * @param int $offset Offset
      */
     public function offsetExists($offset): bool
     {
@@ -557,7 +547,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offset.
      *
-     * @param integer $offset Offset
+     * @param int $offset Offset
      *
      * @return mixed|null
      */
@@ -572,8 +562,6 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
-     *
-     * @return void
      */
     public function offsetSet($offset, $value): void
     {
@@ -587,9 +575,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Unsets offset.
      *
-     * @param integer $offset Offset
-     *
-     * @return void
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -598,19 +584,20 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @see https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed returns data which can be serialized by json_encode(), which is a value
+     *               of any type other than a resource
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
      *
      * @return string
      */
@@ -623,7 +610,7 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets a header-safe presentation of the object
+     * Gets a header-safe presentation of the object.
      *
      * @return string
      */
@@ -632,5 +619,3 @@ class ArticleData implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

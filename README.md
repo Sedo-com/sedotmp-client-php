@@ -175,20 +175,7 @@ Check the `examples` directory for complete workflow examples:
 
 For generating the API/Model Classes to `lib/src/` we use [OpenAPITools/openapi-generator](https://github.com/OpenAPITools/openapi-generator)
 
-### Platform Models / API
+### Platform/Content Models / API
 ```
-	docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate \
-	-i /local/api-docs/platform-api.yaml \
-	-g php \
-	-o /local \
-	-c /local/swagger-platform.config.json
-```
-
-### Content Models / API
-```
-	docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate \
-	-i /local/api-docs/content-api.yaml \
-	-g php \
-	-o /local \
-	-c /local/swagger-content.config.json
+    make generate
 ```
