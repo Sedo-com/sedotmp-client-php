@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" stopOnFailure="false" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage processUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">././lib/api/Content/API</directory>
+      <directory suffix=".php">././lib/api/Content/Model</directory>
+      <directory suffix=".php">././lib/api/Platform/API</directory>
+      <directory suffix=".php">././lib/api/Platform/Model</directory>
+      <directory suffix=".php">././lib/src/Api</directory>
+      <directory suffix=".php">././lib/src/SedoTMP</directory>
+    </include>
+  </coverage>
+  <testsuites>
+    <testsuite name="api">
+      <directory>./test/Api</directory>
+    </testsuite>
+    <testsuite name="model">
+      <directory>./test/Model</directory>
+    </testsuite>
+    <testsuite name="service">
+      <directory>./test/Api/Content</directory>
+      <directory>./test/Api/Platform</directory>
+    </testsuite>
+  </testsuites>
+  <php>
+    <ini name="error_reporting" value="E_ALL"/>
+  </php>
+</phpunit>
