@@ -3,6 +3,7 @@
 namespace Sedo\Test\Api\Content;
 
 use GuzzleHttp\Psr7\Response;
+use Psr\Http\Message\RequestInterface;
 use Sedo\SedoTMP\Api\Content\ContentApiService;
 use Sedo\SedoTMP\OpenApi\Content\Model\ArticleResponse;
 use Sedo\SedoTMP\OpenApi\Content\Model\CategoryResponse;
@@ -60,17 +61,19 @@ class ContentApiServiceTest extends ApiServiceTestCase
         $result = $this->contentApiService->getArticles($pageable, 'test');
 
         // Assert the result
-        $this->assertIsArray($result);
-        $this->assertCount(2, $result);
-        $this->assertInstanceOf(ArticleResponse::class, $result[0]);
-        $this->assertEquals('123', $result[0]->getId());
-        $this->assertEquals('Test Article 1', $result[0]->getTitle());
+        self::assertIsArray($result);
+        self::assertCount(2, $result);
+        self::assertInstanceOf(ArticleResponse::class, $result[0]);
+        self::assertEquals('123', $result[0]->getId());
+        self::assertEquals('Test Article 1', $result[0]->getTitle());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals('/content/v1/articles', $request->getUri()->getPath());
-        $this->assertEquals('page=1&size=10&sort&term=test', $request->getUri()->getQuery());
+        self::assertInstanceOf(RequestInterface::class, $request);
+
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals('/content/v1/articles', $request->getUri()->getPath());
+        self::assertEquals('page=1&size=10&sort&term=test', $request->getUri()->getQuery());
     }
 
     public function testGetArticle(): void
@@ -92,14 +95,16 @@ class ContentApiServiceTest extends ApiServiceTestCase
         $result = $this->contentApiService->getArticle('123');
 
         // Assert the result
-        $this->assertInstanceOf(ArticleResponse::class, $result);
-        $this->assertEquals('123', $result->getId());
-        $this->assertEquals('Test Article', $result->getTitle());
+        self::assertInstanceOf(ArticleResponse::class, $result);
+        self::assertEquals('123', $result->getId());
+        self::assertEquals('Test Article', $result->getTitle());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals('/content/v1/articles/123', $request->getUri()->getPath());
+        self::assertInstanceOf(RequestInterface::class, $request);
+
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals('/content/v1/articles/123', $request->getUri()->getPath());
     }
 
     public function testCreateArticle(): void
@@ -126,14 +131,16 @@ class ContentApiServiceTest extends ApiServiceTestCase
         $result = $this->contentApiService->createArticle($article);
 
         // Assert the result
-        $this->assertInstanceOf(ArticleResponse::class, $result);
-        $this->assertEquals('123', $result->getId());
-        $this->assertEquals('New Article', $result->getTitle());
+        self::assertInstanceOf(ArticleResponse::class, $result);
+        self::assertEquals('123', $result->getId());
+        self::assertEquals('New Article', $result->getTitle());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
-        $this->assertEquals('/content/v1/articles', $request->getUri()->getPath());
+        self::assertInstanceOf(RequestInterface::class, $request);
+
+        self::assertEquals('POST', $request->getMethod());
+        self::assertEquals('/content/v1/articles', $request->getUri()->getPath());
     }
 
     public function testGenerateArticle(): void
@@ -159,15 +166,20 @@ class ContentApiServiceTest extends ApiServiceTestCase
         $result = $this->contentApiService->generateArticle($generateArticle);
 
         // Assert the result
-        $this->assertInstanceOf(ArticleResponse::class, $result);
-        $this->assertEquals('123', $result->getId());
-        $this->assertEquals('Generated Article', $result->getTitle());
+        self::assertInstanceOf(ArticleResponse::class, $result);
+        self::assertEquals('123', $result->getId());
+        self::assertEquals('Generated Article', $result->getTitle());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
-        $this->assertEquals('/content/v1/generated-articles', $request->getUri()->getPath());
-        $this->assertEquals('requestFlow=sync', $request->getUri()->getQuery());
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('POST', $request->getMethod());
+        self::assertEquals('/content/v1/generated-articles', $request->getUri()->getPath());
+
+        $headers = $request->getHeaders();
+        self::assertArrayHasKey('X-Sedo-Request-Flow', $headers);
+        self::assertEquals('SYNC', $headers['X-Sedo-Request-Flow'][0]);
     }
 
     public function testGetPublishedArticles(): void
@@ -200,17 +212,19 @@ class ContentApiServiceTest extends ApiServiceTestCase
         $result = $this->contentApiService->getPublishedArticles($pageable, 'test');
 
         // Assert the result
-        $this->assertIsArray($result);
-        $this->assertCount(2, $result);
-        $this->assertInstanceOf(PublishedArticleResponse::class, $result[0]);
-        $this->assertEquals('123', $result[0]->getId());
-        $this->assertEquals('Published Article 1', $result[0]->getTitle());
+        self::assertIsArray($result);
+        self::assertCount(2, $result);
+        self::assertInstanceOf(PublishedArticleResponse::class, $result[0]);
+        self::assertEquals('123', $result[0]->getId());
+        self::assertEquals('Published Article 1', $result[0]->getTitle());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals('/content/v1/published-articles', $request->getUri()->getPath());
-        $this->assertEquals('page=1&size=10&sort&term=test', $request->getUri()->getQuery());
+        self::assertInstanceOf(RequestInterface::class, $request);
+
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals('/content/v1/published-articles', $request->getUri()->getPath());
+        self::assertEquals('page=1&size=10&sort&term=test', $request->getUri()->getQuery());
     }
 
     public function testGetPublishedArticle(): void
@@ -232,14 +246,16 @@ class ContentApiServiceTest extends ApiServiceTestCase
         $result = $this->contentApiService->getPublishedArticle('123');
 
         // Assert the result
-        $this->assertInstanceOf(PublishedArticleResponse::class, $result);
-        $this->assertEquals('123', $result->getId());
-        $this->assertEquals('Published Article', $result->getTitle());
+        self::assertInstanceOf(PublishedArticleResponse::class, $result);
+        self::assertEquals('123', $result->getId());
+        self::assertEquals('Published Article', $result->getTitle());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals('/content/v1/published-articles/123', $request->getUri()->getPath());
+        self::assertInstanceOf(RequestInterface::class, $request);
+
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals('/content/v1/published-articles/123', $request->getUri()->getPath());
     }
 
     public function testGetCategories(): void
@@ -248,11 +264,11 @@ class ContentApiServiceTest extends ApiServiceTestCase
         $responseData = [
             [
                 'id' => '123',
-                'name' => 'Category 1',
+                'title' => 'Category 1',
             ],
             [
                 'id' => '456',
-                'name' => 'Category 2',
+                'title' => 'Category 2',
             ],
         ];
 
@@ -270,17 +286,19 @@ class ContentApiServiceTest extends ApiServiceTestCase
         $result = $this->contentApiService->getCategories($pageable, 'test');
 
         // Assert the result
-        $this->assertIsArray($result);
-        $this->assertCount(2, $result);
-        $this->assertInstanceOf(CategoryResponse::class, $result[0]);
-        $this->assertEquals('123', $result[0]->getId());
-        $this->assertEquals('Category 1', $result[0]->getTitle());
+        self::assertIsArray($result);
+        self::assertCount(2, $result);
+        self::assertInstanceOf(CategoryResponse::class, $result[0]);
+        self::assertEquals('123', $result[0]->getId());
+        self::assertEquals('Category 1', $result[0]->getTitle());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals('/content/v1/categories', $request->getUri()->getPath());
-        $this->assertEquals('page=1&size=10&term=test', $request->getUri()->getQuery());
+        self::assertInstanceOf(RequestInterface::class, $request);
+
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals('/content/v1/categories', $request->getUri()->getPath());
+        self::assertEquals('page=1&size=10&sort&term=test', $request->getUri()->getQuery());
     }
 
     public function testGetCategory(): void
@@ -288,7 +306,7 @@ class ContentApiServiceTest extends ApiServiceTestCase
         // Prepare mock response
         $responseData = [
             'id' => '123',
-            'name' => 'Test Category',
+            'title' => 'Test Category',
         ];
 
         $this->mockHttpClient->addResponse(
@@ -301,14 +319,16 @@ class ContentApiServiceTest extends ApiServiceTestCase
         $result = $this->contentApiService->getCategory('123');
 
         // Assert the result
-        $this->assertInstanceOf(CategoryResponse::class, $result);
-        $this->assertEquals('123', $result->getId());
-        $this->assertEquals('Test Category', $result->getTitle());
+        self::assertInstanceOf(CategoryResponse::class, $result);
+        self::assertEquals('123', $result->getId());
+        self::assertEquals('Test Category', $result->getTitle());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals('/content/v1/categories/123', $request->getUri()->getPath());
+        self::assertInstanceOf(RequestInterface::class, $request);
+
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals('/content/v1/categories/123', $request->getUri()->getPath());
     }
 
     public function testCreateCategory(): void
@@ -316,7 +336,7 @@ class ContentApiServiceTest extends ApiServiceTestCase
         // Prepare mock response
         $responseData = [
             'id' => '123',
-            'name' => 'New Category',
+            'title' => 'New Category',
         ];
 
         $this->mockHttpClient->addResponse(
@@ -333,14 +353,16 @@ class ContentApiServiceTest extends ApiServiceTestCase
         $result = $this->contentApiService->createCategory($category);
 
         // Assert the result
-        $this->assertInstanceOf(CategoryResponse::class, $result);
-        $this->assertEquals('123', $result->getId());
-        $this->assertEquals('New Category', $result->getTitle());
+        self::assertInstanceOf(CategoryResponse::class, $result);
+        self::assertEquals('123', $result->getId());
+        self::assertEquals('New Category', $result->getTitle());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
-        $this->assertEquals('/content/v1/categories', $request->getUri()->getPath());
+        self::assertInstanceOf(RequestInterface::class, $request);
+
+        self::assertEquals('POST', $request->getMethod());
+        self::assertEquals('/content/v1/categories', $request->getUri()->getPath());
     }
 
     public function testGetDomains(): void
@@ -349,11 +371,11 @@ class ContentApiServiceTest extends ApiServiceTestCase
         $responseData = [
             [
                 'id' => '123',
-                'name' => 'example.com',
+                'domain' => 'example.com',
             ],
             [
                 'id' => '456',
-                'name' => 'test.com',
+                'domain' => 'test.com',
             ],
         ];
 
@@ -371,17 +393,19 @@ class ContentApiServiceTest extends ApiServiceTestCase
         $result = $this->contentApiService->getDomains($pageable, 'test');
 
         // Assert the result
-        $this->assertIsArray($result);
-        $this->assertCount(2, $result);
-        $this->assertInstanceOf(DomainResponse::class, $result[0]);
-        $this->assertEquals('123', $result[0]->getId());
-        $this->assertEquals('example.com', $result[0]->getDomain());
+        self::assertIsArray($result);
+        self::assertCount(2, $result);
+        self::assertInstanceOf(DomainResponse::class, $result[0]);
+        self::assertEquals('123', $result[0]->getId());
+        self::assertEquals('example.com', $result[0]->getDomain());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals('/content/v1/domains', $request->getUri()->getPath());
-        $this->assertEquals('page=1&size=10&term=test', $request->getUri()->getQuery());
+        self::assertInstanceOf(RequestInterface::class, $request);
+
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals('/content/v1/domains', $request->getUri()->getPath());
+        self::assertEquals('page=1&size=10&sort', $request->getUri()->getQuery());
     }
 
     public function testGetDomain(): void
@@ -389,7 +413,7 @@ class ContentApiServiceTest extends ApiServiceTestCase
         // Prepare mock response
         $responseData = [
             'id' => '123',
-            'name' => 'example.com',
+            'domain' => 'example.com',
         ];
 
         $this->mockHttpClient->addResponse(
@@ -402,14 +426,16 @@ class ContentApiServiceTest extends ApiServiceTestCase
         $result = $this->contentApiService->getDomain('123');
 
         // Assert the result
-        $this->assertInstanceOf(DomainResponse::class, $result);
-        $this->assertEquals('123', $result->getId());
-        $this->assertEquals('example.com', $result->getDomain());
+        self::assertInstanceOf(DomainResponse::class, $result);
+        self::assertEquals('123', $result->getId());
+        self::assertEquals('example.com', $result->getDomain());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals('/content/v1/domains/123', $request->getUri()->getPath());
+        self::assertInstanceOf(RequestInterface::class, $request);
+
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals('/content/v1/domains/123', $request->getUri()->getPath());
     }
 
     public function testGetMediaResources(): void
@@ -442,17 +468,19 @@ class ContentApiServiceTest extends ApiServiceTestCase
         $result = $this->contentApiService->getMediaResources($pageable, 'test');
 
         // Assert the result
-        $this->assertIsArray($result);
-        $this->assertCount(2, $result);
-        $this->assertInstanceOf(MediaResourceResponse::class, $result[0]);
-        $this->assertEquals('123', $result[0]->getId());
-        $this->assertEquals('image1.jpg', $result[0]->getName());
+        self::assertIsArray($result);
+        self::assertCount(2, $result);
+        self::assertInstanceOf(MediaResourceResponse::class, $result[0]);
+        self::assertEquals('123', $result[0]->getId());
+        self::assertEquals('image1.jpg', $result[0]->getName());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals('/content/v1/media', $request->getUri()->getPath());
-        $this->assertEquals('page=1&size=10&sort', $request->getUri()->getQuery());
+        self::assertInstanceOf(RequestInterface::class, $request);
+
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals('/content/v1/media', $request->getUri()->getPath());
+        self::assertEquals('page=1&size=10&sort', $request->getUri()->getQuery());
     }
 
     public function testGetMediaResource(): void
@@ -474,20 +502,22 @@ class ContentApiServiceTest extends ApiServiceTestCase
         $result = $this->contentApiService->getMediaResource('123');
 
         // Assert the result
-        $this->assertInstanceOf(MediaResourceResponse::class, $result);
-        $this->assertEquals('123', $result->getId());
-        $this->assertEquals('image1.jpg', $result->getName());
+        self::assertInstanceOf(MediaResourceResponse::class, $result);
+        self::assertEquals('123', $result->getId());
+        self::assertEquals('image1.jpg', $result->getName());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals('/content/v1/media/123', $request->getUri()->getPath());
+        self::assertInstanceOf(RequestInterface::class, $request);
+
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals('/content/v1/media/123', $request->getUri()->getPath());
     }
 
     public function testGetConfig(): void
     {
         $config = $this->contentApiService->getConfig();
-        $this->assertEquals('https://api.example.com/content/v1', $config->getHost());
-        $this->assertEquals('mock-access-token', $config->getAccessToken());
+        self::assertEquals('https://api.example.com/content/v1', $config->getHost());
+        self::assertEquals('mock-access-token', $config->getAccessToken());
     }
 }

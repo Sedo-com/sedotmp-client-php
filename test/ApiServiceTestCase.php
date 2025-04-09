@@ -2,6 +2,7 @@
 
 namespace Sedo\Test;
 
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Sedo\SedoTMP\Auth\AuthenticatorInterface;
 use Sedo\SedoTMP\OpenApi\Configuration;
@@ -13,10 +14,7 @@ abstract class ApiServiceTestCase extends TestCase
 {
     protected MockHttpClient $mockHttpClient;
 
-    /**
-     * @var AuthenticatorInterface|\PHPUnit\Framework\MockObject\MockObject
-     */
-    protected $mockAuthenticator;
+    protected AuthenticatorInterface|MockObject $mockAuthenticator;
 
     protected Configuration $config;
 
@@ -43,12 +41,12 @@ abstract class ApiServiceTestCase extends TestCase
     /**
      * Create a JSON response body.
      *
-     * @param array $data Response data
+     * @param array<array-key, mixed> $data Response data
      *
      * @return string JSON encoded string
      */
     protected function createJsonResponse(array $data): string
     {
-        return json_encode($data, JSON_PRETTY_PRINT);
+        return json_encode($data, JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR);
     }
 }

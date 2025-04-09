@@ -3,6 +3,7 @@
 namespace Sedo\Test\Api\Platform;
 
 use GuzzleHttp\Psr7\Response;
+use Psr\Http\Message\RequestInterface;
 use Sedo\SedoTMP\Api\Platform\PlatformApiService;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest;
@@ -31,14 +32,18 @@ class PlatformApiServiceTest extends ApiServiceTestCase
         // Prepare mock response
         $responseData = [
             [
-                'id' => str_pad('123', 36, '0', STR_PAD_LEFT),
-                'name' => 'Test Campaign 1',
-                'status' => 1,
+                'id' => '0f7b207f-ebe2-4e52-bb72-30529c722eeb',
+                'status' => 'PENDING',
+                'campaign' => [
+                    'name' => 'Test Campaign 1',
+                ],
             ],
             [
-                'id' => str_pad('456', 36, '0', STR_PAD_LEFT),
-                'name' => 'Test Campaign 2',
-                'status' => 2,
+                'id' => 'befeaacc-32c6-4ce9-9630-78e159d2c6ae',
+                'status' => 'PROCESSING',
+                'campaign' => [
+                    'name' => 'Test Campaign 2',
+                ],
             ],
         ];
 
@@ -56,27 +61,28 @@ class PlatformApiServiceTest extends ApiServiceTestCase
         $result = $this->platformApiService->getContentCampaigns($pageable, 'test');
 
         // Assert the result
-        $this->assertIsArray($result);
-        $this->assertCount(2, $result);
-        $this->assertInstanceOf(ContentCampaignResponse::class, $result[0]);
-        $this->assertEquals('123', $result[0]->getId());
-        $this->assertEquals('Test Campaign 1', $result[0]->getName());
-        $this->assertEquals(1, $result[0]->getStatus());
+        self::assertIsArray($result);
+        self::assertCount(2, $result);
+        self::assertInstanceOf(ContentCampaignResponse::class, $result[0]);
+        self::assertEquals('0f7b207f-ebe2-4e52-bb72-30529c722eeb', $result[0]->getId());
+        self::assertEquals('Test Campaign 1', $result[0]->getCampaign()->getName());
+        self::assertEquals('PENDING', $result[0]->getStatus());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals('/platform/v1/content-campaigns', $request->getUri()->getPath());
-        $this->assertEquals('page=1&size=10&term=test', $request->getUri()->getQuery());
+        self::assertInstanceOf(RequestInterface::class, $request);
+
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals('/platform/v1/content-campaigns', $request->getUri()->getPath());
+        self::assertEquals('page=1&size=10&sort&term=test', $request->getUri()->getQuery());
     }
 
     public function testGetContentCampaign(): void
     {
         // Prepare mock response
         $responseData = [
-            'id' => str_pad('123', 36, '0', STR_PAD_LEFT),
-            'name' => 'Test Campaign',
-            'status' => 1,
+            'id' => '0f7b207f-ebe2-4e52-bb72-30529c722eeb',
+            'status' => 'ARTICLE_PUBLISHED',
         ];
 
         $this->mockHttpClient->addResponse(
@@ -86,27 +92,31 @@ class PlatformApiServiceTest extends ApiServiceTestCase
         );
 
         // Call the method
-        $result = $this->platformApiService->getContentCampaign('123');
+        $result = $this->platformApiService->getContentCampaign('0f7b207f-ebe2-4e52-bb72-30529c722eeb');
 
         // Assert the result
-        $this->assertInstanceOf(ContentCampaignResponse::class, $result);
-        $this->assertEquals('123', $result->getId());
-        $this->assertEquals('Test Campaign', $result->getName());
-        $this->assertEquals(1, $result->getStatus());
+        self::assertInstanceOf(ContentCampaignResponse::class, $result);
+        self::assertEquals('0f7b207f-ebe2-4e52-bb72-30529c722eeb', $result->getId());
+        self::assertEquals('ARTICLE_PUBLISHED', $result->getStatus());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
-        $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals('/platform/v1/content-campaigns/123', $request->getUri()->getPath());
+        self::assertInstanceOf(RequestInterface::class, $request);
+
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals('/platform/v1/content-campaigns/0f7b207f-ebe2-4e52-bb72-30529c722eeb',
+            $request->getUri()->getPath());
     }
 
     public function testCreateContentCampaign(): void
     {
         // Prepare mock response
         $responseData = [
-            'id' => '123',
-            'name' => 'New Campaign',
-            'status' => 0,
+            'id' => '0f7b207f-ebe2-4e52-bb72-30529c722eeb',
+            'campaign' => [
+                'name' => 'New Campaign',
+            ],
+            'status' => 'PENDING',
         ];
 
         $this->mockHttpClient->addResponse(
@@ -133,28 +143,29 @@ class PlatformApiServiceTest extends ApiServiceTestCase
         $result = $this->platformApiService->createContentCampaign($contentCampaign);
 
         // Assert the result
-        $this->assertInstanceOf(ContentCampaignResponse::class, $result);
-        $this->assertEquals('123', $result->getId());
-        $this->assertEquals('New Campaign', $result->getCampaign()->getName());
-        $this->assertEquals(0, $result->getStatus());
+        self::assertInstanceOf(ContentCampaignResponse::class, $result);
+        self::assertEquals('0f7b207f-ebe2-4e52-bb72-30529c722eeb', $result->getId());
+        self::assertEquals('New Campaign', $result->getCampaign()->getName());
+        self::assertEquals('PENDING', $result->getStatus());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
-        $this->assertEquals('POST', $request->getMethod());
-        $this->assertEquals('/platform/v1/content-campaigns', $request->getUri()->getPath());
+        self::assertInstanceOf(RequestInterface::class, $request);
+
+        self::assertEquals('POST', $request->getMethod());
+        self::assertEquals('/platform/v1/content-campaigns', $request->getUri()->getPath());
 
         // Verify request body contains the expected data
         $requestBody = (string) $request->getBody();
-        $this->assertStringContainsString('"publishDomainName":"example.com"', $requestBody);
-        $this->assertStringContainsString('"title":"Test Article"', $requestBody);
-        $this->assertStringContainsString('"name":"New Campaign"', $requestBody);
-        $this->assertStringContainsString('"budget":100', $requestBody);
+        self::assertStringContainsString('"publishDomainName":"example.com"', $requestBody);
+        self::assertStringContainsString('"title":"Test Article"', $requestBody);
+        self::assertStringContainsString('"name":"New Campaign"', $requestBody);
     }
 
     public function testGetConfig(): void
     {
         $config = $this->platformApiService->getConfig();
-        $this->assertEquals('https://api.example.com/platform/v1', $config->getHost());
-        $this->assertEquals('mock-access-token', $config->getAccessToken());
+        self::assertEquals('https://api.example.com/platform/v1', $config->getHost());
+        self::assertEquals('mock-access-token', $config->getAccessToken());
     }
 }

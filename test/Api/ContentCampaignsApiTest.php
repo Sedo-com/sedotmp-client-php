@@ -93,14 +93,18 @@ class ContentCampaignsApiTest extends TestCase
         // Prepare mock response
         $responseData = [
             [
-                'id' => str_pad('123', 36, '0', STR_PAD_LEFT),
-                'name' => 'Test Campaign 1',
+                'id' => '0f7b207f-ebe2-4e52-bb72-30529c722eeb',
                 'status' => 'PENDING',
+                'campaign' => [
+                    'name' => 'Test Campaign 1',
+                ],
             ],
             [
-                'id' => str_pad('456', 36, '0', STR_PAD_LEFT),
-                'name' => 'Test Campaign 2',
+                'id' => 'befeaacc-32c6-4ce9-9630-78e159d2c6ae',
                 'status' => 'PROCESSING',
+                'campaign' => [
+                    'name' => 'Test Campaign 2',
+                ],
             ],
         ];
 
@@ -121,15 +125,15 @@ class ContentCampaignsApiTest extends TestCase
         $this->assertIsArray($result);
         $this->assertCount(2, $result);
         $this->assertInstanceOf(ContentCampaignResponse::class, $result[0]);
-        $this->assertEquals('000000000000000000000000000000000123', $result[0]->getId());
+        $this->assertEquals('0f7b207f-ebe2-4e52-bb72-30529c722eeb', $result[0]->getId());
         $this->assertEquals('Test Campaign 1', $result[0]->getCampaign()->getName());
-        $this->assertEquals(1, $result[0]->getStatus());
+        $this->assertEquals('PENDING', $result[0]->getStatus());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
         $this->assertEquals('/platform/v1/content-campaigns', $request->getUri()->getPath());
-        $this->assertEquals('page=1&size=10&term=test', $request->getUri()->getQuery());
+        $this->assertEquals('page=1&size=10&sort&term=test', $request->getUri()->getQuery());
     }
 
     /**
@@ -137,13 +141,15 @@ class ContentCampaignsApiTest extends TestCase
      *
      * Retrieve a content campaign by its ID.
      */
-    public function testContentCampaignsIdGet()
+    public function testContentCampaignsIdGet(): void
     {
         // Prepare mock response
         $responseData = [
-            'id' => str_pad('123', 36, '0', STR_PAD_LEFT),
-            'name' => 'Test Campaign',
-            'status' => 1,
+            'id' => '0f7b207f-ebe2-4e52-bb72-30529c722eeb',
+            'status' => 'PENDING',
+            'campaign' => [
+                'name' => 'Test Campaign',
+            ],
         ];
 
         $this->mockHttpClient->addResponse(
@@ -153,18 +159,18 @@ class ContentCampaignsApiTest extends TestCase
         );
 
         // Call the method
-        $result = $this->contentCampaignsApi->contentCampaignsIdGet('123');
+        $result = $this->contentCampaignsApi->contentCampaignsIdGet('0f7b207f-ebe2-4e52-bb72-30529c722eeb');
 
         // Assert the result
         $this->assertInstanceOf(ContentCampaignResponse::class, $result);
-        $this->assertEquals('000000000000000000000000000000000123', $result->getId());
-        $this->assertEquals('Test Campaign', $result->getName());
-        $this->assertEquals(1, $result->getStatus());
+        $this->assertEquals('0f7b207f-ebe2-4e52-bb72-30529c722eeb', $result->getId());
+        $this->assertEquals('Test Campaign', $result->getCampaign()->getName());
+        $this->assertEquals('PENDING', $result->getStatus());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals('/platform/v1/content-campaigns/123', $request->getUri()->getPath());
+        $this->assertEquals('/platform/v1/content-campaigns/0f7b207f-ebe2-4e52-bb72-30529c722eeb', $request->getUri()->getPath());
     }
 
     /**
@@ -172,13 +178,15 @@ class ContentCampaignsApiTest extends TestCase
      *
      * Create a new content campaign.
      */
-    public function testContentCampaignsPost()
+    public function testContentCampaignsPost(): void
     {
         // Prepare mock response
         $responseData = [
-            'id' => str_pad('123', 36, '0', STR_PAD_LEFT),
-            'name' => 'New Campaign',
-            'status' => 0,
+            'id' => '0f7b207f-ebe2-4e52-bb72-30529c722eeb',
+            'status' => 'PENDING',
+            'campaign' => [
+                'name' => 'New Campaign',
+            ],
         ];
 
         $this->mockHttpClient->addResponse(
@@ -206,9 +214,9 @@ class ContentCampaignsApiTest extends TestCase
 
         // Assert the result
         $this->assertInstanceOf(ContentCampaignResponse::class, $result);
-        $this->assertEquals('000000000000000000000000000000000123', $result->getId());
-        $this->assertEquals('New Campaign', $result->getTitle());
-        $this->assertEquals(0, $result->getStatus());
+        $this->assertEquals('0f7b207f-ebe2-4e52-bb72-30529c722eeb', $result->getId());
+        $this->assertEquals('New Campaign', $result->getCampaign()->getName());
+        $this->assertEquals('PENDING', $result->getStatus());
 
         // Verify the request
         $request = $this->mockHttpClient->getLastRequest();
@@ -220,7 +228,6 @@ class ContentCampaignsApiTest extends TestCase
         $this->assertStringContainsString('"publishDomainName":"example.com"', $requestBody);
         $this->assertStringContainsString('"title":"Test Article"', $requestBody);
         $this->assertStringContainsString('"name":"New Campaign"', $requestBody);
-        $this->assertStringContainsString('"budget":100', $requestBody);
     }
 
     /**

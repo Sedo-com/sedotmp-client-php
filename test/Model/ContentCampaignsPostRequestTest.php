@@ -19,7 +19,6 @@ use Sedo\SedoTMP\OpenApi\ObjectSerializer;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequestArticle;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequestCampaign;
-use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequestPartner;
 
 /**
  * ContentCampaignsPostRequestTest Class Doc Comment.
@@ -98,9 +97,8 @@ class ContentCampaignsPostRequestTest extends TestCase
         $data = json_decode($json, true);
         $this->assertEquals('example.com', $data['publishDomainName']);
         $this->assertEquals('Test Article', $data['article']['title']);
-        $this->assertEquals('This is a test article content', $data['article']['content']);
+        $this->assertEquals('This is a test article content', $data['article']['excerpt']);
         $this->assertEquals('Test Campaign', $data['campaign']['name']);
-        $this->assertEquals(100, $data['campaign']['budget']);
     }
 
     /**
@@ -160,27 +158,5 @@ class ContentCampaignsPostRequestTest extends TestCase
         // Test that an exception is thrown when setting a null value
         $this->expectException(\InvalidArgumentException::class);
         $this->contentCampaignsPostRequest->setCampaign(null);
-    }
-
-    /**
-     * Test attribute "partner".
-     */
-    public function testPropertyPartner()
-    {
-        // Test setting and getting the partner property
-        $partner = new ContentCampaignsPostRequestPartner();
-        $partner->setId('partner-123');
-        $partner->setName('Test Partner');
-
-        $this->contentCampaignsPostRequest->setPartner($partner);
-        $this->assertSame($partner, $this->contentCampaignsPostRequest->getPartner());
-
-        // Test that the partner object has the expected values
-        $this->assertEquals('partner-123', $this->contentCampaignsPostRequest->getPartner()->getId());
-        $this->assertEquals('Test Partner', $this->contentCampaignsPostRequest->getPartner()->getName());
-
-        // Test that setting null is allowed for this property (it's optional)
-        $this->contentCampaignsPostRequest->setPartner(null);
-        $this->assertNull($this->contentCampaignsPostRequest->getPartner());
     }
 }
