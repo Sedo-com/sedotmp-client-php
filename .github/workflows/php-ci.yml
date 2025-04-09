@@ -43,7 +43,7 @@ jobs:
       run: vendor/bin/php-cs-fixer fix --dry-run --diff
 
     - name: Run PHPStan
-      run: vendor/bin/phpstan analyse lib test --level=5
+      run: vendor/bin/phpstan analyse -c phpstan.neon
 
     - name: Run test suite
       run: vendor/bin/phpunit
