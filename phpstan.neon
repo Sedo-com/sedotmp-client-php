@@ -3,4 +3,3 @@ parameters:
   paths:
     - lib/src
   ignoreErrors:
-    - identifier: missingType.iterableValue

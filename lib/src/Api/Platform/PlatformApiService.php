@@ -9,11 +9,12 @@ use Sedo\SedoTMP\OpenApi\Platform\API\ContentCampaignsApi;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest;
 use Sedo\SedoTMP\OpenApi\Platform\Model\Pageable;
+use Sedo\SedoTMP\OpenApi\Platform\Model\Problem;
 
 class PlatformApiService implements PlatformApiServiceInterface
 {
     private Configuration $config;
-    private ContentCampaignsApi $contentCampaignsApi;
+    private ContentCampaignsApi $platformCampaignsApi;
 
     public function __construct(AuthenticatorInterface $authenticator, ?string $apiHost = null, ?Client $client = null)
     {
@@ -22,7 +23,7 @@ class PlatformApiService implements PlatformApiServiceInterface
 
         if ($apiHost) {
             $this->config->setHost($apiHost);
-        } elseif (isset($_ENV['API_HOST'])) {
+        } elseif (isset($_ENV['API_HOST']) && is_string($_ENV['API_HOST'])) {
             $this->config->setHost(sprintf('%s/content/v1', $_ENV['API_HOST']));
         }
 
@@ -32,22 +33,25 @@ class PlatformApiService implements PlatformApiServiceInterface
         $client = $client ?? new Client();
 
         // Initialize API clients
-        $this->contentCampaignsApi = new ContentCampaignsApi($client, $this->config);
+        $this->platformCampaignsApi = new ContentCampaignsApi($client, $this->config);
     }
 
-    public function getContentCampaigns(?Pageable $page = null, ?string $term = null): array
+    /**
+     * @return array<array-key, ContentCampaignResponse>|Problem
+     */
+    public function getContentCampaigns(?Pageable $page = null, ?string $term = null, string $contentType = 'application/json'): array|Problem
     {
-        return $this->contentCampaignsApi->contentCampaignsGet($page, $term);
+        return $this->platformCampaignsApi->contentCampaignsGet($page, $term, $contentType);
     }
 
-    public function getContentCampaign(string $id): ContentCampaignResponse
+    public function getContentCampaign(string $id): ContentCampaignResponse|Problem
     {
-        return $this->contentCampaignsApi->contentCampaignsIdGet($id);
+        return $this->platformCampaignsApi->contentCampaignsIdGet($id);
     }
 
-    public function createContentCampaign(ContentCampaignsPostRequest $contentCampaign): ContentCampaignResponse
+    public function createContentCampaign(ContentCampaignsPostRequest $contentCampaign): ContentCampaignResponse|Problem
     {
-        return $this->contentCampaignsApi->contentCampaignsPost($contentCampaign);
+        return $this->platformCampaignsApi->contentCampaignsPost($contentCampaign);
     }
 
     /**

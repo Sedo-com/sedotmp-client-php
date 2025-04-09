@@ -4,6 +4,7 @@ namespace Sedo\SedoTMP\Api\Content;
 
 use GuzzleHttp\Client;
 use Sedo\SedoTMP\Auth\AuthenticatorInterface;
+use Sedo\SedoTMP\Exception\UnexpectedTypeException;
 use Sedo\SedoTMP\OpenApi\Configuration;
 use Sedo\SedoTMP\OpenApi\Content\API\ArticlesApi;
 use Sedo\SedoTMP\OpenApi\Content\API\CategoriesApi;
@@ -21,6 +22,7 @@ use Sedo\SedoTMP\OpenApi\Content\Model\MediaResourceResponse;
 use Sedo\SedoTMP\OpenApi\Content\Model\Pageable;
 use Sedo\SedoTMP\OpenApi\Content\Model\Problem;
 use Sedo\SedoTMP\OpenApi\Content\Model\PublishedArticleResponse;
+use Sedo\SedoTMP\OpenApi\Content\Model\RequestFlowHeader;
 
 class ContentApiService implements ContentApiServiceInterface
 {
@@ -39,7 +41,7 @@ class ContentApiService implements ContentApiServiceInterface
 
         if ($apiHost) {
             $this->config->setHost($apiHost);
-        } elseif (isset($_ENV['API_HOST'])) {
+        } elseif (isset($_ENV['API_HOST']) && is_string($_ENV['API_HOST'])) {
             $this->config->setHost(sprintf('%s/content/v1', $_ENV['API_HOST']));
         }
 
@@ -74,9 +76,16 @@ class ContentApiService implements ContentApiServiceInterface
 
     public function generateArticle(GenerateArticle $generateArticle, bool $async = false, ?string $referenceId = null): ArticleResponse|Problem
     {
-        $requestFlow = $async ? 'async' : 'sync';
+        $requestFlow = $async ? RequestFlowHeader::ASYNC : RequestFlowHeader::SYNC;
 
-        return $this->generatedArticleApi->generatedArticlesPost($generateArticle, $requestFlow, $referenceId);
+        // @phpstan-ignore argument.type (because OpenAPI Generator does not create real enums)
+        $response = $this->generatedArticleApi->generatedArticlesPost($generateArticle, $requestFlow, $referenceId);
+
+        if (!$response instanceof ArticleResponse && !$response instanceof Problem) {
+            throw UnexpectedTypeException::fromMixed($response, [ArticleResponse::class, Problem::class]);
+        }
+
+        return $response;
     }
 
     /**
@@ -113,7 +122,7 @@ class ContentApiService implements ContentApiServiceInterface
     /**
      * @return array<array-key, DomainResponse>|Problem
      */
-    public function getDomains(?Pageable $page = null, string $contentType = ''): array|Problem
+    public function getDomains(?Pageable $page = null, string $contentType = 'application/json'): array|Problem
     {
         return $this->domainsApi->domainsGet($page, $contentType);
     }
@@ -126,9 +135,9 @@ class ContentApiService implements ContentApiServiceInterface
     /**
      * @return array<array-key, MediaResourceResponse>|Problem
      */
-    public function getMediaResources(?Pageable $page = null, ?string $term = null): array|Problem
+    public function getMediaResources(?Pageable $page = null, string $contentType = 'application/json'): array|Problem
     {
-        return $this->mediaResourcesApi->mediaGet($page, $term);
+        return $this->mediaResourcesApi->mediaGet($page, $contentType);
     }
 
     public function getMediaResource(string $id): MediaResourceResponse|Problem

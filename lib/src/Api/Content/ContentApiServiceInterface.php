@@ -94,11 +94,11 @@ interface ContentApiServiceInterface
      * Get a list of domains.
      *
      * @param Pageable|null $page        Pagination parameters
-     * @param string|null   $contentType Search term
+     * @param string        $contentType Search term
      *
      * @return array<array-key, DomainResponse>|Problem
      */
-    public function getDomains(?Pageable $page = null, string $contentType = ''): array|Problem;
+    public function getDomains(?Pageable $page = null, string $contentType = 'application/json'): array|Problem;
 
     /**
      * Get a domain by ID.
@@ -110,12 +110,12 @@ interface ContentApiServiceInterface
     /**
      * Get a list of media resources.
      *
-     * @param Pageable|null $page Pagination parameters
-     * @param string|null   $term Search term
+     * @param Pageable|null $page        Pagination parameters
+     * @param string        $contentType Search term
      *
      * @return array<array-key, MediaResourceResponse>|Problem
      */
-    public function getMediaResources(?Pageable $page = null, ?string $term = null): array|Problem;
+    public function getMediaResources(?Pageable $page = null, string $contentType = 'application/json'): array|Problem;
 
     /**
      * Get a media resource by ID.

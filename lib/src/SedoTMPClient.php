@@ -39,11 +39,14 @@ class SedoTMPClient
             $dotenv->load($envPath);
         }
 
-        // Set API host from environment or use default
-        $this->apiHost = $_ENV['API_HOST'] ?? 'https://api.sedotmp.com';
+        if (!isset($_ENV['API_HOST']) || !is_string($_ENV['API_HOST'])) {
+            throw new \RuntimeException('API_HOST environment variable is missing. Please check your .env file.');
+        }
+
+        $this->apiHost = $_ENV['API_HOST'];
 
         // Ensure required environment variables are set
-        if (!isset($_ENV['AUTH0_DOMAIN']) || !isset($_ENV['AUTH0_CLIENT_ID']) || !isset($_ENV['AUTH0_CLIENT_SECRET'])) {
+        if (!isset($_ENV['AUTH0_DOMAIN'], $_ENV['AUTH0_CLIENT_ID'], $_ENV['AUTH0_CLIENT_SECRET'])) {
             throw new \RuntimeException('Required Auth0 environment variables are missing. Please check your .env file.');
         }
 
