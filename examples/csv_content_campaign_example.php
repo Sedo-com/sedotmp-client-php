@@ -191,6 +191,7 @@ try {
         // Display article details if available
         if ($campaignDetails->getArticle()) {
             $article = $campaignDetails->getArticle();
+            $featuredImage = $article->getFeaturedImage();
 
             echo sprintf(
                 "\nArticle Details:\n- CategoryId: %s\n- Title: %s\n- Excerpt: %s\n- Country: %s\n- Locale: %s\n- Topics: %s\n- Featured Image: %s\n",
