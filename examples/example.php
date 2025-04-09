@@ -14,6 +14,7 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
+use Sedo\SedoTMP\OpenApi\ApiException;
 use Sedo\SedoTMP\OpenApi\Content\Model\CreateArticle;
 use Sedo\SedoTMP\OpenApi\Content\Model\GenerateArticle;
 use Sedo\SedoTMP\OpenApi\Content\Model\Pageable;
@@ -82,7 +83,7 @@ try {
     echo "==================================\n";
 
     $generateArticle = new GenerateArticle();
-    $generateArticle->setTopic('Artificial Intelligence in Modern Business');
+    $generateArticle->setTitle('Artificial Intelligence in Modern Business');
     $generateArticle->setLocale('en-US');
 
     $generatedArticle = $contentApiService->generateArticle($generateArticle, true);
@@ -97,7 +98,6 @@ try {
     // Use the newly created article for the campaign
     $campaignArticle = new ContentCampaignsPostRequestArticle();
     $campaignArticle->setType('ExistingArticle');
-    $campaignArticle->setId($newArticle->getId());
 
     // Create a new campaign
     $createCampaign = new ContentCampaignsPostRequestCampaign();
@@ -110,13 +110,13 @@ try {
         echo "No domains available. Using example-domain.info instead.\n";
         $domainName = 'example-domain.info';
     } else {
-        $domainName = $domains[0]->getName();
+        $domainName = $domains[0]->getDomain();
         echo sprintf("Using domain: %s\n", $domainName);
     }
 
     // Create the content campaign request body
     $contentCampaign = new ContentCampaignsPostRequest();
-    $contentCampaign->setPublishDomainName($domainName);
+    $contentCampaign->setPublishDomainName((string) $domainName);
     $contentCampaign->setArticle($campaignArticle);
     $contentCampaign->setCampaign($createCampaign);
 
@@ -129,7 +129,7 @@ try {
     echo "\nStep 5: Getting campaign details\n";
     echo "===============================\n";
 
-    $campaignDetails = $platformApiService->getContentCampaign($campaign->getId());
+    $campaignDetails = $platformApiService->getContentCampaign((string) $campaign->getId());
 
     echo "Campaign Details:\n";
     echo sprintf("- ID: %s\n", $campaignDetails->getId());
@@ -156,10 +156,11 @@ try {
             $campaign->getName()
         );
     }
-} catch (Sedo\ApiException $e) {
+} catch (ApiException $e) {
+    $responseBody = $e->getResponseBody();
     echo sprintf(
         "Error: %s\nTrace: %s\n",
-        $e->getResponseBody(),
+        $responseBody instanceof stdClass ? json_encode($responseBody) : $responseBody,
         $e->getTraceAsString()
     );
 } catch (Exception $e) {

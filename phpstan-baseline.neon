@@ -1,0 +1,25 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, Sedo\\SedoTMP\\OpenApi\\Platform\\Model\\ContentCampaignStatus\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: examples/content_campaign_example.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, Sedo\\SedoTMP\\OpenApi\\Platform\\Model\\ContentCampaignStatus\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: examples/csv_content_campaign_example.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, Sedo\\SedoTMP\\OpenApi\\Platform\\Model\\ContentCampaignStatus\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: examples/example.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, Sedo\\SedoTMP\\OpenApi\\Platform\\Model\\ContentCampaignStatus\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: examples/simple_usage.php

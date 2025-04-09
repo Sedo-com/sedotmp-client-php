@@ -6,7 +6,6 @@ use Sedo\SedoTMP\OpenApi\Configuration;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest;
 use Sedo\SedoTMP\OpenApi\Platform\Model\Pageable;
-use Sedo\SedoTMP\OpenApi\Platform\Model\Problem;
 
 interface PlatformApiServiceInterface
 {
@@ -17,23 +16,23 @@ interface PlatformApiServiceInterface
      * @param string|null   $term        Search term
      * @param string        $contentType the requested content-type
      *
-     * @return array<array-key, ContentCampaignResponse>|Problem
+     * @return array<array-key, ContentCampaignResponse>
      */
-    public function getContentCampaigns(?Pageable $page = null, ?string $term = null, string $contentType = 'application/json'): array|Problem;
+    public function getContentCampaigns(?Pageable $page = null, ?string $term = null, string $contentType = 'application/json'): array;
 
     /**
      * Get a content campaign by ID.
      *
      * @param string $id Content campaign ID
      */
-    public function getContentCampaign(string $id): ContentCampaignResponse|Problem;
+    public function getContentCampaign(string $id): ContentCampaignResponse;
 
     /**
      * Create a new content campaign.
      *
      * @param ContentCampaignsPostRequest $contentCampaign Content campaign data
      */
-    public function createContentCampaign(ContentCampaignsPostRequest $contentCampaign): ContentCampaignResponse|Problem;
+    public function createContentCampaign(ContentCampaignsPostRequest $contentCampaign): ContentCampaignResponse;
 
     /**
      * Get the configuration object.

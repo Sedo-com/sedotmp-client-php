@@ -4,6 +4,7 @@ namespace Sedo\SedoTMP\Api\Content;
 
 use GuzzleHttp\Client;
 use Sedo\SedoTMP\Auth\AuthenticatorInterface;
+use Sedo\SedoTMP\Exception\ProblemResponseException;
 use Sedo\SedoTMP\Exception\UnexpectedTypeException;
 use Sedo\SedoTMP\OpenApi\Configuration;
 use Sedo\SedoTMP\OpenApi\Content\API\ArticlesApi;
@@ -59,29 +60,54 @@ class ContentApiService implements ContentApiServiceInterface
         $this->publishedArticlesApi = new PublishedArticlesApi($client, $this->config);
     }
 
-    public function getArticles(?Pageable $page = null, ?string $term = null): array|Problem
+    public function getArticles(?Pageable $page = null, ?string $term = null): array
     {
-        return $this->articlesApi->articlesGet($page, $term);
+        $response = $this->articlesApi->articlesGet($page, $term);
+
+        if ($response instanceof Problem) {
+            throw ProblemResponseException::fromProblem($response);
+        }
+
+        return $response;
     }
 
-    public function getArticle(string $id): ArticleResponse|Problem
+    public function getArticle(string $id): ArticleResponse
     {
-        return $this->articlesApi->articlesIdGet($id);
+        $response = $this->articlesApi->articlesIdGet($id);
+
+        if ($response instanceof Problem) {
+            throw ProblemResponseException::fromProblem($response);
+        }
+
+        return $response;
     }
 
-    public function createArticle(CreateArticle $article): ArticleResponse|Problem
+    public function createArticle(CreateArticle $article): ArticleResponse
     {
-        return $this->articlesApi->articlesPost($article);
+        $response = $this->articlesApi->articlesPost($article);
+
+        if ($response instanceof Problem) {
+            throw ProblemResponseException::fromProblem($response);
+        }
+
+        return $response;
     }
 
-    public function generateArticle(GenerateArticle $generateArticle, bool $async = false, ?string $referenceId = null): ArticleResponse|Problem
-    {
+    public function generateArticle(
+        GenerateArticle $generateArticle,
+        bool $async = false,
+        ?string $referenceId = null,
+    ): ArticleResponse {
         $requestFlow = $async ? RequestFlowHeader::ASYNC : RequestFlowHeader::SYNC;
 
         // @phpstan-ignore argument.type (because OpenAPI Generator does not create real enums)
         $response = $this->generatedArticleApi->generatedArticlesPost($generateArticle, $requestFlow, $referenceId);
 
-        if (!$response instanceof ArticleResponse && !$response instanceof Problem) {
+        if ($response instanceof Problem) {
+            throw ProblemResponseException::fromProblem($response);
+        }
+
+        if (!$response instanceof ArticleResponse) {
             throw UnexpectedTypeException::fromMixed($response, [ArticleResponse::class, Problem::class]);
         }
 
@@ -89,60 +115,114 @@ class ContentApiService implements ContentApiServiceInterface
     }
 
     /**
-     * @return array<array-key, PublishedArticleResponse>|Problem
+     * @return array<array-key, PublishedArticleResponse>
      */
-    public function getPublishedArticles(?Pageable $page = null, ?string $term = null): array|Problem
+    public function getPublishedArticles(?Pageable $page = null, ?string $term = null): array
     {
-        return $this->publishedArticlesApi->publishedArticlesGet($page, $term);
+        $response = $this->publishedArticlesApi->publishedArticlesGet($page, $term);
+
+        if ($response instanceof Problem) {
+            throw ProblemResponseException::fromProblem($response);
+        }
+
+        return $response;
     }
 
-    public function getPublishedArticle(string $id): PublishedArticleResponse|Problem
+    public function getPublishedArticle(string $id): PublishedArticleResponse
     {
-        return $this->publishedArticlesApi->publishedArticlesIdGet($id);
+        $response = $this->publishedArticlesApi->publishedArticlesIdGet($id);
+
+        if ($response instanceof Problem) {
+            throw ProblemResponseException::fromProblem($response);
+        }
+
+        return $response;
     }
 
     /**
-     * @return array<array-key, CategoryResponse>|Problem
+     * @return array<array-key, CategoryResponse>
      */
-    public function getCategories(?Pageable $page = null, ?string $term = null): array|Problem
+    public function getCategories(?Pageable $page = null, ?string $term = null): array
     {
-        return $this->categoriesApi->categoriesGet($page, $term);
+        $response = $this->categoriesApi->categoriesGet($page, $term);
+
+        if ($response instanceof Problem) {
+            throw ProblemResponseException::fromProblem($response);
+        }
+
+        return $response;
     }
 
-    public function getCategory(string $id): CategoryResponse|Problem
+    public function getCategory(string $id): CategoryResponse
     {
-        return $this->categoriesApi->categoriesIdGet($id);
+        $response = $this->categoriesApi->categoriesIdGet($id);
+
+        if ($response instanceof Problem) {
+            throw ProblemResponseException::fromProblem($response);
+        }
+
+        return $response;
     }
 
-    public function createCategory(CreateCategory $category): CategoryResponse|Problem
+    public function createCategory(CreateCategory $category): CategoryResponse
     {
-        return $this->categoriesApi->categoriesPost($category);
+        $response = $this->categoriesApi->categoriesPost($category);
+
+        if ($response instanceof Problem) {
+            throw ProblemResponseException::fromProblem($response);
+        }
+
+        return $response;
     }
 
     /**
-     * @return array<array-key, DomainResponse>|Problem
+     * @return array<array-key, DomainResponse>
      */
-    public function getDomains(?Pageable $page = null, string $contentType = 'application/json'): array|Problem
+    public function getDomains(?Pageable $page = null, string $contentType = 'application/json'): array
     {
-        return $this->domainsApi->domainsGet($page, $contentType);
+        $response = $this->domainsApi->domainsGet($page, $contentType);
+
+        if ($response instanceof Problem) {
+            throw ProblemResponseException::fromProblem($response);
+        }
+
+        return $response;
     }
 
-    public function getDomain(string $id): DomainResponse|Problem
+    public function getDomain(string $id): DomainResponse
     {
-        return $this->domainsApi->domainsIdGet($id);
+        $response = $this->domainsApi->domainsIdGet($id);
+
+        if ($response instanceof Problem) {
+            throw ProblemResponseException::fromProblem($response);
+        }
+
+        return $response;
     }
 
     /**
-     * @return array<array-key, MediaResourceResponse>|Problem
+     * @return array<array-key, MediaResourceResponse>
      */
-    public function getMediaResources(?Pageable $page = null, string $contentType = 'application/json'): array|Problem
+    public function getMediaResources(?Pageable $page = null, string $contentType = 'application/json'): array
     {
-        return $this->mediaResourcesApi->mediaGet($page, $contentType);
+        $response = $this->mediaResourcesApi->mediaGet($page, $contentType);
+
+        if ($response instanceof Problem) {
+            throw ProblemResponseException::fromProblem($response);
+        }
+
+        return $response;
     }
 
-    public function getMediaResource(string $id): MediaResourceResponse|Problem
+    public function getMediaResource(string $id): MediaResourceResponse
     {
-        return $this->mediaResourcesApi->mediaIdGet($id);
+        $response = $this->mediaResourcesApi->mediaIdGet($id);
+
+        if ($response instanceof Problem) {
+            throw ProblemResponseException::fromProblem($response);
+        }
+
+        return $response;
     }
 
     /**

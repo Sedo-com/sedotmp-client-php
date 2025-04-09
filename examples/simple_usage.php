@@ -14,7 +14,9 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-use Sedo\SedoTMP\OpenApi\Content\Model\Pageable;
+use Sedo\SedoTMP\OpenApi\ApiException;
+use Sedo\SedoTMP\OpenApi\Content\Model\Pageable as ContentPageable;
+use Sedo\SedoTMP\OpenApi\Platform\Model\Pageable as PlatformPageable;
 use Sedo\SedoTMP\SedoTMPClient;
 
 // Initialize the SedoTMP client with the path to the .env file
@@ -40,13 +42,13 @@ try {
     }
 
     echo sprintf("Found %d domains\n", count($domains));
-    echo sprintf("First domain: %s\n", $domains[0]->getName());
+    echo sprintf("First domain: %s\n", $domains[0]->getDomain());
 
     // Step 2: Get available categories
     echo "\nStep 2: Listing content categories\n";
     echo "================================\n";
 
-    $page = new Pageable();
+    $page = new ContentPageable();
     $page->setPage(0);
     $page->setSize(10);
 
@@ -88,6 +90,10 @@ try {
         echo "\nStep 4: Listing content campaigns\n";
         echo "================================\n";
 
+        $page = new PlatformPageable();
+        $page->setPage(0);
+        $page->setSize(10);
+
         $campaigns = $platformApiService->getContentCampaigns($page);
         echo sprintf("Found %d content campaigns\n", count($campaigns));
 
@@ -103,10 +109,11 @@ try {
             }
         }
     }
-} catch (Sedo\ApiException $e) {
+} catch (ApiException $e) {
+    $responseBody = $e->getResponseBody();
     echo sprintf(
         "Error: %s\nTrace: %s\n",
-        $e->getResponseBody(),
+        $responseBody instanceof stdClass ? json_encode($responseBody) : $responseBody,
         $e->getTraceAsString()
     );
 } catch (Exception $e) {

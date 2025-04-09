@@ -4,6 +4,7 @@ namespace Sedo\SedoTMP\Api\Platform;
 
 use GuzzleHttp\Client;
 use Sedo\SedoTMP\Auth\AuthenticatorInterface;
+use Sedo\SedoTMP\Exception\ProblemResponseException;
 use Sedo\SedoTMP\OpenApi\Configuration;
 use Sedo\SedoTMP\OpenApi\Platform\API\ContentCampaignsApi;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse;
@@ -37,21 +38,39 @@ class PlatformApiService implements PlatformApiServiceInterface
     }
 
     /**
-     * @return array<array-key, ContentCampaignResponse>|Problem
+     * @return array<array-key, ContentCampaignResponse>
      */
-    public function getContentCampaigns(?Pageable $page = null, ?string $term = null, string $contentType = 'application/json'): array|Problem
+    public function getContentCampaigns(?Pageable $page = null, ?string $term = null, string $contentType = 'application/json'): array
     {
-        return $this->platformCampaignsApi->contentCampaignsGet($page, $term, $contentType);
+        $response = $this->platformCampaignsApi->contentCampaignsGet($page, $term, $contentType);
+
+        if ($response instanceof Problem) {
+            throw ProblemResponseException::fromProblem($response);
+        }
+
+        return $response;
     }
 
-    public function getContentCampaign(string $id): ContentCampaignResponse|Problem
+    public function getContentCampaign(string $id): ContentCampaignResponse
     {
-        return $this->platformCampaignsApi->contentCampaignsIdGet($id);
+        $response = $this->platformCampaignsApi->contentCampaignsIdGet($id);
+
+        if ($response instanceof Problem) {
+            throw ProblemResponseException::fromProblem($response);
+        }
+
+        return $response;
     }
 
-    public function createContentCampaign(ContentCampaignsPostRequest $contentCampaign): ContentCampaignResponse|Problem
+    public function createContentCampaign(ContentCampaignsPostRequest $contentCampaign): ContentCampaignResponse
     {
-        return $this->platformCampaignsApi->contentCampaignsPost($contentCampaign);
+        $response = $this->platformCampaignsApi->contentCampaignsPost($contentCampaign);
+
+        if ($response instanceof Problem) {
+            throw ProblemResponseException::fromProblem($response);
+        }
+
+        return $response;
     }
 
     /**

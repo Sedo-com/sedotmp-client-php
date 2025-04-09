@@ -13,6 +13,7 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
+use Sedo\SedoTMP\OpenApi\ApiException;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ArticleDataFeaturedImage;
 use Sedo\SedoTMP\OpenApi\Platform\Model\CampaignDataTrackingData;
 use Sedo\SedoTMP\OpenApi\Platform\Model\CampaignDataTrackingDataTrackingSettings;
@@ -50,6 +51,9 @@ try {
     if (($handle = fopen($csvFilePath, 'r')) !== false) {
         while (($data = fgetcsv($handle, 1000, ';')) !== false) {
             if (null === $header) {
+                if (in_array(null, $data, true)) {
+                    throw new RuntimeException('Invalid CSV-Header: contains NULL-values');
+                }
                 $header = $data;
                 continue;
             }
@@ -95,7 +99,7 @@ try {
         $topics = [];
 
         // Remove outer quotes and split by commas
-        $topicsString = trim($topicsString, '"');
+        $topicsString = trim((string) $topicsString, '"');
         preg_match_all('/"([^"]+)"/', $topicsString, $matches);
         if (!empty($matches[1])) {
             $topics = $matches[1];
@@ -124,12 +128,12 @@ try {
         // Create a campaign
         $campaign = new ContentCampaignsPostRequestCampaign();
         $campaign->setType('CreateCampaign');
-        $campaign->setName($row['name']);
+        $campaign->setName((string) $row['name']);
 
         // Set up tracking data
         $trackingData = new CampaignDataTrackingData();
-        $trackingData->setTrafficSource(strtoupper($row['trafficSource']));
-        $trackingData->setTrackingMethod(strtoupper($row['trackingMethod']));
+        $trackingData->setTrafficSource(strtoupper((string) $row['trafficSource']));
+        $trackingData->setTrackingMethod(strtoupper((string) $row['trackingMethod']));
 
         // Set up tracking settings
         $trackingSettings = new CampaignDataTrackingDataTrackingSettings();
@@ -143,8 +147,8 @@ try {
 
         // Set up postbacks
         $postback = new Postback();
-        $postback->setEventName($row['postbacks EventName']);
-        $postback->setUrl($row['postbacksUrl']);
+        $postback->setEventName((string) $row['postbacks EventName']);
+        $postback->setUrl((string) $row['postbacksUrl']);
         $postback->setClickIdParam($row['postbacksClickIdParam']);
         $trackingData->setPostbacks([$postback]);
 
@@ -152,7 +156,7 @@ try {
 
         // Create the content campaign request body
         $contentCampaignBody = new ContentCampaignsPostRequest();
-        $contentCampaignBody->setPublishDomainName($row['publishDomainName']);
+        $contentCampaignBody->setPublishDomainName((string) $row['publishDomainName']);
         $contentCampaignBody->setArticle($article);
         $contentCampaignBody->setCampaign($campaign);
 
@@ -174,7 +178,7 @@ try {
         echo sprintf("\nCampaign %d (ID: %s):\n", $index + 1, $campaignId);
 
         // Get the campaign details
-        $campaignDetails = $platformApiService->getContentCampaign($campaignId);
+        $campaignDetails = $platformApiService->getContentCampaign((string) $campaignId);
 
         echo sprintf("- Status: %d\n", $campaignDetails->getStatus());
         echo sprintf("- Created At: %s\n", $campaignDetails->getCreatedDate()?->format(DateTimeInterface::ATOM));
@@ -201,10 +205,11 @@ try {
             );
         }
     }
-} catch (Sedo\ApiException $e) {
+} catch (ApiException $e) {
+    $responseBody = $e->getResponseBody();
     echo sprintf(
         "Error: %s\nTrace: %s\n",
-        $e->getResponseBody(),
+        $responseBody instanceof stdClass ? json_encode($responseBody) : $responseBody,
         $e->getTraceAsString()
     );
 } catch (Exception $e) {

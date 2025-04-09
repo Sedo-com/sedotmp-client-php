@@ -61,6 +61,40 @@ $articles = $client->content()->getArticles();
 $campaigns = $client->platform()->getContentCampaigns();
 ```
 
+### Platform API Examples
+
+```php
+<?php
+
+// Get a list of content campaigns
+$campaigns = $client->platform()->getContentCampaigns();
+
+// Get a specific campaign by ID
+$campaign = $client->platform()->getContentCampaign('campaign-id');
+
+// -> generate article anstatt existing article 
+
+$createArticle = new CreateArticle();
+$createArticle->setTitle('Example Article Title');
+$createArticle->setExcerpt('This is an example article excerpt.');
+$createArticle->setText('This is the main content of the example article. It contains multiple paragraphs and demonstrates how to create content using the API.');
+$newArticle = $contentApiService->createArticle($createArticle);
+    
+// Create a new campaign
+$createCampaign = new \Sedo\SedoTMP\OpenApi\Platform\Model\CreateCampaign();
+$createCampaign->setType('create');
+$createCampaign->setName("Example Campaign");
+$createCampaign->setTargetUrl("https://example.com/landing-page");
+
+// Create the content campaign request body
+$contentCampaign = new \Sedo\SedoTMP\OpenApi\Platform\Model\ContentcampaignsBody();
+$contentCampaign->setPublishDomainName("example-domain.info");
+$contentCampaign->setArticle($newArticle);
+$contentCampaign->setCampaign($createCampaign);
+
+$newCampaign = $client->platform()->createContentCampaign($contentCampaign);
+```
+
 ### Content API Examples
 
 ```php
@@ -94,60 +128,6 @@ $generateArticle->setLocale("en-US");
 $generatedArticle = $client->content()->generateArticle($generateArticle, true);
 ```
 
-### Platform API Examples
-
-```php
-<?php
-
-// Get a list of content campaigns
-$campaigns = $client->platform()->getContentCampaigns();
-
-// Get a specific campaign by ID
-$campaign = $client->platform()->getContentCampaign('campaign-id');
-
-// Create a content campaign with an existing article
-$existingArticle = new \Sedo\SedoTMP\OpenApi\Platform\Model\ExistingArticle();
-$existingArticle->setType('existing');
-$existingArticle->setId('article-id');
-
-// Create a new campaign
-$createCampaign = new \Sedo\SedoTMP\OpenApi\Platform\Model\CreateCampaign();
-$createCampaign->setType('create');
-$createCampaign->setName("Example Campaign");
-$createCampaign->setTargetUrl("https://example.com/landing-page");
-
-// Create the content campaign request body
-$contentCampaign = new \Sedo\SedoTMP\OpenApi\Platform\Model\ContentcampaignsBody();
-$contentCampaign->setPublishDomainName("example-domain.info");
-$contentCampaign->setArticle($existingArticle);
-$contentCampaign->setCampaign($createCampaign);
-
-$newCampaign = $client->platform()->createContentCampaign($contentCampaign);
-```
-
-### Custom Authentication
-
-You can provide your own authenticator implementation:
-
-```php
-<?php
-
-use Sedo\lib\src\SedoTMP\Auth\AuthenticatorInterface;use Sedo\lib\src\SedoTMP\SedoTMPClient;
-
-class CustomAuthenticator implements AuthenticatorInterface
-{
-    public function getAccessToken(): string
-    {
-        // Implement your custom authentication logic here
-        return 'your-access-token';
-    }
-}
-
-// Create the client with custom authenticator
-$authenticator = new CustomAuthenticator();
-$client = new SedoTMPClient(null, $authenticator);
-```
-
 ## Available APIs
 
 The library provides access to both Content and Platform APIs:
@@ -168,25 +148,23 @@ Check the `examples` directory for complete workflow examples:
 
 ### Available Examples
 
-- **`example.php`**: Basic usage examples demonstrating how to use the Content and Platform APIs.
+- **`[example.php](examples/example.php)`**: Basic usage examples demonstrating how to use the Content and Platform APIs.
 
-- **`simple_usage.php`**: A minimal example showing the basic setup and API calls.
+- **`[simple_usage.php](examples/simple_usage.php)`**: A minimal example showing the basic setup and API calls.
 
-- **`content_campaign_example.php`**: Demonstrates how to:
+- **`[content_campaign_example.php](examples/content_campaign_example.php)`**: Demonstrates how to:
   1. List content categories using GET `/categories`
   2. Create a content campaign with POST `/content-campaigns` with a publish domain and article
   3. Get details of the created campaign using GET `/content-campaigns/{{id}}`
 
-- **`content_campaign_workflow.php`**: A complete workflow for creating a content campaign with more advanced options.
-
-- **`csv_content_campaign_example.php`**: Shows how to:
+- **`[csv_content_campaign_example.php](examples/csv_content_campaign_example.php)`**: Shows how to:
   1. Read campaign data from a CSV file (examples/example.csv)
   2. Create content campaigns based on the CSV data
   3. Get details of the created campaigns
 
 ### CSV Import Example
 
-The `csv_content_campaign_example.php` demonstrates how to import campaign data from a CSV file. The CSV file should have the following structure:
+The [csv_content_campaign_example.php](examples/csv_content_campaign_example.php) demonstrates how to import campaign data from a CSV file. The CSV file should have the following structure:
 
 ```
 publishDomainName;name;topics;locale;trafficSource;trackingMethod;s2sMetaPixelId;s2sMetaToken;ClickParam;s2sMetaClickEvent;s2sMetaLandingPageEvent;s2sMetaSearchEvent;postbacks EventName;postbacksClickIdParam;postbacksUrl;title;excerpt
@@ -194,7 +172,7 @@ publishDomainName;name;topics;locale;trafficSource;trackingMethod;s2sMetaPixelId
 
 Example CSV row:
 ```
-myDomain.info;summer vacation;"""Summer vacation"",""All inclusive resort in Thailand"",""Cheap flights from USA""";en-US;facebook;s2s;string;string;string;string;string;string;CLICK;click_id;https://your-tracking-url.com/cf/cv?click_id={click_id}&payout={epayout};Summer vacation;The best summer vacation deals
+myDomain.info;summer vacation;"""Summer vacation"",""All inclusive resort in Thailand"",""Cheap flights from USA""";en-US;META;s2s;string;string;string;string;string;string;CLICK;click_id;https://your-tracking-url.com/cf/cv?click_id={click_id}&payout={epayout};Summer vacation;The best summer vacation deals
 ```
 
 ### Running the Examples
@@ -207,17 +185,7 @@ php examples/example_filename.php
 
 Make sure you have set up your `.env` file with the proper credentials before running the examples.
 
-
-## Development / Create the API from the swagger docs 
-
-For generating the API/Model Classes to `lib/src/` we use [OpenAPITools/openapi-generator](https://github.com/OpenAPITools/openapi-generator)
-
-### Platform/Content Models / API
-```
-    make generate
-```
-
-## Development
+## Development / Contributions
 
 Requirements: Docker
 
@@ -225,3 +193,23 @@ Requirements: Docker
 - execute `make init`
 
 You should now be able to log into the docker container using `make php`
+
+### Create the API from the swagger docs
+
+For generating the API/Model Classes to `lib/src/` we use [OpenAPITools/openapi-generator](https://github.com/OpenAPITools/openapi-generator)
+
+**Note:**
+The file [ObjectSerializer](lib/api/ObjectSerializer.php) is excluded from generating because it contains a reference to the `ModelInterface` - but this Interface is generated in two different Namespaces, which leads to problems in usage:
+- `Sedo\SedoTMP\OpenApi\Content\Model\ModelInterface`
+- `Sedo\SedoTMP\OpenApi\Platform\Model\ModelInterface`
+
+So the `ObjectSerializer` is adjusted manually to support both namespaces and therefore excluded from re-generation in [.openapi-generator-ignore](.openapi-generator-ignore)
+
+#### Platform/Content Models / API
+```
+    make generate
+```
+
+**Note:**
+There is a phpstan baseline that contains unavoidable errors that can not be fixed without modifying a generated class which means these modifications need to be done everytime as well. 
+

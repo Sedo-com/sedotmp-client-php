@@ -13,6 +13,7 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
+use Sedo\SedoTMP\OpenApi\ApiException;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ArticleDataFeaturedImage;
 use Sedo\SedoTMP\OpenApi\Platform\Model\CampaignDataTrackingData;
 use Sedo\SedoTMP\OpenApi\Platform\Model\CampaignDataTrackingDataTrackingSettings;
@@ -131,7 +132,7 @@ try {
     echo "==============================================\n";
 
     // Get the campaign details using the ID directly (no need for Id object with the updated API)
-    $campaignDetails = $platformApiService->getContentCampaign($campaignId);
+    $campaignDetails = $platformApiService->getContentCampaign((string) $campaignId);
 
     echo "Campaign Details:\n";
     echo sprintf("- ID: %s\n", $campaignDetails->getId());
@@ -159,10 +160,17 @@ try {
             $campaign->getName()
         );
     }
-} catch (Sedo\ApiException $e) {
+} catch (ApiException $e) {
+    $responseBody = $e->getResponseBody();
     echo sprintf(
         "Error: %s\nTrace: %s\n",
-        $e->getResponseBody(),
+        $responseBody instanceof stdClass ? json_encode($responseBody) : $responseBody,
+        $e->getTraceAsString()
+    );
+} catch (Exception $e) {
+    echo sprintf(
+        "Error: %s\nTrace: %s\n",
+        $e->getMessage(),
         $e->getTraceAsString()
     );
 }

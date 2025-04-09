@@ -45,6 +45,10 @@ php-cs-fix:																		## run cs fixer
 phpstan:
 	$(exec-no-xdebug) vendor/bin/phpstan analyse -c phpstan.neon
 
+.PHONY: phpstan-baseline
+phpstan-baseline:																## update phpstan baseline
+	$(exec-no-xdebug) vendor/bin/phpstan --generate-baseline
+
 .PHONY: phpunit
 phpunit:																		## run cs fixer
 	$(exec-phpunit) vendor/bin/phpunit -c phpunit.xml.dist $(OPTIONS)
