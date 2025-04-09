@@ -198,6 +198,17 @@ Requirements: Docker
 
 You should now be able to log into the docker container using `make php`
 
+Test the examples (make sure you have a `AUTH0_CLIENT_ID` and `AUTH0_CLIENT_SECRET` set up in your .env):
+
+- log into the container using `make php`
+- run `php examples/content_campaign_example.php`
+
+For PR run the tests locally: 
+
+- run tests: `make phpunit`
+- run cs-fixer: `make php-cs-fix`
+- run phpstan: `make phpstan`
+
 ### Create the API from the swagger docs
 
 For generating the API/Model Classes to `lib/src/` we use [OpenAPITools/openapi-generator](https://github.com/OpenAPITools/openapi-generator)

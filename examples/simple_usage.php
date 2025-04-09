@@ -20,7 +20,7 @@ use Sedo\SedoTMP\OpenApi\Platform\Model\Pageable as PlatformPageable;
 use Sedo\SedoTMP\SedoTMPClient;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
-// Create a cache adapter using the system's temporary directory
+// Create a cache adapter using the system's temporary directory to re-use the access-token
 $cacheDir = sys_get_temp_dir().'/sedotmp-cache';
 $cache = new FilesystemAdapter('auth0_tokens', 0, $cacheDir);
 
@@ -40,14 +40,11 @@ try {
     echo "===============================\n";
 
     $domains = $contentApiService->getDomains();
-
-    if (0 === count($domains)) {
-        echo "No domains available. Please create a domain first.\n";
-        exit(1);
-    }
-
     echo sprintf("Found %d domains\n", count($domains));
-    echo sprintf("First domain: %s\n", $domains[0]->getDomain());
+    if (count($domains) > 0) {
+        echo sprintf("First domain: %s\n", $domains[0]->getDomain());
+        echo sprintf("Domain ID: %s\n", $domains[0]->getId());
+    }
 
     // Step 2: Get available categories
     echo "\nStep 2: Listing content categories\n";

@@ -24,7 +24,7 @@ use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequestCampaign;
 use Sedo\SedoTMP\SedoTMPClient;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
-// Create a cache adapter using the system's temporary directory
+// Create a cache adapter using the system's temporary directory to re-use the access-token
 $cacheDir = sys_get_temp_dir().'/sedotmp-cache';
 $cache = new FilesystemAdapter('auth0_tokens', 0, $cacheDir);
 
