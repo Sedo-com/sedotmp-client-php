@@ -1,3 +1,5 @@
+https://gitlab.example.com/<namespace>/<project>/badges/<branch>/pipeline.svg
+
 # SedoTMP PHP API Client
 
 ## Overview

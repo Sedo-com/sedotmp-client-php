@@ -37,17 +37,14 @@ class ContentApiService implements ContentApiServiceInterface
 
     public function __construct(AuthenticatorInterface $authenticator, ?string $apiHost = null, ?Client $client = null)
     {
-        // Initialize configuration
         $this->config = new Configuration();
+        $this->config->setAccessToken($authenticator->getAccessToken());
 
         if ($apiHost) {
             $this->config->setHost($apiHost);
         } elseif (isset($_ENV['API_HOST']) && is_string($_ENV['API_HOST'])) {
             $this->config->setHost(sprintf('%s/content/v1', $_ENV['API_HOST']));
         }
-
-        // Set access token from authenticator
-        $this->config->setAccessToken($authenticator->getAccessToken());
 
         $client = $client ?? new Client();
 

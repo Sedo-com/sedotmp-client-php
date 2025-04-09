@@ -12,7 +12,7 @@ use Sedo\SedoTMP\Api\Platform\PlatformApiService;
 use Sedo\SedoTMP\Api\Platform\PlatformApiServiceInterface;
 use Sedo\SedoTMP\Auth\Auth0Authenticator;
 use Sedo\SedoTMP\Auth\AuthenticatorInterface;
-use Sedo\SedoTMP\OpenApi\Configuration;
+use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Component\Dotenv\Dotenv;
 
 class SedoTMPClient
@@ -25,19 +25,13 @@ class SedoTMPClient
     /**
      * Create a new SedoTMP client.
      *
-     * @param string|null                 $envPath       Path to .env file (optional)
+     * @param string                      $envPath       Path to .env file (optional)
      * @param AuthenticatorInterface|null $authenticator Custom authenticator (optional)
+     * @param AdapterInterface|null       $cache         Cache adapter for authentication tokens (optional)
      */
-    public function __construct(?string $envPath = null, ?AuthenticatorInterface $authenticator = null)
+    public function __construct(string $envPath, ?AuthenticatorInterface $authenticator = null, ?AdapterInterface $cache = null)
     {
-        // Load environment variables if path provided
-        if ($envPath) {
-            if (!file_exists($envPath)) {
-                throw new \RuntimeException("Environment file not found: {$envPath}");
-            }
-            $dotenv = new Dotenv();
-            $dotenv->load($envPath);
-        }
+        $this->loadEnv($envPath);
 
         if (!isset($_ENV['API_HOST']) || !is_string($_ENV['API_HOST'])) {
             throw new \RuntimeException('API_HOST environment variable is missing. Please check your .env file.');
@@ -50,21 +44,33 @@ class SedoTMPClient
             throw new \RuntimeException('Required Auth0 environment variables are missing. Please check your .env file.');
         }
 
-        // Create configuration
-        $config = new Configuration();
-
         // Set up authenticator
-        if ($authenticator) {
+        if ($authenticator instanceof AuthenticatorInterface) {
             $this->authenticator = $authenticator;
+            // If the authenticator is an Auth0Authenticator and cache is provided, set it
+            if (null !== $cache) {
+                $this->authenticator->setCache($cache);
+            }
         } else {
-            $this->authenticator = new Auth0Authenticator($config, $envPath);
+            $this->authenticator = new Auth0Authenticator($cache);
         }
+
+        $this->authenticator->getAccessToken();
 
         $client = $this->buildClient();
 
         // Initialize API services
         $this->contentApi = new ContentApiService($this->authenticator, $this->apiHost.'/content/v1', $client);
         $this->platformApi = new PlatformApiService($this->authenticator, $this->apiHost.'/platform/v1', $client);
+    }
+
+    private function loadEnv(string $envPath): void
+    {
+        if (!file_exists($envPath)) {
+            throw new \RuntimeException("Environment file not found: {$envPath}");
+        }
+        $dotenv = new Dotenv();
+        $dotenv->load($envPath);
     }
 
     private function buildClient(): Client
@@ -74,7 +80,7 @@ class SedoTMPClient
         if (
             class_exists(\Monolog\Logger::class)
             && class_exists(\Monolog\Handler\StreamHandler::class)
-            && $this->authenticator->getConfig()->getDebug()
+            && 'true' === $_ENV['DEBUG']
         ) {
             $logger = new \Monolog\Logger('guzzleLogger');
             $logger->pushHandler(new \Monolog\Handler\StreamHandler(__DIR__.'../../../debug.log', \Monolog\Level::Debug));

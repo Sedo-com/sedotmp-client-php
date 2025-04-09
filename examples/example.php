@@ -22,18 +22,23 @@ use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequestArticle;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequestCampaign;
 use Sedo\SedoTMP\SedoTMPClient;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
-// Initialize the SedoTMP client with the path to the .env file
-$client = new SedoTMPClient(__DIR__.'/../.env');
+// Create a cache adapter using the system's temporary directory
+$cacheDir = sys_get_temp_dir().'/sedotmp-cache';
+$cache = new FilesystemAdapter('auth0_tokens', 0, $cacheDir);
+
+// Initialize the SedoTMP client with the path to the .env file and the cache adapter
+$client = new SedoTMPClient(__DIR__.'/../.env', null, $cache);
+
+// Output cache directory for reference
+echo "Using cache directory: {$cacheDir}\n\n";
 
 // Get the API services from the client
 $contentApiService = $client->content();
 $platformApiService = $client->platform();
 
 try {
-    // Enable debug mode for detailed API request/response logging
-    $client->getAuthenticator()->getConfig()->setDebug(true);
-
     // Step 1: Content API - Get a list of articles
     echo "Step 1: Listing articles\n";
     echo "======================\n";
@@ -159,13 +164,13 @@ try {
 } catch (ApiException $e) {
     $responseBody = $e->getResponseBody();
     echo sprintf(
-        "Error: %s\nTrace: %s\n",
+        "ApiException: %s\nTrace: %s\n",
         $responseBody instanceof stdClass ? json_encode($responseBody) : $responseBody,
         $e->getTraceAsString()
     );
 } catch (Exception $e) {
     echo sprintf(
-        "Error: %s\nTrace: %s\n",
+        "Exception: %s\nTrace: %s\n",
         $e->getMessage(),
         $e->getTraceAsString()
     );

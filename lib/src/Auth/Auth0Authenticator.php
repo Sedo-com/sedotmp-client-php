@@ -5,28 +5,24 @@ namespace Sedo\SedoTMP\Auth;
 use Auth0\SDK\Auth0;
 use Auth0\SDK\Configuration\SdkConfiguration;
 use Sedo\SedoTMP\Exception\UnexpectedTypeException;
-use Sedo\SedoTMP\OpenApi\Configuration;
-use Symfony\Component\Dotenv\Dotenv;
+use Symfony\Component\Cache\Adapter\AdapterInterface;
 
 class Auth0Authenticator implements AuthenticatorInterface
 {
     private Auth0 $auth0;
     private ?string $accessToken = null;
-    private ?int $expiresAt = null;
-    private Configuration $config;
+    private ?\DateTimeImmutable $expiresAt = null;
+    private ?AdapterInterface $cache = null;
+    private string $cacheKey = 'auth0_access_token';
 
     private string $auth0Domain;
     private string $auth0Audience;
     private string $auth0ClientId;
     private string $auth0ClientSecret;
 
-    public function __construct(Configuration $config, ?string $envPath = null)
+    public function __construct(?AdapterInterface $cache = null)
     {
-        $this->config = $config;
-
-        if ($envPath) {
-            $this->loadEnv($envPath);
-        }
+        $this->cache = $cache;
 
         if (!isset($_ENV['AUTH0_AUDIENCE']) || !is_string($_ENV['AUTH0_AUDIENCE'])) {
             throw new \RuntimeException('AUTH0_AUDIENCE environment variable is missing. Please check your .env file.');
@@ -48,12 +44,6 @@ class Auth0Authenticator implements AuthenticatorInterface
         $this->initializeAuth0();
     }
 
-    private function loadEnv(string $envPath): void
-    {
-        $dotenv = new Dotenv();
-        $dotenv->load($envPath);
-    }
-
     private function initializeAuth0(): void
     {
         $configuration = new SdkConfiguration([
@@ -61,7 +51,7 @@ class Auth0Authenticator implements AuthenticatorInterface
             'domain' => $this->auth0Domain,
             'clientId' => $this->auth0ClientId,
             'clientSecret' => $this->auth0ClientSecret,
-            'audience' => $this->auth0Audience,
+            'audience' => [$this->auth0Audience],
             'cookieSecret' => 'not-used-for-client-credentials-flow',
             'cookieSecure' => false,
             'cookieDomain' => null,
@@ -76,10 +66,32 @@ class Auth0Authenticator implements AuthenticatorInterface
 
     public function getAccessToken(): string
     {
-        if (null !== $this->accessToken && $this->expiresAt > time()) {
+        // First check if we have a valid token in memory
+        if (null !== $this->accessToken && $this->isNotExpired($this->expiresAt)) {
             return $this->accessToken;
         }
 
+        // If we have a cache, try to get the token from there
+        if (null !== $this->cache) {
+            $cacheItem = $this->cache->getItem($this->cacheKey);
+            if ($cacheItem->isHit()) {
+                $cachedData = $cacheItem->get();
+                if (
+                    is_array($cachedData)
+                    && isset($cachedData['access_token'], $cachedData['expires_at'])
+                    && is_string($cachedData['access_token'])
+                    && $cachedData['expires_at'] instanceof \DateTimeImmutable
+                    && false === $this->isExpired($cachedData['expires_at'])
+                ) {
+                    $this->accessToken = $cachedData['access_token'];
+                    $this->expiresAt = $cachedData['expires_at'];
+
+                    return $this->accessToken;
+                }
+            }
+        }
+
+        // If no valid token in memory or cache, refresh it
         $this->refreshToken();
 
         if (null === $this->accessToken) {
@@ -87,6 +99,20 @@ class Auth0Authenticator implements AuthenticatorInterface
         }
 
         return $this->accessToken;
+    }
+
+    private function isExpired(?\DateTimeImmutable $expiresAt): bool
+    {
+        if (null === $expiresAt) {
+            return true;
+        }
+
+        return $expiresAt < new \DateTimeImmutable();
+    }
+
+    private function isNotExpired(?\DateTimeImmutable $expiresAt): bool
+    {
+        return !$this->isExpired($expiresAt);
     }
 
     private function refreshToken(): void
@@ -104,10 +130,18 @@ class Auth0Authenticator implements AuthenticatorInterface
             $tokenData = self::extractTokenData($response->getBody()->__toString());
 
             $this->accessToken = $tokenData['access_token'];
-            $this->expiresAt = time() + $tokenData['expires_in'] - 60; // Subtract 60 seconds for safety margin
+            $this->expiresAt = $this->buildExpiresDate($tokenData['expires_in']);
 
-            // Update the configuration with the new token
-            $this->config->setAccessToken($this->accessToken);
+            // Save to cache if available
+            if (null !== $this->cache) {
+                $cacheItem = $this->cache->getItem($this->cacheKey);
+                $cacheItem->set([
+                    'access_token' => $this->accessToken,
+                    'expires_at' => $this->expiresAt,
+                ]);
+                $cacheItem->expiresAt($this->expiresAt);
+                $this->cache->save($cacheItem);
+            }
         } catch (\GuzzleHttp\Exception\ConnectException $e) {
             // Handle connection errors (like DNS resolution failures)
             $message = $e->getMessage();
@@ -120,6 +154,11 @@ class Auth0Authenticator implements AuthenticatorInterface
         } catch (\JsonException $e) {
             throw new \RuntimeException(sprintf('Failed to parse Auth0 response: %s', $e->getMessage()), 0, $e);
         }
+    }
+
+    private function buildExpiresDate(int $expiresIn): \DateTimeImmutable
+    {
+        return (new \DateTimeImmutable())->modify('+'.($expiresIn - 60).' seconds');
     }
 
     /**
@@ -149,8 +188,13 @@ class Auth0Authenticator implements AuthenticatorInterface
         ];
     }
 
-    public function getConfig(): Configuration
+    public function setCache(AdapterInterface $cache): void
     {
-        return $this->config;
+        $this->cache = $cache;
+    }
+
+    public function getCache(): ?AdapterInterface
+    {
+        return $this->cache;
     }
 }

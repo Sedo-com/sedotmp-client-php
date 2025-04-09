@@ -2,7 +2,6 @@
 
 namespace Sedo\SedoTMP\Api\Platform;
 
-use Sedo\SedoTMP\OpenApi\Configuration;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignResponse;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest;
 use Sedo\SedoTMP\OpenApi\Platform\Model\Pageable;
@@ -33,9 +32,4 @@ interface PlatformApiServiceInterface
      * @param ContentCampaignsPostRequest $contentCampaign Content campaign data
      */
     public function createContentCampaign(ContentCampaignsPostRequest $contentCampaign): ContentCampaignResponse;
-
-    /**
-     * Get the configuration object.
-     */
-    public function getConfig(): Configuration;
 }
