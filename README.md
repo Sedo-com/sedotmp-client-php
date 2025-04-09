@@ -4,7 +4,7 @@
 
 This PHP client library provides a convenient wrapper around the Sedo Traffic Monetization Platform (TMP) API. It uses the Swagger-generated models and API files and adds a layer of abstraction to make it easier to use.
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/Sedo-com/sedotmp-client-php/continuous-integration.yml?label=CI&logo=github&style=flat-square)](https://github.com/Sedo-com/sedotmp-client-php/actions?query=workflow%3ACI)
+[![Build Status](https://github.com/Sedo-com/sedotmp-client-php/actions/workflows/php-ci.yml/badge.svg](https://github.com/Sedo-com/sedotmp-client-php/actions?query=workflow%3ACI)
 
 ---
 
