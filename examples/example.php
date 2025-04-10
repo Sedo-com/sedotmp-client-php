@@ -57,47 +57,22 @@ try {
         );
     }
 
-    // Step 2: Content API - Create a new article
-    echo "\nStep 2: Creating a new article\n";
-    echo "============================\n";
-
-    $createArticle = new CreateArticle();
-    $createArticle->setTitle('Example Article Title');
-    $createArticle->setExcerpt('This is an example article excerpt.');
-    $createArticle->setText('This is the main content of the example article. It contains multiple paragraphs and demonstrates how to create content using the API.');
-
-    // If we have categories, use the first one
-    $categories = $contentApiService->getCategories();
-    if (count($categories) > 0) {
-        $createArticle->setCategoryId($categories[0]->getId());
-        echo sprintf("Using category: %s (ID: %s)\n",
-            $categories[0]->getTitle(),
-            $categories[0]->getId()
-        );
-    }
-
-    $createArticle->setLocale('en-US');
-
-    $newArticle = $contentApiService->createArticle($createArticle);
-    echo sprintf("Article created successfully!\n");
-    echo sprintf("Article ID: %s\n", $newArticle->getId());
-    echo sprintf("Title: %s\n", $newArticle->getTitle());
-
-    // Step 3: Content API - Generate an article with AI
-    echo "\nStep 3: Generating an article with AI\n";
+    // Step 2: Content API - Generate an article with AI
+    echo "\nStep 2: Generating an article with AI\n";
     echo "==================================\n";
 
     $generateArticle = new GenerateArticle();
     $generateArticle->setTitle('Artificial Intelligence in Modern Business');
     $generateArticle->setLocale('en-US');
+    $generateArticle->setTopics(['AI', 'Business']);
 
     $generatedArticle = $contentApiService->generateArticle($generateArticle, true);
     echo sprintf("Article generation initiated!\n");
     echo sprintf("Generation ID: %s\n", $generatedArticle->getId());
     echo "Note: Article generation is asynchronous and may take some time to complete.\n";
 
-    // Step 4: Platform API - Create a content campaign
-    echo "\nStep 4: Creating a content campaign\n";
+    // Step 3: Platform API - Create a content campaign
+    echo "\nStep 3: Creating a content campaign\n";
     echo "=================================\n";
 
     // Use the newly created article for the campaign
@@ -130,8 +105,8 @@ try {
     echo sprintf("Campaign ID: %s\n", $campaign->getId());
     echo sprintf("Status: %d\n", $campaign->getStatus());
 
-    // Step 5: Platform API - Get content campaign details
-    echo "\nStep 5: Getting campaign details\n";
+    // Step 4: Platform API - Get content campaign details
+    echo "\nStep 4: Getting campaign details\n";
     echo "===============================\n";
 
     $campaignDetails = $platformApiService->getContentCampaign((string) $campaign->getId());
