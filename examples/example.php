@@ -15,7 +15,6 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 use Sedo\SedoTMP\OpenApi\ApiException;
-use Sedo\SedoTMP\OpenApi\Content\Model\CreateArticle;
 use Sedo\SedoTMP\OpenApi\Content\Model\GenerateArticle;
 use Sedo\SedoTMP\OpenApi\Content\Model\Pageable;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest;
