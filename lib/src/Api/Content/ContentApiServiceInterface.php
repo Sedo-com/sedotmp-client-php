@@ -3,7 +3,6 @@
 namespace Sedo\SedoTMP\Api\Content;
 
 use Sedo\SedoTMP\Exception\ProblemResponseException;
-use Sedo\SedoTMP\OpenApi\Configuration;
 use Sedo\SedoTMP\OpenApi\Content\Model\ArticleResponse;
 use Sedo\SedoTMP\OpenApi\Content\Model\CategoryResponse;
 use Sedo\SedoTMP\OpenApi\Content\Model\CreateArticle;
@@ -149,9 +148,4 @@ interface ContentApiServiceInterface
      * @throws ProblemResponseException
      */
     public function getMediaResource(string $id): MediaResourceResponse;
-
-    /**
-     * Get the configuration object.
-     */
-    public function getConfig(): Configuration;
 }

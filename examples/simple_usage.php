@@ -18,31 +18,33 @@ use Sedo\SedoTMP\OpenApi\ApiException;
 use Sedo\SedoTMP\OpenApi\Content\Model\Pageable as ContentPageable;
 use Sedo\SedoTMP\OpenApi\Platform\Model\Pageable as PlatformPageable;
 use Sedo\SedoTMP\SedoTMPClient;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
-// Initialize the SedoTMP client with the path to the .env file
-$client = new SedoTMPClient(__DIR__.'/../.env');
+// Create a cache adapter using the system's temporary directory to re-use the access-token
+$cacheDir = sys_get_temp_dir().'/sedotmp-cache';
+$cache = new FilesystemAdapter('auth0_tokens', 0, $cacheDir);
+
+// Initialize the SedoTMP client with the path to the .env file and the cache adapter
+$client = new SedoTMPClient(__DIR__.'/../.env', null, $cache);
+
+// Output cache directory for reference
+echo "Using cache directory: {$cacheDir}\n\n";
 
 // Get the API services from the client
 $contentApiService = $client->content();
 $platformApiService = $client->platform();
 
 try {
-    // Enable debug mode for detailed API request/response logging
-    $client->getAuthenticator()->getConfig()->setDebug(true);
-
     // Step 1: Get available domains
     echo "Step 1: Listing available domains\n";
     echo "===============================\n";
 
     $domains = $contentApiService->getDomains();
-
-    if (0 === count($domains)) {
-        echo "No domains available. Please create a domain first.\n";
-        exit(1);
-    }
-
     echo sprintf("Found %d domains\n", count($domains));
-    echo sprintf("First domain: %s\n", $domains[0]->getDomain());
+    if (count($domains) > 0) {
+        echo sprintf("First domain: %s\n", $domains[0]->getDomain());
+        echo sprintf("Domain ID: %s\n", $domains[0]->getId());
+    }
 
     // Step 2: Get available categories
     echo "\nStep 2: Listing content categories\n";
@@ -112,13 +114,13 @@ try {
 } catch (ApiException $e) {
     $responseBody = $e->getResponseBody();
     echo sprintf(
-        "Error: %s\nTrace: %s\n",
+        "ApiException: %s\nTrace: %s\n",
         $responseBody instanceof stdClass ? json_encode($responseBody) : $responseBody,
         $e->getTraceAsString()
     );
 } catch (Exception $e) {
     echo sprintf(
-        "Error: %s\nTrace: %s\n",
+        "Exception: %s\nTrace: %s\n",
         $e->getMessage(),
         $e->getTraceAsString()
     );

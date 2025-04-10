@@ -513,11 +513,4 @@ class ContentApiServiceTest extends ApiServiceTestCase
         self::assertEquals('GET', $request->getMethod());
         self::assertEquals('/content/v1/media/123', $request->getUri()->getPath());
     }
-
-    public function testGetConfig(): void
-    {
-        $config = $this->contentApiService->getConfig();
-        self::assertEquals('https://api.example.com/content/v1', $config->getHost());
-        self::assertEquals('mock-access-token', $config->getAccessToken());
-    }
 }

@@ -161,11 +161,4 @@ class PlatformApiServiceTest extends ApiServiceTestCase
         self::assertStringContainsString('"title":"Test Article"', $requestBody);
         self::assertStringContainsString('"name":"New Campaign"', $requestBody);
     }
-
-    public function testGetConfig(): void
-    {
-        $config = $this->platformApiService->getConfig();
-        self::assertEquals('https://api.example.com/platform/v1', $config->getHost());
-        self::assertEquals('mock-access-token', $config->getAccessToken());
-    }
 }

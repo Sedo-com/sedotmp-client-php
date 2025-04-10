@@ -2,7 +2,7 @@
 
 namespace Sedo\SedoTMP\Auth;
 
-use Sedo\SedoTMP\OpenApi\Configuration;
+use Symfony\Component\Cache\Adapter\AdapterInterface;
 
 interface AuthenticatorInterface
 {
@@ -14,9 +14,16 @@ interface AuthenticatorInterface
     public function getAccessToken(): string;
 
     /**
-     * Retrieves the configuration settings.
+     * Set the cache adapter to use for token caching.
      *
-     * @return Configuration the configuration instance
+     * @param AdapterInterface $cache The cache adapter
      */
-    public function getConfig(): Configuration;
+    public function setCache(AdapterInterface $cache): void;
+
+    /**
+     * Get the current cache adapter.
+     *
+     * @return AdapterInterface|null The cache adapter or null if not set
+     */
+    public function getCache(): ?AdapterInterface;
 }

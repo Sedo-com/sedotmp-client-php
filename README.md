@@ -4,6 +4,10 @@
 
 This PHP client library provides a convenient wrapper around the Sedo Traffic Monetization Platform (TMP) API. It uses the Swagger-generated models and API files and adds a layer of abstraction to make it easier to use.
 
+[![Build Status](https://github.com/Sedo-com/sedotmp-client-php/actions/workflows/php-ci.yml/badge.svg](https://github.com/Sedo-com/sedotmp-client-php/actions?query=workflow%3ACI)
+
+---
+
 ## Requirements
 
 - PHP 8.3 or higher
@@ -193,6 +197,17 @@ Requirements: Docker
 - execute `make init`
 
 You should now be able to log into the docker container using `make php`
+
+Test the examples (make sure you have a `AUTH0_CLIENT_ID` and `AUTH0_CLIENT_SECRET` set up in your .env):
+
+- log into the container using `make php`
+- run `php examples/content_campaign_example.php`
+
+For PR run the tests locally: 
+
+- run tests: `make phpunit`
+- run cs-fixer: `make php-cs-fix`
+- run phpstan: `make phpstan`
 
 ### Create the API from the swagger docs
 
