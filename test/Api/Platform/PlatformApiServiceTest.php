@@ -74,7 +74,7 @@ class PlatformApiServiceTest extends ApiServiceTestCase
 
         self::assertEquals('GET', $request->getMethod());
         self::assertEquals('/platform/v1/content-campaigns', $request->getUri()->getPath());
-        self::assertEquals('page=1&size=10&sort&term=test', $request->getUri()->getQuery());
+        self::assertEquals('sort&page=1&size=10&term=test', $request->getUri()->getQuery());
     }
 
     public function testGetContentCampaign(): void
