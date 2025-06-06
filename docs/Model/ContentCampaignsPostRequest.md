@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**publishDomainName** | **string** | Article will be published to this domain  List of available domains can be found by using content api or portal website |
+**publishDomainName** | **string** | Article is or will be published on this domain  List of available domains can be found by using content api or portal website |
 **article** | [**\Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequestArticle**](ContentCampaignsPostRequestArticle.md) |  |
 **campaign** | [**\Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequestCampaign**](ContentCampaignsPostRequestCampaign.md) |  |
 **partner** | **string** | Partner assigned to the resource. Requires corresponding privileges | [optional]
