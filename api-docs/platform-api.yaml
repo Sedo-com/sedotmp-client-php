@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: platform-api
-  version: 1.3.0
+  version: 1.5.0
   description: |
     # Introduction and Process Overview
 
@@ -18,6 +18,9 @@ x-tagGroups:
 - name: Content Campaigns
   tags:
   - Content Campaigns
+- name: Reports
+  tags:
+  - Reports
 - name: Appendix
   tags:
   - Glossary
@@ -26,10 +29,10 @@ tags:
   description: |
     In order to monetize incoming traffic, the following components are needed:
 
-    1. **Content Site**: Hosts articles and displays ads.
-    2. **Articles**: Available online and display ads.
-    3. **Campaigns**: Collect tracking data from articles and report ad performance.
-    4. **Final URL**: The destination to which traffic will be routed.
+    1. **Content Site**: Hosts articles and displays ads
+    2. **Articles**: Available online and display ads
+    3. **Campaigns**: Collect tracking data from articles and report ad performance
+    4. **Final URL**: The destination to which traffic will be routed
 
     This process involves multiple moving parts that need to be integrated together.
 
@@ -63,9 +66,9 @@ tags:
 
     4. **Creating a New Content Campaign for an Existing Article and Campaign**:
        - Provide the article ID and campaign ID.
-      - The article will be published to the domain, and the campaign will be tracked.
-      - If the content campaign fails, you can reuse the article ID to create a new content campaign.
-      - Once the article is successfully published, the new tracking URL will be updated in the content campaign, and the content campaign will be marked as `COMPLETED`.
+       - The article will be published to the domain, and the campaign will be tracked.
+       - If the content campaign fails, you can reuse the article ID to create a new content campaign.
+       - Once the article is successfully published, the new tracking URL will be updated in the content campaign, and the content campaign will be marked as `COMPLETED`.
 
     It is possible to create a new content campaign for an existing article and existing campaign. In this case, the article will be published to the domain, and the campaign will be reused.
     You can find existing articles by using our content-api or portal website to search for articles by title, excerpt, or text. The campaign ID can be found by using the campaign-api or campaign portal.
@@ -84,17 +87,44 @@ tags:
     - Our system must comply with different regulations and guidelines. Therefore, we need to ensure that the content is compliant with the guidelines and regulations. When the content is not compliant, the content campaign will be marked as `processing_error`.
     - The process involves many moving parts and may take longer than expected. Therefore, the content campaign will be marked as `processing` until the process is completed. We recommend periodically fetch the content campaign by its provided ID to check the status
     - Pay attention to the status, article ID, campaign ID, and tracking URL in the content campaign to avoid creating redundant or duplicated content, which will decrease the value of the content site and affect ad performance.
+- name: Reports
+  description: |
+    To monitor and optimize monetization performance, the API provides access to advanced reporting tools.
+    These tools enable partners to track and analyze the effectiveness of their campaigns and keyword strategies in near real-time.
+    By leveraging detailed metrics and flexible filtering options, you can fine-tune your traffic acquisition tactics and maximize revenue across your arbitrage operations.
+
+    The Reporting section is designed to cover two key performance layers.
+    For each of them the API offers a dedicated endpoint:
+    - **Campaign Reporting**: Focused on the performance of each monetized campaign, allowing you to assess revenue contribution, funnel behavior, and ad delivery metrics.
+      The endpoint Offers campaign-level KPIs such as ad requests, impressions, clicks, revenue, RPM, CTR, and more.
+      This data helps evaluate the overall performance of your campaigns and strategies.
+    - **Keyword Performance Report**: Focused on individual keywords, giving you visibility into keyword-level behavior and monetization performance across various traffic dimensions.
+      The endpoint provides keyword-specific metrics including searches, coverage, clicks, estimated CPC, and coverage percentage. Use this data to identify top-performing keywords and optimize monetization funnels at the keyword level.
+      Note that the estimated revenue on the Keyword report is a predicted value. For final revenue consider the campaign report above.
+
+    These reports can be filtered by dimensions such as country, device type, and more.
+    All data is updated multiple times per day to provide fresh and actionable insights.
+
+    To summarize:
+
+    Report Type                | Primary Dimension | Use Case
+    ---------------------------|-------------------|---------
+    Campaign Report            | Campaign ID       | Evaluate campaign ROI, and delivery KPIs
+    Keyword Performance Report | Keyword           | Identify and optimize keyword strategy
+
+    All reports include daily and intraday updates. This allows for dynamic and responsive optimization across fast-moving campaigns.
+    Make sure to integrate both reporting endpoints into your optimization workflows to unlock the full value of the data.
 - name: Glossary
   description: |
     This section provides definitions for terms used throughout the API documentation.
 
     Term | Definition
     ----------------|-------------
-    Article | Content page (article) which contains title, excerpt (introduction short text), main text body, an image, tags, category.
-    Campaign | A marketing effort to promote content and track its performance.
-    Content Site | A website that hosts articles and displays ads.
-    Final URL | The destination URL where traffic is routed.
-    Partner | An entity with privileges to manage resources.
+    Article | Content page (article) which contains title, excerpt (introduction short text), main text body, an image, tags, category
+    Campaign | A marketing effort to promote content and track its performance
+    Content Site | A website that hosts articles and displays ads
+    Final URL | The destination URL where traffic is routed
+    Partner | An entity with privileges to manage resources
 servers:
 - url: https://api.sedotmp.com/platform/v1
 security:
@@ -133,13 +163,7 @@ paths:
               - campaign
               properties:
                 publishDomainName:
-                  type: string
-                  minLength: 1
-                  description: |
-                    Article will be published to this domain
-
-                    List of available domains can be found by using content api or portal website
-                  example: myDomain.info
+                  $ref: '#/components/schemas/PublishDomainName'
                 article:
                   type: object
                   discriminator:
@@ -175,6 +199,44 @@ paths:
         Refer to the process description above for more information.
       parameters:
       - $ref: '#/components/parameters/id'
+      responses:
+        200:
+          $ref: '#/components/responses/ContentCampaign'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    patch:
+      tags:
+      - Content Campaigns
+      summary: Retry a content campaign
+      description: |
+        This endpoint retries and existing content campaign in state PROCESSING_ERROR for a partner.
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                publishDomainName:
+                  $ref: '#/components/schemas/PublishDomainName'
+                article:
+                  type: object
+                  discriminator:
+                    propertyName: type
+                  oneOf:
+                  - $ref: '#/components/schemas/CreateArticle'
+                  - $ref: '#/components/schemas/ExistingArticle'
+                campaign:
+                  type: object
+                  discriminator:
+                    propertyName: type
+                  oneOf:
+                  - $ref: '#/components/schemas/CreateCampaign'
+                  - $ref: '#/components/schemas/ExistingCampaign'
       responses:
         200:
           $ref: '#/components/responses/ContentCampaign'
@@ -221,13 +283,7 @@ paths:
               - campaign
               properties:
                 publishDomainName:
-                  type: string
-                  minLength: 1
-                  description: |
-                    Article will be published to this domain
-
-                    List of available domains can be found by using content api or portal website
-                  example: myDomain.info
+                  $ref: '#/components/schemas/PublishDomainName'
                 article:
                   type: object
                   discriminator:
@@ -273,6 +329,61 @@ paths:
           $ref: '#/components/responses/BadRequest'
         500:
           $ref: '#/components/responses/InternalServerError'
+  /keyword-performance-report:
+    get:
+      tags:
+      - Reports
+      summary: Retrieve a Keyword Performance Report
+      description: |
+        The Keyword Performance Report provides a comprehensive breakdown of keyword performance, allowing you to optimize keywords efficiently to improve ROI.
+        The report is grouped by keywords and can be filtered by additional dimensions, such as country, device type, and more.
+      parameters:
+      - $ref: '#/components/parameters/keywordPerformanceReportDimensions'
+      - $ref: '#/components/parameters/keywordPerformanceReportFilter'
+      - $ref: '#/components/parameters/keywordPerformanceReportSort'
+      - $ref: '#/components/parameters/pagination'
+      responses:
+        200:
+          description: Stream of Keyword Performance Report items
+          content:
+            application/x-ndjson:
+              schema:
+                $ref: '#/components/schemas/KeywordPerformanceReport'
+          headers:
+            X-Total-Count:
+              $ref: '#/components/headers/X-Total-Count'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /campaign-report:
+    get:
+      tags:
+      - Reports
+      summary: Retrieve a Campaign Report
+      description: |
+        Our advanced reporting system provides detailed data on campaign performance, offering insights into key metrics
+        across various dimensions such as campaign ID, geographic locations, and devices.
+        This enables you to accurately compare revenue with ad spend on traffic sources and marketing strategies in near real-time.
+      parameters:
+      - $ref: '#/components/parameters/campaignReportDimensions'
+      - $ref: '#/components/parameters/campaignReportFilter'
+      - $ref: '#/components/parameters/campaignReportSort'
+      - $ref: '#/components/parameters/pagination'
+      responses:
+        200:
+          description: Stream of Campaign Report items
+          content:
+            application/x-ndjson:
+              schema:
+                $ref: '#/components/schemas/CampaignReport'
+          headers:
+            X-Total-Count:
+              $ref: '#/components/headers/X-Total-Count'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
 components:
   securitySchemes:
     bearerAuth:
@@ -287,6 +398,24 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/Id'
+    pagination:
+      name: pagination
+      in: query
+      description: |
+        [Pagination parameters](#model-Pagination). Use one of the following methods:
+          - `offset` and `limit` for offset-based pagination
+          - `page` and `size` for page-based pagination
+      examples:
+        Example using offset and limit:
+          value:
+            offset: 0
+            limit: 100
+        Example using page and size:
+          value:
+            page: 0
+            size: 10
+      schema:
+        $ref: '#/components/schemas/Pagination'
     page:
       name: page
       in: query
@@ -300,6 +429,60 @@ components:
       schema:
         type: string
         example: summer+vacation
+    keywordPerformanceReportDimensions:
+      name: dimensions
+      in: query
+      description: The dimensions to include in the report
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/KeywordPerformanceReportDimension'
+    keywordPerformanceReportFilter:
+      name: filter
+      in: query
+      description: Filter object, must be sent as a url-encoded JSON string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KeywordPerformanceReportFilter'
+    keywordPerformanceReportSort:
+      name: sort
+      in: query
+      description: |
+        Sort object (every key is a separate query parameter)
+
+        Available fields for sorting: CLICKS, SEARCHES, COVERAGE, COVERAGE_PERCENT, ESTIMATED_REVENUE, CTR, ESTIMATED_CPC, DATE, PARTNER, CAMPAIGN_ID, COUNTRY, DEVICE_TYPE, KEYWORDS
+      example:
+        sort: CLICKS,asc
+      schema:
+        $ref: '#/components/schemas/Sort'
+    campaignReportDimensions:
+      name: dimensions
+      in: query
+      description: The dimensions to include in the report
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/CampaignReportDimension'
+    campaignReportFilter:
+      name: filter
+      in: query
+      description: Filter object, must be sent as a url-encoded JSON string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CampaignReportFilter'
+    campaignReportSort:
+      name: sort
+      in: query
+      description: |
+        Sort object (every key is a separate query parameter)
+
+        Available fields for sorting: RELATED_LINKS_REQUESTS, RELATED_LINKS_IMPRESSIONS, RELATED_LINKS_CLICKS, RELATED_LINKS_RPM, AD_REQUESTS, MATCHED_AD_REQUESTS, AD_IMPRESSIONS, IMPRESSIONS, CLICKS, CTR, AD_CTR, CPC, AD_RPM, CONVERSION_RATE, REVENUE, DATE, HOUR, PARTNER, CAMPAIGN_ID, COUNTRY, DEVICE_TYPE
+      example:
+        sort: CLICKS,asc
+      schema:
+        $ref: '#/components/schemas/Sort'
   schemas:
     Id:
       type: string
@@ -364,11 +547,28 @@ components:
           - Summer vacation
           - All inclusive resort in Thailand
           - Cheap flights from USA
+        contentPhrases:
+          $ref: '#/components/schemas/ContentPhrases'
         categoryId:
           description: Which category id does article belong to. List of available categories can be fetched from Content API categories endpoint.
           type: string
           format: uuid4
           example: 2e5c8fbb-f078-498b-82e5-d45263e21f67
+    ContentPhrases:
+      description: |
+        - Content Phrases: This field allows partners to provide up to 5 key phrases that guide the content generation process. These phrases should expand on the content introduction while keeping the article aligned with the ad. For example, if the ad promotes "weight loss" the article should provide detailed weight loss advice, not general health tips or unrelated topics.
+        - Usage: Generate 1-5 key phrases that expand on the content intro while keeping the article aligned with the ad. Ensure these phrases guide the creation of informative and well-structured sections that fully support the main topic.
+        - Guidelines: Keep the content original, accurate, and relevant to the reader. Avoid making exaggerated claims or misleading statements.
+      type: array
+      maxItems: 5
+      example:
+      - Summer vacation in Thailand with all inclusive resort and direct flights from USA
+      - Additionally you can have a weekend on the Phi Phi islands
+      items:
+        type: string
+        description: Phrase to enhance the content
+        example: Luxury flights
+        maxLength: 150
     CreateCampaign:
       type: object
       required:
@@ -425,6 +625,7 @@ components:
               discriminator:
                 propertyName: type
               oneOf:
+              - $ref: '#/components/schemas/PixelMetaTrackingSettings'
               - $ref: '#/components/schemas/S2sMetaTrackingSettings'
               - $ref: '#/components/schemas/S2sOutbrainTrackingSettings'
               - $ref: '#/components/schemas/S2sSnapchatTrackingSettings'
@@ -433,9 +634,10 @@ components:
               - $ref: '#/components/schemas/S2sXTrackingSettings'
             trackingMethod:
               type: string
-              description: 'Tracking method: currently only S2S is supported.'
+              description: 'Tracking method: Currently pixel tracking is only supported for meta'
               enum:
               - S2S
+              - PIXEL
             postbacks:
               type: array
               description: |
@@ -449,10 +651,41 @@ components:
                 - Test your postback setup before launching campaigns.
               items:
                 $ref: '#/components/schemas/Postback'
+    PixelMetaTrackingSettings:
+      type: object
+      description: |
+        Settings for pixel tracking with Meta traffic source
+
+        More details on how to set up the tracking can be found in the [Meta conversion tracking API documentation](https://developers.facebook.com/docs/marketing-api/conversions-api/get-started/)
+      required:
+      - type
+      - pixelMetaPixelId
+      properties:
+        pixelMetaPixelId:
+          type: string
+          minLength: 1
+          description: |
+            Pixel ID from Meta Events Manager. See for more details: https://www.facebook.com/business/help/952192354843755?id=1205376682832142
+
+            More details on how to set up the tracking can be found in the [Meta conversion tracking API documentation](https://developers.facebook.com/docs/marketing-api/conversions-api/get-started/)
+        pixelMetaLandingPageEvent:
+          type: string
+          description: Event name for the Landing Visit event
+        pixelMetaClickEvent:
+          type: string
+          description: |
+            Event name for the Ad Click or "2nd" click event. Commonly used for conversion tracking
+        pixelMetaSearchEvent:
+          type: string
+          description: |
+            Event name for the Search event. Can be used for tracking "1st" click
+        type:
+          type: string
+          example: PixelMetaTrackingSettings
     S2sMetaTrackingSettings:
       type: object
       description: |
-        Settings for tracking with Meta traffic source.
+        Settings for tracking with Meta traffic source
 
         More details on how to set up the tracking can be found in the [Meta conversion tracking API documentation](https://developers.facebook.com/docs/marketing-api/conversions-api/get-started/)
       required:
@@ -469,22 +702,22 @@ components:
             More details on how to set up the tracking can be found in the [Meta conversion tracking API documentation](https://developers.facebook.com/docs/marketing-api/conversions-api/get-started/)
         s2sMetaLandingPageEvent:
           type: string
-          description: Event name for the Landing Visit event.
+          description: Event name for the Landing Visit event
         s2sMetaClickEvent:
           type: string
           description: |
-            Event name for the Search event. Can be used for tracking "1st" click
+            Event name for the Ad Click or "2nd" click event. Commonly used for conversion tracking
         s2sMetaSearchEvent:
           type: string
           description: |
-            Event name for the Ad Click or "2nd" click event. Commonly used for conversion tracking
+            Event name for the Search event. Can be used for tracking "1st" click
         type:
           type: string
           example: S2sMetaTrackingSettings
     S2sOutbrainTrackingSettings:
       type: object
       description: |
-        Settings for tracking with Outbrain traffic source.
+        Settings for tracking with Outbrain traffic source
 
         Follow the Outbrain guidelines to set up the Server-to-Server (S2S) Conversion in your Outbrain account [Outbrain S2S Conversion Setup](https://www.outbrain.com/help/advertisers/server2server-integrations/)
       required:
@@ -509,7 +742,7 @@ components:
           example: ob_click_id
         s2sOutbrainLandingPageEvent:
           type: string
-          description: Event name for the Landing Visit event.
+          description: Event name for the Landing Visit event
         s2sOutbrainSearchEvent:
           type: string
           description: |
@@ -524,7 +757,7 @@ components:
     S2sSnapchatTrackingSettings:
       type: object
       description: |
-        Settings for tracking with Snapchat traffic source.
+        Settings for tracking with Snapchat traffic source
 
         More details on how to set up the tracking can be found in the [Snapchat Ads Manager](https://forbusiness.snapchat.com/blog/the-snap-pixel-how-it-works-and-how-to-install-it#installation)
       required:
@@ -534,16 +767,16 @@ components:
       properties:
         s2sSnapchatToken:
           type: string
-          description: Conversion API token.
+          description: Conversion API token
         s2sSnapchatPixelId:
           type: string
           description: |
-            Event Pixel ID from Snapchat Ads Manager.
+            Event Pixel ID from Snapchat Ads Manager
 
             More details on how to set up the tracking can be found in the [Snapchat Ads Manager](https://forbusiness.snapchat.com/blog/the-snap-pixel-how-it-works-and-how-to-install-it#installation)
         s2sSnapchatLandingPageEvent:
           type: string
-          description: Event name for the Landing Visit event.
+          description: Event name for the Landing Visit event
           allOf:
           - $ref: '#/components/schemas/S2sSnapchatEventType'
         s2sSnapchatSearchEvent:
@@ -600,7 +833,11 @@ components:
       - CUSTOM_EVENT_5
     S2sTaboolaTrackingSettings:
       type: object
-      description: "Settings for tracking with Snapchat traffic source.\n\nFollow the Taboola guidelines to set up the Server-to-Server (S2S) Conversion in your Taboola account \n[Taboola S2S Conversion Setup0](https://help.taboola.com/hc/en-us/articles/115006850567-How-to-Track-Conversions-Using-Server-to-Server-Integration-S2S)\n"
+      description: |
+        Settings for tracking with Snapchat traffic source
+
+        Follow the Taboola guidelines to set up the Server-to-Server (S2S) Conversion in your Taboola account
+        [Taboola S2S Conversion Setup0](https://help.taboola.com/hc/en-us/articles/115006850567-How-to-Track-Conversions-Using-Server-to-Server-Integration-S2S)
       required:
       - type
       - s2sTaboolaClickParam
@@ -625,7 +862,7 @@ components:
           example: taboola_click
         s2sTaboolaLandingPageEvent:
           type: string
-          description: Event name for the Landing Visit event.
+          description: Event name for the Landing Visit event
         s2sTaboolaSearchEvent:
           type: string
           description: |
@@ -640,7 +877,7 @@ components:
     S2sTikTokTrackingSettings:
       type: object
       description: |
-        Settings for tracking with TikTok traffic source.
+        Settings for tracking with TikTok traffic source
       required:
       - type
       - s2sTikTokToken
@@ -662,7 +899,7 @@ components:
             Note: Make sure to configure the appropriate permissions in your TikTok account for the pixel to function correctly.
         s2sTikTokLandingPageEvent:
           type: string
-          description: Event name for the Landing Visit event.
+          description: Event name for the Landing Visit event
           allOf:
           - $ref: '#/components/schemas/S2sTikTokEventType'
         s2sTikTokSearchEvent:
@@ -706,7 +943,7 @@ components:
     S2sXTrackingSettings:
       type: object
       description: |
-        Settings for tracking with Twitter (X)  traffic source.
+        Settings for tracking with Twitter (X)  traffic source
 
         For detailed guidance on setting up and using the pixel, please refer to the official documentation: [Twitter (X) Conversion API](https://developer.x.com/en/docs/x-ads-api/measurement/web-conversions/conversion-api).
       required:
@@ -721,7 +958,7 @@ components:
             For detailed guidance on setting up and using the pixel, please refer to the official documentation: [Twitter (X) Conversion API](https://developer.x.com/en/docs/x-ads-api/measurement/web-conversions/conversion-api)
         s2sXLandingPageEvent:
           type: string
-          description: Event name for the Landing Visit event.
+          description: Event name for the Landing Visit event
         s2sXSearchEvent:
           type: string
           description: |
@@ -738,6 +975,7 @@ components:
       required:
       - eventName
       - url
+      - clickIdParam
       properties:
         eventName:
           type: string
@@ -745,6 +983,8 @@ components:
           example: CLICK
           enum:
           - CLICK
+          - SEARCH
+          - LANDING_PAGE
         url:
           type: string
           minLength: 1
@@ -755,28 +995,33 @@ components:
 
             ### Additional Tracking Macros
             You can dynamically append extra parameters to the postback URL using the following macros.
+            Be aware not all macros are available for all event names, see table below.
             This allows better tracking of conversions and payouts.
 
-            Macro            | Description  | Example
-            -----------------|--------------|-----------
-            {campaign}       | Campaign ID  | 12345
-            {click_id}       | Click ID for conversion tracking. Important: attach always the same parameter name to the traffic URL when sending traffic to SedoTMP. | abc123xyz
-            {epayout}        | Estimated payout amount | 0.123
-            {country}        | 2-letter ISO country code | US
-            {country_name}   | Full country name | United States
-            {state}          | State code or name | CA / California
-            {city}           | City name | Los Angeles
-            {zip}            | ZIP/postal code | 90001
-            {os_type}        | Visitor's operating system | WINDOWS
-            {browser}        | Visitor's browser type | CHROME
-            {device_type}    | Device type (Mobile/Desktop) | MOBILE
-            {device_brand}   | Device brand | APPLE
+            Macro            | Description  | Example | Available for Event Name
+            -----------------|--------------|--------------|-----------
+            {campaign}       |  Campaign ID  | 12345 | all
+            {click_id}       |  Click ID for conversion tracking. Important: attach always the same parameter name to the traffic URL when sending traffic to SedoTMP. | abc123xyz | all
+            {epayout}        |  Estimated payout amount | 0.123 | CLICK
+            {country}        |  2-letter ISO country code | US | all
+            {country_name}   |  Full country name | United States | all
+            {state}          |  State code or name | CA / California | all
+            {city}           |  City name | Los Angeles | all
+            {zip}            |  ZIP/postal code | 90001 | all
+            {os_type}        |  Visitor's operating system | WINDOWS | all
+            {browser}        |  Visitor's browser type | CHROME | all
+            {device_type}    |  Device type (Mobile/Desktop) | MOBILE | all
+            {device_brand}   |  Device brand | APPLE | all
+            {subid1},{subid2},{subid3},{subid4},{subid5} | Custom subids that can be passed for additional traffic segmentation | AdSetID, PictureID, etc. | all
           example: https://your-tracking-url.com/cf/cv?click_id={click_id}&payout={epayout}
         clickIdParam:
           type: string
+          minLength: 1
           description: |
             Used to define a custom parameter name for passing your (or your traffic source) Click ID.
             This same parameter name must be included in the url when sending traffic to SedoTMP.
+            If you define multiple postbacks the clickIdParam must be the same for all of them.
+            The structure of the postbacks allows to use different clickIdParam per EventName in the future
           example: click_id
     ContentCampaignStatus:
       type: string
@@ -798,8 +1043,7 @@ components:
           type: string
           example: https://myDomain.info/driving-affordability-exploring?campaign=123
         publishDomainName:
-          type: string
-          example: myDomain.info
+          $ref: '#/components/schemas/PublishDomainName'
         article:
           allOf:
           - type: object
@@ -827,11 +1071,248 @@ components:
           $ref: '#/components/schemas/Timestamp'
         lastModifiedBy:
           $ref: '#/components/schemas/User'
+    KeywordPerformanceReport:
+      type: object
+      properties:
+        partner:
+          $ref: '#/components/schemas/Partner'
+        date:
+          $ref: '#/components/schemas/Date'
+        campaignId:
+          type: string
+          example: '1'
+        campaignName:
+          type: string
+          example: summer vacation
+        country:
+          $ref: '#/components/schemas/Country'
+        os:
+          type: string
+          description: The operating system of the browser
+          example: Windows
+        browser:
+          type: string
+          example: Chrome
+        deviceType:
+          type: string
+          example: Desktop
+        deviceBrand:
+          type: string
+          example: Dell
+        keywords:
+          type: string
+          example: summer+vacation
+        clicks:
+          type: integer
+          description: The number of times the keyword was clicked
+          example: 100
+        searches:
+          type: integer
+          description: The number of times the keyword was queried or clicked on the landing page
+          example: 200
+        coverage:
+          type: integer
+          description: The number of times at least one ad was displayed for a keyword during search loads
+          example: 1
+        coveragePercent:
+          type: number
+          description: The proportion of keyword searches that resulted in at least one ad being displayed, highlighting ad visibility for each query
+          example: 0.5
+        estimatedRevenue:
+          type: number
+          description: The total estimated revenue generated by the keyword within the selected date range and dimensions. Note that the estimated revenue can differ from the final revenue. We recommend to consider final revenue from the campaign report.
+          example: 1000.0
+        ctr:
+          type: number
+          description: Click-through rate. The percentage of search instances that resulted in an ad click for the keyword
+          example: 0.1
+        estimatedCpc:
+          type: number
+          description: The average estimated cost per click for a keyword, calculated by dividing the estimated revenue by the number of clicks
+          example: 0.5
+    CampaignReportFilter:
+      type: object
+      properties:
+        startDate:
+          $ref: '#/components/schemas/FilterDate'
+        endDate:
+          $ref: '#/components/schemas/FilterDate'
+        hour:
+          type: object
+          properties:
+            values:
+              type: array
+              items:
+                type: integer
+                minimum: 0
+                maximum: 23
+        campaignId:
+          $ref: '#/components/schemas/FilterCampaignId'
+        country:
+          $ref: '#/components/schemas/FilterCountry'
+        deviceType:
+          $ref: '#/components/schemas/FilterDeviceType'
+    CampaignReportDimension:
+      type: string
+      enum:
+      - DATE
+      - HOUR
+      - PARTNER
+      - CAMPAIGN_ID
+      - COUNTRY
+      - DEVICE_TYPE
+    CampaignReportSortField:
+      type: string
+      enum:
+      - RELATED_LINKS_REQUESTS
+      - RELATED_LINKS_IMPRESSIONS
+      - RELATED_LINKS_CLICKS
+      - RELATED_LINKS_RPM
+      - AD_REQUESTS
+      - MATCHED_AD_REQUESTS
+      - AD_IMPRESSIONS
+      - IMPRESSIONS
+      - CLICKS
+      - CTR
+      - AD_CTR
+      - CPC
+      - AD_RPM
+      - CONVERSION_RATE
+      - REVENUE
+      - DATE
+      - HOUR
+      - PARTNER
+      - CAMPAIGN_ID
+      - COUNTRY
+      - DEVICE_TYPE
+    CampaignReport:
+      type: object
+      properties:
+        partner:
+          $ref: '#/components/schemas/Partner'
+        date:
+          $ref: '#/components/schemas/Date'
+        hour:
+          type: integer
+          minimum: 0
+          maximum: 23
+          example: 22
+        campaignId:
+          type: string
+          example: '1'
+        campaignName:
+          type: string
+          example: summer vacation
+        country:
+          $ref: '#/components/schemas/Country'
+        deviceType:
+          type: string
+          example: Desktop
+        relatedLinksRequests:
+          type: integer
+          example: 100
+          description: |
+            A funnel request is counted whenever your site requests to display a non-ad unit (for example, a related search unit).
+            We report a funnel request each time a request was sent, even if nothing was returned or rendered on the page.
+        relatedLinksImpressions:
+          type: integer
+          example: 100
+          description: |
+            A funnel impression is counted for each funnel request that returned some content that was shown to the user.
+        relatedLinksClicks:
+          type: integer
+          example: 100
+          description: |
+            A funnel click is counted when a user clicks on a non-ad unit and some action is triggered.
+            For example, the user clicks a related search term inside a related search unit and is taken to a search landing page.
+        relatedLinksRpm:
+          type: number
+          example: 100.0
+          description: |
+            Ad revenue per thousand funnel impressions is calculated by dividing your estimated earnings resulting from a funnel request
+            by the number of funnel impressions that you received, then multiplying by 1,000.
+
+            Funnel RPM = (Estimated earnings resulting from the funnel / funnel impressions) * 1,000
+        adRequests:
+          type: integer
+          example: 100
+          description: |
+            An ad request is counted whenever an ad unit on your site requests ads to be displayed.
+            It is the number of ad units that requested ads (for content ads) or search queries (for search ads).
+            We report an ad request each time a request was sent, even if no ads were returned and public service ads or
+            backup ads were displayed instead.
+        matchedAdRequests:
+          type: integer
+          example: 100
+          description: |
+            A matched request is counted for each ad request that returns at least one ad to the site.
+            It's the number of ad units (for content ads) or search queries (for search ads) that showed ads.
+        adImpressions:
+          type: integer
+          example: 100
+          description: |
+            An ad impression is reported whenever an ad has been downloaded to the user's device and has begun to load.
+            Different ad formats display varying numbers of ads, for example, each time a vertical banner appears
+            on your site you'll see two ad impressions in your reports.
+        impressions:
+          type: integer
+          example: 100
+          description: |
+            An impression is counted for each ad request where at least one ad has begun to load on the user's device.
+            It's the number of ad units (for content ads) or search queries (for search ads) that loaded ads.
+        clicks:
+          type: integer
+          example: 100
+          description: |
+            The number of times that a user clicked on an ad
+        ctr:
+          type: number
+          example: 0.1
+          description: |
+            The click-through rate is the percentage of impressions that led to a click.
+
+            CTR = Clicks/Impression
+        adCtr:
+          type: number
+          example: 0.1
+          description: |
+            The ad click-through rate is the number of ad clicks divided by the number of impressions for the page
+            of ads that appears when a link unit is clicked.
+        cpc:
+          type: number
+          example: 0.5
+          description: |
+            The cost per click is the amount that you earn each time a user clicks on your ad.
+            In your reports, CPC is calculated by dividing the estimated earnings by the number of clicks received.
+        adRpm:
+          type: number
+          example: 100.0
+          description: |
+            Ad revenue per thousand impressions (RPM) is calculated by dividing your estimated earnings
+            by the number of ad impressions that you received, then multiplying by 1000.
+
+            Ad RPM = (Estimated earnings/Ad impressions) * 1000
+        conversionRate:
+          type: number
+          example: 0.1
+          description: |
+            Ad Clicks / Related Links Requests (full funnel conversion rate)
+        revenue:
+          type: number
+          example: 100.0
+          description: |
+            Your account balance for the time period selected
+            This amount is an estimate that is subject to change when your earnings are verified for accuracy at the end of every month.
     Timestamp:
       description: Timestamp in UTC
       type: string
       format: date-time
       example: '2024-01-01T18:00:00Z'
+    Date:
+      description: Date
+      type: string
+      format: date
+      example: '2024-01-01'
     Partner:
       description: Partner assigned to the resource. Requires corresponding privileges
       type: string
@@ -842,23 +1323,64 @@ components:
       example: John Doe
     Pageable:
       type: object
+      allOf:
+      - $ref: '#/components/schemas/Sort'
+      - $ref: '#/components/schemas/Page'
+    Pagination:
+      oneOf:
+      - $ref: '#/components/schemas/OffsetLimit'
+      - $ref: '#/components/schemas/Page'
+    Page:
+      type: object
       properties:
         page:
           type: integer
           format: int32
           default: 0
           minimum: 0
-          description: 0-indexed page number
+          description: |
+            The 0-indexed page number to return
+
+            For example, page=0 will return the first page of items.
         size:
           type: integer
           format: int32
           default: 10
           minimum: 1
           maximum: 10
-        sort:
           description: |
-            In order to sort by multiple columns, provide a `sort=property,direction` query parameter for each column
+            The number of items per page
+
+            For example, size=10 will return up to 10 items on a page.
+    OffsetLimit:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int64
+          default: 0
+          minimum: 0
+          example: 0
+          description: |
+            The offset indicating how many items to skip before starting to return results
+
+            For example, offset=10 will return items starting with the 11th item.
+        limit:
+          type: integer
+          format: int64
+          minimum: 0
+          example: 100
+          description: |
+            The maximum number of items to return
+
+            For example, limit=10 will return up to 10 items.
+    Sort:
+      type: object
+      properties:
+        sort:
           type: string
+          description: |
+            In order to sort by multiple fields, provide a `sort=field,direction` query parameter for each field.
           example: id,asc
     Country:
       description: Audience country (ISO code)
@@ -871,6 +1393,116 @@ components:
       type: string
       format: bcp47
       example: en-US
+    PublishDomainName:
+      type: string
+      minLength: 1
+      description: |
+        Article is or will be published on this domain
+
+        List of available domains can be found by using content api or portal website
+      example: myDomain.info
+    KeywordPerformanceReportFilter:
+      type: object
+      properties:
+        startDate:
+          $ref: '#/components/schemas/FilterDate'
+        endDate:
+          $ref: '#/components/schemas/FilterDate'
+        campaignId:
+          $ref: '#/components/schemas/FilterCampaignId'
+        country:
+          $ref: '#/components/schemas/FilterCountry'
+        os:
+          type: object
+          properties:
+            values:
+              type: array
+              items:
+                type: string
+                example: ANDROID
+        browser:
+          type: object
+          properties:
+            values:
+              type: array
+              items:
+                type: string
+                example: CHROME
+        deviceType:
+          $ref: '#/components/schemas/FilterDeviceType'
+        deviceBrand:
+          type: object
+          properties:
+            values:
+              type: array
+              items:
+                type: string
+                example: SAMSUNG
+        keywords:
+          type: object
+          properties:
+            values:
+              type: array
+              items:
+                type: string
+                example: test query
+    KeywordPerformanceReportSortField:
+      type: string
+      enum:
+      - CLICKS
+      - SEARCHES
+      - COVERAGE
+      - COVERAGE_PERCENT
+      - ESTIMATED_REVENUE
+      - CTR
+      - ESTIMATED_CPC
+      - DATE
+      - PARTNER
+      - CAMPAIGN_ID
+      - COUNTRY
+      - DEVICE_TYPE
+      - KEYWORDS
+    KeywordPerformanceReportDimension:
+      type: string
+      enum:
+      - DATE
+      - PARTNER
+      - CAMPAIGN_ID
+      - COUNTRY
+      - DEVICE_TYPE
+    FilterDate:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/Date'
+    FilterCountry:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/Country'
+    FilterCampaignId:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            type: string
+            minLength: 1
+            example: '1'
+    FilterDeviceType:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            type: string
+            example: MOBILE
+            enum:
+            - MOBILE
+            - DESKTOP
+            - OTHER
   headers:
     X-Total-Count:
       description: Total count of results

@@ -133,7 +133,7 @@ class ContentCampaignsApiTest extends TestCase
         $request = $this->mockHttpClient->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
         $this->assertEquals('/platform/v1/content-campaigns', $request->getUri()->getPath());
-        $this->assertEquals('page=1&size=10&sort&term=test', $request->getUri()->getQuery());
+        $this->assertEquals('sort&page=1&size=10&term=test', $request->getUri()->getQuery());
     }
 
     /**

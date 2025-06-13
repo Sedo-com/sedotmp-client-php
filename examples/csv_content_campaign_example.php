@@ -154,7 +154,7 @@ try {
         $postback = new Postback();
         $postback->setEventName((string) $row['postbacks EventName']);
         $postback->setUrl((string) $row['postbacksUrl']);
-        $postback->setClickIdParam($row['postbacksClickIdParam']);
+        $postback->setClickIdParam((string) $row['postbacksClickIdParam']);
         $trackingData->setPostbacks([$postback]);
 
         $campaign->setTrackingData($trackingData);
