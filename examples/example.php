@@ -17,6 +17,7 @@ require_once __DIR__.'/../vendor/autoload.php';
 use Sedo\SedoTMP\OpenApi\ApiException;
 use Sedo\SedoTMP\OpenApi\Content\Model\GenerateArticle;
 use Sedo\SedoTMP\OpenApi\Content\Model\Pageable;
+use Sedo\SedoTMP\OpenApi\Platform\Model\CampaignDataTrackingData;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequest;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequestArticle;
 use Sedo\SedoTMP\OpenApi\Platform\Model\ContentCampaignsPostRequestCampaign;
@@ -65,7 +66,7 @@ try {
     $generateArticle->setLocale('en-US');
     $generateArticle->setTopics(['AI', 'Business']);
 
-    $generatedArticle = $contentApiService->generateArticle($generateArticle, true);
+    $generatedArticle = $contentApiService->generateArticle($generateArticle);
     echo sprintf("Article generation initiated!\n");
     echo sprintf("Generation ID: %s\n", $generatedArticle->getId());
     echo "Note: Article generation is asynchronous and may take some time to complete.\n";
@@ -77,11 +78,18 @@ try {
     // Use the newly created article for the campaign
     $campaignArticle = new ContentCampaignsPostRequestArticle();
     $campaignArticle->setType('ExistingArticle');
+    $campaignArticle->setArticleId((string) $generatedArticle->getId());
+
+    // Set up tracking data
+    $trackingData = new CampaignDataTrackingData();
+    $trackingData->setTrafficSource('META');
+    $trackingData->setTrackingMethod('S2S');
 
     // Create a new campaign
     $createCampaign = new ContentCampaignsPostRequestCampaign();
     $createCampaign->setType('CreateCampaign');
     $createCampaign->setName('Example Campaign');
+    $createCampaign->setTrackingData($trackingData);
 
     // Get available domains
     $domains = $contentApiService->getDomains();
