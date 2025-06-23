@@ -6,6 +6,7 @@ All URIs are relative to https://api.sedotmp.com/content/v1, except if the opera
 | ------------- | ------------- | ------------- |
 | [**mediaDownloadIdGet()**](MediaResourceApi.md#mediaDownloadIdGet) | **GET** /media/download/{id} | Download a media resource by its ID |
 | [**mediaGet()**](MediaResourceApi.md#mediaGet) | **GET** /media | Retrieve a list of media resources |
+| [**mediaIdDelete()**](MediaResourceApi.md#mediaIdDelete) | **DELETE** /media/{id} | Delete a media resource by its ID |
 | [**mediaIdGet()**](MediaResourceApi.md#mediaIdGet) | **GET** /media/{id} | Retrieve a media resource by its ID |
 | [**mediaPost()**](MediaResourceApi.md#mediaPost) | **POST** /media | Create a new media resource |
 
@@ -114,6 +115,63 @@ try {
 ### Return type
 
 [**\Sedo\SedoTMP\OpenApi\Content\Model\MediaResourceResponse[]**](../Model/MediaResourceResponse.md)
+
+### Authorization
+
+[bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `mediaIdDelete()`
+
+```php
+mediaIdDelete($id)
+```
+
+Delete a media resource by its ID
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer (JWT) authorization: bearerAuth
+$config = Sedo\SedoTMP\OpenApi\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Sedo\SedoTMP\OpenApi\Api\MediaResourceApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Resource id
+
+try {
+    $apiInstance->mediaIdDelete($id);
+} catch (Exception $e) {
+    echo 'Exception when calling MediaResourceApi->mediaIdDelete: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Resource id | |
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 
