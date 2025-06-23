@@ -24,7 +24,7 @@
         "guzzlehttp/guzzle": "^7.9",
         "guzzlehttp/psr7": "^2.7",
         "auth0/auth0-php": "^8.0",
-        "symfony/dotenv": "^6.3",
+        "symfony/dotenv": "^7.3",
         "symfony/cache": "^7.2"
     },
     "require-dev": {
